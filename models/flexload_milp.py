@@ -409,6 +409,9 @@ class flexloadMILP:
             model = self.add_base_tariffs(model)
             model = self.add_flex_tariffs(model)
         elif self.costing_type == "lmp":
+            model.cost_signal = Param(
+                model.t, initialize=lambda model, t: self.cost_signal[t]
+            )
             @model.Constraint(model.t, doc="Flex cost signal constraint")
             def flex_cost_signal_rule(b, t):
                 return b.flex_cost_signal[t] == b.flexload[t] * b.cost_signal[t]
@@ -434,6 +437,9 @@ class flexloadMILP:
                 return 0
         
         if self.emissions_type == "aef" or self.emissions_type == "mef":
+            model.emissions_signal = Param(
+                model.t, initialize=lambda model, t: self.emissions_signal[t]
+            )
             @model.Constraint(model.t, doc="Flex emissions signal constraint")
             def flex_emissions_signal_rule(b, t):
                 return b.flex_emissions_signal[t] == b.flexload[t] * b.emissions_signal[t]
