@@ -19,8 +19,8 @@ plt.rcParams.update({'font.size': 24,
                         'ytick.direction': 'out',})
 
 # define the region and month
-region = "ERCOt"
-month = 5
+region = "CAISO"
+month = 2
 
 # get the data
 mef_data = getmef(region, month)
@@ -48,7 +48,7 @@ for i, uptime in enumerate(uptimes):
 # create figure - 2x2 grid for MEF[0,0], AEF[1,0], LMP[0,1], Tariffs[1,1] savings 
 fig, ax = plt.subplots(2,2,figsize=(18, 14))
 
-clevels = np.arange(0, 40.1, 1)  # levels for contour plots
+clevels = np.arange(0, 75.1, 2.5)  # levels for contour plots
 cmap = "BuGn"
 # plot max MEF savings
 contour = ax[0,0].contourf(continuous_flex * 100, uptimes * 100, max_mef_savings_results, levels=clevels, cmap=cmap)
@@ -120,4 +120,4 @@ df = pd.DataFrame({
     'max_tariff_savings': tariff
 })
 # save the dataframe to a csv file
-df.to_csv(os.path.join(figpath, "processed_data", f"max_savings_{region}_month{month}.csv"), index=False)
+df.to_csv(os.path.join(figpath, "processed_data", f"max_savings_{region}_{month}.csv"), index=False)
