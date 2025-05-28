@@ -9,12 +9,7 @@ Navigate to your desired directory and run the following from the command line i
 git clone https://github.com/we3lab/flex-limits.git
 ```
 
-2. Create a virtual environment
-```
-conda create --name flex-limits --yes python=3.13 && conda activate flex-limits
-```
-
-3. Install packages
+2. Install packages
 ```
 python setup.py install
 ```
