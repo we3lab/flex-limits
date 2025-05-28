@@ -6,7 +6,7 @@ from pyomo.environ import *
 from time import time
 from warnings import warn
 from electric_emission_cost import costs
-from electric_emission_cost import units as u
+from electric_emission_cost.units import u
 from electric_emission_cost import utils
 
 # Define the model
