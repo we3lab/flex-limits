@@ -33,7 +33,8 @@ requirements = [
     "gurobipy>=11.0",
     "pint>=0.19.2",
     "matplotlib>=3.8.4",
-    "ipykernel"
+    "ipykernel", 
+    "electric-emission-cost>=0.0.1",
 ]
 
 extra_requirements = {
