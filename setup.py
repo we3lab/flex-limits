@@ -22,7 +22,8 @@ dev_requirements = [
     "sphinx-rtd-theme==2.0.0",
     "tox>=3.24.5",
     "matplotlib>=3.8.4",
-    "ipykernel"
+    "ipykernel",
+    "joblib>=1.3.2"
 ]
 
 requirements = [
@@ -75,7 +76,5 @@ setup(
         "Programming Language :: Python :: 3.12",
     ],
     keywords="flexibility, limits, industrial loads, optimization",
-
-
     python_requires=">=3.9,<=3.13"
 )
