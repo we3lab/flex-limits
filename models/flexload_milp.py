@@ -99,7 +99,7 @@ class flexloadMILP:
         self.uptime_equality = uptime_equality
         self.max_status_switch = max_status_switch
         self.non_sheddable_fraction = non_sheddable_fraction
-        self.horizonlength = horizonlength
+        self.horizonlength = len(baseload)
         self.startdate_dt = startdate_dt
         self.enddate_dt = enddate_dt
         self.electricity_costing_CWNS_No = electricity_costing_CWNS_No
@@ -170,6 +170,24 @@ class flexloadMILP:
             self.emissions_signal = (self.emissions_signal * self.emissions_signal_units).to(u.kg / u.kWh).magnitude
         if self.cost_of_carbon is not None:
             self.cost_of_carbon = (self.cost_of_carbon * self.cost_of_carbon_units).to(u.USD / u.kg).magnitude
+
+        if self.cost_signal is not None and self.emissions_signal is not None:
+            if self.cost_of_carbon is not None:
+                self.pricesignal = self.cost_signal + self.cost_of_carbon * self.emissions_signal
+            else:
+                raise ValueError(
+                    "If both cost_signal and emissions_signal are provided, cost_of_carbon must also be provided."
+                )
+        elif self.cost_signal is not None and self.emissions_signal is None:
+            self.pricesignal = self.cost_signal
+        elif self.cost_signal is None and self.emissions_signal is not None:
+            self.pricesignal = self.emissions_signal
+        elif self.cost_signal is None and self.emissions_signal is None and self.costing_type == "tariff":
+            pass
+        else:
+            raise ValueError(
+                "At least one of cost_signal or emissions_signal must be provided for costing_type other than 'tariff'."
+            )
 
         if self.max_status_switch is not None and type(self.max_status_switch) != int:
             raise ValueError("`max_status_switch` must be an integer or None")
