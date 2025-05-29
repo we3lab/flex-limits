@@ -35,41 +35,40 @@ for i, reg in enumerate(regions):
 
         # MEF
         mef = ps.getmef(region=reg, month=month)
-        try:
-            # minimum uptime - 0% forces to 1 timestep
-            mef_savings_sweep[i, j] = ms.max_mef_savings(
-                data=mef,
-                system_uptime=0.0,
-                continuous_flex=0.0,
-                baseload=np.ones_like(mef),
-            )
-        except:
-            print(
-                f"Error processing MEF for region: {reg}, month: {month}. Setting savings to 0."
-            )
-            mef_savings_sweep[i, j] = 0.0
+        # minimum uptime - 0% forces to 1 timestep
+        mef_savings_sweep[i, j] = ms.max_mef_savings(
+            data=mef,
+            system_uptime=0.0,
+            continuous_flex=0.0,
+            baseload=np.ones_like(mef),
+        )
+
+        # AEF
+        aef = ps.getaef(region=reg, month=month)
+        aef_savings_sweep[i, j] = ms.max_aef_savings(
+            data=aef,
+            system_uptime=0.0,
+            continuous_flex=0.0,
+            baseload=np.ones_like(aef),
+        )
 
         # LMP
         dam = ps.getdam(region=reg, month=month)
-        try:
-            dam_savings_sweep[i, j] = ms.max_dam_savings(
-                data=dam,
-                system_uptime=0.0,
-                continuous_flex=0.0,
-                baseload=np.ones_like(dam),
-            )
-        except:
-            print(
-                f"Error processing LMP for region: {reg}, month: {month}. Setting savings to 0."
-            )
-            dam_savings_sweep[i, j] = 0.0
+        dam_savings_sweep[i, j] = ms.max_dam_savings(
+            data=dam,
+            system_uptime=0.0,
+            continuous_flex=0.0,
+            baseload=np.ones_like(dam),
+        )
 
 # sort the regions by the max savings in either LMP or MEF
-max_savings = np.maximum(mef_savings_sweep.max(axis=1), dam_savings_sweep.max(axis=1))
+max_savings = np.maximum(mef_savings_sweep.max(axis=1), dam_savings_sweep.max(axis=1), 
+                         aef_savings_sweep.max(axis=1))
 sorted_indices = np.argsort(max_savings)[::-1]
 
 # reorder the savings arrays based on sorted indices
 mef_savings_sweep = mef_savings_sweep[sorted_indices, :]
+aef_savings_sweep = aef_savings_sweep[sorted_indices, :]
 dam_savings_sweep = dam_savings_sweep[sorted_indices, :]
 
 # reorder the regions based on sorted indices
@@ -79,10 +78,24 @@ regions = [regions[i] for i in sorted_indices]
 # plot box and whisker
 # create a plot of the emissions savings
 fig, ax = plt.subplots(figsize=(10, 6))
+aef_plot = ax.boxplot(
+                    aef_savings_sweep.T,
+                    positions=np.arange(len(regions)) - 0.3,
+                    widths=0.15,
+                    tick_labels=regions,
+                    patch_artist=True,
+                    showfliers=False,
+                    whis=(0, 100),
+                    medianprops={"linewidth": 0},
+                    boxprops={"linewidth": 1.5, "facecolor": "royalblue"},
+                    whiskerprops={"linewidth": 1.5},
+                    capprops={"linewidth": 1.5},
+                )                    
+                
 mef_plot = ax.boxplot(
                     mef_savings_sweep.T,
-                    positions=np.arange(len(regions)) - 0.15,
-                    widths=0.25,
+                    positions=np.arange(len(regions)) - 0.1,
+                    widths=0.15,
                     tick_labels=regions,
                     patch_artist=True,
                     showfliers=False,
@@ -95,8 +108,8 @@ mef_plot = ax.boxplot(
 
 dam_plot = ax.boxplot(
                     dam_savings_sweep.T,
-                    positions=np.arange(len(regions)) + 0.15,
-                    widths=0.25,
+                    positions=np.arange(len(regions)) + 0.1,
+                    widths=0.15,
                     tick_labels=regions,
                     patch_artist=True,
                     showfliers=False,
@@ -117,8 +130,11 @@ ax.set(  # xlabel='Region',
 )
 plt.setp(ax.get_xticklabels(), rotation=45, ha="center")
 
-ax.legend([mef_plot["boxes"][0], dam_plot["boxes"][0]], ['MEF', 'DAM'], loc='best',
-           frameon=False, fontsize=20, handlelength=1, handleheight=1)
+ax.legend([aef_plot["boxes"][0],
+            mef_plot["boxes"][0], 
+            dam_plot["boxes"][0]], 
+            ['AEF', 'MEF', 'DAM'], loc='best',
+            frameon=False, fontsize=20, handlelength=1, handleheight=1)
 
 # save figure
 
