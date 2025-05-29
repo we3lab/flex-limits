@@ -24,7 +24,7 @@ plt.rcParams.update(
 
 # define the region and month
 region = "CAISO"
-month = 2
+month = 4
 
 # get the data
 mef_data = getmef(region, month)
@@ -63,7 +63,8 @@ contour = ax[0, 0].contourf(
     continuous_flex * 100,
     uptimes * 100,
     max_mef_savings_results,
-    levels=clevels,
+    levels=np.arange(0,30.1, 2.5),
+    extend="max",
     cmap="Greens",
 )
 cbar = fig.colorbar(contour, ax=ax[0, 0])
@@ -76,12 +77,13 @@ cbar.set_label("Savings (%)")
 ax[1, 0].set_title("Average Emissions")
 cbar.set_label("Savings (%)")
 
-# plot max LMP savings
+# plot max DAM savings
 contour = ax[0, 1].contourf(
     continuous_flex * 100,
     uptimes * 100,
     max_dam_savings_results,
-    levels=clevels,
+    extend="max",
+    levels=np.arange(0,100.1, 2.5),
     cmap="YlOrBr",
 )
 cbar = fig.colorbar(contour, ax=ax[0, 1])
