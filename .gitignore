@@ -2,7 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
-data/lmp/
+data/dam/
+sandbox/
 
 # C extensions
 *.so

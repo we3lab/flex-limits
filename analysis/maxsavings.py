@@ -50,12 +50,12 @@ def max_aef_savings(data, system_uptime, continuous_flex, baseload):
     return flex.model.pct_emissions_savings()
 
 
-def max_lmp_savings(data, system_uptime, continuous_flex, baseload):
+def max_dam_savings(data, system_uptime, continuous_flex, baseload):
 
     flex = flexloadMILP(
         baseload=baseload,
         cost_signal=data,
-        costing_type="lmp",
+        costing_type="dam",
         costing_path=None,
         emissions_type=None,
         emissions_path=None,
