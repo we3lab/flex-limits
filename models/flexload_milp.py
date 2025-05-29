@@ -361,11 +361,11 @@ class flexloadMILP:
         model.max_contload_penalty = Param(initialize=self.tol, mutable=True)
         model.min_contload_penalty = Param(initialize=self.tol, mutable=True)
 
-        model.flex_cost_signal = Var(model.t, within=NonNegativeReals)
-        model.flex_emissions_signal = Var(model.t, within=NonNegativeReals)
-        model.base_cost_signal = Var(model.t, within=NonNegativeReals)
-        model.base_emissions_signal = Var(model.t, within=NonNegativeReals)
-        model.net_facility_load = Var(model.t, within=NonNegativeReals)
+        model.flex_cost_signal = Var(model.t, within=Reals, initialize=0)
+        model.flex_emissions_signal = Var(model.t, within=Reals, initialize=0)
+        model.base_cost_signal = Var(model.t, within=Reals, initialize=0)
+        model.base_emissions_signal = Var(model.t, within=Reals, initialize=0)
+        model.net_facility_load = Var(model.t, within=NonNegativeReals, initialize=0)
 
         # define the constraints
         @model.Constraint(model.t)
