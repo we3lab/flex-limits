@@ -25,7 +25,7 @@ month_arr = np.arange(1, 13)
 regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
 mef_savings_sweep = np.zeros((len(regions), len(month_arr)))
 aef_savings_sweep = np.zeros((len(regions), len(month_arr)))
-lmp_savings_sweep = np.zeros((len(regions), len(month_arr)))
+dam_savings_sweep = np.zeros((len(regions), len(month_arr)))
 tariff_savings_sweep = np.zeros((len(regions), len(month_arr)))
 
 for i, reg in enumerate(regions):
@@ -50,20 +50,31 @@ for i, reg in enumerate(regions):
             mef_savings_sweep[i, j] = 0.0
 
         # LMP
-        lmp = ps.getlmp(region=reg, month=month)
+        dam = ps.getdam(region=reg, month=month)
         try:
-            lmp_savings_sweep[i, j] = ms.max_lmp_savings(
-                data=lmp,
+            dam_savings_sweep[i, j] = ms.max_dam_savings(
+                data=dam,
                 system_uptime=0.0,
                 continuous_flex=0.0,
-                baseload=np.ones_like(lmp),
+                baseload=np.ones_like(dam),
             )
         except:
             print(
                 f"Error processing LMP for region: {reg}, month: {month}. Setting savings to 0."
             )
-            lmp_savings_sweep[i, j] = 0.0
+            dam_savings_sweep[i, j] = 0.0
 
+# sort the regions by the max savings in either LMP or MEF
+max_savings = np.maximum(mef_savings_sweep.max(axis=1), dam_savings_sweep.max(axis=1))
+sorted_indices = np.argsort(max_savings)[::-1]
+
+# reorder the savings arrays based on sorted indices
+mef_savings_sweep = mef_savings_sweep[sorted_indices, :]
+dam_savings_sweep = dam_savings_sweep[sorted_indices, :]
+
+# reorder the regions based on sorted indices
+regions = [regions[i] for i in sorted_indices]
+# aef_savings_sweep and tariff_savings_sweep are not used in this plot, but can be calculated similarly if needed
 
 # plot box and whisker
 # create a plot of the emissions savings
@@ -82,8 +93,8 @@ mef_plot = ax.boxplot(
                     capprops={"linewidth": 1.5},
                 )
 
-lmp_plot = ax.boxplot(
-                    lmp_savings_sweep.T,
+dam_plot = ax.boxplot(
+                    dam_savings_sweep.T,
                     positions=np.arange(len(regions)) + 0.15,
                     widths=0.25,
                     tick_labels=regions,
@@ -106,7 +117,7 @@ ax.set(  # xlabel='Region',
 )
 plt.setp(ax.get_xticklabels(), rotation=45, ha="center")
 
-ax.legend([mef_plot["boxes"][0], lmp_plot["boxes"][0]], ['MEF', 'DAM'], loc='best',
+ax.legend([mef_plot["boxes"][0], dam_plot["boxes"][0]], ['MEF', 'DAM'], loc='best',
            frameon=False, fontsize=20, handlelength=1, handleheight=1)
 
 # save figure
@@ -132,7 +143,7 @@ savings_data = {
     "month": months_expanded,
     "mef_savings": mef_savings_sweep.flatten(),
     "aef_savings": aef_savings_sweep.flatten(),
-    "lmp_savings": lmp_savings_sweep.flatten(),
+    "dam_savings": dam_savings_sweep.flatten(),
     "tariff_savings": tariff_savings_sweep.flatten()}
 
 pd.DataFrame(savings_data).to_csv(figpath + "/processed_data/savings_limit_boxandwhisker.csv", index=False)
