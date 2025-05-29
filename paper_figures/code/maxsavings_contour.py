@@ -166,6 +166,6 @@ df = pd.DataFrame(
 )
 # save the dataframe to a csv file
 df.to_csv(
-    os.path.join(figpath, "processed_data", f"max_savings_{region}_{month}.csv"),
+    os.path.join(figpath, "processed_data", f"max_savings_{region}_month{month}.csv"),
     index=False,
 )

@@ -140,12 +140,12 @@ ax.legend([aef_plot["boxes"][0],
 
 figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 fig.savefig(
-    os.path.join(figpath, "figures/png", f"savings_limit_boxandwhisker.png"),
+    os.path.join(figpath, "figures/png", f"savings_limit_boxplot.png"),
     dpi=300,
     bbox_inches="tight",
 )
 fig.savefig(
-    os.path.join(figpath, "figures/pdf", f"savings_limit_boxandwhisker.pdf"),
+    os.path.join(figpath, "figures/pdf", f"savings_limit_boxplot.pdf"),
     dpi=300,
     bbox_inches="tight",
 )
@@ -162,4 +162,4 @@ savings_data = {
     "dam_savings": dam_savings_sweep.flatten(),
     "tariff_savings": tariff_savings_sweep.flatten()}
 
-pd.DataFrame(savings_data).to_csv(figpath + "/processed_data/savings_limit_boxandwhisker.csv", index=False)
+pd.DataFrame(savings_data).to_csv(figpath + "/processed_data/savings_limit_boxplot.csv", index=False)
