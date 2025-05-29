@@ -9,6 +9,7 @@ from electric_emission_cost import costs
 from electric_emission_cost.units import u
 from electric_emission_cost import utils
 
+
 # Define the model
 class flexloadMILP:
     def __init__(
@@ -69,7 +70,7 @@ class flexloadMILP:
         electricity_costing_CWNS_No: int
             CWNS number to use if looking up tariff from Excel workbook
         horizonlength: int
-            Number of timesteps in the horizon. 
+            Number of timesteps in the horizon.
             Can be determined from pricelength if not using `costing_type` of "tariff".
         cost_col_name: str
             The name of the column for costs in the cost spreadsheet
@@ -112,12 +113,14 @@ class flexloadMILP:
         if cost_signal is None:
             if self.costing_type == "tariff":
                 fp = os.path.join(os.getcwd(), self.costing_path)
-                if self.costing_path.endswith('.csv'): 
+                if self.costing_path.endswith(".csv"):
                     self.cost_signal = pd.read_csv(fp)
-                elif (self.costing_path.endswith('.xlsx')):
-                    self.cost_signal = pd.read_excel(fp, sheet_name=self.electricity_costing_CWNS_No)
-                else: 
-                    raise TypeError('File type not supported')
+                elif self.costing_path.endswith(".xlsx"):
+                    self.cost_signal = pd.read_excel(
+                        fp, sheet_name=self.electricity_costing_CWNS_No
+                    )
+                else:
+                    raise TypeError("File type not supported")
             elif self.costing_type == "lmp":
                 fp = os.path.join(os.getcwd(), self.costing_path)
                 lmp_data = pd.read_csv(fp)
@@ -139,7 +142,9 @@ class flexloadMILP:
 
         if self.horizonlength is None:
             if self.costing_type == "tariff":
-                self.horizonlength = int((self.enddate_dt - self.startdate_dt) / np.timedelta64(1, 'h'))
+                self.horizonlength = int(
+                    (self.enddate_dt - self.startdate_dt) / np.timedelta64(1, "h")
+                )
             elif self.costing_type == "lmp":
                 self.horizonlength = len(self.cost_signal)
             elif self.emissions_type == "aef" or self.emissions_type == "mef":
@@ -165,15 +170,27 @@ class flexloadMILP:
 
         self.baseload = (self.baseload * self.consumption_units).to(u.kW).magnitude
         if self.costing_type == "lmp":
-            self.cost_signal = (self.cost_signal * self.cost_signal_units).to(u.USD / u.kWh).magnitude
+            self.cost_signal = (
+                (self.cost_signal * self.cost_signal_units).to(u.USD / u.kWh).magnitude
+            )
         if self.emissions_type == "aef" or self.emissions_type == "mef":
-            self.emissions_signal = (self.emissions_signal * self.emissions_signal_units).to(u.kg / u.kWh).magnitude
+            self.emissions_signal = (
+                (self.emissions_signal * self.emissions_signal_units)
+                .to(u.kg / u.kWh)
+                .magnitude
+            )
         if self.cost_of_carbon is not None:
-            self.cost_of_carbon = (self.cost_of_carbon * self.cost_of_carbon_units).to(u.USD / u.kg).magnitude
+            self.cost_of_carbon = (
+                (self.cost_of_carbon * self.cost_of_carbon_units)
+                .to(u.USD / u.kg)
+                .magnitude
+            )
 
         if self.cost_signal is not None and self.emissions_signal is not None:
             if self.cost_of_carbon is not None:
-                self.pricesignal = self.cost_signal + self.cost_of_carbon * self.emissions_signal
+                self.pricesignal = (
+                    self.cost_signal + self.cost_of_carbon * self.emissions_signal
+                )
             else:
                 raise ValueError(
                     "If both cost_signal and emissions_signal are provided, cost_of_carbon must also be provided."
@@ -182,7 +199,11 @@ class flexloadMILP:
             self.pricesignal = self.cost_signal
         elif self.cost_signal is None and self.emissions_signal is not None:
             self.pricesignal = self.emissions_signal
-        elif self.cost_signal is None and self.emissions_signal is None and self.costing_type == "tariff":
+        elif (
+            self.cost_signal is None
+            and self.emissions_signal is None
+            and self.costing_type == "tariff"
+        ):
             pass
         else:
             raise ValueError(
@@ -202,8 +223,9 @@ class flexloadMILP:
         if rte > 1 or rte < 0:
             raise ValueError("`rte` must be between 0 and 1")
         if (self.cost_signal is None) and (self.emissions_signal is None):
-            raise ValueError("At least one of `cost_signal` and `emissions_signal` must be specified")
-
+            raise ValueError(
+                "At least one of `cost_signal` and `emissions_signal` must be specified"
+            )
 
     def add_base_tariffs(self, model, resolution="1h"):
         """
@@ -240,7 +262,9 @@ class flexloadMILP:
             desired_charge_type="demand",
             model=None,
         )
-        model.total_base_cost_signal = model.energy_base_cost_signal + model.demand_base_cost_signal
+        model.total_base_cost_signal = (
+            model.energy_base_cost_signal + model.demand_base_cost_signal
+        )
         return model
 
     def add_flex_tariffs(self, model, resolution="1h"):
@@ -278,7 +302,9 @@ class flexloadMILP:
             desired_charge_type="demand",
             model=model,
         )
-        model.total_flex_cost_signal = model.demand_flex_cost_signal + model.energy_flex_cost_signal
+        model.total_flex_cost_signal = (
+            model.demand_flex_cost_signal + model.energy_flex_cost_signal
+        )
         return model
 
     def build(self):
@@ -328,7 +354,7 @@ class flexloadMILP:
             contload_ub = None
 
         model.contload = Var(model.t, bounds=(contload_lb, contload_ub))
-        model.flexload = Var(model.t, initialize=0, bounds=(0,None))
+        model.flexload = Var(model.t, initialize=0, bounds=(0, None))
 
         model.max_contload = Var(bounds=(0, None))
         model.min_contload = Var(bounds=(0, None))
@@ -356,23 +382,26 @@ class flexloadMILP:
             return sum(b.baseload[t] for t in b.t) / b.rte == sum(
                 b.flexload[t] for t in b.t
             )
-        
+
         @model.Constraint(model.t, doc="Continuous load maximum")
         def contload_max_rule(b, t):
             return b.contload[t] <= b.max_contload
-        
+
         @model.Constraint(model.t, doc="Continuous load minimum")
-        def contload_min_rule(b,t):
+        def contload_min_rule(b, t):
             return b.contload[t] >= b.min_contload
 
         @model.Expression(doc="Penalized continuous load range")
         def contload_range(b):
-            return b.max_contload * b.max_contload_penalty - b.min_contload * b.min_contload_penalty
+            return (
+                b.max_contload * b.max_contload_penalty
+                - b.min_contload * b.min_contload_penalty
+            )
 
         @model.Constraint(doc="Number of on-steps")
         def onsteps_rule(b):
             return sum(b.status[t] for t in b.t) == b.onsteps
-            
+
         @model.Constraint(doc="Minimum uptime constraint")
         def uptime_rule(b):
             if self.uptime_equality:
@@ -412,6 +441,7 @@ class flexloadMILP:
             model.cost_signal = Param(
                 model.t, initialize=lambda model, t: self.cost_signal[t]
             )
+
             @model.Constraint(model.t, doc="Flex cost signal constraint")
             def flex_cost_signal_rule(b, t):
                 return b.flex_cost_signal[t] == b.flexload[t] * b.cost_signal[t]
@@ -427,7 +457,9 @@ class flexloadMILP:
             @model.Expression(doc="Total cost signal for the base system")
             def total_base_cost_signal(b):
                 return sum(b.base_cost_signal[t] for t in b.t)
+
         else:
+
             @model.Expression(doc="Total cost signal for the flexible system")
             def total_flex_cost_signal(b):
                 return 0
@@ -435,18 +467,23 @@ class flexloadMILP:
             @model.Expression(doc="Total cost signal for the base system")
             def total_base_cost_signal(b):
                 return 0
-        
+
         if self.emissions_type == "aef" or self.emissions_type == "mef":
             model.emissions_signal = Param(
                 model.t, initialize=lambda model, t: self.emissions_signal[t]
             )
+
             @model.Constraint(model.t, doc="Flex emissions signal constraint")
             def flex_emissions_signal_rule(b, t):
-                return b.flex_emissions_signal[t] == b.flexload[t] * b.emissions_signal[t]
+                return (
+                    b.flex_emissions_signal[t] == b.flexload[t] * b.emissions_signal[t]
+                )
 
             @model.Constraint(model.t, doc="Base emissions signal constraint")
             def base_emissions_signal_rule(b, t):
-                return b.base_emissions_signal[t] == b.baseload[t] * b.emissions_signal[t]
+                return (
+                    b.base_emissions_signal[t] == b.baseload[t] * b.emissions_signal[t]
+                )
 
             @model.Expression(doc="Total emissions signal for the flexible system")
             def total_flex_emissions_signal(b):
@@ -455,7 +492,9 @@ class flexloadMILP:
             @model.Expression(doc="Total emissions signal for the base system")
             def total_base_emissions_signal(b):
                 return sum(b.base_emissions_signal[t] for t in b.t)
+
         else:
+
             @model.Expression(doc="Total emissions signal for the flexible system")
             def total_flex_emissions_signal(b):
                 return 0
@@ -463,7 +502,7 @@ class flexloadMILP:
             @model.Expression(doc="Total emissions signal for the base system")
             def total_base_emissions_signal(b):
                 return 0
-        
+
         @model.Expression(
             doc="Percent savings from flexible operation for the cost signal of this system"
         )
@@ -486,15 +525,18 @@ class flexloadMILP:
 
         if self.uptime_equality:
             model.objective = Objective(
-                expr=model.total_flex_cost_signal + self.cost_of_carbon * model.total_flex_emissions_signal, 
-                sense=minimize
+                expr=model.total_flex_cost_signal
+                + self.cost_of_carbon * model.total_flex_emissions_signal,
+                sense=minimize,
             )
         else:
             # get active objectives
             model.objective = Objective(
-                expr=model.total_flex_cost_signal + self.cost_of_carbon * model.total_flex_emissions_signal + model.contload_range, 
-                sense=minimize
-            )            
+                expr=model.total_flex_cost_signal
+                + self.cost_of_carbon * model.total_flex_emissions_signal
+                + model.contload_range,
+                sense=minimize,
+            )
 
         self.model = model
         self.t1 = time()
@@ -523,7 +565,7 @@ class flexloadMILP:
         Solve the model for the flexible load using gurobi
         """
         solver = SolverFactory("gurobi")
-        
+
         self.t2 = time()
 
         if self.uptime_equality:
@@ -552,7 +594,6 @@ class flexloadMILP:
         results = solver.solve(self.model, tee=tee)
         return self.model, results
 
-
     def solve_relaxedproblem(self, tee=False):
         """
         Solve the model for the flexible load using gurobi with bound constraints on the contload relaxed
@@ -560,28 +601,52 @@ class flexloadMILP:
         solver = SolverFactory("gurobi")
         results = solver.solve(self.model, tee=tee)
 
-        # check the continuous load 
+        # check the continuous load
         flex_capacity = self.model.flex_capacity()
-        cont_load = np.array([self.model.contload[i].value for i in self.model.t if self.model.status[i].value == 1])
+        cont_load = np.array(
+            [
+                self.model.contload[i].value
+                for i in self.model.t
+                if self.model.status[i].value == 1
+            ]
+        )
         cont_load_avg = np.mean(cont_load)
 
         # raise a warning if solution violates the bounds of the relaxed problem (within tolerance)
-        if np.max(np.abs(cont_load - cont_load_avg)) - self.tol >= flex_capacity * cont_load_avg:
-            print("The solution violates the bounds of flexible operation.\nResolving the problem with increased bound penalties.")
+        if (
+            np.max(np.abs(cont_load - cont_load_avg)) - self.tol
+            >= flex_capacity * cont_load_avg
+        ):
+            print(
+                "The solution violates the bounds of flexible operation.\nResolving the problem with increased bound penalties."
+            )
             # raise ValueError("Continuous load violated bounds of relaxed problem.")
 
             # TODO - think about implementing a smarter algorithm for heuristic bound enforcement
             stepsize = 1e-5
 
-            while np.max(np.abs(cont_load - cont_load_avg)) - self.tol >= flex_capacity * cont_load_avg:
+            while (
+                np.max(np.abs(cont_load - cont_load_avg)) - self.tol
+                >= flex_capacity * cont_load_avg
+            ):
 
                 # get the violation of the maximum continuous load
-                max_contload_violation = np.max([(1+flex_capacity) * cont_load_avg - np.max(cont_load), 0])
-                self.model.max_contload_penalty.value = self.model.max_contload_penalty.value + max_contload_violation * stepsize
+                max_contload_violation = np.max(
+                    [(1 + flex_capacity) * cont_load_avg - np.max(cont_load), 0]
+                )
+                self.model.max_contload_penalty.value = (
+                    self.model.max_contload_penalty.value
+                    + max_contload_violation * stepsize
+                )
 
                 # get the violation of the minimum continuous load
-                min_contload_violation = np.max([np.min(cont_load) - (1-flex_capacity) * cont_load_avg, 0])
-                self.model.min_contload_penalty.value = self.model.min_contload_penalty.value + min_contload_violation * stepsize
+                min_contload_violation = np.max(
+                    [np.min(cont_load) - (1 - flex_capacity) * cont_load_avg, 0]
+                )
+                self.model.min_contload_penalty.value = (
+                    self.model.min_contload_penalty.value
+                    + min_contload_violation * stepsize
+                )
 
                 # update the model and call solve again
                 results = solver.solve(self.model, tee=tee)

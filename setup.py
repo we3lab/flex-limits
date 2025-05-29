@@ -23,7 +23,7 @@ dev_requirements = [
     "tox>=3.24.5",
     "matplotlib>=3.8.4",
     "ipykernel",
-    "joblib>=1.3.2"
+    "joblib>=1.3.2",
 ]
 
 requirements = [
@@ -34,7 +34,7 @@ requirements = [
     "gurobipy>=11.0",
     "pint>=0.19.2",
     "matplotlib>=3.8.4",
-    "ipykernel", 
+    "ipykernel",
     "electric-emission-cost>=0.0.1",
 ]
 
@@ -76,5 +76,5 @@ setup(
         "Programming Language :: Python :: 3.12",
     ],
     keywords="flexibility, limits, industrial loads, optimization",
-    python_requires=">=3.9,<=3.13"
+    python_requires=">=3.9,<=3.13",
 )
