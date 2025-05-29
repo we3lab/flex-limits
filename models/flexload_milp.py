@@ -44,7 +44,7 @@ class flexloadMILP:
         baseload: np.array
             The baseline power consumption of the system (MWh)
         costing_type: str
-            Type of costing to use. Either "lmp", "tariff", "mef", or "aef"
+            Type of costing to use. Either "dam", "tariff", "mef", or "aef"
         costing_path: str
             Path to the costing file. Must be either .csv or .xlsx
         emissions_type: str
@@ -121,10 +121,10 @@ class flexloadMILP:
                     )
                 else:
                     raise TypeError("File type not supported")
-            elif self.costing_type == "lmp":
+            elif self.costing_type == "dam":
                 fp = os.path.join(os.getcwd(), self.costing_path)
-                lmp_data = pd.read_csv(fp)
-                self.cost_signal = lmp_data[self.cost_col_name].values
+                dam_data = pd.read_csv(fp)
+                self.cost_signal = dam_data[self.cost_col_name].values
             else:
                 self.cost_signal = None
         else:
@@ -145,7 +145,7 @@ class flexloadMILP:
                 self.horizonlength = int(
                     (self.enddate_dt - self.startdate_dt) / np.timedelta64(1, "h")
                 )
-            elif self.costing_type == "lmp":
+            elif self.costing_type == "dam":
                 self.horizonlength = len(self.cost_signal)
             elif self.emissions_type == "aef" or self.emissions_type == "mef":
                 self.horizonlength = len(self.emissions_signal)
@@ -169,7 +169,7 @@ class flexloadMILP:
             self.consumption_units = consumption_units
 
         self.baseload = (self.baseload * self.consumption_units).to(u.kW).magnitude
-        if self.costing_type == "lmp":
+        if self.costing_type == "dam":
             self.cost_signal = (
                 (self.cost_signal * self.cost_signal_units).to(u.USD / u.kWh).magnitude
             )
@@ -437,7 +437,7 @@ class flexloadMILP:
         if self.costing_type == "tariff":
             model = self.add_base_tariffs(model)
             model = self.add_flex_tariffs(model)
-        elif self.costing_type == "lmp":
+        elif self.costing_type == "dam":
             model.cost_signal = Param(
                 model.t, initialize=lambda model, t: self.cost_signal[t]
             )

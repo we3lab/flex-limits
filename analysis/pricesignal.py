@@ -22,17 +22,17 @@ def getmef(
     return mef_data[mef_data["month"] == month]["co2_eq_kg_per_MWh"].values
 
 
-def getlmp(
+def getdam(
     region, month, basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ):
     """
     Get the LMP (Locational Marginal Price) for a given region and month.
     """
     # Load the LMP data
-    lmp_path = os.path.join(basepath, "data", "lmp", f"{region}costs.csv")
+    dam_path = os.path.join(basepath, "data", "dam", f"{region}costs.csv")
 
     # read df
-    lmp_data = pd.read_csv(lmp_path)
+    dam_data = pd.read_csv(dam_path)
 
     # Return the data for the specified month
-    return lmp_data[lmp_data["month"] == month]["USD_per_MWh"].values
+    return dam_data[dam_data["month"] == month]["USD_per_MWh"].values
