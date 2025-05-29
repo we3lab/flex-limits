@@ -1,6 +1,6 @@
 # imports
-from analysis.pricesignal import getmef, getlmp
-from analysis.maxsavings import max_mef_savings, max_aef_savings, max_lmp_savings
+from analysis.pricesignal import getmef, getdam
+from analysis.maxsavings import max_mef_savings, max_aef_savings, max_dam_savings
 import numpy as np
 import pandas as pd
 import os
@@ -28,7 +28,7 @@ month = 2
 
 # get the data
 mef_data = getmef(region, month)
-lmp_data = getlmp(region, month)
+dam_data = getdam(region, month)
 
 # solve max mef savings in parallel for a range of uptime and continuous flex
 uptimes = np.arange(0, 25, 2) / 24  # 1 to 24 hours to percent in intervals
@@ -39,7 +39,7 @@ baseload = np.ones_like(mef_data)  # 1MW flat baseline load
 # create a container for results
 max_mef_savings_results = np.zeros((len(uptimes), len(continuous_flex)))
 max_aef_savings_results = np.zeros((len(uptimes), len(continuous_flex)))
-max_lmp_savings_results = np.zeros((len(uptimes), len(continuous_flex)))
+max_dam_savings_results = np.zeros((len(uptimes), len(continuous_flex)))
 
 # calculate max mef savings
 for i, uptime in enumerate(uptimes):
@@ -48,23 +48,23 @@ for i, uptime in enumerate(uptimes):
             mef_data, uptime, flex, baseload
         )
         # max_aef_savings_results[i, j] = max_aef_savings(mef_data, uptime, flex, baseload) # TODO- add AEF data
-        max_lmp_savings_results[i, j] = max_lmp_savings(
-            lmp_data, uptime, flex, baseload
+        max_dam_savings_results[i, j] = max_dam_savings(
+            dam_data, uptime, flex, baseload
         )
-        # max_tariff_savings_results[i, j] = max_tariff_savings(lmp_data, uptime, flex, baseload) # TODO- add tariff data
+        # max_tariff_savings_results[i, j] = max_tariff_savings(dam_data, uptime, flex, baseload) # TODO- add tariff data
 
 # create figure - 2x2 grid for MEF[0,0], AEF[1,0], LMP[0,1], Tariffs[1,1] savings
 fig, ax = plt.subplots(2, 2, figsize=(18, 14))
 
 clevels = np.arange(0, 75.1, 2.5)  # levels for contour plots
-cmap = "BuGn"
+
 # plot max MEF savings
 contour = ax[0, 0].contourf(
     continuous_flex * 100,
     uptimes * 100,
     max_mef_savings_results,
     levels=clevels,
-    cmap=cmap,
+    cmap="Greens",
 )
 cbar = fig.colorbar(contour, ax=ax[0, 0])
 ax[0, 0].set_title("Marginal Emissions")
@@ -80,9 +80,9 @@ cbar.set_label("Savings (%)")
 contour = ax[0, 1].contourf(
     continuous_flex * 100,
     uptimes * 100,
-    max_lmp_savings_results,
+    max_dam_savings_results,
     levels=clevels,
-    cmap=cmap,
+    cmap="YlOrBr",
 )
 cbar = fig.colorbar(contour, ax=ax[0, 1])
 ax[0, 1].set_title("Day-ahead Market")
@@ -135,7 +135,7 @@ fig.savefig(
 # flatten into a dataframe
 mef = max_mef_savings_results.flatten()
 aef = np.zeros_like(mef)  # TODO - placeholder for AEF savings
-lmp = max_lmp_savings_results.flatten()
+dam = max_dam_savings_results.flatten()
 tariff = np.zeros_like(mef)  # TODO - placeholder for tariff savings
 continuous_flex_flat = np.tile(continuous_flex, len(uptimes))
 uptimes_flat = np.repeat(uptimes, len(continuous_flex))
@@ -147,7 +147,7 @@ df = pd.DataFrame(
         "system_uptime_pct": uptimes_flat * 100,
         "max_mef_savings": mef,
         "max_aef_savings": aef,
-        "max_lmp_savings": lmp,
+        "max_dam_savings": dam,
         "max_tariff_savings": tariff,
     }
 )
