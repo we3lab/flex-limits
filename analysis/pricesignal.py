@@ -21,6 +21,20 @@ def getmef(
     # Return the data for the specified month
     return mef_data[mef_data["month"] == month]["co2_eq_kg_per_MWh"].values
 
+def getaef(
+    region, month, basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+):
+    """
+    Get the MEF (Marginal emissions factor) for a given region and month.
+    """
+    # Load the MEF data
+    mef_path = os.path.join(basepath, "data", "aef", f"{region}emissions.csv")
+
+    # read df
+    mef_data = pd.read_csv(mef_path)
+
+    # Return the data for the specified month
+    return mef_data[mef_data["month"] == month]["co2_eq_kg_per_MWh"].values
 
 def getdam(
     region, month, basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
