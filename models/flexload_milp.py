@@ -9,6 +9,11 @@ from electric_emission_cost import costs
 from electric_emission_cost.units import u
 from electric_emission_cost import utils
 
+def idxparam_value(idxparam):
+    """
+    Returns the parameter value at the given index
+    """
+    return np.array([idxparam[i].value for i in range(len(idxparam))])
 
 # Define the model
 class flexloadMILP:
