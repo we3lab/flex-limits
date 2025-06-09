@@ -1,5 +1,6 @@
 # imports
 import os
+import numpy as np
 import analysis.pricesignal as ps
 from models.flexload_milp import flexloadMILP
 
@@ -71,7 +72,31 @@ def max_dam_savings(data, system_uptime, continuous_flex, baseload):
     return flex.model.pct_cost_savings()
 
 
-def max_tariff_savings(data, system_uptime, continuous_flex, baseload, startdate_dt, enddate_dt):
+def get_start_end(month):
+    if month == 12:
+        start_dt = np.datetime64("2024-" + str(month) + "-01")
+        end_dt = np.datetime64("2025-01-01")
+    elif month > 9:
+        start_dt = np.datetime64("2024-" + str(month) + "-01")
+        end_dt = np.datetime64("2024-" + str(month+1) + "-01")
+    elif month == 9:
+        start_dt = np.datetime64("2024-09-01")
+        end_dt = np.datetime64("2024-10-01")
+    else:
+        start_dt = np.datetime64("2024-0" + str(month) + "-01")
+        end_dt = np.datetime64("2024-0" + str(month+1) + "-01")
+
+    return (start_dt, end_dt)
+
+
+def max_tar_savings(
+    data, 
+    system_uptime, 
+    continuous_flex, 
+    baseload, 
+    startdate_dt, 
+    enddate_dt
+):
 
     flex = flexloadMILP(
         baseload=baseload,

@@ -163,7 +163,7 @@ class flexloadMILP:
         if isinstance(emissions_signal_units, str):
             self.emissions_signal_units = u(emissions_signal_units).units
         else:
-            self.emissions_signal_units = emissions_signal_units
+            self.emissions_signal_units = emissions_signal_units 
         if isinstance(cost_of_carbon_units, str):
             self.cost_of_carbon_units = u(cost_of_carbon_units).units
         else:
@@ -190,18 +190,17 @@ class flexloadMILP:
                 .to(u.USD / u.kg)
                 .magnitude
             )
+        elif self.cost_signal is not None and self.emissions_signal is not None:
+            raise ValueError(
+                "If both cost_signal and emissions_signal are provided,"
+                "then cost_of_carbon must also be provided."
+            )
 
-        if self.cost_signal is not None and self.emissions_signal is not None:
-            if self.cost_of_carbon is None:
-                raise ValueError(
-                    "If both cost_signal and emissions_signal are provided,"
-                    "then cost_of_carbon must also be provided."
-                )
-        else:
+        # error checking
+        if self.cost_signal is None and self.emissions_signal is None:
             raise ValueError(
                 "At least one of cost_signal or emissions_signal must be provided."
             )
-
         if self.max_status_switch is not None and type(self.max_status_switch) != int:
             raise ValueError("`max_status_switch` must be an integer or None")
         if self.min_onsteps > self.horizonlength:
@@ -232,7 +231,7 @@ class flexloadMILP:
         consumption_data_dict = {"electric": self.baseload}
 
         # (3) calculate cost for objective function and modify model constraints
-        model.energy_base_cost_signal, _ = costs.calculate_cost(
+        energy_base_cost_signal, _ = costs.calculate_cost(
             charge_dict,
             consumption_data_dict,
             resolution=resolution,
@@ -243,7 +242,7 @@ class flexloadMILP:
             desired_charge_type="energy",
             model=None,
         )
-        model.demand_base_cost_signal, _ = costs.calculate_cost(
+        demand_base_cost_signal, _ = costs.calculate_cost(
             charge_dict,
             consumption_data_dict,
             resolution=resolution,
@@ -255,7 +254,7 @@ class flexloadMILP:
             model=None,
         )
         model.total_base_cost_signal = (
-            model.energy_base_cost_signal + model.demand_base_cost_signal
+            energy_base_cost_signal + demand_base_cost_signal
         )
         return model
 
@@ -272,7 +271,7 @@ class flexloadMILP:
         consumption_data_dict = {"electric": model.flexload}
 
         # (3) calculate cost for objective function and modify model constraints
-        model.energy_flex_cost_signal, model = costs.calculate_cost(
+        energy_flex_cost_signal, model = costs.calculate_cost(
             charge_dict,
             consumption_data_dict,
             resolution=resolution,
@@ -283,7 +282,7 @@ class flexloadMILP:
             desired_charge_type="energy",
             model=model,
         )
-        model.demand_flex_cost_signal, model = costs.calculate_cost(
+        demand_flex_cost_signal, model = costs.calculate_cost(
             charge_dict,
             consumption_data_dict,
             resolution=resolution,
@@ -295,7 +294,7 @@ class flexloadMILP:
             model=model,
         )
         model.total_flex_cost_signal = (
-            model.demand_flex_cost_signal + model.energy_flex_cost_signal
+            demand_flex_cost_signal + energy_flex_cost_signal
         )
         return model
 
@@ -310,10 +309,6 @@ class flexloadMILP:
         model.T = Param(initialize=self.horizonlength, mutable=False)
         model.t = range(self.horizonlength)
 
-        if self.costing_type != "tariff":
-            model.pricesignal = Param(
-                model.t, initialize=lambda model, t: self.pricesignal[t]
-            )
         model.baseload = Param(model.t, initialize=lambda model, t: self.baseload[t])
         model.nonshedload = Param(
             model.t,

@@ -64,15 +64,9 @@ for i, reg in enumerate(regions):
 
         # Tariff
         tariff = ps.gettariff(region=reg)
-        startdate_dt = datetime.datetime(2023, month, 1)
-        if month == 12:
-            enddate_dt = datetime.datetime(2024, 1, 1)
-        else:
-            enddate_dt = datetime.datetime(2023, month+1, 1)
-        month_length = int(
-            (enddate_dt - startdate_dt) / datetime.timedelta(1, "h")
-        )
-        ms.max_tariff_savings(
+        startdate_dt, enddate_dt = ms.get_start_end(month)
+        month_length = int((enddate_dt - startdate_dt) / np.timedelta64(1, "h"))
+        tariff_savings_sweep[i, j] = ms.max_tar_savings(
             data=tariff,
             system_uptime=0.0,
             continuous_flex=0.0,
@@ -81,9 +75,10 @@ for i, reg in enumerate(regions):
             enddate_dt=enddate_dt
         )
 
-# sort the regions by the max savings in either LMP or MEF
-max_savings = np.maximum(mef_savings_sweep.max(axis=1), dam_savings_sweep.max(axis=1), 
-                         aef_savings_sweep.max(axis=1), tariff_savings_sweep(axis=1))
+# sort the regions by the max savings in either DAM or MEF
+# TODO: ask Akshay why there were 3 arguments to np.maximum previously
+max_savings = np.maximum(mef_savings_sweep.max(axis=1), dam_savings_sweep.max(axis=1)) 
+                         #aef_savings_sweep.max(axis=1), tariff_savings_sweep.max(axis=1))
 sorted_indices = np.argsort(max_savings)[::-1]
 
 # reorder the savings arrays based on sorted indices
@@ -141,6 +136,20 @@ dam_plot = ax.boxplot(
                     capprops={"linewidth": 1.5},
                 )
 
+tariff_plot = ax.boxplot(
+                    tariff_savings_sweep.T,
+                    positions=np.arange(len(regions)) + 0.1,
+                    widths=0.15,
+                    tick_labels=regions,
+                    patch_artist=True,
+                    showfliers=False,
+                    whis=(0, 100),
+                    medianprops={"linewidth": 0},
+                    boxprops={"linewidth": 1.5, "facecolor": "palegoldenrod"},
+                    whiskerprops={"linewidth": 1.5},
+                    capprops={"linewidth": 1.5},
+                )
+
 ax.set(  # xlabel='Region',
     ylabel="Savings [%]",
     title="Maximum savings from flexibility",
@@ -154,7 +163,8 @@ plt.setp(ax.get_xticklabels(), rotation=45, ha="center")
 ax.legend([aef_plot["boxes"][0],
             mef_plot["boxes"][0], 
             dam_plot["boxes"][0]], 
-            ['AEF', 'MEF', 'DAM'], loc='best',
+            tariff_plot["boxes"][0],
+            ['AEF', 'MEF', 'DAM', 'Tariff'], loc='best',
             frameon=False, fontsize=20, handlelength=1, handleheight=1)
 
 # save figure

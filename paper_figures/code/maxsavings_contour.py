@@ -1,10 +1,13 @@
 # imports
-from analysis.pricesignal import getmef, getdam, getaef
-from analysis.maxsavings import max_mef_savings, max_aef_savings, max_dam_savings
+import os
+import datetime
 import numpy as np
 import pandas as pd
-import os
 import matplotlib.pyplot as plt
+from analysis.pricesignal import getmef, getdam, getaef, gettariff
+from analysis.maxsavings import (
+    max_mef_savings, max_aef_savings, max_dam_savings, max_tar_savings, get_start_end
+)
 
 # define plotting defaults
 plt.rcParams.update(
@@ -30,7 +33,7 @@ month = 4
 mef_data = getmef(region, month)
 aef_data = getaef(region, month)
 dam_data = getdam(region, month)
-tariff_data = gettariff(region, month)
+tariff_data = gettariff(region)
 
 # solve max mef savings in parallel for a range of uptime and continuous flex
 uptimes = np.arange(0, 25, 2) / 24  # 1 to 24 hours to percent in intervals
@@ -39,14 +42,8 @@ continuous_flex = np.arange(0, 1.01, 0.1)  # 0 to 100%
 non_tariff_baseload = np.ones_like(mef_data)  # 1MW flat baseline load
 
 # tariffs require a full month of data to properly incorporate monthly demand charges
-startdate_dt = datetime.datetime(2023, month, 1)
-if month == 12:
-    enddate_dt = datetime.datetime(2024, 1, 1)
-else:
-    enddate_dt = datetime.datetime(2023, month+1, 1)
-month_length = int(
-    (enddate_dt - startdate_dt) / datetime.timedelta(1, "h")
-)
+startdate_dt, enddate_dt = get_start_end(month)
+month_length = int((enddate_dt - startdate_dt) / np.timedelta64(1, "h"))
 tariff_baseload = np.ones(month_length)
 
 # create a container for results
@@ -67,8 +64,13 @@ for i, uptime in enumerate(uptimes):
         max_dam_savings_results[i, j] = max_dam_savings(
             dam_data, uptime, flex, non_tariff_baseload
         )
-        max_tariff_savings_results[i, j] = max_tariff_savings(
-            tariff_data, uptime, flex, tariff_baseload
+        max_tariff_savings_results[i, j] = max_tar_savings(
+            tariff_data, 
+            uptime, 
+            flex, 
+            tariff_baseload, 
+            startdate_dt=startdate_dt, 
+            enddate_dt=enddate_dt,
         )
 
 # create figure - 2x2 grid for MEF[0,0], AEF[1,0], LMP[0,1], Tariffs[1,1] savings
@@ -164,7 +166,7 @@ fig.savefig(
 mef = max_mef_savings_results.flatten()
 aef = max_aef_savings_results.flatten()
 dam = max_dam_savings_results.flatten()
-tariff = np.zeros_like(mef)  # TODO - placeholder for tariff savings
+tariff = max_tariff_savings_results.flatten()
 continuous_flex_flat = np.tile(continuous_flex, len(uptimes))
 uptimes_flat = np.repeat(uptimes, len(continuous_flex))
 

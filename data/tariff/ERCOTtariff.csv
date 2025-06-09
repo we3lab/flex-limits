@@ -1,0 +1,6 @@
+﻿utility,type,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+electric,customer,,,,,,,,,,2200,2200,$/month,CWNS No. 48003033002
+electric,energy,,0,0,1,12,0,24,0,6,0.03161,0.03161,$/kWh,
+electric,demand,maximum,0,0,1,12,0,24,0,6,16.42,16.42,$/kW,
+gas,customer,,,,,,,,,,53.33,53.33,$/month,
+gas,energy,,0,0,1,12,0,24,0,6,0.72664,0.256611,$/therm or $/m3,Includes cost of gas
