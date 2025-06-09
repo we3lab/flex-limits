@@ -1,0 +1,20 @@
+﻿utility,type,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+electric,customer,,,,,,,,,,242.12,242.12,$/month,CWNS No. 39002093001
+electric,energy,,0,0,1,12,0,24,0,6,0.0468153,0.0468153,$/kWh,Energy charge based on Standard Service Tariff Sheet No. G10
+electric,demand,maximum,0,0,1,12,0,8,0,4,1.5243825,1.5243825,$/kW,"75% of off-peak or 100% of on-peak, whichever is higher"
+electric,demand,maximum,0,0,1,12,8,20,0,4,2.03251,2.03251,$/kW,"Represented both under ""maximum"" period"
+electric,demand,maximum,0,0,1,12,20,24,0,4,1.5243825,1.5243825,$/kW,
+electric,demand,maximum,0,0,1,12,0,24,0,6,1.5243825,1.5243825,$/kW,
+gas,customer,,,,,,,,,,92.13,92.13,$/month,
+gas,energy,,0,0,1,1,0,24,0,6,0.52101,0.18399,$/therm or $/m3,
+gas,energy,,0,0,2,2,0,24,0,6,0.55236,0.19506,$/therm or $/m3,
+gas,energy,,0,0,3,3,0,24,0,6,0.56242,0.19862,$/therm or $/m3,
+gas,energy,,0,0,4,4,0,24,0,6,0.57474,0.20297,$/therm or $/m3,
+gas,energy,,0,0,5,5,0,24,0,6,0.61102,0.21578,$/therm or $/m3,
+gas,energy,,0,0,6,6,0,24,0,6,0.61733,0.21801,$/therm or $/m3,
+gas,energy,,0,0,7,7,0,24,0,6,0.68506,0.24193,$/therm or $/m3,
+gas,energy,,0,0,8,8,0,24,0,6,0.73075,0.25806,$/therm or $/m3,
+gas,energy,,0,0,9,9,0,24,0,6,0.76563,0.27038,$/therm or $/m3,
+gas,energy,,0,0,10,10,0,24,0,6,0.92303,0.32597,$/therm or $/m3,
+gas,energy,,0,0,11,11,0,24,0,6,0.96165,0.33960,$/therm or $/m3,
+gas,energy,,0,0,12,12,0,24,0,6,0.88087,0.31108,$/therm or $/m3,

@@ -1,10 +1,17 @@
 # imports
-from analysis.pricesignal import getmef, getdam, getaef
-from analysis.maxsavings import max_mef_savings, max_aef_savings, max_dam_savings
+import os
+import datetime
 import numpy as np
 import pandas as pd
-import os
 import matplotlib.pyplot as plt
+from analysis.pricesignal import getmef, getdam, getaef, gettariff
+from analysis.maxsavings import (
+    max_mef_savings, 
+    max_aef_savings, 
+    max_dam_savings, 
+    max_tariff_savings, 
+    get_start_end
+)
 
 # define plotting defaults
 plt.rcParams.update(
@@ -30,36 +37,49 @@ month = 4
 mef_data = getmef(region, month)
 aef_data = getaef(region, month)
 dam_data = getdam(region, month)
+tariff_data = gettariff(region)
 
 # solve max mef savings in parallel for a range of uptime and continuous flex
 uptimes = np.arange(0, 25, 2) / 24  # 1 to 24 hours to percent in intervals
 continuous_flex = np.arange(0, 1.01, 0.1)  # 0 to 100%
 
-baseload = np.ones_like(mef_data)  # 1MW flat baseline load
+non_tariff_baseload = np.ones_like(mef_data)  # 1MW flat baseline load
+
+# tariffs require a full month of data to properly incorporate monthly demand charges
+startdate_dt, enddate_dt = get_start_end(month)
+month_length = int((enddate_dt - startdate_dt) / np.timedelta64(1, "h"))
+tariff_baseload = np.ones(month_length)
 
 # create a container for results
 max_mef_savings_results = np.zeros((len(uptimes), len(continuous_flex)))
 max_aef_savings_results = np.zeros((len(uptimes), len(continuous_flex)))
 max_dam_savings_results = np.zeros((len(uptimes), len(continuous_flex)))
+max_tariff_savings_results = np.zeros((len(uptimes), len(continuous_flex)))
 
 # calculate max mef savings
 for i, uptime in enumerate(uptimes):
     for j, flex in enumerate(continuous_flex):
         max_mef_savings_results[i, j] = max_mef_savings(
-            mef_data, uptime, flex, baseload
+            mef_data, uptime, flex, non_tariff_baseload
         )
         max_aef_savings_results[i, j] = max_aef_savings(
-            aef_data, uptime, flex, baseload
+            aef_data, uptime, flex, non_tariff_baseload
         )
         max_dam_savings_results[i, j] = max_dam_savings(
-            dam_data, uptime, flex, baseload
+            dam_data, uptime, flex, non_tariff_baseload
         )
-        # max_tariff_savings_results[i, j] = max_tariff_savings(dam_data, uptime, flex, baseload) # TODO- add tariff data
+        max_tariff_savings_results[i, j] = max_tariff_savings(
+            tariff_data, 
+            uptime, 
+            flex, 
+            tariff_baseload, 
+            startdate_dt=startdate_dt, 
+            enddate_dt=enddate_dt,
+            uptime_equality=True
+        )
 
-# create figure - 2x2 grid for MEF[0,0], AEF[1,0], LMP[0,1], Tariffs[1,1] savings
+# create figure - 2x2 grid for MEF[0,0], AEF[1,0], DAM[0,1], Tariffs[1,1] savings
 fig, ax = plt.subplots(2, 2, figsize=(18, 14))
-
-clevels = np.arange(0, 75.1, 2.5)  # levels for contour plots
 
 # plot max MEF savings
 contour = ax[0, 0].contourf(
@@ -102,9 +122,16 @@ ax[0, 1].set_title("Day-ahead Prices")
 cbar.set_label("Savings (%)")
 
 # plot max Tariff savings
-# contour = ax[1,1].contourf(continuous_flex * 100, uptimes * 100, max_tariff_savings_results, levels=clevels, cmap=cmap)
-# cbar = fig.colorbar(contour, ax=ax[1,1])
-ax[1, 1].set_title("Industrial Tariff IDXXXXXX")
+contour = ax[1,1].contourf(
+    continuous_flex * 100, 
+    uptimes * 100, 
+    max_tariff_savings_results, 
+    extend="max", 
+    levels=np.arange(0, 15.1, 1.5),
+    cmap="PuRd",
+)
+cbar = fig.colorbar(contour, ax=ax[1,1])
+ax[1, 1].set_title("Tariff: SCE TOU-8 Option D")
 cbar.set_label("Savings (%)")
 
 for a in ax.flatten():
@@ -149,7 +176,7 @@ fig.savefig(
 mef = max_mef_savings_results.flatten()
 aef = max_aef_savings_results.flatten()
 dam = max_dam_savings_results.flatten()
-tariff = np.zeros_like(mef)  # TODO - placeholder for tariff savings
+tariff = max_tariff_savings_results.flatten()
 continuous_flex_flat = np.tile(continuous_flex, len(uptimes))
 uptimes_flat = np.repeat(uptimes, len(continuous_flex))
 

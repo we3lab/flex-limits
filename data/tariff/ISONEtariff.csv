@@ -1,0 +1,23 @@
+﻿utility,type,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+electric,customer,,,,,,,,,,360,360,$/month,CWNS No. 25000128001
+electric,energy,,0,0,1,1,0,24,0,6,0.13947,0.13947,$/kWh,
+electric,energy,,0,0,2,2,0,24,0,6,0.13972,0.13972,$/kWh,
+electric,energy,,0,0,3,3,0,24,0,6,0.12887,0.12887,$/kWh,
+electric,energy,,0,0,4,4,0,24,0,6,0.12633,0.12633,$/kWh,
+electric,energy,,0,0,5,5,0,24,0,6,0.11847,0.11847,$/kWh,
+electric,energy,,0,0,6,6,0,24,0,6,0.1116,0.1116,$/kWh,
+electric,energy,,0,0,7,7,0,24,0,6,0.11751,0.11751,$/kWh,
+electric,energy,,0,0,8,8,0,24,0,6,0.1155,0.1155,$/kWh,
+electric,energy,,0,0,9,9,0,24,0,6,0.11289,0.11289,$/kWh,
+electric,energy,,0,0,10,10,0,24,0,6,0.13171,0.13171,$/kWh,
+electric,energy,,0,0,11,11,0,24,0,6,0.14711,0.14711,$/kWh,
+electric,energy,,0,0,12,12,0,24,0,6,0.18329,0.18329,$/kWh,
+electric,demand,winter1,0,0,1,5,0,24,0,6,20.4,20.4,$/kW,
+electric,demand,summer,0,0,6,9,0,24,0,6,29.62,29.62,$/kW,
+electric,demand,winter2,0,0,10,12,0,24,0,6,20.4,20.4,$/kW,
+gas,customer,,,,,,,,,,125,125,$/month,
+gas,energy,,0,0,1,4,0,24,0,6,0.9518,0.33613,$/therm or $/m3,Includes cost of gas
+gas,energy,,0,0,5,9,0,24,0,6,0.7121,0.25148,$/therm or $/m3,Includes cost of gas
+gas,energy,,0,0,9,10,0,24,0,6,0.8409,0.29696,$/therm or $/m3,Includes cost of gas
+gas,energy,,0,0,11,12,0,24,0,6,1.0933,0.38610,$/therm or $/m3,Includes cost of gas
+gas,energy,,0,0,12,12,0,24,0,6,1.1765,0.41548,$/therm or $/m3,Includes cost of gas

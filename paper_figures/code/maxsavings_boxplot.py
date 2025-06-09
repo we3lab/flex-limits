@@ -1,6 +1,7 @@
+import os
+import datetime
 import numpy as np
 import pandas as pd
-import os
 import matplotlib.pyplot as plt
 from analysis import pricesignal as ps
 from analysis import maxsavings as ms
@@ -52,7 +53,7 @@ for i, reg in enumerate(regions):
             baseload=np.ones_like(aef),
         )
 
-        # LMP
+        # DAM
         dam = ps.getdam(region=reg, month=month)
         dam_savings_sweep[i, j] = ms.max_dam_savings(
             data=dam,
@@ -61,15 +62,33 @@ for i, reg in enumerate(regions):
             baseload=np.ones_like(dam),
         )
 
-# sort the regions by the max savings in either LMP or MEF
-max_savings = np.maximum(mef_savings_sweep.max(axis=1), dam_savings_sweep.max(axis=1), 
-                         aef_savings_sweep.max(axis=1))
+        # Tariff
+        # TODO: remove this if/else once bug is fixed
+        if reg == "PJM":
+            tariff_savings_sweep[i, j] = 0
+        else:
+            tariff = ps.gettariff(region=reg)
+            startdate_dt, enddate_dt = ms.get_start_end(month)
+            month_length = int((enddate_dt - startdate_dt) / np.timedelta64(1, "h"))
+            tariff_savings_sweep[i, j] = ms.max_tariff_savings(
+                data=tariff,
+                system_uptime=0.0,
+                continuous_flex=0.0,
+                baseload=np.ones(month_length),
+                startdate_dt=startdate_dt,
+                enddate_dt=enddate_dt,
+                uptime_equality=False
+            )
+
+# sort the regions by the max savings in either DAM or MEF
+max_savings = np.maximum(mef_savings_sweep.max(axis=1), dam_savings_sweep.max(axis=1))
 sorted_indices = np.argsort(max_savings)[::-1]
 
 # reorder the savings arrays based on sorted indices
 mef_savings_sweep = mef_savings_sweep[sorted_indices, :]
 aef_savings_sweep = aef_savings_sweep[sorted_indices, :]
 dam_savings_sweep = dam_savings_sweep[sorted_indices, :]
+tariff_savings_sweep = tariff_savings_sweep[sorted_indices, :]
 
 # reorder the regions based on sorted indices
 regions = [regions[i] for i in sorted_indices]
@@ -79,65 +98,87 @@ regions = [regions[i] for i in sorted_indices]
 # create a plot of the emissions savings
 fig, ax = plt.subplots(figsize=(10, 6))
 aef_plot = ax.boxplot(
-                    aef_savings_sweep.T,
-                    positions=np.arange(len(regions)) - 0.3,
-                    widths=0.15,
-                    tick_labels=regions,
-                    patch_artist=True,
-                    showfliers=False,
-                    whis=(0, 100),
-                    medianprops={"linewidth": 0},
-                    boxprops={"linewidth": 1.5, "facecolor": "royalblue"},
-                    whiskerprops={"linewidth": 1.5},
-                    capprops={"linewidth": 1.5},
-                )                    
+    aef_savings_sweep.T,
+    positions=np.arange(len(regions)) - 0.3,
+    widths=0.15,
+    tick_labels=regions,
+    patch_artist=True,
+    showfliers=False,
+    whis=(0, 100),
+    medianprops={"linewidth": 0},
+    boxprops={"linewidth": 1.5, "facecolor": "royalblue"},
+    whiskerprops={"linewidth": 1.5},
+    capprops={"linewidth": 1.5},
+)                    
                 
 mef_plot = ax.boxplot(
-                    mef_savings_sweep.T,
-                    positions=np.arange(len(regions)) - 0.1,
-                    widths=0.15,
-                    tick_labels=regions,
-                    patch_artist=True,
-                    showfliers=False,
-                    whis=(0, 100),
-                    medianprops={"linewidth": 0},
-                    boxprops={"linewidth": 1.5, "facecolor": "darkseagreen"},
-                    whiskerprops={"linewidth": 1.5},
-                    capprops={"linewidth": 1.5},
-                )
+    mef_savings_sweep.T,
+    positions=np.arange(len(regions)) - 0.1,
+    widths=0.15,
+    tick_labels=regions,
+    patch_artist=True,
+    showfliers=False,
+    whis=(0, 100),
+    medianprops={"linewidth": 0},
+    boxprops={"linewidth": 1.5, "facecolor": "darkseagreen"},
+    whiskerprops={"linewidth": 1.5},
+    capprops={"linewidth": 1.5},
+)
 
 dam_plot = ax.boxplot(
-                    dam_savings_sweep.T,
-                    positions=np.arange(len(regions)) + 0.1,
-                    widths=0.15,
-                    tick_labels=regions,
-                    patch_artist=True,
-                    showfliers=False,
-                    whis=(0, 100),
-                    medianprops={"linewidth": 0},
-                    boxprops={"linewidth": 1.5, "facecolor": "palegoldenrod"},
-                    whiskerprops={"linewidth": 1.5},
-                    capprops={"linewidth": 1.5},
-                )
+    dam_savings_sweep.T,
+    positions=np.arange(len(regions)) + 0.1,
+    widths=0.15,
+    tick_labels=regions,
+    patch_artist=True,
+    showfliers=False,
+    whis=(0, 100),
+    medianprops={"linewidth": 0},
+    boxprops={"linewidth": 1.5, "facecolor": "palegoldenrod"},
+    whiskerprops={"linewidth": 1.5},
+    capprops={"linewidth": 1.5},
+)
 
-ax.set(  # xlabel='Region',
+tariff_plot = ax.boxplot(
+    tariff_savings_sweep.T,
+    positions=np.arange(len(regions)) + 0.3,
+    widths=0.15,
+    tick_labels=regions,
+    patch_artist=True,
+    showfliers=False,
+    whis=(0, 100),
+    medianprops={"linewidth": 0},
+    boxprops={"linewidth": 1.5, "facecolor": "violet"},
+    whiskerprops={"linewidth": 1.5},
+    capprops={"linewidth": 1.5},
+)
+
+ax.set(
     ylabel="Savings [%]",
     title="Maximum savings from flexibility",
     xticks=np.arange(len(regions)),
     xticklabels=regions,
-    yticks=np.arange(0, 101, 20),
-    ylim=(0, 100),
+    yticks=np.arange(0, 161, 20),
+    ylim=(0, 160),
 )
 plt.setp(ax.get_xticklabels(), rotation=45, ha="center")
 
-ax.legend([aef_plot["boxes"][0],
-            mef_plot["boxes"][0], 
-            dam_plot["boxes"][0]], 
-            ['AEF', 'MEF', 'DAM'], loc='best',
-            frameon=False, fontsize=20, handlelength=1, handleheight=1)
+ax.legend(
+    [
+        aef_plot["boxes"][0],
+        mef_plot["boxes"][0], 
+        dam_plot["boxes"][0],
+        tariff_plot["boxes"][0],
+    ],
+    ['AEF', 'MEF', 'DAM', 'Tariff'], 
+    loc='best',
+    frameon=False, 
+    fontsize=20, 
+    handlelength=1, 
+    handleheight=1
+)
 
 # save figure
-
 figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 fig.savefig(
     os.path.join(figpath, "figures/png", f"savings_limit_boxplot.png"),
@@ -150,8 +191,7 @@ fig.savefig(
     bbox_inches="tight",
 )
 
-
-# # save data in a pandas DataFrame
+# save data in a pandas DataFrame
 regions_expanded = np.repeat(regions, len(month_arr))
 months_expanded = np.tile(month_arr, len(regions))
 savings_data = {
