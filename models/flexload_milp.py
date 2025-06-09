@@ -669,47 +669,6 @@ class flexloadMILP:
             return
         
         return self.model, results
-        
-        # # raise a warning if solution violates the bounds of the relaxed problem (within tolerance)
-        # if (
-        #     np.max(np.abs(cont_load - cont_load_avg)) - self.tol
-        #     >= flex_capacity * cont_load_avg
-        # ):
-        #     print(
-        #         "The solution violates the bounds of flexible operation."
-        #         "\nResolving the problem with increased bound penalties."
-        #     )
-        #     # raise ValueError("Continuous load violated bounds of relaxed problem.")
-
-        #     # TODO - think about implementing a smarter algorithm for heuristic bound enforcement
-        #     stepsize = 1e-5
-
-        #     while (
-        #         np.max(np.abs(cont_load - cont_load_avg)) - self.tol
-        #         >= flex_capacity * cont_load_avg
-        #     ):
-        #         # get the violation of the maximum continuous load
-        #         max_contload_violation = np.max(
-        #             [(1 + flex_capacity) * cont_load_avg - np.max(cont_load), 0]
-        #         )
-        #         self.model.max_contload_penalty.value = (
-        #             self.model.max_contload_penalty.value
-        #             + max_contload_violation * stepsize
-        #         )
-
-        #         # get the violation of the minimum continuous load
-        #         min_contload_violation = np.max(
-        #             [np.min(cont_load) - (1 - flex_capacity) * cont_load_avg, 0]
-        #         )
-        #         self.model.min_contload_penalty.value = (
-        #             self.model.min_contload_penalty.value
-        #             + min_contload_violation * stepsize
-        #         )
-
-        #         # update the model and call solve again
-        #         results = solver.solve(self.model, tee=tee)
-
-        # return self.model, results
 
     def display_results(self):
         """
