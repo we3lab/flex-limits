@@ -345,7 +345,6 @@ class flexloadMILP:
 
         model.max_contload = Var(bounds=(0, None))
         model.min_contload = Var(bounds=(0, None))
-        model.mean_contload = Var(bounds=(0, None))
 
         model.max_contload_penalty = Param(initialize=self.tol, mutable=True)
         model.min_contload_penalty = Param(initialize=self.tol, mutable=True)
