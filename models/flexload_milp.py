@@ -345,6 +345,8 @@ class flexloadMILP:
 
         model.max_contload = Var(bounds=(0, None))
         model.min_contload = Var(bounds=(0, None))
+        model.mean_contload = Var(bounds=(0, None))
+
         model.max_contload_penalty = Param(initialize=self.tol, mutable=True)
         model.min_contload_penalty = Param(initialize=self.tol, mutable=True)
 
@@ -378,12 +380,13 @@ class flexloadMILP:
         def contload_min_rule(b, t):
             return b.contload[t] >= b.min_contload
 
-        @model.Expression(doc="Penalized continuous load range")
-        def contload_range(b):
-            return (
-                b.max_contload * b.max_contload_penalty
-                - b.min_contload * b.min_contload_penalty
-            )
+        @model.Expression(doc="Max continuous load penalty")
+        def max_contload_penalty_rule(b):
+            return b.max_contload * b.max_contload_penalty
+
+        @model.Expression(doc="Min continuous load penalty")
+        def min_contload_penalty_rule(b):
+            return - b.min_contload * b.min_contload_penalty
 
         @model.Constraint(doc="Number of on-steps")
         def onsteps_rule(b):
@@ -517,7 +520,8 @@ class flexloadMILP:
             model.objective = Objective(
                 expr=model.total_flex_cost_signal
                 + self.cost_of_carbon * model.total_flex_emissions_signal
-                + model.contload_range,
+                + model.max_contload_penalty_rule
+                + model.min_contload_penalty_rule,
                 sense=minimize,
             )
 
@@ -543,9 +547,27 @@ class flexloadMILP:
 
         return self.upflex_powercapacity, self.discharge_capacity
 
-    def solve(self, tee=False, print_results=False):
+    def solve(self, tee=False, print_results=False, max_iter = 10, descent_stepsize=1):
         """
         Solve the model for the flexible load using gurobi
+
+        Parameters
+        ----------
+        tee : bool, optional
+            If True, prints the solver output to the console. Default is False.
+        print_results : bool, optional
+            If True, prints the solver results to the console. Default is False.
+        max_iter : int, optional - only for uptime_equality == False
+            The maximum number of iterations to resolve the problem with heuristic bounds enforcement. Default is 10.
+        descent_stepsize : float, optional - only for uptime_equality == False
+            The step size for the descent in the heuristic bounds enforcement. Default is 1.
+        
+        Returns
+        -------
+        model : pyomo ConcreteModel
+            The constructed model for the flexible load.
+        results : pyomo SolverResults
+            The results of the solver after solving the model.
         """
         solver = SolverFactory("gurobi")
 
@@ -554,7 +576,8 @@ class flexloadMILP:
         if self.uptime_equality:
             model, results = self.solve_baseproblem(tee=tee)
         else:
-            model, results = self.solve_relaxedproblem(tee=tee)
+            print("Solving the relaxed problem with heuristic bounds enforcement.")
+            model, results = self.solve_relaxedproblem(tee=tee, max_iter=max_iter, descent_stepsize=descent_stepsize)
 
         self.t3 = time()
 
@@ -577,7 +600,7 @@ class flexloadMILP:
         results = solver.solve(self.model, tee=tee)
         return self.model, results
 
-    def solve_relaxedproblem(self, tee=False):
+    def solve_relaxedproblem(self, max_iter, descent_stepsize, tee=False, recursion_counter=0):
         """
         Solve the model for the flexible load using gurobi with bound constraints on the contload relaxed
         """
@@ -594,47 +617,99 @@ class flexloadMILP:
             ]
         )
         cont_load_avg = np.mean(cont_load)
+        lower_bound = (1 - flex_capacity) * cont_load_avg
+        upper_bound = (1 + flex_capacity) * cont_load_avg
 
-        # raise a warning if solution violates the bounds of the relaxed problem (within tolerance)
-        if (
-            np.max(np.abs(cont_load - cont_load_avg)) - self.tol
-            >= flex_capacity * cont_load_avg
-        ):
-            print(
-                "The solution violates the bounds of flexible operation."
-                "\nResolving the problem with increased bound penalties."
+        # print the continuous load bounds
+        print(
+            f"Continuous load bounds: [{lower_bound:.2f}, {upper_bound:.2f}] "
+            f"with average continuous load: {cont_load_avg:.2f}"
+        )
+        # print the continuous load
+        print(f"Max load: {np.max(cont_load):.2f}, Min load: {np.min(cont_load):.2f}")
+
+        resolve = 0
+
+        # check min continuous load bound
+        if lower_bound - self.model.min_contload.value > self.tol:
+            resolve = 1
+            self.model.min_contload_penalty.value = (
+                self.model.min_contload_penalty.value + descent_stepsize * (cont_load_avg - self.model.min_contload.value)
             )
-            # raise ValueError("Continuous load violated bounds of relaxed problem.")
+        else:
+            pass
 
-            # TODO - think about implementing a smarter algorithm for heuristic bound enforcement
-            stepsize = 1e-5
+        if self.model.max_contload.value - upper_bound > self.tol:
+            resolve = 1
+            self.model.max_contload_penalty.value = (
+                self.model.max_contload_penalty.value + descent_stepsize * (self.model.max_contload.value - cont_load_avg)
+            )
+        else:
+            pass
 
-            while (
-                np.max(np.abs(cont_load - cont_load_avg)) - self.tol
-                >= flex_capacity * cont_load_avg
-            ):
-                # get the violation of the maximum continuous load
-                max_contload_violation = np.max(
-                    [(1 + flex_capacity) * cont_load_avg - np.max(cont_load), 0]
-                )
-                self.model.max_contload_penalty.value = (
-                    self.model.max_contload_penalty.value
-                    + max_contload_violation * stepsize
-                )
+        if resolve == 0:
+            # if the solution is feasible, return it
+            print("The solution is feasible within the provided bounds.")
+            return self.model, results
 
-                # get the violation of the minimum continuous load
-                min_contload_violation = np.max(
-                    [np.min(cont_load) - (1 - flex_capacity) * cont_load_avg, 0]
-                )
-                self.model.min_contload_penalty.value = (
-                    self.model.min_contload_penalty.value
-                    + min_contload_violation * stepsize
-                )
-
-                # update the model and call solve again
-                results = solver.solve(self.model, tee=tee)
-
+        elif recursion_counter < max_iter-1 and resolve > 0:
+            recursion_counter += 1
+            print(
+                f"The solution violated the bounds of flexible operation.\nResolving the problem with increased bound penalties.\nTry: {recursion_counter+1}"
+            )
+            # if the solution is not feasible, increase the penalties and solve again
+            self.solve_relaxedproblem(
+                tee=tee, recursion_counter=recursion_counter
+            )
+        else:
+            # if the recursion limit is reached, raise an error
+            raise ValueError(
+                "The solution could not be resolved within the maximum number of iterations."
+            )
+            return
+        
         return self.model, results
+        
+        # # raise a warning if solution violates the bounds of the relaxed problem (within tolerance)
+        # if (
+        #     np.max(np.abs(cont_load - cont_load_avg)) - self.tol
+        #     >= flex_capacity * cont_load_avg
+        # ):
+        #     print(
+        #         "The solution violates the bounds of flexible operation."
+        #         "\nResolving the problem with increased bound penalties."
+        #     )
+        #     # raise ValueError("Continuous load violated bounds of relaxed problem.")
+
+        #     # TODO - think about implementing a smarter algorithm for heuristic bound enforcement
+        #     stepsize = 1e-5
+
+        #     while (
+        #         np.max(np.abs(cont_load - cont_load_avg)) - self.tol
+        #         >= flex_capacity * cont_load_avg
+        #     ):
+        #         # get the violation of the maximum continuous load
+        #         max_contload_violation = np.max(
+        #             [(1 + flex_capacity) * cont_load_avg - np.max(cont_load), 0]
+        #         )
+        #         self.model.max_contload_penalty.value = (
+        #             self.model.max_contload_penalty.value
+        #             + max_contload_violation * stepsize
+        #         )
+
+        #         # get the violation of the minimum continuous load
+        #         min_contload_violation = np.max(
+        #             [np.min(cont_load) - (1 - flex_capacity) * cont_load_avg, 0]
+        #         )
+        #         self.model.min_contload_penalty.value = (
+        #             self.model.min_contload_penalty.value
+        #             + min_contload_violation * stepsize
+        #         )
+
+        #         # update the model and call solve again
+        #         results = solver.solve(self.model, tee=tee)
+
+        # return self.model, results
 
     def display_results(self):
         """
