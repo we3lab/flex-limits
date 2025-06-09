@@ -65,11 +65,9 @@ def shadowcost_wholesale(
     # calculate the total cost and total emissions using the output power
     cost_optimal_cost = dam@net_facility_load_costopt
         # TODO: replace the unit conversion using pint
-    cost_optimal_emissions = mef@net_facility_load_costopt* 0.00110231 # convert from $/kg to $/ton
+    cost_optimal_emissions = mef@net_facility_load_costopt* 0.001 # convert from $/kg to $/ton (metric)
 
     # Calculate emissions optimal while tracking cost
-        # this is done in a backwards way by switching dam and mef in the cost and emissions signal object
-        # this allows the emissions to be minimized while the cost is tracked as a 0-weighted objective
     flex_emissions = flexloadMILP(
         baseload=baseload,
         emissions_signal=mef,
@@ -92,7 +90,7 @@ def shadowcost_wholesale(
     # calculate the total cost and total emissions using the output power
     emissions_optimal_cost = dam@net_facility_load_emisopt
         # TODO: replace the unit conversion using pint
-    emissions_optimal_emissions = mef@net_facility_load_emisopt* 0.00110231 # convert from $/kg to $/ton
+    emissions_optimal_emissions = mef@net_facility_load_emisopt* 0.001 # convert from $/kg to $/ton (metric)
 
     # Calculate the shadow price 
     shadow_price = -(cost_optimal_cost - emissions_optimal_cost) / (cost_optimal_emissions - emissions_optimal_emissions + 1e-8) 
