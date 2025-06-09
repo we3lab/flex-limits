@@ -546,7 +546,7 @@ class flexloadMILP:
 
         return self.upflex_powercapacity, self.discharge_capacity
 
-    def solve(self, tee=False, print_results=False, max_iter = 10, descent_stepsize=1):
+    def solve(self, tee=False, print_results=False, max_iter=10, descent_stepsize=1):
         """
         Solve the model for the flexible load using gurobi
 
