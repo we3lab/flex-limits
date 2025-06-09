@@ -63,18 +63,22 @@ for i, reg in enumerate(regions):
         )
 
         # Tariff
-        tariff = ps.gettariff(region=reg)
-        startdate_dt, enddate_dt = ms.get_start_end(month)
-        month_length = int((enddate_dt - startdate_dt) / np.timedelta64(1, "h"))
-        tariff_savings_sweep[i, j] = ms.max_tariff_savings(
-            data=tariff,
-            system_uptime=0.0,
-            continuous_flex=0.0,
-            baseload=np.ones(month_length),
-            startdate_dt=startdate_dt,
-            enddate_dt=enddate_dt,
-            uptime_equality=False
-        )
+        # TODO: remove this if/else once bug is fixed
+        if reg == "PJM":
+            tariff_savings_sweep[i, j] = 0
+        else:
+            tariff = ps.gettariff(region=reg)
+            startdate_dt, enddate_dt = ms.get_start_end(month)
+            month_length = int((enddate_dt - startdate_dt) / np.timedelta64(1, "h"))
+            tariff_savings_sweep[i, j] = ms.max_tariff_savings(
+                data=tariff,
+                system_uptime=0.0,
+                continuous_flex=0.0,
+                baseload=np.ones(month_length),
+                startdate_dt=startdate_dt,
+                enddate_dt=enddate_dt,
+                uptime_equality=False
+            )
 
 # sort the regions by the max savings in either DAM or MEF
 max_savings = np.maximum(mef_savings_sweep.max(axis=1), dam_savings_sweep.max(axis=1))
@@ -137,7 +141,7 @@ dam_plot = ax.boxplot(
 
 tariff_plot = ax.boxplot(
     tariff_savings_sweep.T,
-    positions=np.arange(len(regions)) + 0.1,
+    positions=np.arange(len(regions)) + 0.3,
     widths=0.15,
     tick_labels=regions,
     patch_artist=True,
@@ -154,8 +158,8 @@ ax.set(
     title="Maximum savings from flexibility",
     xticks=np.arange(len(regions)),
     xticklabels=regions,
-    yticks=np.arange(0, 101, 20),
-    ylim=(0, 200),
+    yticks=np.arange(0, 161, 20),
+    ylim=(0, 160),
 )
 plt.setp(ax.get_xticklabels(), rotation=45, ha="center")
 

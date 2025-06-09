@@ -100,11 +100,6 @@ def max_tariff_savings(
     uptime_equality=True,
 ):
     """Calculate the maximum savings for a tariff as a percentage."""
-    # TODO: remove these print statements after debugging
-    print("system_uptime =", system_uptime)
-    print("len(baseload) =", len(baseload))
-    print("min_onsteps =", max(int(len(baseload) * (system_uptime)), 1))
-    print("continuous_flex =", continuous_flex)
     flex = flexloadMILP(
         baseload=baseload,
         cost_signal=data,

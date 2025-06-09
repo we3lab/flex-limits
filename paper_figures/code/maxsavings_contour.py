@@ -81,8 +81,6 @@ for i, uptime in enumerate(uptimes):
 # create figure - 2x2 grid for MEF[0,0], AEF[1,0], DAM[0,1], Tariffs[1,1] savings
 fig, ax = plt.subplots(2, 2, figsize=(18, 14))
 
-clevels = np.arange(0, 75.1, 2.5)  # levels for contour plots
-
 # plot max MEF savings
 contour = ax[0, 0].contourf(
     continuous_flex * 100,
@@ -129,7 +127,7 @@ contour = ax[1,1].contourf(
     uptimes * 100, 
     max_tariff_savings_results, 
     extend="max", 
-    levels=clevels,
+    levels=np.arange(0, 15.1, 1.5),
     cmap="PuRd",
 )
 cbar = fig.colorbar(contour, ax=ax[1,1])
