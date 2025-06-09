@@ -71,4 +71,24 @@ def max_dam_savings(data, system_uptime, continuous_flex, baseload):
     return flex.model.pct_cost_savings()
 
 
-# TODO - implement tariff savings for a single case
+def max_tariff_savings(data, system_uptime, continuous_flex, baseload, startdate_dt, enddate_dt):
+
+    flex = flexloadMILP(
+        baseload=baseload,
+        cost_signal=data,
+        costing_type="tariff",
+        costing_path=None,
+        emissions_type=None,
+        emissions_path=None,
+        flex_capacity=continuous_flex,
+        rte=1.0,
+        min_onsteps=max(int(len(data) * (system_uptime)), 1),  # assuming daily cycles
+        uptime_equality=True,
+        startdate_dt=startdate_dt,
+        enddate_dt=enddate_dt,
+    )
+
+    flex.build()
+    flex.solve()
+
+    return flex.model.pct_cost_savings()

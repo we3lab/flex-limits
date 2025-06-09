@@ -1,6 +1,7 @@
+import os
+import datetime
 import numpy as np
 import pandas as pd
-import os
 import matplotlib.pyplot as plt
 from analysis import pricesignal as ps
 from analysis import maxsavings as ms
@@ -52,7 +53,7 @@ for i, reg in enumerate(regions):
             baseload=np.ones_like(aef),
         )
 
-        # LMP
+        # DAM
         dam = ps.getdam(region=reg, month=month)
         dam_savings_sweep[i, j] = ms.max_dam_savings(
             data=dam,
@@ -61,15 +62,35 @@ for i, reg in enumerate(regions):
             baseload=np.ones_like(dam),
         )
 
+        # Tariff
+        tariff = ps.gettariff(region=reg)
+        enddate_dt = datetime.datetime(2023, month, 1)
+        if month == 12:
+            enddate_dt = datetime.datetime(2024, 1, 1)
+        else:
+            enddate_dt = datetime.datetime(2023, month+1, 1)
+        month_length = int(
+            (enddate_dt - startdate_dt) / datetime.timedelta(1, "h")
+        )
+        ms.max_tariff_savings(
+            data=tariff,
+            system_uptime=0.0,
+            continuous_flex=0.0,
+            baseload=np.ones(month_length),
+            startdate_dt=startdate_dt,
+            enddate_dt=enddate_dt
+        )
+
 # sort the regions by the max savings in either LMP or MEF
 max_savings = np.maximum(mef_savings_sweep.max(axis=1), dam_savings_sweep.max(axis=1), 
-                         aef_savings_sweep.max(axis=1))
+                         aef_savings_sweep.max(axis=1), tariff_savings_sweep(axis=1))
 sorted_indices = np.argsort(max_savings)[::-1]
 
 # reorder the savings arrays based on sorted indices
 mef_savings_sweep = mef_savings_sweep[sorted_indices, :]
 aef_savings_sweep = aef_savings_sweep[sorted_indices, :]
 dam_savings_sweep = dam_savings_sweep[sorted_indices, :]
+tariff_savings_sweep = tariff_savings_sweep[sorted_indices, :]
 
 # reorder the regions based on sorted indices
 regions = [regions[i] for i in sorted_indices]

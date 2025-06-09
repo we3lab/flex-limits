@@ -1,0 +1,22 @@
+﻿utility,type,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+electric,customer,,,,,,,,,,373.12,373.12,$/month,Assumed 2 to 50 kV (typical primary voltage)
+electric,demand,peak-summer,0,0,6,9,16,21,0,4,22.19,22.19,$/kW,Had to choose between high demand or high energy charges (Option D or Option E)
+electric,demand,part-peak-winter1,0,0,1,5,16,21,0,4,4.69,4.69,$/kW,"This is high demand, low energy"
+electric,demand,part-peak-winter2,0,0,10,12,16,21,0,4,4.69,4.69,$/kW,
+electric,demand,maximum,0,0,1,12,0,24,0,6,16.97,16.97,$/kW,
+electric,energy,,0,0,6,9,16,21,0,4,0.11688,0.11688,$/kWh,Includes delivery and generation service
+electric,energy,,0,0,6,9,0,16,0,6,0.08421,0.08421,$/kWh,Includes delivery and generation service
+electric,energy,,0,0,6,9,21,24,0,6,0.08421,0.08421,$/kWh,Includes delivery and generation service
+electric,energy,,0,0,6,9,16,21,5,6,0.10916,0.10916,$/kWh,Includes delivery and generation service
+electric,energy,,0,0,1,5,16,21,0,6,0.09803,0.09803,$/kWh,Includes delivery and generation service
+electric,energy,,0,0,1,5,0,8,0,6,0.08873,0.08873,$/kWh,Includes delivery and generation service
+electric,energy,,0,0,1,5,21,24,0,6,0.08873,0.08873,$/kWh,Includes delivery and generation service
+electric,energy,,0,0,1,5,8,16,0,6,0.07131,0.07131,$/kWh,Includes delivery and generation service
+electric,energy,,0,0,10,12,16,21,0,6,0.09803,0.09803,$/kWh,Includes delivery and generation service
+electric,energy,,0,0,10,12,0,8,0,6,0.08873,0.08873,$/kWh,Includes delivery and generation service
+electric,energy,,0,0,10,12,21,24,0,6,0.08873,0.08873,$/kWh,Includes delivery and generation service
+electric,energy,,0,0,10,12,8,16,0,6,0.07131,0.07131,$/kWh,Includes delivery and generation service
+gas,customer,,,,,,,,,,14.7945,14.7945,$/month,Estimated from multiplying cost of 1 meter for 1 day by 30 days
+gas,energy,,0,0,1,12,0,24,0,6,1.61662,0.570905,$/therm or $/m3,
+gas,energy,,250,707.92,1,12,0,24,0,6,1.17731,0.415764,$/therm or $/m3,
+gas,energy,,4167,11799.61,1,12,0,24,0,6,0.88276,0.311744,$/therm or $/m3,
