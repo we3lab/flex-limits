@@ -191,7 +191,13 @@ class flexloadMILP:
                 .magnitude
             )
 
-        if self.cost_signal is None and self.emissions_signal is None:
+        if self.cost_signal is not None and self.emissions_signal is not None:
+            if self.cost_of_carbon is None:
+                raise ValueError(
+                    "If both cost_signal and emissions_signal are provided,"
+                    "then cost_of_carbon must also be provided."
+                )
+        else:
             raise ValueError(
                 "At least one of cost_signal or emissions_signal must be provided."
             )
