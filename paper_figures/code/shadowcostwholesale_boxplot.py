@@ -87,7 +87,7 @@ colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]  # Colors for each system
 
 
 ax.set_xlabel("Region")
-ax.set_ylabel("Wholesale Shadow Price (USD/ton CO2)")
+ax.set_ylabel("Wholesale Shadow Price (USD/metric ton CO2)")
 
 num_systems = len(systems)  # Number of systems to plot
 
