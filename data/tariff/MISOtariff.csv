@@ -1,0 +1,15 @@
+﻿utility,type,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+electric,customer,,,,,,,,,,13.67,13.67,$/month,Estimated from multiplying cost of 1 meter for 1 day by 30 days
+electric,demand,off-peak,0,0,1,12,0,11,0,4,7.57556,7.57556,$/kW,CWNS No. 26000596001
+electric,demand,on-peak,0,0,1,12,11,19,0,4,34.09,34.09,$/kW,
+electric,demand,off-peak,0,0,1,12,19,24,0,4,7.57556,7.57556,$/kW,
+electric,demand,off-peak,0,0,1,12,0,24,5,6,7.57556,7.57556,$/kW,
+electric,energy,,0,0,1,12,0,24,0,6,0.04171,0.04171,$/kWh,
+gas,customer,,,,,,,,,,700,700,$/month,
+gas,energy,,0,0,1,1,0,24,0,6,0.59395,0.209752,$/therm or $/m3,
+gas,energy,,0,0,2,4,0,24,0,6,0.58395,0.206220,$/therm or $/m3,
+gas,energy,,0,0,5,7,0,24,0,6,0.61195,0.216108,$/therm or $/m3,
+gas,energy,,0,0,8,8,0,24,0,6,0.62595,0.221053,$/therm or $/m3,
+gas,energy,,0,0,9,9,0,24,0,6,0.63395,0.223878,$/therm or $/m3,
+gas,energy,,0,0,10,10,0,24,0,6,0.63895,0.225643,$/therm or $/m3,
+gas,energy,,0,0,11,12,0,24,0,6,0.64995,0.229528,$/therm or $/m3,
