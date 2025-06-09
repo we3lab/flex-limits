@@ -6,7 +6,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from analysis.pricesignal import getmef, getdam, getaef, gettariff
 from analysis.maxsavings import (
-    max_mef_savings, max_aef_savings, max_dam_savings, max_tar_savings, get_start_end
+    max_mef_savings, 
+    max_aef_savings, 
+    max_dam_savings, 
+    max_tariff_savings, 
+    get_start_end
 )
 
 # define plotting defaults
@@ -64,16 +68,17 @@ for i, uptime in enumerate(uptimes):
         max_dam_savings_results[i, j] = max_dam_savings(
             dam_data, uptime, flex, non_tariff_baseload
         )
-        max_tariff_savings_results[i, j] = max_tar_savings(
+        max_tariff_savings_results[i, j] = max_tariff_savings(
             tariff_data, 
             uptime, 
             flex, 
             tariff_baseload, 
             startdate_dt=startdate_dt, 
             enddate_dt=enddate_dt,
+            uptime_equality=True
         )
 
-# create figure - 2x2 grid for MEF[0,0], AEF[1,0], LMP[0,1], Tariffs[1,1] savings
+# create figure - 2x2 grid for MEF[0,0], AEF[1,0], DAM[0,1], Tariffs[1,1] savings
 fig, ax = plt.subplots(2, 2, figsize=(18, 14))
 
 clevels = np.arange(0, 75.1, 2.5)  # levels for contour plots
@@ -119,9 +124,16 @@ ax[0, 1].set_title("Day-ahead Prices")
 cbar.set_label("Savings (%)")
 
 # plot max Tariff savings
-# contour = ax[1,1].contourf(continuous_flex * 100, uptimes * 100, max_tariff_savings_results, levels=clevels, cmap=cmap)
-# cbar = fig.colorbar(contour, ax=ax[1,1])
-ax[1, 1].set_title("Industrial Tariff IDXXXXXX")
+contour = ax[1,1].contourf(
+    continuous_flex * 100, 
+    uptimes * 100, 
+    max_tariff_savings_results, 
+    extend="max", 
+    levels=clevels,
+    cmap="PuRd",
+)
+cbar = fig.colorbar(contour, ax=ax[1,1])
+ax[1, 1].set_title("Tariff: SCE TOU-8 Option D")
 cbar.set_label("Savings (%)")
 
 for a in ax.flatten():

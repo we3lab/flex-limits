@@ -10,7 +10,7 @@ month = 1
 
 
 def max_mef_savings(data, system_uptime, continuous_flex, baseload):
-
+    """Calculate the maximum savings for marginal emissions factor (MEF) as a percentage."""
     flex = flexloadMILP(
         baseload=baseload,
         emissions_signal=data,
@@ -31,7 +31,7 @@ def max_mef_savings(data, system_uptime, continuous_flex, baseload):
 
 
 def max_aef_savings(data, system_uptime, continuous_flex, baseload):
-
+    """Calculate the maximum savings for average emissions factor (AEF) as a percentage."""
     flex = flexloadMILP(
         baseload=baseload,
         emissions_signal=data,
@@ -52,7 +52,7 @@ def max_aef_savings(data, system_uptime, continuous_flex, baseload):
 
 
 def max_dam_savings(data, system_uptime, continuous_flex, baseload):
-
+    """Calculate the maximum savings for day-ahead market (DAM) as a percentage."""
     flex = flexloadMILP(
         baseload=baseload,
         cost_signal=data,
@@ -73,6 +73,7 @@ def max_dam_savings(data, system_uptime, continuous_flex, baseload):
 
 
 def get_start_end(month):
+    """Get the start and end datetimes based on the `month`"""
     if month == 12:
         start_dt = np.datetime64("2024-" + str(month) + "-01")
         end_dt = np.datetime64("2025-01-01")
@@ -89,15 +90,21 @@ def get_start_end(month):
     return (start_dt, end_dt)
 
 
-def max_tar_savings(
+def max_tariff_savings(
     data, 
     system_uptime, 
     continuous_flex, 
     baseload, 
     startdate_dt, 
-    enddate_dt
+    enddate_dt,
+    uptime_equality=True,
 ):
-
+    """Calculate the maximum savings for a tariff as a percentage."""
+    # TODO: remove these print statements after debugging
+    print("system_uptime =", system_uptime)
+    print("len(baseload) =", len(baseload))
+    print("min_onsteps =", max(int(len(baseload) * (system_uptime)), 1))
+    print("continuous_flex =", continuous_flex)
     flex = flexloadMILP(
         baseload=baseload,
         cost_signal=data,
@@ -107,8 +114,8 @@ def max_tar_savings(
         emissions_path=None,
         flex_capacity=continuous_flex,
         rte=1.0,
-        min_onsteps=max(int(len(data) * (system_uptime)), 1),
-        uptime_equality=True,
+        min_onsteps=max(int(len(baseload) * (system_uptime)), 1),
+        uptime_equality=uptime_equality,
         startdate_dt=startdate_dt,
         enddate_dt=enddate_dt,
     )

@@ -601,7 +601,8 @@ class flexloadMILP:
             >= flex_capacity * cont_load_avg
         ):
             print(
-                "The solution violates the bounds of flexible operation.\nResolving the problem with increased bound penalties."
+                "The solution violates the bounds of flexible operation."
+                "\nResolving the problem with increased bound penalties."
             )
             # raise ValueError("Continuous load violated bounds of relaxed problem.")
 
@@ -612,7 +613,6 @@ class flexloadMILP:
                 np.max(np.abs(cont_load - cont_load_avg)) - self.tol
                 >= flex_capacity * cont_load_avg
             ):
-
                 # get the violation of the maximum continuous load
                 max_contload_violation = np.max(
                     [(1 + flex_capacity) * cont_load_avg - np.max(cont_load), 0]
