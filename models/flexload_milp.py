@@ -191,28 +191,9 @@ class flexloadMILP:
                 .magnitude
             )
 
-        if self.cost_signal is not None and self.emissions_signal is not None:
-            if self.cost_of_carbon is not None:
-                self.pricesignal = (
-                    self.cost_signal + self.cost_of_carbon * self.emissions_signal
-                )
-            else:
-                raise ValueError(
-                    "If both cost_signal and emissions_signal are provided, cost_of_carbon must also be provided."
-                )
-        elif self.cost_signal is not None and self.emissions_signal is None:
-            self.pricesignal = self.cost_signal
-        elif self.cost_signal is None and self.emissions_signal is not None:
-            self.pricesignal = self.emissions_signal
-        elif (
-            self.cost_signal is None
-            and self.emissions_signal is None
-            and self.costing_type == "tariff"
-        ):
-            pass
-        else:
+        if self.cost_signal is None and self.emissions_signal is None:
             raise ValueError(
-                "At least one of cost_signal or emissions_signal must be provided for costing_type other than 'tariff'."
+                "At least one of cost_signal or emissions_signal must be provided."
             )
 
         if self.max_status_switch is not None and type(self.max_status_switch) != int:
@@ -462,9 +443,7 @@ class flexloadMILP:
             @model.Expression(doc="Total cost signal for the base system")
             def total_base_cost_signal(b):
                 return sum(b.base_cost_signal[t] for t in b.t)
-
         else:
-
             @model.Expression(doc="Total cost signal for the flexible system")
             def total_flex_cost_signal(b):
                 return 0
@@ -497,9 +476,7 @@ class flexloadMILP:
             @model.Expression(doc="Total emissions signal for the base system")
             def total_base_emissions_signal(b):
                 return sum(b.base_emissions_signal[t] for t in b.t)
-
         else:
-
             @model.Expression(doc="Total emissions signal for the flexible system")
             def total_flex_emissions_signal(b):
                 return 0
