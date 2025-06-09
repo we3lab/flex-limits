@@ -63,22 +63,18 @@ for i, reg in enumerate(regions):
         )
 
         # Tariff
-        # TODO: remove this if/else once bug is fixed
-        if reg == "PJM":
-            tariff_savings_sweep[i, j] = 0
-        else:
-            tariff = ps.gettariff(region=reg)
-            startdate_dt, enddate_dt = ms.get_start_end(month)
-            month_length = int((enddate_dt - startdate_dt) / np.timedelta64(1, "h"))
-            tariff_savings_sweep[i, j] = ms.max_tariff_savings(
-                data=tariff,
-                system_uptime=0.0,
-                continuous_flex=0.0,
-                baseload=np.ones(month_length),
-                startdate_dt=startdate_dt,
-                enddate_dt=enddate_dt,
-                uptime_equality=False
-            )
+        tariff = ps.gettariff(region=reg)
+        startdate_dt, enddate_dt = ms.get_start_end(month)
+        month_length = int((enddate_dt - startdate_dt) / np.timedelta64(1, "h"))
+        tariff_savings_sweep[i, j] = ms.max_tariff_savings(
+            data=tariff,
+            system_uptime=0.0,
+            continuous_flex=0.0,
+            baseload=np.ones(month_length),
+            startdate_dt=startdate_dt,
+            enddate_dt=enddate_dt,
+            uptime_equality=False
+        )
 
 # sort the regions by the max savings in either DAM or MEF
 max_savings = np.maximum(mef_savings_sweep.max(axis=1), dam_savings_sweep.max(axis=1))
