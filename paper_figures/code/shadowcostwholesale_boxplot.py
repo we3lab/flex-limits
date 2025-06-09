@@ -122,7 +122,7 @@ ax.set(
     xlabel="Region",
     xticks=np.arange(len(regions)),
     xticklabels=regions,
-    ylabel="Wholesale Shadow Price (USD/ton CO2)",
+    ylabel="Cost of Abatement (USD/ton CO2)",
     ylim=(1e-2, 1e5),
     yscale="log"
 )
