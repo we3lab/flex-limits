@@ -647,10 +647,12 @@ class flexloadMILP:
             print("The solution is feasible within the provided bounds.")
             return self.model, results
 
-        elif recursion_counter < max_iter-1 and resolve > 0:
+        elif recursion_counter < max_iter-1:
             recursion_counter += 1
             print(
-                f"The solution violated the bounds of flexible operation.\nResolving the problem with increased bound penalties.\nTry: {recursion_counter+1}"
+                "The solution violated the bounds of flexible operation.\n"
+                "Resolving the problem with increased bound penalties.\n"
+                f"Try: {recursion_counter+1}"
             )
             # if the solution is not feasible, increase the penalties and solve again
             self.solve_relaxedproblem(
