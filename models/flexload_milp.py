@@ -635,16 +635,12 @@ class flexloadMILP:
             self.model.min_contload_penalty.value = (
                 self.model.min_contload_penalty.value + descent_stepsize * (cont_load_avg - self.model.min_contload.value)
             )
-        else:
-            pass
 
         if self.model.max_contload.value - upper_bound > self.tol:
             resolve = 1
             self.model.max_contload_penalty.value = (
                 self.model.max_contload_penalty.value + descent_stepsize * (self.model.max_contload.value - cont_load_avg)
             )
-        else:
-            pass
 
         if resolve == 0:
             # if the solution is feasible, return it
