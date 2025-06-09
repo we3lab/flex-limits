@@ -64,7 +64,7 @@ for i, reg in enumerate(regions):
 
         # Tariff
         tariff = ps.gettariff(region=reg)
-        enddate_dt = datetime.datetime(2023, month, 1)
+        startdate_dt = datetime.datetime(2023, month, 1)
         if month == 12:
             enddate_dt = datetime.datetime(2024, 1, 1)
         else:

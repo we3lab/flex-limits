@@ -82,7 +82,7 @@ def max_tariff_savings(data, system_uptime, continuous_flex, baseload, startdate
         emissions_path=None,
         flex_capacity=continuous_flex,
         rte=1.0,
-        min_onsteps=max(int(len(data) * (system_uptime)), 1),  # assuming daily cycles
+        min_onsteps=max(int(len(data) * (system_uptime)), 1),
         uptime_equality=True,
         startdate_dt=startdate_dt,
         enddate_dt=enddate_dt,
