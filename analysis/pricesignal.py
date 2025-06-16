@@ -5,7 +5,25 @@ import pandas as pd
 def getmef(
     region, month, basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ):
-    """Get the MEF (marginal emissions factor) for a given region and month."""
+    """Get the MEF (marginal emissions factor) for a given region and month.
+    
+    Parameters
+    ----------
+    region : str
+        The name of the ISO to get the MEF for.
+
+    month : int
+        The month to get the MEF for.
+
+    basepath : str
+        The path to the root where the data folder is located. 
+        Default is the root of this repository.
+    
+    Returns
+    -------
+    numpy.array
+        Array of MEFs for given `region` and `month`
+    """
     # Load the MEF data
     mef_path = os.path.join(basepath, "data", "mef", f"{region}emissions.csv")
 
@@ -18,7 +36,25 @@ def getmef(
 def getaef(
     region, month, basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ):
-    """Get the AEF (average emissions factor) for a given region and month."""
+    """Get the AEF (average emissions factor) for a given region and month.
+    
+    Parameters
+    ----------
+    region : str
+        The name of the ISO to get the AEF for.
+
+    month : int
+        The month to get the AEF for.
+
+    basepath : str
+        The path to the root where the data folder is located. 
+        Default is the root of this repository.
+    
+    Returns
+    -------
+    numpy.array
+        Array of AEFs for given `region` and `month`
+    """
     # Load the MEF data
     mef_path = os.path.join(basepath, "data", "aef", f"{region}emissions.csv")
 
@@ -31,7 +67,25 @@ def getaef(
 def getdam(
     region, month, basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ):
-    """Get the DAM (day-ahead market price) for a given region and month."""
+    """Get the DAM (day-ahead market price) for a given region and month.
+    
+    Parameters
+    ----------
+    region : str
+        The name of the ISO to get the DAM for.
+
+    month : int
+        The month to get the DAM for.
+
+    basepath : str
+        The path to the root where the data folder is located. 
+        Default is the root of this repository.
+    
+    Returns
+    -------
+    numpy.array
+        Array of DAM prices for given `region` and `month`
+    """
     # Load the DAM data
     dam_path = os.path.join(basepath, "data", "dam", f"{region}costs.csv")
 
@@ -44,7 +98,27 @@ def getdam(
 def gettariff(
     region, full_list=False, basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ):
-    """Get the tariffs for a given region."""
+    """Get a single tariff or list of tariffs for a given region.
+    
+    Parameters
+    ----------
+    region : str
+        The name of the ISO to get the tariff for.
+
+    full_list : bool
+        Whether to get a single sample tariff or the full list of tariffs for `region`.
+        False by default, meaning only a single tariff is returned.
+
+    basepath : str
+        The path to the root where the data folder is located. 
+        Default is the root of this repository.
+    
+    Returns
+    -------
+    pandas.DataFrame or list of pandas.DataFrame
+        Data for a single tariff or list of tariff sheets for the `region` 
+        depending on value of `full_list` parameter
+    """
     tariff_base = os.path.join(basepath, "data", "tariff")
     if full_list:
         tariff_list = []

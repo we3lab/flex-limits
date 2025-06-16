@@ -72,7 +72,7 @@ for i, reg in enumerate(regions):
             tariff_savings = ms.max_tariff_savings(
                 data=tariff,
                 system_uptime=0.0,
-                continuous_flex=0.0,
+                continuous_flex=1.0,
                 baseload=np.ones(month_length),
                 startdate_dt=startdate_dt,
                 enddate_dt=enddate_dt,
