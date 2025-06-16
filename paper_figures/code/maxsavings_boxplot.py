@@ -69,16 +69,19 @@ for i, reg in enumerate(regions):
         for tariff in tariffs:
             startdate_dt, enddate_dt = ms.get_start_end(month)
             month_length = int((enddate_dt - startdate_dt) / np.timedelta64(1, "h"))
-            tariff_savings = ms.max_tariff_savings(
-                data=tariff,
-                system_uptime=0.0,
-                continuous_flex=1.0,
-                baseload=np.ones(month_length),
-                startdate_dt=startdate_dt,
-                enddate_dt=enddate_dt,
-                uptime_equality=False
-            )
-            month_list.append(tariff_savings)
+            try:
+                tariff_savings = ms.max_tariff_savings(
+                    data=tariff,
+                    system_uptime=0.0,
+                    continuous_flex=1.0,
+                    baseload=np.ones(month_length),
+                    startdate_dt=startdate_dt,
+                    enddate_dt=enddate_dt,
+                    uptime_equality=False
+                )
+                month_list.append(tariff_savings)
+            except ZeroDivisionError:
+                print(f"ZeroDivisionError in tariff {tariff['label'].values[0]}")
 
         region_list.append(month_list)
 
@@ -144,7 +147,7 @@ dam_plot = ax.boxplot(
 )
 
 tariff_plot = ax.boxplot(
-    tariff_savings_sweep.T,
+    tariff_savings_sweep,
     positions=np.arange(len(regions)) + 0.3,
     widths=0.15,
     tick_labels=regions,
