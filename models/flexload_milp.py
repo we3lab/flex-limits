@@ -656,7 +656,7 @@ class flexloadMILP:
             )
             # if the solution is not feasible, increase the penalties and solve again
             self.solve_relaxedproblem(
-                tee=tee, recursion_counter=recursion_counter
+                tee=tee, max_iter=max_iter, descent_stepsize=descent_stepsize, recursion_counter=recursion_counter
             )
         else:
             # if the recursion limit is reached, raise an error

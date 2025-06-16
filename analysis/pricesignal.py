@@ -48,10 +48,13 @@ def gettariff(
     tariff_base = os.path.join(basepath, "data", "tariff")
     if full_list:
         tariff_list = []
-        metadata_df = pd.read_csv(os.path.join(tariff_base, "metadata_bundled.csv"))
-        for tariff_id in metadata_df["label"]:
-            tariff = pd.read_csv(os.path.join(tarifftariff_base, "bundled", tariff_id + ".csv"))
-            tariff_list.append(tariff)
+        metadata_df = pd.read_csv(os.path.join(tariff_base, "metadata.csv"))
+        for tariff_id in metadata_df["label"][metadata_df["ISO"] == region]:
+            try:
+                tariff = pd.read_csv(os.path.join(tariff_base, "bundled", tariff_id + ".csv"))
+                tariff_list.append(tariff)
+            except FileNotFoundError:
+                print(f"Tariff {tariff_id} not found in {os.path.join(tariff_base, 'bundled')}")
 
         return tariff_list
     else:
