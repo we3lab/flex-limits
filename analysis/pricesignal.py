@@ -42,14 +42,24 @@ def getdam(
     return dam_data[dam_data["month"] == month]["USD_per_MWh"].values
 
 def gettariff(
-    region, basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    region, full_list=False, basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ):
-    """Get the tariff for a given region."""
-    # Load the tariff data
-    tariff_path = os.path.join(basepath, "data", "tariff", f"{region}tariff.csv")
-    
-    # read df
-    tariff_data = pd.read_csv(tariff_path)
+    """Get the tariffs for a given region."""
+    tariff_base = os.path.join(basepath, "data", "tariff")
+    if full_list:
+        tariff_list = []
+        metadata_df = pd.read_csv(os.path.join(tariff_base, "metadata_bundled.csv"))
+        for tariff_id in metadata_df["label"]:
+            tariff = pd.read_csv(os.path.join(tarifftariff_base, "bundled", tariff_id + ".csv"))
+            tariff_list.append(tariff)
 
-    # Return the entire tariff sheet (month will be processed later)
-    return tariff_data
+        return tariff_list
+    else:
+        # Load the tariff data
+        tariff_path = os.path.join(tariff_base, f"{region}tariff.csv")
+        
+        # read df
+        tariff_data = pd.read_csv(tariff_path)
+
+        # Return the entire tariff sheet (month will be processed later)
+        return tariff_data
