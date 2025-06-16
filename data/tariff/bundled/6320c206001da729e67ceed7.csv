@@ -1,0 +1,19 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6320c206001da729e67ceed7,electric,customer,,,,,,,,,,,20.0,20.0,$/month,https://www.midamericanenergy.com/media/pdf/iowa-electric-tariffs.pdf	https://www.midamericanenergy.com/rates-tariffs
+6320c206001da729e67ceed7,electric,demand,,flat,0,0,1,5,0,24,0,6,8.05,8.05,$/kW,adjustment factor of 0.98
+6320c206001da729e67ceed7,electric,demand,,flat,0,0,6,9,0,24,0,6,7.75,7.75,$/kW,adjustment factor of 0.98
+6320c206001da729e67ceed7,electric,demand,,flat,0,0,10,12,0,24,0,6,8.05,8.05,$/kW,adjustment factor of 0.98
+6320c206001da729e67ceed7,electric,energy,,period0,0,0,1,5,0,24,0,4,0.05655,0.05655,$/kWh,
+6320c206001da729e67ceed7,electric,energy,,period0,200.0,200.0,1,5,0,24,0,4,0.0555,0.0555,$/kWh,
+6320c206001da729e67ceed7,electric,energy,,period0,400.0,400.0,1,5,0,24,0,4,0.05446,0.05446,$/kWh,
+6320c206001da729e67ceed7,electric,energy,,period1,400.0,400.0,6,9,0,24,0,4,0.09034,0.09034,$/kWh,
+6320c206001da729e67ceed7,electric,energy,,period1,200.0,200.0,6,9,0,24,0,4,0.08005999999999999,0.08005999999999999,$/kWh,
+6320c206001da729e67ceed7,electric,energy,,period1,400.0,400.0,6,9,0,24,0,4,0.07321,0.07321,$/kWh,
+6320c206001da729e67ceed7,electric,energy,,period0,400.0,400.0,10,12,0,24,0,4,0.05446,0.05446,$/kWh,
+6320c206001da729e67ceed7,electric,energy,,period0,0,0,1,5,0,24,5,6,0.05655,0.05655,$/kWh,
+6320c206001da729e67ceed7,electric,energy,,period0,200.0,200.0,1,5,0,24,5,6,0.0555,0.0555,$/kWh,
+6320c206001da729e67ceed7,electric,energy,,period0,400.0,400.0,1,5,0,24,5,6,0.05446,0.05446,$/kWh,
+6320c206001da729e67ceed7,electric,energy,,period1,400.0,400.0,6,9,0,24,5,6,0.09034,0.09034,$/kWh,
+6320c206001da729e67ceed7,electric,energy,,period1,200.0,200.0,6,9,0,24,5,6,0.08005999999999999,0.08005999999999999,$/kWh,
+6320c206001da729e67ceed7,electric,energy,,period1,400.0,400.0,6,9,0,24,5,6,0.07321,0.07321,$/kWh,
+6320c206001da729e67ceed7,electric,energy,,period0,400.0,400.0,10,12,0,24,5,6,0.05446,0.05446,$/kWh,

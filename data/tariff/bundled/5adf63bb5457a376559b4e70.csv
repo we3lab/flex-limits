@@ -1,0 +1,23 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5adf63bb5457a376559b4e70,electric,customer,,,,,,,,,,,0.0,0.0,$/month,http://www.alliantenergy.com/wcm/groups/wcm_internet/@int/@tariff/documents/document/mdaw/mde1/~edisp/015423.pdf	http://www.alliantenergy.com/AboutAlliantEnergy/CompanyInformation/Tariffs/030242#energy
+5adf63bb5457a376559b4e70,electric,demand,,flat,0,0,1,5,0,24,0,6,17.25,17.25,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,200.0,200.0,1,5,0,24,0,6,16.439999999999998,16.439999999999998,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,1000.0,1000.0,1,5,0,24,0,6,15.73,15.73,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,10000.0,10000.0,1,5,0,24,0,6,15.530000000000001,15.530000000000001,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,30000.0,30000.0,1,5,0,24,0,6,13.61,13.61,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,30000.0,30000.0,6,8,0,24,0,6,25.619999999999997,25.619999999999997,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,200.0,200.0,6,8,0,24,0,6,25.47,25.47,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,1000.0,1000.0,6,8,0,24,0,6,25.22,25.22,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,10000.0,10000.0,6,8,0,24,0,6,25.119999999999997,25.119999999999997,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,30000.0,30000.0,6,8,0,24,0,6,21.86,21.86,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,30000.0,30000.0,9,12,0,24,0,6,17.25,17.25,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,200.0,200.0,9,12,0,24,0,6,16.439999999999998,16.439999999999998,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,1000.0,1000.0,9,12,0,24,0,6,15.73,15.73,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,10000.0,10000.0,9,12,0,24,0,6,15.530000000000001,15.530000000000001,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,demand,,flat,30000.0,30000.0,9,12,0,24,0,6,13.61,13.61,$/kW,adjustment factor of 7.99
+5adf63bb5457a376559b4e70,electric,energy,,period0,0,0,1,5,0,24,0,4,0.043410000000000004,0.043410000000000004,$/kWh,
+5adf63bb5457a376559b4e70,electric,energy,,period1,0,0,6,9,0,24,0,4,0.053540000000000004,0.053540000000000004,$/kWh,
+5adf63bb5457a376559b4e70,electric,energy,,period0,0,0,10,12,0,24,0,4,0.043410000000000004,0.043410000000000004,$/kWh,
+5adf63bb5457a376559b4e70,electric,energy,,period0,0,0,1,5,0,24,5,6,0.043410000000000004,0.043410000000000004,$/kWh,
+5adf63bb5457a376559b4e70,electric,energy,,period1,0,0,6,9,0,24,5,6,0.053540000000000004,0.053540000000000004,$/kWh,
+5adf63bb5457a376559b4e70,electric,energy,,period0,0,0,10,12,0,24,5,6,0.043410000000000004,0.043410000000000004,$/kWh,

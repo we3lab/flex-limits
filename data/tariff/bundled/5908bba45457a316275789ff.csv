@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5908bba45457a316275789ff,electric,customer,,,,,,,,,,,232.51,232.51,$/month,http://www.vermontelectric.coop/images/pdf/vec-tariff-effective-01-01-2017-rev1.pdf	http://www.vermontelectric.coop/
+5908bba45457a316275789ff,electric,demand,,flat,0,0,1,12,0,24,0,6,21.2775,21.2775,$/kW,adjustment factor of 1.3875
+5908bba45457a316275789ff,electric,energy,,period0,0,0,1,12,0,24,0,4,0.09579,0.09579,$/kWh,
+5908bba45457a316275789ff,electric,energy,,period0,0,0,1,12,0,24,5,6,0.09579,0.09579,$/kWh,

@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63bef26f9654ec2236031c08,electric,customer,,,,,,,,,,,33.25,33.25,$/month,https://docs.google.com/viewerng/viewer?url=http://www.grotonelectric.org/wp-content/uploads/2022/11/2022-Summary-of-Rates-Eff-11-2-22.pdf&hl	http://www.grotonelectric.org/rates/
+63bef26f9654ec2236031c08,electric,energy,,period0,0,0,1,12,0,24,0,4,0.157,0.157,$/kWh,
+63bef26f9654ec2236031c08,electric,energy,,period0,0,0,1,12,0,24,5,6,0.157,0.157,$/kWh,

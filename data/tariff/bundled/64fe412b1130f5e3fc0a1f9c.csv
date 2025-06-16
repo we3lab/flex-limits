@@ -1,0 +1,14 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+64fe412b1130f5e3fc0a1f9c,electric,customer,,,,,,,,,,,101.5,101.5,$/month,https://www.alabamapower.com/content/dam/alabama-power/pdfs-docs/Rates/BEVT.pdf	https://www.alabamapower.com/business/pricing-and-rates/about-our-pricing.html
+64fe412b1130f5e3fc0a1f9c,electric,energy,,period0,0,0,1,5,0,7,0,4,0.131633,0.131633,$/kWh,
+64fe412b1130f5e3fc0a1f9c,electric,energy,,period1,0,0,1,5,7,21,0,4,0.159533,0.159533,$/kWh,
+64fe412b1130f5e3fc0a1f9c,electric,energy,,period0,0,0,1,5,21,24,0,4,0.131633,0.131633,$/kWh,
+64fe412b1130f5e3fc0a1f9c,electric,energy,,period0,0,0,6,9,0,10,0,4,0.131633,0.131633,$/kWh,
+64fe412b1130f5e3fc0a1f9c,electric,energy,,period1,0,0,6,9,10,12,0,4,0.159533,0.159533,$/kWh,
+64fe412b1130f5e3fc0a1f9c,electric,energy,,period2,0,0,6,9,12,19,0,4,0.264633,0.264633,$/kWh,
+64fe412b1130f5e3fc0a1f9c,electric,energy,,period1,0,0,6,9,19,21,0,4,0.159533,0.159533,$/kWh,
+64fe412b1130f5e3fc0a1f9c,electric,energy,,period0,0,0,6,9,21,24,0,4,0.131633,0.131633,$/kWh,
+64fe412b1130f5e3fc0a1f9c,electric,energy,,period0,0,0,10,12,0,7,0,4,0.131633,0.131633,$/kWh,
+64fe412b1130f5e3fc0a1f9c,electric,energy,,period1,0,0,10,12,7,21,0,4,0.159533,0.159533,$/kWh,
+64fe412b1130f5e3fc0a1f9c,electric,energy,,period0,0,0,10,12,21,24,0,4,0.131633,0.131633,$/kWh,
+64fe412b1130f5e3fc0a1f9c,electric,energy,,period0,0,0,1,12,0,24,5,6,0.131633,0.131633,$/kWh,

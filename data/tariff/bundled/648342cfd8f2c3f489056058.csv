@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+648342cfd8f2c3f489056058,electric,customer,,,,,,,,,,,24.0,24.0,$/month,https://p-cd.duke-energy.com/-/media/pdfs/for-your-home/rates/dep-sc/leaf-no-523-schedule-mgs.pdf?rev=7ea96b3a00b14c6d89723add6b5d8cea&_gl=1*3495o9*_ga*MTM4NjEzMDE3NC4xNjY4ODAwMzQ3*_ga_HB58MJRNTY*MTY4NjMyMjA2MS4xOC4xLjE2ODYzMjM2MTMuMC4wLjA.&_ga=2.1355953.1010759222.1686269017-1386130174.1668800347	https://www.duke-energy.com/home/billing/rates
+648342cfd8f2c3f489056058,electric,demand,,flat,0,0,1,12,0,24,0,6,7.19,7.19,$/kW,
+648342cfd8f2c3f489056058,electric,energy,,period0,0,0,1,12,0,24,0,4,0.08903,0.08903,$/kWh,
+648342cfd8f2c3f489056058,electric,energy,,period0,0,0,1,12,0,24,5,6,0.08903,0.08903,$/kWh,

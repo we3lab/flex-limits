@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cdeea6d5457a3897540c5d3,electric,customer,,,,,,,,,,,35.67,35.67,$/month,Rates Binder B	https://www.cityofhomestead.com/DocumentCenter/View/208/2---Customer-Service---Schedule-of-rates?bidId=
+5cdeea6d5457a3897540c5d3,electric,demand,,flat,0,0,1,12,0,24,0,6,6.37,6.37,$/kW,
+5cdeea6d5457a3897540c5d3,electric,energy,,period0,0,0,1,12,0,24,0,4,0.09373000000000001,0.09373000000000001,$/kWh,
+5cdeea6d5457a3897540c5d3,electric,energy,,period0,0,0,1,12,0,24,5,6,0.09373000000000001,0.09373000000000001,$/kWh,

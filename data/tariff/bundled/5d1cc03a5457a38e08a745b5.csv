@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5d1cc03a5457a38e08a745b5,electric,customer,,,,,,,,,,,150.0,150.0,$/month,https://www.vectren.com/cms/assets/pdfs/south_services_electric_tariff.pdf	https://www.vectren.com/Business_Customers/Rates_&_Regulatory/Rates_&_Tariffs.jsp
+5d1cc03a5457a38e08a745b5,electric,demand,,flat,0,0,1,12,0,24,0,6,10.49578947368421,10.49578947368421,$/kW,adjustment factor of 0.661
+5d1cc03a5457a38e08a745b5,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0609912,0.0609912,$/kWh,
+5d1cc03a5457a38e08a745b5,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0609912,0.0609912,$/kWh,

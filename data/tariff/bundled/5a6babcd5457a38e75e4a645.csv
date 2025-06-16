@@ -1,0 +1,7 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5a6babcd5457a38e75e4a645,electric,customer,,,,,,,,,,,18.14,18.14,$/month,https://www.rockymountainpower.net/content/dam/rocky_mountain_power/doc/About_Us/Rates_and_Regulation/Utah/Approved_Tariffs/Rate_Schedules/Irrigation_and_Soil_Drainage_Pumping_Power_Service.pdf	https://www.rockymountainpower.net/about/rar/uri.html
+5a6babcd5457a38e75e4a645,electric,demand,,flat,0,0,1,12,0,24,0,6,7.64,7.64,$/kW,adjustment factor of 0.31
+5a6babcd5457a38e75e4a645,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0760723,0.0760723,$/kWh,
+5a6babcd5457a38e75e4a645,electric,energy,,period0,30000.0,30000.0,1,12,0,24,0,4,0.056228299999999995,0.056228299999999995,$/kWh,
+5a6babcd5457a38e75e4a645,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0760723,0.0760723,$/kWh,
+5a6babcd5457a38e75e4a645,electric,energy,,period0,30000.0,30000.0,1,12,0,24,5,6,0.056228299999999995,0.056228299999999995,$/kWh,

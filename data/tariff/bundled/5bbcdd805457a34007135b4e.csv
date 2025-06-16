@@ -1,0 +1,11 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5bbcdd805457a34007135b4e,electric,customer,,,,,,,,,,,721.74,721.74,$/month,http://www.uppermichiganenergy.com/rates/umerc-electric-rates.pdf	http://www.we-energies.com/residential/acctoptions/mi_pricetariff.htm
+5bbcdd805457a34007135b4e,electric,demand,,flat,0,0,1,12,0,24,0,6,4.313,4.313,$/kW,
+5bbcdd805457a34007135b4e,electric,demand,,period0,0,0,1,12,0,8,0,4,0.0,0.0,$/kW,
+5bbcdd805457a34007135b4e,electric,demand,,period1,0,0,1,12,8,20,0,4,16.61,16.61,$/kW,
+5bbcdd805457a34007135b4e,electric,demand,,period0,0,0,1,12,20,24,0,4,0.0,0.0,$/kW,
+5bbcdd805457a34007135b4e,electric,demand,,period0,0,0,1,12,0,24,5,6,0.0,0.0,$/kW,
+5bbcdd805457a34007135b4e,electric,energy,,period0,0,0,1,12,0,8,0,4,0.03979,0.03979,$/kWh,
+5bbcdd805457a34007135b4e,electric,energy,,period1,0,0,1,12,8,20,0,4,0.05995,0.05995,$/kWh,
+5bbcdd805457a34007135b4e,electric,energy,,period0,0,0,1,12,20,24,0,4,0.03979,0.03979,$/kWh,
+5bbcdd805457a34007135b4e,electric,energy,,period0,0,0,1,12,0,24,5,6,0.03979,0.03979,$/kWh,

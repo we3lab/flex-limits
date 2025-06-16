@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6304075dd9ca8264236c4eba,electric,customer,,,,,,,,,,,1409.75,1409.75,$/month,https://www.rienergy.com/media/pdfs/billing-payments/tariffs/ri/rate_summary_2095.pdf	https://www.rienergy.com/RI-Home/Rates/Tariff-Provisions
+6304075dd9ca8264236c4eba,electric,demand,,flat,0,0,1,12,0,24,0,6,5.07,5.07,$/kW,
+6304075dd9ca8264236c4eba,electric,demand,,flat,200.0,200.0,1,12,0,24,0,6,6.98,6.98,$/kW,
+6304075dd9ca8264236c4eba,electric,energy,,period0,0,0,1,12,0,24,0,4,0.12236,0.12236,$/kWh,
+6304075dd9ca8264236c4eba,electric,energy,,period0,0,0,1,12,0,24,5,6,0.12236,0.12236,$/kWh,

@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+638d507953f00ee10e02364c,electric,customer,,,,,,,,,,,5.98,5.98,$/month,https://www.tampaelectric.com/4a4a5c/siteassets/files/tariff/tariffsection6.pdf	http://www.tampaelectric.com/files/tariff/tariffsection6.pdf
+638d507953f00ee10e02364c,electric,demand,,flat,0,0,1,12,0,24,0,6,14.58,14.58,$/kW,adjustment factor of 0.72
+638d507953f00ee10e02364c,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0651,0.0651,$/kWh,
+638d507953f00ee10e02364c,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0651,0.0651,$/kWh,

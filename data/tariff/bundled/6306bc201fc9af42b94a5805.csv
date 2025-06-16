@@ -1,0 +1,12 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6306bc201fc9af42b94a5805,electric,customer,,,,,,,,,,,25.0,25.0,$/month,https://docs.tep.com/wp-content/uploads/201-TGSGS.pdf	https://www.tep.com/business-rates/
+6306bc201fc9af42b94a5805,electric,energy,,period1,0,0,1,4,0,24,0,4,0.12972999999999998,0.12972999999999998,$/kWh,
+6306bc201fc9af42b94a5805,electric,energy,,period1,500.0,500.0,1,4,0,24,0,4,0.151993,0.151993,$/kWh,
+6306bc201fc9af42b94a5805,electric,energy,,period0,500.0,500.0,5,9,0,24,0,4,0.14552400000000001,0.14552400000000001,$/kWh,
+6306bc201fc9af42b94a5805,electric,energy,,period0,500.0,500.0,5,9,0,24,0,4,0.162718,0.162718,$/kWh,
+6306bc201fc9af42b94a5805,electric,energy,,period1,500.0,500.0,10,12,0,24,0,4,0.151993,0.151993,$/kWh,
+6306bc201fc9af42b94a5805,electric,energy,,period1,0,0,1,4,0,24,5,6,0.12972999999999998,0.12972999999999998,$/kWh,
+6306bc201fc9af42b94a5805,electric,energy,,period1,500.0,500.0,1,4,0,24,5,6,0.151993,0.151993,$/kWh,
+6306bc201fc9af42b94a5805,electric,energy,,period0,500.0,500.0,5,9,0,24,5,6,0.14552400000000001,0.14552400000000001,$/kWh,
+6306bc201fc9af42b94a5805,electric,energy,,period0,500.0,500.0,5,9,0,24,5,6,0.162718,0.162718,$/kWh,
+6306bc201fc9af42b94a5805,electric,energy,,period1,500.0,500.0,10,12,0,24,5,6,0.151993,0.151993,$/kWh,

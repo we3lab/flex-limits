@@ -1,0 +1,10 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b86df695457a3ab438b4567,electric,customer,,,,,,,,,,,1750.0,1750.0,$/month,https://www.blackhillsenergy.com/sites/default/files/bhp-sd-rates.pdf	http://www.blackhillspower.com/rates
+5b86df695457a3ab438b4567,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+5b86df695457a3ab438b4567,electric,demand,,flat,125.0,125.0,1,12,0,24,0,6,9.473684210526317,9.473684210526317,$/kW,
+5b86df695457a3ab438b4567,electric,energy,,period0,0,0,1,12,0,24,0,4,0.07812,0.07812,$/kWh,
+5b86df695457a3ab438b4567,electric,energy,,period0,50000.0,50000.0,1,12,0,24,0,4,0.07689,0.07689,$/kWh,
+5b86df695457a3ab438b4567,electric,energy,,period0,500000.0,500000.0,1,12,0,24,0,4,0.07226,0.07226,$/kWh,
+5b86df695457a3ab438b4567,electric,energy,,period0,0,0,1,12,0,24,5,6,0.07812,0.07812,$/kWh,
+5b86df695457a3ab438b4567,electric,energy,,period0,50000.0,50000.0,1,12,0,24,5,6,0.07689,0.07689,$/kWh,
+5b86df695457a3ab438b4567,electric,energy,,period0,500000.0,500000.0,1,12,0,24,5,6,0.07226,0.07226,$/kWh,

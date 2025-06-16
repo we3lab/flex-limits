@@ -1,0 +1,7 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6398fc2c4f97d89e8e0b530a,electric,customer,,,,,,,,,,,35.9,35.9,$/month,"https://www.xcelenergy.com/staticfiles/xe-responsive/Company/Rates%20&%20Regulations/Rate%2040,%20Rev.%208%20-%20Secondary%20General%20Service%20(2-26-2022).pdf	https://www.xcelenergy.com/company/rates_and_regulations/rates/rate_books"
+6398fc2c4f97d89e8e0b530a,electric,demand,,flat,0,0,1,5,0,24,0,6,18.5,18.5,$/kW,
+6398fc2c4f97d89e8e0b530a,electric,demand,,flat,0,0,6,9,0,24,0,6,21.56,21.56,$/kW,
+6398fc2c4f97d89e8e0b530a,electric,demand,,flat,0,0,10,12,0,24,0,6,18.5,18.5,$/kW,
+6398fc2c4f97d89e8e0b530a,electric,energy,,period0,0,0,1,12,0,24,0,4,0.042036000000000004,0.042036000000000004,$/kWh,
+6398fc2c4f97d89e8e0b530a,electric,energy,,period0,0,0,1,12,0,24,5,6,0.042036000000000004,0.042036000000000004,$/kWh,

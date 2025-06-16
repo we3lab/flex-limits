@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b34fbfb5457a355588367be,electric,customer,,,,,,,,,,,190.0,190.0,$/month,http://cemc.org/general/rates/RATES%202018-FCA113%201806.pdf	http://www.cemc.org/rates.asp
+5b34fbfb5457a355588367be,electric,demand,,flat,0,0,1,12,0,24,0,6,2.5,2.5,$/kW,
+5b34fbfb5457a355588367be,electric,demand,,flat,50.0,50.0,1,12,0,24,0,6,12.18,12.18,$/kW,
+5b34fbfb5457a355588367be,electric,energy,,period0,0,0,1,12,0,24,0,4,0.10272,0.10272,$/kWh,
+5b34fbfb5457a355588367be,electric,energy,,period0,15000.0,15000.0,1,12,0,24,0,4,0.06435,0.06435,$/kWh,
+5b34fbfb5457a355588367be,electric,energy,,period0,0,0,1,12,0,24,5,6,0.10272,0.10272,$/kWh,
+5b34fbfb5457a355588367be,electric,energy,,period0,15000.0,15000.0,1,12,0,24,5,6,0.06435,0.06435,$/kWh,

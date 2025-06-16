@@ -1,0 +1,11 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5925a88c5457a3730ede90e0,electric,customer,,,,,,,,,,,45.0,45.0,$/month,"http://www.montana-dakota.com/docs/default-source/rates-tariffs/NDElectric30
+http://www.montana-dakota.com/rates-and-services/rates-tariffs	http://www.montana-dakota.com/rates-and-services/rates-and-tariffs"
+5925a88c5457a3730ede90e0,electric,demand,,period0,0,0,1,5,0,24,0,4,9.69,9.69,$/kW,
+5925a88c5457a3730ede90e0,electric,demand,,period1,0,0,6,9,0,24,0,4,12.69,12.69,$/kW,
+5925a88c5457a3730ede90e0,electric,demand,,period0,0,0,10,12,0,24,0,4,9.69,9.69,$/kW,
+5925a88c5457a3730ede90e0,electric,demand,,period0,0,0,1,5,0,24,5,6,9.69,9.69,$/kW,
+5925a88c5457a3730ede90e0,electric,demand,,period1,0,0,6,9,0,24,5,6,12.69,12.69,$/kW,
+5925a88c5457a3730ede90e0,electric,demand,,period0,0,0,10,12,0,24,5,6,9.69,9.69,$/kW,
+5925a88c5457a3730ede90e0,electric,energy,,period0,0,0,1,12,0,24,0,4,0.057980000000000004,0.057980000000000004,$/kWh,
+5925a88c5457a3730ede90e0,electric,energy,,period0,0,0,1,12,0,24,5,6,0.057980000000000004,0.057980000000000004,$/kWh,

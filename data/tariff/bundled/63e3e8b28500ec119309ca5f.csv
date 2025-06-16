@@ -1,0 +1,11 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63e3e8b28500ec119309ca5f,electric,customer,,,,,,,,,,,409.96,409.96,$/month,https://www.appalachianpower.com/lib/docs/ratesandtariffs/Virginia/Tariff26-MASTER-Standard-January232023.pdf	https://www.appalachianpower.com/company/about/rates/va
+63e3e8b28500ec119309ca5f,electric,demand,,flat,0,0,1,12,0,24,0,6,21.049999999999997,21.049999999999997,$/kW,adjustment factor of 10.44
+63e3e8b28500ec119309ca5f,electric,demand,,period0,0,0,1,12,0,7,0,4,0.0,0.0,$/kW,
+63e3e8b28500ec119309ca5f,electric,demand,,period0,2500.0,2500.0,1,12,0,7,0,4,2.16,2.16,$/kW,
+63e3e8b28500ec119309ca5f,electric,demand,,period1,0,0,1,12,7,20,0,4,0.0,0.0,$/kW,
+63e3e8b28500ec119309ca5f,electric,demand,,period0,0,0,1,12,20,24,0,4,2.16,2.16,$/kW,
+63e3e8b28500ec119309ca5f,electric,demand,,period0,0,0,1,12,0,24,5,6,0.0,0.0,$/kW,
+63e3e8b28500ec119309ca5f,electric,demand,,period0,2500.0,2500.0,1,12,0,24,5,6,2.16,2.16,$/kW,
+63e3e8b28500ec119309ca5f,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0568,0.0568,$/kWh,
+63e3e8b28500ec119309ca5f,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0568,0.0568,$/kWh,

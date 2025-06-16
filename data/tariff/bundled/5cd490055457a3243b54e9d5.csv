@@ -1,0 +1,16 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cd490055457a3243b54e9d5,electric,customer,,,,,,,,,,,508.06,508.06,$/month,https://cdn.entergy-neworleans.com/userfiles/content/price/tariffs/eno/enol_elec_le-hlf.pdf?_ga=2.212094804.1346727267.1557352124-1710805542.1557352124	https://cdn.entergy-neworleans.com/userfiles/content/price/tariffs/eno/enol_elec_se.pdf?_ga=2.239993411.1346727267.1557352124-1710805542.1557352124
+5cd490055457a3243b54e9d5,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,adjustment factor of 0.0
+5cd490055457a3243b54e9d5,electric,demand,,flat,50.0,50.0,1,12,0,24,0,6,9.4119,9.4119,$/kW,adjustment factor of 1.0619
+5cd490055457a3243b54e9d5,electric,demand,,flat,100.0,100.0,1,12,0,24,0,6,8.8163,8.8163,$/kW,adjustment factor of 0.9963
+5cd490055457a3243b54e9d5,electric,demand,,flat,200.0,200.0,1,12,0,24,0,6,8.4117,8.4117,$/kW,adjustment factor of 0.9517
+5cd490055457a3243b54e9d5,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0953711,0.0953711,$/kWh,
+5cd490055457a3243b54e9d5,electric,energy,,period0,5000.0,5000.0,1,12,0,24,0,4,0.0691164,0.0691164,$/kWh,
+5cd490055457a3243b54e9d5,electric,energy,,period0,15000.0,15000.0,1,12,0,24,0,4,0.06808249999999999,0.06808249999999999,$/kWh,
+5cd490055457a3243b54e9d5,electric,energy,,period0,30000.0,30000.0,1,12,0,24,0,4,0.0678127,0.0678127,$/kWh,
+5cd490055457a3243b54e9d5,electric,energy,,period0,400.0,400.0,1,12,0,24,0,4,0.0627327,0.0627327,$/kWh,
+5cd490055457a3243b54e9d5,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0953711,0.0953711,$/kWh,
+5cd490055457a3243b54e9d5,electric,energy,,period0,5000.0,5000.0,1,12,0,24,5,6,0.0691164,0.0691164,$/kWh,
+5cd490055457a3243b54e9d5,electric,energy,,period0,15000.0,15000.0,1,12,0,24,5,6,0.06808249999999999,0.06808249999999999,$/kWh,
+5cd490055457a3243b54e9d5,electric,energy,,period0,30000.0,30000.0,1,12,0,24,5,6,0.0678127,0.0678127,$/kWh,
+5cd490055457a3243b54e9d5,electric,energy,,period0,400.0,400.0,1,12,0,24,5,6,0.0627327,0.0627327,$/kWh,

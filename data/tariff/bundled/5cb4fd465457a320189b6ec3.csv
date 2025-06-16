@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cb4fd465457a320189b6ec3,electric,customer,,,,,,,,,,,21.1,21.1,$/month,"https://www.nvenergy.com/company/rates/snv/schedules/images/StatementofRates.pdf
+https://www.nvenergy.com/account-services/energy-pricing-plans/net-metering/nmr-405	https://www.nvenergy.com/company/rates/snv/schedules/"
+5cb4fd465457a320189b6ec3,electric,demand,,flat,0,0,1,12,0,24,0,6,8.57,8.57,$/kW,adjustment factor of 4.22
+5cb4fd465457a320189b6ec3,electric,energy,,period0,0,0,1,12,0,24,0,4,0.06185,0.06185,$/kWh,
+5cb4fd465457a320189b6ec3,electric,energy,,period0,0,0,1,12,0,24,5,6,0.06185,0.06185,$/kWh,

@@ -1,0 +1,11 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+64826abc3c4e5b325b02174d,electric,customer,,,,,,,,,,,500.0,500.0,$/month,https://www.epelectric.com/files/html/Rates_and_Regulatory/TX%20Rates/Section%201%20-%20Sheet%2013.0%20-%20Schedule%2025%20Large%20Power%20Service%20Rate.pdf	https://www.epelectric.com/customers/rates-and-regulations/business-rates-and-information/texas-rate-tariffs-rules-and-regulations/texas-rate-tariffs
+64826abc3c4e5b325b02174d,electric,demand,,flat,0,0,1,5,0,24,0,6,16.24,16.24,$/kW,adjustment factor of 0.29
+64826abc3c4e5b325b02174d,electric,demand,,flat,0,0,6,9,0,24,0,6,20.619999999999997,20.619999999999997,$/kW,adjustment factor of 0.29
+64826abc3c4e5b325b02174d,electric,demand,,flat,0,0,10,12,0,24,0,6,16.24,16.24,$/kW,adjustment factor of 0.29
+64826abc3c4e5b325b02174d,electric,energy,,period0,0,0,1,5,0,24,0,4,0.00188,0.00188,$/kWh,
+64826abc3c4e5b325b02174d,electric,energy,,period0,0,0,6,9,0,12,0,4,0.00188,0.00188,$/kWh,
+64826abc3c4e5b325b02174d,electric,energy,,period1,0,0,6,9,12,18,0,4,0.15025999999999998,0.15025999999999998,$/kWh,
+64826abc3c4e5b325b02174d,electric,energy,,period0,0,0,6,9,18,24,0,4,0.00188,0.00188,$/kWh,
+64826abc3c4e5b325b02174d,electric,energy,,period0,0,0,10,12,0,24,0,4,0.00188,0.00188,$/kWh,
+64826abc3c4e5b325b02174d,electric,energy,,period0,0,0,1,12,0,24,5,6,0.00188,0.00188,$/kWh,

@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b749cde5457a3e932af0aec,electric,customer,,,,,,,,,,,11.55,11.55,$/month,http://www.gpltexas.org/business/commercial-rates	http://www.gpltexas.org/business/commercial-rates
+5b749cde5457a3e932af0aec,electric,energy,,period0,0,0,1,12,0,24,0,4,0.1071,0.1071,$/kWh,
+5b749cde5457a3e932af0aec,electric,energy,,period0,2000.0,2000.0,1,12,0,24,0,4,0.1018,0.1018,$/kWh,
+5b749cde5457a3e932af0aec,electric,energy,,period0,0,0,1,12,0,24,5,6,0.1071,0.1071,$/kWh,
+5b749cde5457a3e932af0aec,electric,energy,,period0,2000.0,2000.0,1,12,0,24,5,6,0.1018,0.1018,$/kWh,

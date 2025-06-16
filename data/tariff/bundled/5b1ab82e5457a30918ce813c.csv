@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b1ab82e5457a30918ce813c,electric,customer,,,,,,,,,,,0.0,0.0,$/month,http://www.mceci.com/content/rates-fees-services
+5b1ab82e5457a30918ce813c,electric,demand,,flat,0,0,1,12,0,24,0,6,1.0,1.0,$/kW,
+5b1ab82e5457a30918ce813c,electric,energy,,period0,0,0,1,12,0,24,0,4,0.03044,0.03044,$/kWh,
+5b1ab82e5457a30918ce813c,electric,energy,,period0,0,0,1,12,0,24,5,6,0.03044,0.03044,$/kWh,

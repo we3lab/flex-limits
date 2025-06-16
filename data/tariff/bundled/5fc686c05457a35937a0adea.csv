@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5fc686c05457a35937a0adea,electric,customer,,,,,,,,,,,29.0,29.0,$/month,https://www.evergy.com/-/media/documents/billing/kansas-central/other/standard-educational-service-062620.pdf?la=en	https://www.evergy.com/manage-account/rate-information/how-rates-are-set/rate-overviews/detailed-tariffs?hasTerritory=true
+5fc686c05457a35937a0adea,electric,demand,,flat,0,0,1,12,0,24,0,6,8.42,8.42,$/kW,
+5fc686c05457a35937a0adea,electric,energy,,period0,0,0,1,12,0,24,0,4,0.043824,0.043824,$/kWh,
+5fc686c05457a35937a0adea,electric,energy,,period0,0,0,1,12,0,24,5,6,0.043824,0.043824,$/kWh,

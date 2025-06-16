@@ -1,0 +1,7 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+59b953c35457a3071a42da66,electric,customer,,,,,,,,,,,20.36,20.36,$/month,http://www.montana-dakota.com/docs/default-source/rates-tariffs/MTElectric32	http://www.montana-dakota.com/rates-and-services/rates-and-tariffs
+59b953c35457a3071a42da66,electric,demand,,flat,0,0,1,5,0,24,0,6,2.04394,2.04394,$/kW,
+59b953c35457a3071a42da66,electric,demand,,flat,0,0,6,9,0,24,0,6,12.67678,12.67678,$/kW,
+59b953c35457a3071a42da66,electric,demand,,flat,0,0,10,12,0,24,0,6,2.04394,2.04394,$/kW,
+59b953c35457a3071a42da66,electric,energy,,period0,0,0,1,12,0,24,0,4,0.077948,0.077948,$/kWh,
+59b953c35457a3071a42da66,electric,energy,,period0,0,0,1,12,0,24,5,6,0.077948,0.077948,$/kWh,

@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+64f105ea2f2224133a0f16eb,electric,customer,,,,,,,,,,,34.25,34.25,$/month,https://www.stearnselectric.org/account-services/billing-information/rates/	https://www.stearnselectric.org/account-services/billing-information/rate/
+64f105ea2f2224133a0f16eb,electric,energy,,period0,0,0,1,5,0,24,0,4,0.1172,0.1172,$/kWh,
+64f105ea2f2224133a0f16eb,electric,energy,,period1,0,0,6,8,0,24,0,4,0.1322,0.1322,$/kWh,
+64f105ea2f2224133a0f16eb,electric,energy,,period0,0,0,9,12,0,24,0,4,0.1172,0.1172,$/kWh,
+64f105ea2f2224133a0f16eb,electric,energy,,period0,0,0,1,5,0,24,5,6,0.1172,0.1172,$/kWh,
+64f105ea2f2224133a0f16eb,electric,energy,,period1,0,0,6,8,0,24,5,6,0.1322,0.1322,$/kWh,
+64f105ea2f2224133a0f16eb,electric,energy,,period0,0,0,9,12,0,24,5,6,0.1172,0.1172,$/kWh,

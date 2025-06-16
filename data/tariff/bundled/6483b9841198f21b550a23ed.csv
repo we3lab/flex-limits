@@ -1,0 +1,7 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6483b9841198f21b550a23ed,electric,customer,,,,,,,,,,,91.7,91.7,$/month,https://psc.ky.gov/tariffs/Electric/Kentucky%20Power%20Company/Tariff.pdf	https://www.kentuckypower.com/company/about/rates/
+6483b9841198f21b550a23ed,electric,demand,,flat,0,0,1,12,0,24,0,6,12.47,12.47,$/kW,adjustment factor of 1.55
+6483b9841198f21b550a23ed,electric,energy,,period1,0,0,1,12,0,7,0,4,0.058664,0.058664,$/kWh,
+6483b9841198f21b550a23ed,electric,energy,,period0,0,0,1,12,7,21,0,4,0.111209,0.111209,$/kWh,
+6483b9841198f21b550a23ed,electric,energy,,period1,0,0,1,12,21,24,0,4,0.058664,0.058664,$/kWh,
+6483b9841198f21b550a23ed,electric,energy,,period1,0,0,1,12,0,24,5,6,0.058664,0.058664,$/kWh,

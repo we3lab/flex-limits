@@ -1,0 +1,11 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5af5d22f5457a37e2e618be7,electric,customer,,,,,,,,,,,200.0,200.0,$/month,http://www.myrec.coop/content-documents/UPDATED_ScheduleHD-1.pdf	http://www.myrec.coop/share/account/rate-schedule.cfm
+5af5d22f5457a37e2e618be7,electric,demand,,flat,0,0,1,12,0,24,0,6,1.1,1.1,$/kW,
+5af5d22f5457a37e2e618be7,electric,energy,,period0,0,0,1,12,0,24,0,4,0.026779999999999998,0.026779999999999998,$/kWh,
+5af5d22f5457a37e2e618be7,electric,energy,,period0,100.0,100.0,1,12,0,24,0,4,0.024480000000000002,0.024480000000000002,$/kWh,
+5af5d22f5457a37e2e618be7,electric,energy,,period0,200.0,200.0,1,12,0,24,0,4,0.01916,0.01916,$/kWh,
+5af5d22f5457a37e2e618be7,electric,energy,,period0,400.0,400.0,1,12,0,24,0,4,0.01729,0.01729,$/kWh,
+5af5d22f5457a37e2e618be7,electric,energy,,period0,0,0,1,12,0,24,5,6,0.026779999999999998,0.026779999999999998,$/kWh,
+5af5d22f5457a37e2e618be7,electric,energy,,period0,100.0,100.0,1,12,0,24,5,6,0.024480000000000002,0.024480000000000002,$/kWh,
+5af5d22f5457a37e2e618be7,electric,energy,,period0,200.0,200.0,1,12,0,24,5,6,0.01916,0.01916,$/kWh,
+5af5d22f5457a37e2e618be7,electric,energy,,period0,400.0,400.0,1,12,0,24,5,6,0.01729,0.01729,$/kWh,

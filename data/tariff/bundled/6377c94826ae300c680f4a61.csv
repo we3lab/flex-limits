@@ -1,0 +1,23 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6377c94826ae300c680f4a61,electric,customer,,,,,,,,,,,19.7601,19.7601,$/month,https://www.we-energies.com/pdfs/etariffs/wisconsin/elecrateswi.pdf#pagemode=bookmarks	https://www.we-energies.com/payment-bill/rates
+6377c94826ae300c680f4a61,electric,demand,,flat,0,0,1,12,0,24,0,6,2.416,2.416,$/kW,adjustment factor of 0.166
+6377c94826ae300c680f4a61,electric,demand,,period0,0,0,1,5,0,8,0,4,0.0,0.0,$/kW,
+6377c94826ae300c680f4a61,electric,demand,,period1,0,0,1,5,8,20,0,4,12.733,12.733,$/kW,
+6377c94826ae300c680f4a61,electric,demand,,period0,0,0,1,5,20,24,0,4,0.0,0.0,$/kW,
+6377c94826ae300c680f4a61,electric,demand,,period0,0,0,6,9,0,8,0,4,0.0,0.0,$/kW,
+6377c94826ae300c680f4a61,electric,demand,,period2,0,0,6,9,8,20,0,4,17.699,17.699,$/kW,
+6377c94826ae300c680f4a61,electric,demand,,period0,0,0,6,9,20,24,0,4,0.0,0.0,$/kW,
+6377c94826ae300c680f4a61,electric,demand,,period0,0,0,10,12,0,8,0,4,0.0,0.0,$/kW,
+6377c94826ae300c680f4a61,electric,demand,,period1,0,0,10,12,8,20,0,4,12.733,12.733,$/kW,
+6377c94826ae300c680f4a61,electric,demand,,period0,0,0,10,12,20,24,0,4,0.0,0.0,$/kW,
+6377c94826ae300c680f4a61,electric,demand,,period0,0,0,1,12,0,24,5,6,0.0,0.0,$/kW,
+6377c94826ae300c680f4a61,electric,energy,,period0,0,0,1,5,0,8,0,4,0.05792,0.05792,$/kWh,
+6377c94826ae300c680f4a61,electric,energy,,period1,0,0,1,5,8,20,0,4,0.07540999999999999,0.07540999999999999,$/kWh,
+6377c94826ae300c680f4a61,electric,energy,,period0,0,0,1,5,20,24,0,4,0.05792,0.05792,$/kWh,
+6377c94826ae300c680f4a61,electric,energy,,period0,0,0,6,9,0,8,0,4,0.05792,0.05792,$/kWh,
+6377c94826ae300c680f4a61,electric,energy,,period2,0,0,6,9,8,20,0,4,0.08571999999999999,0.08571999999999999,$/kWh,
+6377c94826ae300c680f4a61,electric,energy,,period0,0,0,6,9,20,24,0,4,0.05792,0.05792,$/kWh,
+6377c94826ae300c680f4a61,electric,energy,,period0,0,0,10,12,0,8,0,4,0.05792,0.05792,$/kWh,
+6377c94826ae300c680f4a61,electric,energy,,period1,0,0,10,12,8,20,0,4,0.07540999999999999,0.07540999999999999,$/kWh,
+6377c94826ae300c680f4a61,electric,energy,,period0,0,0,10,12,20,24,0,4,0.05792,0.05792,$/kWh,
+6377c94826ae300c680f4a61,electric,energy,,period0,0,0,1,12,0,24,5,6,0.05792,0.05792,$/kWh,

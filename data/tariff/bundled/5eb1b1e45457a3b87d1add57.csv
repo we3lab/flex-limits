@@ -1,0 +1,9 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5eb1b1e45457a3b87d1add57,electric,customer,,,,,,,,,,,166.85,166.85,$/month,https://www.appalachianpower.com/global/utilities/lib/docs/ratesandtariffs/Virginia/Tariff25MASTERApril1-2020G-RAC-RPS-WWS.pdf	https://www.appalachianpower.com/account/bills/rates/APCORatesTariffsVA.aspx
+5eb1b1e45457a3b87d1add57,electric,demand,,flat,0,0,1,12,0,24,0,6,11.13,11.13,$/kW,adjustment factor of 2.47
+5eb1b1e45457a3b87d1add57,electric,demand,,period0,0,0,1,12,0,7,0,4,1.35,1.35,$/kW,
+5eb1b1e45457a3b87d1add57,electric,demand,,period1,0,0,1,12,7,20,0,4,11.51,11.51,$/kW,
+5eb1b1e45457a3b87d1add57,electric,demand,,period0,0,0,1,12,20,24,0,4,1.35,1.35,$/kW,
+5eb1b1e45457a3b87d1add57,electric,demand,,period0,0,0,1,12,0,24,5,6,1.35,1.35,$/kW,
+5eb1b1e45457a3b87d1add57,electric,energy,,period0,0,0,1,12,0,24,0,4,0.04322,0.04322,$/kWh,
+5eb1b1e45457a3b87d1add57,electric,energy,,period0,0,0,1,12,0,24,5,6,0.04322,0.04322,$/kWh,

@@ -1,0 +1,16 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+65316e294154d1b3ba095a75,electric,customer,,,,,,,,,,,28.79,28.79,$/month,https://www.consumersenergy.com/-/media/CE/Documents/rates/electric-rate-book.pdf	https://www.consumersenergy.com/business/rates/electric-rates-and-programs/how-electric-rates-are-set
+65316e294154d1b3ba095a75,electric,energy,,period4,0,0,1,5,0,7,0,4,0.127244,0.127244,$/kWh,
+65316e294154d1b3ba095a75,electric,energy,,period3,0,0,1,5,7,23,0,4,0.149462,0.149462,$/kWh,
+65316e294154d1b3ba095a75,electric,energy,,period4,0,0,1,5,23,24,0,4,0.127244,0.127244,$/kWh,
+65316e294154d1b3ba095a75,electric,energy,,period2,0,0,6,9,0,7,0,4,0.12873500000000002,0.12873500000000002,$/kWh,
+65316e294154d1b3ba095a75,electric,energy,,period1,0,0,6,9,7,14,0,4,0.160039,0.160039,$/kWh,
+65316e294154d1b3ba095a75,electric,energy,,period0,0,0,6,9,14,18,0,4,0.195223,0.195223,$/kWh,
+65316e294154d1b3ba095a75,electric,energy,,period1,0,0,6,9,18,23,0,4,0.160039,0.160039,$/kWh,
+65316e294154d1b3ba095a75,electric,energy,,period2,0,0,6,9,23,24,0,4,0.12873500000000002,0.12873500000000002,$/kWh,
+65316e294154d1b3ba095a75,electric,energy,,period4,0,0,10,12,0,7,0,4,0.127244,0.127244,$/kWh,
+65316e294154d1b3ba095a75,electric,energy,,period3,0,0,10,12,7,23,0,4,0.149462,0.149462,$/kWh,
+65316e294154d1b3ba095a75,electric,energy,,period4,0,0,10,12,23,24,0,4,0.127244,0.127244,$/kWh,
+65316e294154d1b3ba095a75,electric,energy,,period4,0,0,1,5,0,24,5,6,0.127244,0.127244,$/kWh,
+65316e294154d1b3ba095a75,electric,energy,,period2,0,0,6,9,0,24,5,6,0.12873500000000002,0.12873500000000002,$/kWh,
+65316e294154d1b3ba095a75,electric,energy,,period4,0,0,10,12,0,24,5,6,0.127244,0.127244,$/kWh,

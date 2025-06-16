@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cf858095457a3d92b26c07f,electric,customer,,,,,,,,,,,0.32854,0.32854,$/month,https://www.pge.com/tariffs/assets/pdf/tariffbook/ELEC_SCHEDS_TC-1.pdf	https://www.pge.com/tariffs/index.page
+5cf858095457a3d92b26c07f,electric,energy,,period0,0,0,1,12,0,24,0,4,0.20142,0.20142,$/kWh,
+5cf858095457a3d92b26c07f,electric,energy,,period0,0,0,1,12,0,24,5,6,0.20142,0.20142,$/kWh,

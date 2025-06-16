@@ -293,9 +293,21 @@ class flexloadMILP:
             desired_charge_type="demand",
             model=model,
         )
-        model.total_flex_cost_signal = (
-            demand_flex_cost_signal + energy_flex_cost_signal
-        )
+        # when there is only one component in the cost function
+        # there is a RuntimeError due to identical components in the same block
+        try:
+            model.total_flex_cost_signal = (
+                energy_flex_cost_signal + demand_flex_cost_signal
+            )
+        except RuntimeError:
+            model.total_flex_cost_signal = Var()
+
+            @model.Constraint()
+            def flex_tariff_equality_rule(b):
+                return b.total_flex_cost_signal == (
+                    energy_flex_cost_signal + demand_flex_cost_signal
+                )
+            
         return model
 
     def build(self):
@@ -656,7 +668,7 @@ class flexloadMILP:
             )
             # if the solution is not feasible, increase the penalties and solve again
             self.solve_relaxedproblem(
-                tee=tee, recursion_counter=recursion_counter
+                tee=tee, max_iter=max_iter, descent_stepsize=descent_stepsize, recursion_counter=recursion_counter
             )
         else:
             # if the recursion limit is reached, raise an error

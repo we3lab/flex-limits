@@ -1,0 +1,17 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6435d7c33773a6686402cd03,electric,customer,,,,,,,,,,,262.823,262.823,$/month,https://www.firstenergycorp.com/content/dam/customer/Customer%20Choice/Files/Ohio/tariffs/TE-2023-Electric-Service.pdf	https://www.firstenergycorp.com/content/customer/customer_choice/ohio_/ohio_tariffs.html#gsc.tab=0
+6435d7c33773a6686402cd03,electric,demand,,flat,0,0,1,12,0,24,0,6,7.8374,7.8374,$/kW,adjustment factor of 6.1046
+6435d7c33773a6686402cd03,electric,energy,,period0,0,0,1,5,0,24,0,4,0.06610200000000001,0.06610200000000001,$/kWh,
+6435d7c33773a6686402cd03,electric,energy,,period0,2000.0,2000.0,1,5,0,24,0,4,0.065642,0.065642,$/kWh,
+6435d7c33773a6686402cd03,electric,energy,,period0,15000.0,15000.0,1,5,0,24,0,4,0.065082,0.065082,$/kWh,
+6435d7c33773a6686402cd03,electric,energy,,period1,15000.0,15000.0,6,8,0,24,0,4,0.074618,0.074618,$/kWh,
+6435d7c33773a6686402cd03,electric,energy,,period1,2000.0,2000.0,6,8,0,24,0,4,0.074158,0.074158,$/kWh,
+6435d7c33773a6686402cd03,electric,energy,,period1,15000.0,15000.0,6,8,0,24,0,4,0.073598,0.073598,$/kWh,
+6435d7c33773a6686402cd03,electric,energy,,period0,15000.0,15000.0,9,12,0,24,0,4,0.065082,0.065082,$/kWh,
+6435d7c33773a6686402cd03,electric,energy,,period0,0,0,1,5,0,24,5,6,0.06610200000000001,0.06610200000000001,$/kWh,
+6435d7c33773a6686402cd03,electric,energy,,period0,2000.0,2000.0,1,5,0,24,5,6,0.065642,0.065642,$/kWh,
+6435d7c33773a6686402cd03,electric,energy,,period0,15000.0,15000.0,1,5,0,24,5,6,0.065082,0.065082,$/kWh,
+6435d7c33773a6686402cd03,electric,energy,,period1,15000.0,15000.0,6,8,0,24,5,6,0.074618,0.074618,$/kWh,
+6435d7c33773a6686402cd03,electric,energy,,period1,2000.0,2000.0,6,8,0,24,5,6,0.074158,0.074158,$/kWh,
+6435d7c33773a6686402cd03,electric,energy,,period1,15000.0,15000.0,6,8,0,24,5,6,0.073598,0.073598,$/kWh,
+6435d7c33773a6686402cd03,electric,energy,,period0,15000.0,15000.0,9,12,0,24,5,6,0.065082,0.065082,$/kWh,

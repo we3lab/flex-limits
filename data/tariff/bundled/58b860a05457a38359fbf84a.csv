@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+58b860a05457a38359fbf84a,electric,customer,,,,,,,,,,,55.0,55.0,$/month,http://www.chugachelectric.com/customer-service/rate-information	http://www.chugachelectric.com/
+58b860a05457a38359fbf84a,electric,demand,,flat,0,0,1,12,0,24,0,6,19.91,19.91,$/kW,
+58b860a05457a38359fbf84a,electric,energy,,period0,0,0,1,12,0,24,0,4,0.098825,0.098825,$/kWh,
+58b860a05457a38359fbf84a,electric,energy,,period0,0,0,1,12,0,24,5,6,0.098825,0.098825,$/kWh,

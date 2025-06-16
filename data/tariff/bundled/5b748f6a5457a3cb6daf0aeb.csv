@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b748f6a5457a3cb6daf0aeb,electric,customer,,,,,,,,,,,42.0,42.0,$/month,http://www.southernpine.coop/wp-content/uploads/2015/05/RSB1.pdf	https://www.southernpine.coop/rate-schedules/
+5b748f6a5457a3cb6daf0aeb,electric,energy,,period0,0,0,1,12,0,24,0,4,0.09927,0.09927,$/kWh,
+5b748f6a5457a3cb6daf0aeb,electric,energy,,period0,0,0,1,12,0,24,5,6,0.09927,0.09927,$/kWh,

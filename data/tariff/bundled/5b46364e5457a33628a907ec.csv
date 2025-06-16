@@ -1,0 +1,9 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b46364e5457a33628a907ec,electric,customer,,,,,,,,,,,225.0,225.0,$/month,https://magicvalley.coop/commercial/rates-pricing/	https://magicvalley.coop/
+5b46364e5457a33628a907ec,electric,demand,,flat,0,0,1,12,0,24,0,6,3.85,3.85,$/kW,
+5b46364e5457a33628a907ec,electric,energy,,period0,0,0,1,12,0,24,0,4,0.08567,0.08567,$/kWh,
+5b46364e5457a33628a907ec,electric,energy,,period0,200.0,200.0,1,12,0,24,0,4,0.06567,0.06567,$/kWh,
+5b46364e5457a33628a907ec,electric,energy,,period0,400.0,400.0,1,12,0,24,0,4,0.03678,0.03678,$/kWh,
+5b46364e5457a33628a907ec,electric,energy,,period0,0,0,1,12,0,24,5,6,0.08567,0.08567,$/kWh,
+5b46364e5457a33628a907ec,electric,energy,,period0,200.0,200.0,1,12,0,24,5,6,0.06567,0.06567,$/kWh,
+5b46364e5457a33628a907ec,electric,energy,,period0,400.0,400.0,1,12,0,24,5,6,0.03678,0.03678,$/kWh,

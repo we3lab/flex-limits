@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63471beb69cd6700780ffbae,electric,customer,,,,,,,,,,,42.9,42.9,$/month,https://p-scapi.duke-energy.com/-/media/pdfs/for-your-home/rates/electric-nc/g3ncschedulemgsdep.pdf?_gl=1*1ni58bs*_ga*NzAzMDcxNzQ1LjE2NTgzMzkyNTE.*_ga_HB58MJRNTY*MTY2NTYwMTkyMy4xMy4wLjE2NjU2MDIzNzAuMC4wLjA.&_ga=2.111225664.532614466.1664898446-703071745.1658339251	https://www.duke-energy.com/home/billing/rates
+63471beb69cd6700780ffbae,electric,demand,,flat,0,0,1,12,0,24,0,6,6.94,6.94,$/kW,
+63471beb69cd6700780ffbae,electric,energy,,period0,0,0,1,12,0,24,0,4,0.07345,0.07345,$/kWh,
+63471beb69cd6700780ffbae,electric,energy,,period0,0,0,1,12,0,24,5,6,0.07345,0.07345,$/kWh,

@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63486d59107d9efe78042b48,electric,customer,,,,,,,,,,,96.64,96.64,$/month,https://p-scapi.duke-energy.com/-/media/pdfs/for-your-home/rates/electric-in/iurc-15/015-de-in-rider-12-hlf.pdf?_gl=1*1bwzt16*_ga*NzAzMDcxNzQ1LjE2NTgzMzkyNTE.*_ga_HB58MJRNTY*MTY2NTY3ODEwMS4xNS4xLjE2NjU2ODQ2MDguMC4wLjA.&_ga=2.69527257.834363625.1665601923-703071745.1658339251	https://www.duke-energy.com/home/billing/rates/electric-tariff
+63486d59107d9efe78042b48,electric,demand,,flat,0,0,1,12,0,24,0,6,18.409365,18.409365,$/kW,adjustment factor of 0.559365
+63486d59107d9efe78042b48,electric,energy,,period0,0,0,1,12,0,24,0,4,0.096787,0.096787,$/kWh,
+63486d59107d9efe78042b48,electric,energy,,period0,0,0,1,12,0,24,5,6,0.096787,0.096787,$/kWh,

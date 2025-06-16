@@ -27,11 +27,13 @@ regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
 mef_savings_sweep = np.zeros((len(regions), len(month_arr)))
 aef_savings_sweep = np.zeros((len(regions), len(month_arr)))
 dam_savings_sweep = np.zeros((len(regions), len(month_arr)))
-tariff_savings_sweep = np.zeros((len(regions), len(month_arr)))
+# cannot be np.array because each region has different number of tariffs
+tariff_savings_sweep = []
 
 for i, reg in enumerate(regions):
+    region_list = []
     for j, month in enumerate(month_arr):
-
+        month_list = []
         print(f"Processing region: {reg}, month: {month}")
 
         # MEF
@@ -63,18 +65,27 @@ for i, reg in enumerate(regions):
         )
 
         # Tariff
-        tariff = ps.gettariff(region=reg)
-        startdate_dt, enddate_dt = ms.get_start_end(month)
-        month_length = int((enddate_dt - startdate_dt) / np.timedelta64(1, "h"))
-        tariff_savings_sweep[i, j] = ms.max_tariff_savings(
-            data=tariff,
-            system_uptime=0.0,
-            continuous_flex=0.0,
-            baseload=np.ones(month_length),
-            startdate_dt=startdate_dt,
-            enddate_dt=enddate_dt,
-            uptime_equality=False
-        )
+        tariffs = ps.gettariff(region=reg, full_list=True)
+        for tariff in tariffs:
+            startdate_dt, enddate_dt = ms.get_start_end(month)
+            month_length = int((enddate_dt - startdate_dt) / np.timedelta64(1, "h"))
+            try:
+                tariff_savings = ms.max_tariff_savings(
+                    data=tariff,
+                    system_uptime=0.0,
+                    continuous_flex=1.0,
+                    baseload=np.ones(month_length),
+                    startdate_dt=startdate_dt,
+                    enddate_dt=enddate_dt,
+                    uptime_equality=False
+                )
+                month_list.append(tariff_savings)
+            except ZeroDivisionError:
+                print(f"ZeroDivisionError in tariff {tariff['label'].values[0]}")
+
+        region_list.append(month_list)
+
+    tariff_savings_sweep.append(region_list)
 
 # sort the regions by the max savings in either DAM or MEF
 max_savings = np.maximum(mef_savings_sweep.max(axis=1), dam_savings_sweep.max(axis=1))
@@ -136,7 +147,7 @@ dam_plot = ax.boxplot(
 )
 
 tariff_plot = ax.boxplot(
-    tariff_savings_sweep.T,
+    tariff_savings_sweep,
     positions=np.arange(len(regions)) + 0.3,
     widths=0.15,
     tick_labels=regions,

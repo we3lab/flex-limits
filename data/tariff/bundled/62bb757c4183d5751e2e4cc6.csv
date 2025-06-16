@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62bb757c4183d5751e2e4cc6,electric,customer,,,,,,,,,,,135.0,135.0,$/month,https://www.ouc.com/docs/rates---elctric-water-meter/ouc_electric_rates_0622.pdf	http://www.ouc.com
+62bb757c4183d5751e2e4cc6,electric,demand,,flat,0,0,1,12,0,24,0,6,10.5,10.5,$/kW,
+62bb757c4183d5751e2e4cc6,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0699,0.0699,$/kWh,
+62bb757c4183d5751e2e4cc6,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0699,0.0699,$/kWh,

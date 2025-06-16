@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cdc8d615457a3b62b40c5d9,electric,customer,,,,,,,,,,,0.0,0.0,$/month,https://www.emeramaine.com/media/58990/EmeraMaine-BHD-Tariffs-2018.pdf	https://www.emeramaine.com/residential/rates/
+5cdc8d615457a3b62b40c5d9,electric,energy,,period0,0,0,1,4,0,24,0,4,0.161435,0.161435,$/kWh,
+5cdc8d615457a3b62b40c5d9,electric,energy,,period1,0,0,5,9,0,24,0,4,0.174355,0.174355,$/kWh,
+5cdc8d615457a3b62b40c5d9,electric,energy,,period0,0,0,10,12,0,24,0,4,0.161435,0.161435,$/kWh,
+5cdc8d615457a3b62b40c5d9,electric,energy,,period0,0,0,1,4,0,24,5,6,0.161435,0.161435,$/kWh,
+5cdc8d615457a3b62b40c5d9,electric,energy,,period1,0,0,5,9,0,24,5,6,0.174355,0.174355,$/kWh,
+5cdc8d615457a3b62b40c5d9,electric,energy,,period0,0,0,10,12,0,24,5,6,0.161435,0.161435,$/kWh,

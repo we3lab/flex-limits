@@ -1,0 +1,19 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63c992f5005b41877208ffdf,electric,customer,,,,,,,,,,,39.2,39.2,$/month,https://cdn.entergy-texas.com/userfiles/content/price/tariffs/eti_gs-tod.pdf?_ga=2.87221144.1285041151.1674146430-1395332778.1673550392&_gl=1*1l8ppx6*_ga*MTM5NTMzMjc3OC4xNjczNTUwMzky*_ga_HK6YSZ6LT0*MTY3NDE1Mjg0NC41LjEuMTY3NDE1MzY2MC4wLjAuMA..*_ga_8YKL3FLBBC*MTY3NDE1Mjg0NC41LjEuMTY3NDE1MzY2MC4wLjAuMA..	https://www.entergy-texas.com/your_business/business_tariffs/
+63c992f5005b41877208ffdf,electric,demand,,flat,0,0,1,4,0,24,0,6,7.56706,7.56706,$/kW,adjustment factor of 3.69706
+63c992f5005b41877208ffdf,electric,demand,,flat,0,0,5,10,0,24,0,6,12.88706,12.88706,$/kW,adjustment factor of 3.69706
+63c992f5005b41877208ffdf,electric,demand,,flat,0,0,11,12,0,24,0,6,7.56706,7.56706,$/kW,adjustment factor of 3.69706
+63c992f5005b41877208ffdf,electric,energy,,period0,0,0,1,4,0,6,0,4,0.0762583,0.0762583,$/kWh,
+63c992f5005b41877208ffdf,electric,energy,,period2,0,0,1,4,6,10,0,4,0.0791983,0.0791983,$/kWh,
+63c992f5005b41877208ffdf,electric,energy,,period0,0,0,1,4,10,18,0,4,0.0762583,0.0762583,$/kWh,
+63c992f5005b41877208ffdf,electric,energy,,period2,0,0,1,4,18,22,0,4,0.0791983,0.0791983,$/kWh,
+63c992f5005b41877208ffdf,electric,energy,,period0,0,0,1,4,22,24,0,4,0.0762583,0.0762583,$/kWh,
+63c992f5005b41877208ffdf,electric,energy,,period0,0,0,5,10,0,13,0,4,0.0762583,0.0762583,$/kWh,
+63c992f5005b41877208ffdf,electric,energy,,period1,0,0,5,10,13,21,0,4,0.1122583,0.1122583,$/kWh,
+63c992f5005b41877208ffdf,electric,energy,,period0,0,0,5,10,21,24,0,4,0.0762583,0.0762583,$/kWh,
+63c992f5005b41877208ffdf,electric,energy,,period0,0,0,11,12,0,6,0,4,0.0762583,0.0762583,$/kWh,
+63c992f5005b41877208ffdf,electric,energy,,period2,0,0,11,12,6,10,0,4,0.0791983,0.0791983,$/kWh,
+63c992f5005b41877208ffdf,electric,energy,,period0,0,0,11,12,10,18,0,4,0.0762583,0.0762583,$/kWh,
+63c992f5005b41877208ffdf,electric,energy,,period2,0,0,11,12,18,22,0,4,0.0791983,0.0791983,$/kWh,
+63c992f5005b41877208ffdf,electric,energy,,period0,0,0,11,12,22,24,0,4,0.0762583,0.0762583,$/kWh,
+63c992f5005b41877208ffdf,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0762583,0.0762583,$/kWh,

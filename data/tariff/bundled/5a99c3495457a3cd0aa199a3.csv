@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5a99c3495457a3cd0aa199a3,electric,customer,,,,,,,,,,,22.81,22.81,$/month,https://www.westarenergy.com/Portals/0/Resources/Documents/Tariffs/Restr_Service_Sch_North_1015.pdf	https://www.westarenergy.com/rates-and-regulations
+5a99c3495457a3cd0aa199a3,electric,energy,,period0,0,0,1,12,0,24,0,4,0.10606,0.10606,$/kWh,
+5a99c3495457a3cd0aa199a3,electric,energy,,period0,12500.0,12500.0,1,12,0,24,0,4,0.08657899999999999,0.08657899999999999,$/kWh,
+5a99c3495457a3cd0aa199a3,electric,energy,,period0,0,0,1,12,0,24,5,6,0.10606,0.10606,$/kWh,
+5a99c3495457a3cd0aa199a3,electric,energy,,period0,12500.0,12500.0,1,12,0,24,5,6,0.08657899999999999,0.08657899999999999,$/kWh,

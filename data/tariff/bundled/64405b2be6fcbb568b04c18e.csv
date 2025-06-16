@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+64405b2be6fcbb568b04c18e,electric,customer,,,,,,,,,,,38.7,38.7,$/month,https://www.rockymountainpower.net/content/dam/pcorp/documents/en/rockymountainpower/rates-regulation/wyoming/price-summary/Wyoming_Price_Summary.pdf	https://www.rockymountainpower.net/about/rates-regulation/wyoming-rates-tariffs.html
+64405b2be6fcbb568b04c18e,electric,demand,,flat,0,0,1,12,0,24,0,6,18.571299999999997,18.571299999999997,$/kW,adjustment factor of 2.2613
+64405b2be6fcbb568b04c18e,electric,energy,,period0,0,0,1,12,0,24,0,4,0.029279,0.029279,$/kWh,
+64405b2be6fcbb568b04c18e,electric,energy,,period0,0,0,1,12,0,24,5,6,0.029279,0.029279,$/kWh,

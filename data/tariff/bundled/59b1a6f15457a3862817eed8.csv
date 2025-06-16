@@ -1,0 +1,28 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+59b1a6f15457a3862817eed8,electric,customer,,,,,,,,,,,19.42,19.42,$/month,"http://www.pacificpower.net/content/dam/pacific_power/doc/About_Us/Rates_Regulation/Oregon/Approved_Tariffs/Oregon_Price_Summary.pdf
+https://www.pacificpower.net/content/dam/pacific_power/doc/About_Us/Rates_Regulation/Oregon/Approved_Tariffs/Rate_Schedules/Portfolio_Time_of_Use_Supply_Service.pdf
+https://www.pacificpower.net/content/dam/pacific_power/doc/About_Us/Rates_Regulation/Oregon/Approved_Tariffs/Rate_Schedules/General_Service_Small_Nonresidential_Delivery_Service.pdf	https://www.pacificpower.net/about/rr/ori.html#"
+59b1a6f15457a3862817eed8,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+59b1a6f15457a3862817eed8,electric,demand,,flat,15.0,15.0,1,12,0,24,0,6,5.23,5.23,$/kW,
+59b1a6f15457a3862817eed8,electric,energy,,period0,0,0,1,3,0,6,0,4,0.09412140000000001,0.09412140000000001,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period0,3000.0,3000.0,1,3,0,6,0,4,0.0779298,0.0779298,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period1,0,0,1,3,6,10,0,4,0.1538923,0.1538923,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period1,3000.0,3000.0,1,3,6,10,0,4,0.1377007,0.1377007,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period0,0,0,1,3,10,17,0,4,0.0779298,0.0779298,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period1,0,0,1,3,17,20,0,4,0.1377007,0.1377007,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period0,0,0,1,3,20,24,0,4,0.0779298,0.0779298,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period2,0,0,4,10,0,16,0,4,0.09412140000000001,0.09412140000000001,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period2,3000.0,3000.0,4,10,0,16,0,4,0.0779298,0.0779298,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period3,0,0,4,10,16,20,0,4,0.2052378,0.2052378,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period3,3000.0,3000.0,4,10,16,20,0,4,0.1890462,0.1890462,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period2,0,0,4,10,20,24,0,4,0.0779298,0.0779298,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period0,0,0,11,12,0,6,0,4,0.0779298,0.0779298,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period1,0,0,11,12,6,10,0,4,0.1377007,0.1377007,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period0,0,0,11,12,10,17,0,4,0.0779298,0.0779298,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period1,0,0,11,12,17,20,0,4,0.1377007,0.1377007,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period0,0,0,11,12,20,24,0,4,0.0779298,0.0779298,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period0,0,0,1,3,0,24,5,6,0.09412140000000001,0.09412140000000001,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period0,3000.0,3000.0,1,3,0,24,5,6,0.0779298,0.0779298,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period2,3000.0,3000.0,4,10,0,24,5,6,0.09412140000000001,0.09412140000000001,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period2,3000.0,3000.0,4,10,0,24,5,6,0.0779298,0.0779298,$/kWh,
+59b1a6f15457a3862817eed8,electric,energy,,period0,3000.0,3000.0,11,12,0,24,5,6,0.0779298,0.0779298,$/kWh,

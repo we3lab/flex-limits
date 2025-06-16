@@ -1,0 +1,14 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+643583fc3773a6686402cd02,electric,customer,,,,,,,,,,,19.86,19.86,$/month,https://www.oppd.com/media/172612/oppd-rate-manual.pdf	https://www.oppd.com/business/business-rates/
+643583fc3773a6686402cd02,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+643583fc3773a6686402cd02,electric,demand,,flat,18.0,18.0,1,12,0,24,0,6,5.38,5.38,$/kW,
+643583fc3773a6686402cd02,electric,energy,,period0,0,0,1,5,0,24,0,4,0.0641,0.0641,$/kWh,
+643583fc3773a6686402cd02,electric,energy,,period0,300.0,300.0,1,5,0,24,0,4,0.0498,0.0498,$/kWh,
+643583fc3773a6686402cd02,electric,energy,,period1,300.0,300.0,6,9,0,24,0,4,0.0786,0.0786,$/kWh,
+643583fc3773a6686402cd02,electric,energy,,period1,300.0,300.0,6,9,0,24,0,4,0.0629,0.0629,$/kWh,
+643583fc3773a6686402cd02,electric,energy,,period0,300.0,300.0,10,12,0,24,0,4,0.0498,0.0498,$/kWh,
+643583fc3773a6686402cd02,electric,energy,,period0,0,0,1,5,0,24,5,6,0.0641,0.0641,$/kWh,
+643583fc3773a6686402cd02,electric,energy,,period0,300.0,300.0,1,5,0,24,5,6,0.0498,0.0498,$/kWh,
+643583fc3773a6686402cd02,electric,energy,,period1,300.0,300.0,6,9,0,24,5,6,0.0786,0.0786,$/kWh,
+643583fc3773a6686402cd02,electric,energy,,period1,300.0,300.0,6,9,0,24,5,6,0.0629,0.0629,$/kWh,
+643583fc3773a6686402cd02,electric,energy,,period0,300.0,300.0,10,12,0,24,5,6,0.0498,0.0498,$/kWh,

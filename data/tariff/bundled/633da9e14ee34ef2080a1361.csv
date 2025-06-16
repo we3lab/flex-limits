@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+633da9e14ee34ef2080a1361,electric,customer,,,,,,,,,,,15.94,15.94,$/month,https://desitecoreprod-cd.azureedge.net/_/media/pdfs/for-your-home/rates/rates-fl/retail-rates-by-rate-schedule.pdf?la=en&rev=5845ca5a33054d2e91e22b17d65a48ae	https://www.duke-energy.com/home/billing/rates
+633da9e14ee34ef2080a1361,electric,demand,,flat,0,0,1,12,0,24,0,6,11.170000000000002,11.170000000000002,$/kW,adjustment factor of 4.44
+633da9e14ee34ef2080a1361,electric,energy,,period0,0,0,1,12,0,24,0,4,0.07976,0.07976,$/kWh,
+633da9e14ee34ef2080a1361,electric,energy,,period0,0,0,1,12,0,24,5,6,0.07976,0.07976,$/kWh,

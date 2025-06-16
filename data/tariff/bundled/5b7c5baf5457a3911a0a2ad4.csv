@@ -1,0 +1,14 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b7c5baf5457a3911a0a2ad4,electric,customer,,,,,,,,,,,92.61,92.61,$/month,http://www.mlandp.com/Portals/0/pdf/mlp%20tariff%20rate%20schedules%2020180629.pdf	http://www.mlandp.com/Customers/Rates/Commercial-Rates#4815-schedule-31-33-general-service-seasonal-at-secondary-voltage
+5b7c5baf5457a3911a0a2ad4,electric,demand,,period0,0,0,1,4,0,24,0,4,0.0,0.0,$/kW,
+5b7c5baf5457a3911a0a2ad4,electric,demand,,period1,0,0,5,10,0,24,0,4,44.53,44.53,$/kW,
+5b7c5baf5457a3911a0a2ad4,electric,demand,,period0,0,0,11,12,0,24,0,4,0.0,0.0,$/kW,
+5b7c5baf5457a3911a0a2ad4,electric,demand,,period0,0,0,1,4,0,24,5,6,0.0,0.0,$/kW,
+5b7c5baf5457a3911a0a2ad4,electric,demand,,period1,0,0,5,10,0,24,5,6,44.53,44.53,$/kW,
+5b7c5baf5457a3911a0a2ad4,electric,demand,,period0,0,0,11,12,0,24,5,6,0.0,0.0,$/kW,
+5b7c5baf5457a3911a0a2ad4,electric,energy,,period0,0,0,1,4,0,24,0,4,0.1428936,0.1428936,$/kWh,
+5b7c5baf5457a3911a0a2ad4,electric,energy,,period1,0,0,5,10,0,24,0,4,0.026817599999999997,0.026817599999999997,$/kWh,
+5b7c5baf5457a3911a0a2ad4,electric,energy,,period0,0,0,11,12,0,24,0,4,0.1428936,0.1428936,$/kWh,
+5b7c5baf5457a3911a0a2ad4,electric,energy,,period0,0,0,1,4,0,24,5,6,0.1428936,0.1428936,$/kWh,
+5b7c5baf5457a3911a0a2ad4,electric,energy,,period1,0,0,5,10,0,24,5,6,0.026817599999999997,0.026817599999999997,$/kWh,
+5b7c5baf5457a3911a0a2ad4,electric,energy,,period0,0,0,11,12,0,24,5,6,0.1428936,0.1428936,$/kWh,

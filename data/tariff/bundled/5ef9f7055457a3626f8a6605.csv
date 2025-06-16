@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5ef9f7055457a3626f8a6605,electric,customer,,,,,,,,,,,27.5,27.5,$/month,https://www.lcec.net/pdf/EntireRateTariff.pdf#page=61	https://www.lcec.net/my-home/manage-my-account/rates
+5ef9f7055457a3626f8a6605,electric,demand,,flat,0,0,1,12,0,24,0,6,12.07,12.07,$/kW,
+5ef9f7055457a3626f8a6605,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0529,0.0529,$/kWh,
+5ef9f7055457a3626f8a6605,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0529,0.0529,$/kWh,

@@ -1,0 +1,7 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b4cd89d5457a34e11c6d677,electric,customer,,,,,,,,,,,1521.83,1521.83,$/month,http://www.owenelectric.com/node/119	http://www.owenelectric.com/content/rates-and-tariffs
+5b4cd89d5457a34e11c6d677,electric,demand,,flat,0,0,1,12,0,24,0,6,7.25,7.25,$/kW,
+5b4cd89d5457a34e11c6d677,electric,energy,,period0,0,0,1,12,0,24,0,4,0.04704,0.04704,$/kWh,
+5b4cd89d5457a34e11c6d677,electric,energy,,period0,425.0,425.0,1,12,0,24,0,4,0.04339,0.04339,$/kWh,
+5b4cd89d5457a34e11c6d677,electric,energy,,period0,0,0,1,12,0,24,5,6,0.04704,0.04704,$/kWh,
+5b4cd89d5457a34e11c6d677,electric,energy,,period0,425.0,425.0,1,12,0,24,5,6,0.04339,0.04339,$/kWh,

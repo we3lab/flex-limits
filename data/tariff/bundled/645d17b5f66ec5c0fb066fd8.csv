@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+645d17b5f66ec5c0fb066fd8,electric,customer,,,,,,,,,,,0.0,0.0,$/month,https://www.swepco.com/company/about/rates/la	https://www.swepco.com/company/about/rates/la
+645d17b5f66ec5c0fb066fd8,electric,demand,,flat,0,0,1,12,0,24,0,6,11.38,11.38,$/kW,
+645d17b5f66ec5c0fb066fd8,electric,energy,,period0,0,0,1,12,0,24,0,4,0.085022,0.085022,$/kWh,
+645d17b5f66ec5c0fb066fd8,electric,energy,,period0,0,0,1,12,0,24,5,6,0.085022,0.085022,$/kWh,

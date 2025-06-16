@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5aa2fd2e5457a335384e0deb,electric,customer,,,,,,,,,,,0.0,0.0,$/month,https://www.firstenergycorp.com/content/dam/customer/Customer%20Choice/Files/west-virginia/tariffs/WVPERetailTariff.pdf	https://www.firstenergycorp.com/content/customer/customer_choice/west_virginia/west_virginia_tariffs.html
+5aa2fd2e5457a335384e0deb,electric,energy,,period0,0,0,1,12,0,24,0,4,0.09894,0.09894,$/kWh,
+5aa2fd2e5457a335384e0deb,electric,energy,,period0,0,0,1,12,0,24,5,6,0.09894,0.09894,$/kWh,

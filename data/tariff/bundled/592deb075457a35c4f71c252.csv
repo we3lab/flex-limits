@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+592deb075457a35c4f71c252,electric,customer,,,,,,,,,,,598.2,598.2,$/month,https://www.mauielectric.com/Documents/my_account/rates/maui_electric_rates_molokai/molokai_rates_sch_p.pdf	https://www.mauielectric.com/my-account/rates-and-regulations/maui-electric-rates---molokai
+592deb075457a35c4f71c252,electric,demand,,flat,0,0,1,12,0,24,0,6,18.0,18.0,$/kW,
+592deb075457a35c4f71c252,electric,energy,,period0,0,0,1,12,0,24,0,4,0.311977,0.311977,$/kWh,
+592deb075457a35c4f71c252,electric,energy,,period0,0,0,1,12,0,24,5,6,0.311977,0.311977,$/kWh,

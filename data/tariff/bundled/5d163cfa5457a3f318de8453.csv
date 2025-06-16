@@ -1,0 +1,18 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5d163cfa5457a3f318de8453,electric,customer,,,,,,,,,,,874.15,874.15,$/month,https://www.kcpl.com/-/media/indexedmedia/my_bill/mo/detailed_tariffs_mo/09smallgeneralservice.pdf?la=en	http://www.kcpl.com/my-bill/for-home/rate-information/detailed-tariffs
+5d163cfa5457a3f318de8453,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+5d163cfa5457a3f318de8453,electric,demand,,flat,26.0,26.0,1,12,0,24,0,6,2.86,2.86,$/kW,
+5d163cfa5457a3f318de8453,electric,energy,,period1,0,0,1,5,0,24,0,4,0.12994,0.12994,$/kWh,
+5d163cfa5457a3f318de8453,electric,energy,,period1,180.0,180.0,1,5,0,24,0,4,0.06688,0.06688,$/kWh,
+5d163cfa5457a3f318de8453,electric,energy,,period1,360.0,360.0,1,5,0,24,0,4,0.06101,0.06101,$/kWh,
+5d163cfa5457a3f318de8453,electric,energy,,period0,360.0,360.0,6,9,0,24,0,4,0.16529,0.16529,$/kWh,
+5d163cfa5457a3f318de8453,electric,energy,,period0,180.0,180.0,6,9,0,24,0,4,0.08197,0.08197,$/kWh,
+5d163cfa5457a3f318de8453,electric,energy,,period0,360.0,360.0,6,9,0,24,0,4,0.07375,0.07375,$/kWh,
+5d163cfa5457a3f318de8453,electric,energy,,period1,360.0,360.0,10,12,0,24,0,4,0.06101,0.06101,$/kWh,
+5d163cfa5457a3f318de8453,electric,energy,,period1,0,0,1,5,0,24,5,6,0.12994,0.12994,$/kWh,
+5d163cfa5457a3f318de8453,electric,energy,,period1,180.0,180.0,1,5,0,24,5,6,0.06688,0.06688,$/kWh,
+5d163cfa5457a3f318de8453,electric,energy,,period1,360.0,360.0,1,5,0,24,5,6,0.06101,0.06101,$/kWh,
+5d163cfa5457a3f318de8453,electric,energy,,period0,360.0,360.0,6,9,0,24,5,6,0.16529,0.16529,$/kWh,
+5d163cfa5457a3f318de8453,electric,energy,,period0,180.0,180.0,6,9,0,24,5,6,0.08197,0.08197,$/kWh,
+5d163cfa5457a3f318de8453,electric,energy,,period0,360.0,360.0,6,9,0,24,5,6,0.07375,0.07375,$/kWh,
+5d163cfa5457a3f318de8453,electric,energy,,period1,360.0,360.0,10,12,0,24,5,6,0.06101,0.06101,$/kWh,

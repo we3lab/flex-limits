@@ -1,0 +1,9 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+642afb52178a8f6da204e60c,electric,customer,,,,,,,,,,,275.0,275.0,$/month,https://www.appalachianpower.com/lib/docs/ratesandtariffs/WestVirginia/SecuritizationTariffSheetsEff2-1-23.pdf	https://www.appalachianpower.com/company/about/rates/wv
+642afb52178a8f6da204e60c,electric,demand,,flat,0,0,1,12,0,24,0,6,22.895,22.895,$/kW,adjustment factor of 8.135
+642afb52178a8f6da204e60c,electric,demand,,period0,0,0,1,12,0,7,0,4,2.07515,2.07515,$/kW,
+642afb52178a8f6da204e60c,electric,demand,,period1,0,0,1,12,7,21,0,4,0.0,0.0,$/kW,
+642afb52178a8f6da204e60c,electric,demand,,period0,0,0,1,12,21,24,0,4,2.07515,2.07515,$/kW,
+642afb52178a8f6da204e60c,electric,demand,,period0,0,0,1,12,0,24,5,6,2.07515,2.07515,$/kW,
+642afb52178a8f6da204e60c,electric,energy,,period0,0,0,1,12,0,24,0,4,0.04009,0.04009,$/kWh,
+642afb52178a8f6da204e60c,electric,energy,,period0,0,0,1,12,0,24,5,6,0.04009,0.04009,$/kWh,

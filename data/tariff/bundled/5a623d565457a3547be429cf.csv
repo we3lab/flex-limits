@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5a623d565457a3547be429cf,electric,customer,,,,,,,,,,,6.58,6.58,$/month,https://www.duke-energy.com/_/media/pdfs/for-your-home/rates/rates-fl/pe-rates-gs-1.pdf?la=en	https://www.duke-energy.com/home/billing/rates/index-of-rate-schedules
+5a623d565457a3547be429cf,electric,energy,,period0,0,0,1,12,0,24,0,4,0.11520999999999999,0.11520999999999999,$/kWh,
+5a623d565457a3547be429cf,electric,energy,,period0,0,0,1,12,0,24,5,6,0.11520999999999999,0.11520999999999999,$/kWh,

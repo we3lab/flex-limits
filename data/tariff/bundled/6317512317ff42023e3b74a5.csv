@@ -1,0 +1,18 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6317512317ff42023e3b74a5,electric,customer,,,,,,,,,,,12.45,12.45,$/month,https://lite.coned.com/_external/cerates/documents/elecPSC10/electric-tariff.pdf	http://www.coned.com/rates/elec.asp
+6317512317ff42023e3b74a5,electric,demand,,flat,0,0,1,5,0,24,0,6,7.33,7.33,$/kW,
+6317512317ff42023e3b74a5,electric,demand,,flat,0,0,6,9,0,24,0,6,23.01,23.01,$/kW,
+6317512317ff42023e3b74a5,electric,demand,,flat,0,0,10,12,0,24,0,6,7.33,7.33,$/kW,
+6317512317ff42023e3b74a5,electric,demand,,period0,0,0,1,5,0,8,0,4,0.0,0.0,$/kW,
+6317512317ff42023e3b74a5,electric,demand,,period1,0,0,1,5,8,22,0,4,25.23,25.23,$/kW,
+6317512317ff42023e3b74a5,electric,demand,,period0,0,0,1,5,22,24,0,4,0.0,0.0,$/kW,
+6317512317ff42023e3b74a5,electric,demand,,period0,0,0,6,9,0,8,0,4,0.0,0.0,$/kW,
+6317512317ff42023e3b74a5,electric,demand,,period3,0,0,6,9,8,18,0,4,42.22,42.22,$/kW,
+6317512317ff42023e3b74a5,electric,demand,,period2,0,0,6,9,18,22,0,4,24.98,24.98,$/kW,
+6317512317ff42023e3b74a5,electric,demand,,period0,0,0,6,9,22,24,0,4,0.0,0.0,$/kW,
+6317512317ff42023e3b74a5,electric,demand,,period0,0,0,10,12,0,8,0,4,0.0,0.0,$/kW,
+6317512317ff42023e3b74a5,electric,demand,,period1,0,0,10,12,8,22,0,4,25.23,25.23,$/kW,
+6317512317ff42023e3b74a5,electric,demand,,period0,0,0,10,12,22,24,0,4,0.0,0.0,$/kW,
+6317512317ff42023e3b74a5,electric,demand,,period0,0,0,1,12,0,24,5,6,0.0,0.0,$/kW,
+6317512317ff42023e3b74a5,electric,energy,,period0,0,0,1,12,0,24,0,4,0.027546,0.027546,$/kWh,
+6317512317ff42023e3b74a5,electric,energy,,period0,0,0,1,12,0,24,5,6,0.027546,0.027546,$/kWh,

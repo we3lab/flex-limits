@@ -1,0 +1,23 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6377dcd71d17d872ea04321f,electric,customer,,,,,,,,,,,19.7601,19.7601,$/month,https://www.we-energies.com/pdfs/etariffs/wisconsin/elecrateswi.pdf#pagemode=bookmarks	https://www.we-energies.com/payment-bill/rates
+6377dcd71d17d872ea04321f,electric,demand,,flat,0,0,1,12,0,24,0,6,0.166,0.166,$/kW,adjustment factor of 0.166
+6377dcd71d17d872ea04321f,electric,demand,,period0,0,0,1,5,0,9,0,4,0.0,0.0,$/kW,
+6377dcd71d17d872ea04321f,electric,demand,,period1,0,0,1,5,9,21,0,4,12.39,12.39,$/kW,
+6377dcd71d17d872ea04321f,electric,demand,,period0,0,0,1,5,21,24,0,4,0.0,0.0,$/kW,
+6377dcd71d17d872ea04321f,electric,demand,,period0,0,0,6,9,0,9,0,4,0.0,0.0,$/kW,
+6377dcd71d17d872ea04321f,electric,demand,,period2,0,0,6,9,9,21,0,4,17.222,17.222,$/kW,
+6377dcd71d17d872ea04321f,electric,demand,,period0,0,0,6,9,21,24,0,4,0.0,0.0,$/kW,
+6377dcd71d17d872ea04321f,electric,demand,,period0,0,0,10,12,0,9,0,4,0.0,0.0,$/kW,
+6377dcd71d17d872ea04321f,electric,demand,,period1,0,0,10,12,9,21,0,4,12.39,12.39,$/kW,
+6377dcd71d17d872ea04321f,electric,demand,,period0,0,0,10,12,21,24,0,4,0.0,0.0,$/kW,
+6377dcd71d17d872ea04321f,electric,demand,,period0,0,0,1,12,0,24,5,6,0.0,0.0,$/kW,
+6377dcd71d17d872ea04321f,electric,energy,,period0,0,0,1,5,0,9,0,4,0.05651,0.05651,$/kWh,
+6377dcd71d17d872ea04321f,electric,energy,,period1,0,0,1,5,9,21,0,4,0.07351999999999999,0.07351999999999999,$/kWh,
+6377dcd71d17d872ea04321f,electric,energy,,period0,0,0,1,5,21,24,0,4,0.05651,0.05651,$/kWh,
+6377dcd71d17d872ea04321f,electric,energy,,period0,0,0,6,9,0,9,0,4,0.05651,0.05651,$/kWh,
+6377dcd71d17d872ea04321f,electric,energy,,period2,0,0,6,9,9,21,0,4,0.08355,0.08355,$/kWh,
+6377dcd71d17d872ea04321f,electric,energy,,period0,0,0,6,9,21,24,0,4,0.05651,0.05651,$/kWh,
+6377dcd71d17d872ea04321f,electric,energy,,period0,0,0,10,12,0,9,0,4,0.05651,0.05651,$/kWh,
+6377dcd71d17d872ea04321f,electric,energy,,period1,0,0,10,12,9,21,0,4,0.07351999999999999,0.07351999999999999,$/kWh,
+6377dcd71d17d872ea04321f,electric,energy,,period0,0,0,10,12,21,24,0,4,0.05651,0.05651,$/kWh,
+6377dcd71d17d872ea04321f,electric,energy,,period0,0,0,1,12,0,24,5,6,0.05651,0.05651,$/kWh,

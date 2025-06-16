@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63d04eaf703cd2f8800154cf,electric,customer,,,,,,,,,,,24.65,24.65,$/month,https://www.indianamichiganpower.com/lib/docs/ratesandtariffs/Indiana/IMINTB19_01-16-2023.pdf	https://www.indianamichiganpower.com/company/about/rates/in
+63d04eaf703cd2f8800154cf,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,adjustment factor of 0.0
+63d04eaf703cd2f8800154cf,electric,demand,,flat,10.0,10.0,1,12,0,24,0,6,11.459,11.459,$/kW,adjustment factor of 8.482
+63d04eaf703cd2f8800154cf,electric,energy,,period0,0,0,1,12,0,24,0,4,0.129031,0.129031,$/kWh,
+63d04eaf703cd2f8800154cf,electric,energy,,period0,4500.0,4500.0,1,12,0,24,0,4,0.090518,0.090518,$/kWh,
+63d04eaf703cd2f8800154cf,electric,energy,,period0,0,0,1,12,0,24,5,6,0.129031,0.129031,$/kWh,
+63d04eaf703cd2f8800154cf,electric,energy,,period0,4500.0,4500.0,1,12,0,24,5,6,0.090518,0.090518,$/kWh,

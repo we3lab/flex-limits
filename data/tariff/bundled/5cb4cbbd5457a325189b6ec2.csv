@@ -1,0 +1,18 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cb4cbbd5457a325189b6ec2,electric,customer,,,,,,,,,,,16.0,16.0,$/month,https://docs.idahopower.com/pdfs/aboutus/ratesregulatory/tariffs/198.pdf	https://www.idahopower.com/AboutUs/RatesRegulatory/Tariffs/default.cfm?state=id
+5cb4cbbd5457a325189b6ec2,electric,demand,,flat,0,0,1,5,0,24,0,6,0.0,0.0,$/kW,
+5cb4cbbd5457a325189b6ec2,electric,demand,,flat,20.0,20.0,1,5,0,24,0,6,4.54425,4.54425,$/kW,adjustment factor of 0.16425
+5cb4cbbd5457a325189b6ec2,electric,demand,,flat,20.0,20.0,6,8,0,24,0,6,0.0,0.0,$/kW,
+5cb4cbbd5457a325189b6ec2,electric,demand,,flat,20.0,20.0,6,8,0,24,0,6,6.19388,6.19388,$/kW,adjustment factor of 0.22388
+5cb4cbbd5457a325189b6ec2,electric,demand,,flat,20.0,20.0,9,12,0,24,0,6,0.0,0.0,$/kW,
+5cb4cbbd5457a325189b6ec2,electric,demand,,flat,20.0,20.0,9,12,0,24,0,6,4.54425,4.54425,$/kW,adjustment factor of 0.16425
+5cb4cbbd5457a325189b6ec2,electric,energy,,period0,0,0,1,5,0,24,0,4,0.10127649999999999,0.10127649999999999,$/kWh,
+5cb4cbbd5457a325189b6ec2,electric,energy,,period0,2000.0,2000.0,1,5,0,24,0,4,0.049563399999999994,0.049563399999999994,$/kWh,
+5cb4cbbd5457a325189b6ec2,electric,energy,,period1,2000.0,2000.0,6,8,0,24,0,4,0.11202809999999999,0.11202809999999999,$/kWh,
+5cb4cbbd5457a325189b6ec2,electric,energy,,period1,2000.0,2000.0,6,8,0,24,0,4,0.0541885,0.0541885,$/kWh,
+5cb4cbbd5457a325189b6ec2,electric,energy,,period0,2000.0,2000.0,9,12,0,24,0,4,0.049563399999999994,0.049563399999999994,$/kWh,
+5cb4cbbd5457a325189b6ec2,electric,energy,,period0,0,0,1,5,0,24,5,6,0.10127649999999999,0.10127649999999999,$/kWh,
+5cb4cbbd5457a325189b6ec2,electric,energy,,period0,2000.0,2000.0,1,5,0,24,5,6,0.049563399999999994,0.049563399999999994,$/kWh,
+5cb4cbbd5457a325189b6ec2,electric,energy,,period1,2000.0,2000.0,6,8,0,24,5,6,0.11202809999999999,0.11202809999999999,$/kWh,
+5cb4cbbd5457a325189b6ec2,electric,energy,,period1,2000.0,2000.0,6,8,0,24,5,6,0.0541885,0.0541885,$/kWh,
+5cb4cbbd5457a325189b6ec2,electric,energy,,period0,2000.0,2000.0,9,12,0,24,5,6,0.049563399999999994,0.049563399999999994,$/kWh,

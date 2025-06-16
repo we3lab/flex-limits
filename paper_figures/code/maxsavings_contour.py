@@ -37,7 +37,7 @@ month = 4
 mef_data = getmef(region, month)
 aef_data = getaef(region, month)
 dam_data = getdam(region, month)
-tariff_data = gettariff(region)
+tariff_data = gettariff(region, full_list=False)
 
 # solve max mef savings in parallel for a range of uptime and continuous flex
 uptimes = np.arange(0, 25, 2) / 24  # 1 to 24 hours to percent in intervals

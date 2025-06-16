@@ -1,0 +1,10 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62d0391b6230b463aa3ed097,electric,customer,,,,,,,,,,,275.39,275.39,$/month,https://cdn.entergy-louisiana.com/userfiles/content/price/tariffs/ell_elec_lgs-l.pdf?_ga=2.113447815.1273324538.1657806451-2037587955.1657647225	https://www.entergy-louisiana.com/your_business/eli_tariffs/
+62d0391b6230b463aa3ed097,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+62d0391b6230b463aa3ed097,electric,demand,,flat,60.0,60.0,1,12,0,24,0,6,2.85,2.85,$/kW,
+62d0391b6230b463aa3ed097,electric,energy,,period0,0,0,1,12,0,24,0,4,0.078690102,0.078690102,$/kWh,
+62d0391b6230b463aa3ed097,electric,energy,,period0,30000.0,30000.0,1,12,0,24,0,4,0.06786887900000001,0.06786887900000001,$/kWh,
+62d0391b6230b463aa3ed097,electric,energy,,period0,40000.0,40000.0,1,12,0,24,0,4,0.057273346,0.057273346,$/kWh,
+62d0391b6230b463aa3ed097,electric,energy,,period0,0,0,1,12,0,24,5,6,0.078690102,0.078690102,$/kWh,
+62d0391b6230b463aa3ed097,electric,energy,,period0,30000.0,30000.0,1,12,0,24,5,6,0.06786887900000001,0.06786887900000001,$/kWh,
+62d0391b6230b463aa3ed097,electric,energy,,period0,40000.0,40000.0,1,12,0,24,5,6,0.057273346,0.057273346,$/kWh,

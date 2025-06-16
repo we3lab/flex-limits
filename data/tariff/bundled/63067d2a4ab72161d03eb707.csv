@@ -1,0 +1,19 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63067d2a4ab72161d03eb707,electric,customer,,,,,,,,,,,767.17,767.17,$/month,https://www.cmpco.com/wps/wcm/connect/www.cmpco.com10190/32f85fcf-7d70-4446-9db1-dd2d96d1ec2c/lgssttou.pdf?MOD=AJPERES&amp;CACHEID=ROOTWORKSPACE.Z18_31MEH4C0N8JA30AVT8DPRB2O26-32f85fcf-7d70-4446-9db1-dd2d96d1ec2c-o6CMrt0	https://www.cmpco.com/wps/portal/cmp/account/understandyourbill/pricing/!ut/p/z1/tZJdb4IwFIZ_yy64JKcICl4iYRADfiPQG1IrYo0UZNVt_3510X1kcSxb1ruTnnP69H1fwJAA5uTECiJYxcle1inuZboWur7hoJEVGn00NfQg8rwluu_rEH9uGM-Humww3IWvebo2NAH_ZB7dODZqm18CBky5qMUWUlrWpGiy9x8oaJuTdd4oiFBaHblQ0JHL-kEQvn6ujs2K7fcKqhtGGS_Oq2rK1pD2c9pD5spUzW4XqYaGVqpFzY1q0l6HkI68JP1zd-yEmReMB3aQOePRwk0WkCrICSe2N8tGHzD8C4Z9xYjeMFKJMXjFmFww4jbR8feSxWe0FlfadqSSwbzFsDSkcSeWP0LEq6aUOZn_Trtp5M7kS_8jo49g2BYfme9OEzqh9L4mYqsyvqkg-ZoRSK4ZkRNsdzhgW8au4iJ_EpD8NXd1GUWlpZdqgnbdorSeVC-eBPbdC9eHRJ0!/dz/d5/L2dBISEvZ0FBIS9nQSEh/?WCM_GLOBAL_CONTEXT=%2FCMPAGR_Navigation%2FHeader%2FAccount%2FUnderstandYourBill%2FPricing
+63067d2a4ab72161d03eb707,electric,demand,,flat,0,0,1,12,0,24,0,6,6.1000000000000005,6.1000000000000005,$/kW,adjustment factor of 6.11
+63067d2a4ab72161d03eb707,electric,demand,,period0,0,0,1,12,0,7,0,4,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,demand,,period1,0,0,1,12,7,20,0,4,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,demand,,period0,0,0,1,12,20,24,0,4,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,demand,,period0,0,0,1,3,0,7,5,6,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,demand,,period1,0,0,1,3,7,12,5,6,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,demand,,period0,0,0,1,3,12,16,5,6,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,demand,,period1,0,0,1,3,16,20,5,6,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,demand,,period0,0,0,1,3,20,24,5,6,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,demand,,period0,0,0,4,11,0,24,5,6,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,demand,,period0,0,0,12,12,0,7,5,6,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,demand,,period1,0,0,12,12,7,12,5,6,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,demand,,period0,0,0,12,12,12,16,5,6,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,demand,,period1,0,0,12,12,16,20,5,6,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,demand,,period0,0,0,12,12,20,24,5,6,0.0,0.0,$/kW,
+63067d2a4ab72161d03eb707,electric,energy,,period0,0,0,1,12,0,24,0,4,0.09002099999999999,0.09002099999999999,$/kWh,
+63067d2a4ab72161d03eb707,electric,energy,,period0,0,0,1,12,0,24,5,6,0.09002099999999999,0.09002099999999999,$/kWh,

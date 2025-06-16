@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b4f67d15457a3152cc6d674,electric,customer,,,,,,,,,,,38.17,38.17,$/month,https://www.lbwl.com/uploadedFiles/MainSite/Content/Rates/2018_Electric/General%20Service%20Rate%203%20-%20February%202018.pdf	https://www.lbwl.com/Rates/
+5b4f67d15457a3152cc6d674,electric,energy,,period0,0,0,1,5,0,24,0,4,0.1371,0.1371,$/kWh,
+5b4f67d15457a3152cc6d674,electric,energy,,period1,0,0,6,10,0,24,0,4,0.141,0.141,$/kWh,
+5b4f67d15457a3152cc6d674,electric,energy,,period0,0,0,11,12,0,24,0,4,0.1371,0.1371,$/kWh,
+5b4f67d15457a3152cc6d674,electric,energy,,period0,0,0,1,5,0,24,5,6,0.1371,0.1371,$/kWh,
+5b4f67d15457a3152cc6d674,electric,energy,,period1,0,0,6,10,0,24,5,6,0.141,0.141,$/kWh,
+5b4f67d15457a3152cc6d674,electric,energy,,period0,0,0,11,12,0,24,5,6,0.1371,0.1371,$/kWh,

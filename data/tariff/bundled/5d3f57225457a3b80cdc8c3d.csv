@@ -1,0 +1,19 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5d3f57225457a3b80cdc8c3d,electric,customer,,,,,,,,,,,152.5,152.5,$/month,https://www.delmarva.com/MyAccount/MyBillUsage/Documents/DPL%20MD%20Rate%20Schedule%20Effective%20UOA%20042018%20-%20MD%209473%20Tax%20Rates%20and%20Job%20Act.pdf	https://www.delmarva.com/MyAccount/MyBillUsage/Pages/MD/CurrentTariffsMD.aspx
+5d3f57225457a3b80cdc8c3d,electric,demand,,flat,0,0,1,12,0,24,0,6,13.672543,13.672543,$/kW,adjustment factor of 0.854681
+5d3f57225457a3b80cdc8c3d,electric,energy,,period2,0,0,1,2,0,6,0,4,0.0869012,0.0869012,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period1,0,0,1,2,6,22,0,4,0.0869012,0.0869012,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period2,0,0,1,2,22,24,0,4,0.0869012,0.0869012,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period2,0,0,3,5,0,9,0,4,0.0869012,0.0869012,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period1,0,0,3,5,9,22,0,4,0.0869012,0.0869012,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period2,0,0,3,5,22,24,0,4,0.0869012,0.0869012,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period0,0,0,6,9,0,24,0,4,0.07285620000000001,0.07285620000000001,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period2,0,0,10,10,0,9,0,4,0.0869012,0.0869012,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period1,0,0,10,10,9,22,0,4,0.0869012,0.0869012,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period2,0,0,10,10,22,24,0,4,0.0869012,0.0869012,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period2,0,0,11,12,0,6,0,4,0.0869012,0.0869012,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period1,0,0,11,12,6,22,0,4,0.0869012,0.0869012,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period2,0,0,11,12,22,24,0,4,0.0869012,0.0869012,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period2,0,0,1,5,0,24,5,6,0.0869012,0.0869012,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period0,0,0,6,9,0,24,5,6,0.07285620000000001,0.07285620000000001,$/kWh,
+5d3f57225457a3b80cdc8c3d,electric,energy,,period2,0,0,10,12,0,24,5,6,0.0869012,0.0869012,$/kWh,

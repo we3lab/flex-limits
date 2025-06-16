@@ -1,0 +1,27 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63f637e740df0feaf30a83ec,electric,customer,,,,,,,,,,,39.0,39.0,$/month,https://docs.idahopower.com/pdfs/aboutus/ratesregulatory/tariffs/191.pdf	https://www.idahopower.com/about-us/company-information/rates-and-regulatory/retail-tariffs-idaho/
+63f637e740df0feaf30a83ec,electric,demand,,flat,0,0,1,5,0,24,0,6,5.2299999999999995,5.2299999999999995,$/kW,adjustment factor of 0.93
+63f637e740df0feaf30a83ec,electric,demand,,flat,0,0,6,8,0,24,0,6,6.92,6.92,$/kW,adjustment factor of 0.93
+63f637e740df0feaf30a83ec,electric,demand,,flat,0,0,9,12,0,24,0,6,5.2299999999999995,5.2299999999999995,$/kW,adjustment factor of 0.93
+63f637e740df0feaf30a83ec,electric,demand,,period0,0,0,1,5,0,24,0,4,0.0,0.0,$/kW,
+63f637e740df0feaf30a83ec,electric,demand,,period0,0,0,6,8,0,13,0,4,0.0,0.0,$/kW,
+63f637e740df0feaf30a83ec,electric,demand,,period1,0,0,6,8,13,21,0,4,1.03,1.03,$/kW,
+63f637e740df0feaf30a83ec,electric,demand,,period0,0,0,6,8,21,24,0,4,0.0,0.0,$/kW,
+63f637e740df0feaf30a83ec,electric,demand,,period0,0,0,9,12,0,24,0,4,0.0,0.0,$/kW,
+63f637e740df0feaf30a83ec,electric,demand,,period0,0,0,1,12,0,24,5,6,0.0,0.0,$/kW,
+63f637e740df0feaf30a83ec,electric,energy,,period4,0,0,1,5,0,7,0,4,0.057383,0.057383,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period3,0,0,1,5,7,23,0,4,0.06284200000000001,0.06284200000000001,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period4,0,0,1,5,23,24,0,4,0.057383,0.057383,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period2,0,0,6,8,0,7,0,4,0.060601,0.060601,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period1,0,0,6,8,7,13,0,4,0.066521,0.066521,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period0,0,0,6,8,13,21,0,4,0.080359,0.080359,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period1,0,0,6,8,21,23,0,4,0.066521,0.066521,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period2,0,0,6,8,23,24,0,4,0.060601,0.060601,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period4,0,0,9,12,0,7,0,4,0.057383,0.057383,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period3,0,0,9,12,7,23,0,4,0.06284200000000001,0.06284200000000001,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period4,0,0,9,12,23,24,0,4,0.057383,0.057383,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period4,0,0,1,5,0,24,5,6,0.057383,0.057383,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period2,0,0,6,8,0,7,5,6,0.060601,0.060601,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period1,0,0,6,8,7,23,5,6,0.066521,0.066521,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period2,0,0,6,8,23,24,5,6,0.060601,0.060601,$/kWh,
+63f637e740df0feaf30a83ec,electric,energy,,period4,0,0,9,12,0,24,5,6,0.057383,0.057383,$/kWh,

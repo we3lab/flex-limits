@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b0455cf5457a3c34c0b0e3a,electric,customer,,,,,,,,,,,24.0,24.0,$/month,https://cobbemc.com/sites/cobbemc/files/Current%20Site%20PDFs/Rates-Business/2018/Rate-Schedule-CS-14-TOU-Rate-14T-01012018.pdf	https://www.cobbemc.com/content/commercial-industrial-rates
+5b0455cf5457a3c34c0b0e3a,electric,energy,,period0,0,0,1,5,0,24,0,4,0.09785,0.09785,$/kWh,
+5b0455cf5457a3c34c0b0e3a,electric,energy,,period0,0,0,6,8,0,15,0,4,0.09785,0.09785,$/kWh,
+5b0455cf5457a3c34c0b0e3a,electric,energy,,period1,0,0,6,8,15,20,0,4,0.24415,0.24415,$/kWh,
+5b0455cf5457a3c34c0b0e3a,electric,energy,,period0,0,0,6,8,20,24,0,4,0.09785,0.09785,$/kWh,
+5b0455cf5457a3c34c0b0e3a,electric,energy,,period0,0,0,9,12,0,24,0,4,0.09785,0.09785,$/kWh,
+5b0455cf5457a3c34c0b0e3a,electric,energy,,period0,0,0,1,12,0,24,5,6,0.09785,0.09785,$/kWh,

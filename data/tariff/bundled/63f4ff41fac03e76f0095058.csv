@@ -1,0 +1,9 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63f4ff41fac03e76f0095058,electric,customer,,,,,,,,,,,466.67,466.67,$/month,DISTRIBUTION:https://www.aes-ohio.com/sites/default/files/2021-02/D21%20-%20Primary%20Substation.pdf | TRANSMISSION: https://www.aes-ohio.com/sites/default/files/2022-06/T08%20-%2021%20TCRR-N%206-1-22.pdf || GENERATION: aes-ohio.com/sites/default/files/2022-06/G10%20-%20Standard%20Offer%20Rate%206-1-22.pdf	https://www.aes-ohio.com/rates-tariffs
+63f4ff41fac03e76f0095058,electric,demand,,flat,0,0,1,12,0,24,0,6,3.4496599999999997,3.4496599999999997,$/kW,adjustment factor of 1.77376
+63f4ff41fac03e76f0095058,electric,energy,,period0,0,0,1,12,0,24,0,4,0.1154534,0.1154534,$/kWh,
+63f4ff41fac03e76f0095058,electric,energy,,period0,2000.0,2000.0,1,12,0,24,0,4,0.114993,0.114993,$/kWh,
+63f4ff41fac03e76f0095058,electric,energy,,period0,15000.0,15000.0,1,12,0,24,0,4,0.11443299999999999,0.11443299999999999,$/kWh,
+63f4ff41fac03e76f0095058,electric,energy,,period0,0,0,1,12,0,24,5,6,0.1154534,0.1154534,$/kWh,
+63f4ff41fac03e76f0095058,electric,energy,,period0,2000.0,2000.0,1,12,0,24,5,6,0.114993,0.114993,$/kWh,
+63f4ff41fac03e76f0095058,electric,energy,,period0,15000.0,15000.0,1,12,0,24,5,6,0.11443299999999999,0.11443299999999999,$/kWh,
