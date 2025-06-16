@@ -1,0 +1,14 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5d9b64345457a3dd65598dce,electric,customer,,,,,,,,,,,75.0,75.0,$/month,ISU Documentation
+5d9b64345457a3dd65598dce,electric,demand,,flat,0,0,1,12,0,24,0,6,5.5,5.5,$/kW,
+5d9b64345457a3dd65598dce,electric,demand,,flat,100.0,100.0,1,12,0,24,0,6,5.25,5.25,$/kW,
+5d9b64345457a3dd65598dce,electric,demand,,flat,500.0,500.0,1,12,0,24,0,6,5.1,5.1,$/kW,
+5d9b64345457a3dd65598dce,electric,demand,,flat,2000.0,2000.0,1,12,0,24,0,6,5.0,5.0,$/kW,
+5d9b64345457a3dd65598dce,electric,energy,,period0,0,0,1,12,0,24,0,4,0.09659,0.09659,$/kWh,
+5d9b64345457a3dd65598dce,electric,energy,,period0,100.0,100.0,1,12,0,24,0,4,0.09115999999999999,0.09115999999999999,$/kWh,
+5d9b64345457a3dd65598dce,electric,energy,,period0,300.0,300.0,1,12,0,24,0,4,0.08342,0.08342,$/kWh,
+5d9b64345457a3dd65598dce,electric,energy,,period0,600.0,600.0,1,12,0,24,0,4,0.07998999999999999,0.07998999999999999,$/kWh,
+5d9b64345457a3dd65598dce,electric,energy,,period0,0,0,1,12,0,24,5,6,0.09659,0.09659,$/kWh,
+5d9b64345457a3dd65598dce,electric,energy,,period0,100.0,100.0,1,12,0,24,5,6,0.09115999999999999,0.09115999999999999,$/kWh,
+5d9b64345457a3dd65598dce,electric,energy,,period0,300.0,300.0,1,12,0,24,5,6,0.08342,0.08342,$/kWh,
+5d9b64345457a3dd65598dce,electric,energy,,period0,600.0,600.0,1,12,0,24,5,6,0.07998999999999999,0.07998999999999999,$/kWh,

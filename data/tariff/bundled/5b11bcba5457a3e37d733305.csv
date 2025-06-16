@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b11bcba5457a3e37d733305,electric,customer,,,,,,,,,,,20.0,20.0,$/month,https://www.cityutilities.net/wp-content/uploads/pricing-electric-generallighting.pdf	https://www.cityutilities.net/myaccount/rates/
+5b11bcba5457a3e37d733305,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0839,0.0839,$/kWh,
+5b11bcba5457a3e37d733305,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0839,0.0839,$/kWh,

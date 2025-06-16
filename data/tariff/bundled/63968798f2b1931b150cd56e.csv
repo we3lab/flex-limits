@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63968798f2b1931b150cd56e,electric,customer,,,,,,,,,,,20.33,20.33,$/month,https://www.mytpu.org/wp-content/uploads/All-Schedules-2022.pdf	https://www.mytpu.org/payment-billing/rate-information/power-rates/power-rates-schedule/
+63968798f2b1931b150cd56e,electric,energy,,period0,0,0,1,12,0,24,0,4,0.08863,0.08863,$/kWh,
+63968798f2b1931b150cd56e,electric,energy,,period0,0,0,1,12,0,24,5,6,0.08863,0.08863,$/kWh,

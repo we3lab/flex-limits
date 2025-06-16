@@ -1,0 +1,12 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62be2667170c0b60592e7cc8,electric,customer,,,,,,,,,,,182.1,182.1,$/month,https://www.cpsenergy.com/content/dam/corporate/en/Documents/Rate_LargeLightingPowerService.pdf	https://www.cpsenergy.com/content/corporate/en/about-us/who-we-are/rates.html
+62be2667170c0b60592e7cc8,electric,demand,,period0,0,0,1,5,0,24,0,4,7.81,7.81,$/kW,
+62be2667170c0b60592e7cc8,electric,demand,,period1,0,0,6,9,0,24,0,4,10.41,10.41,$/kW,
+62be2667170c0b60592e7cc8,electric,demand,,period0,0,0,10,12,0,24,0,4,7.81,7.81,$/kW,
+62be2667170c0b60592e7cc8,electric,demand,,period0,0,0,1,5,0,24,5,6,7.81,7.81,$/kW,
+62be2667170c0b60592e7cc8,electric,demand,,period1,0,0,6,9,0,24,5,6,10.41,10.41,$/kW,
+62be2667170c0b60592e7cc8,electric,demand,,period0,0,0,10,12,0,24,5,6,7.81,7.81,$/kW,
+62be2667170c0b60592e7cc8,electric,energy,,period0,0,0,1,12,0,24,0,4,0.09279,0.09279,$/kWh,
+62be2667170c0b60592e7cc8,electric,energy,,period0,200.0,200.0,1,12,0,24,0,4,0.08988,0.08988,$/kWh,
+62be2667170c0b60592e7cc8,electric,energy,,period0,0,0,1,12,0,24,5,6,0.09279,0.09279,$/kWh,
+62be2667170c0b60592e7cc8,electric,energy,,period0,200.0,200.0,1,12,0,24,5,6,0.08988,0.08988,$/kWh,

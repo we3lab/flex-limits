@@ -1,0 +1,18 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63ab6ed1807629f37700f5be,electric,customer,,,,,,,,,,,810.0,810.0,$/month,https://assets.ctfassets.net/416ywc1laqmd/6iAoDWbGKULIlR2vzwe8cv/ff2fdd12a05bb541d71f6be417e46525/Sched_085.pdf	https://www.portlandgeneral.com/our-company/regulatory-documents/tariff#
+63ab6ed1807629f37700f5be,electric,demand,,period0,0,0,1,12,0,6,0,4,3.24,3.24,$/kW,
+63ab6ed1807629f37700f5be,electric,demand,,period0,200.0,200.0,1,12,0,6,0,4,2.04,2.04,$/kW,
+63ab6ed1807629f37700f5be,electric,demand,,period1,0,0,1,12,6,22,0,4,11.65,11.65,$/kW,
+63ab6ed1807629f37700f5be,electric,demand,,period1,200.0,200.0,1,12,6,22,0,4,10.45,10.45,$/kW,
+63ab6ed1807629f37700f5be,electric,demand,,period0,0,0,1,12,22,24,0,4,2.04,2.04,$/kW,
+63ab6ed1807629f37700f5be,electric,demand,,period0,0,0,1,12,0,6,5,6,3.24,3.24,$/kW,
+63ab6ed1807629f37700f5be,electric,demand,,period0,200.0,200.0,1,12,0,6,5,6,2.04,2.04,$/kW,
+63ab6ed1807629f37700f5be,electric,demand,,period1,0,0,1,12,6,22,5,6,11.65,11.65,$/kW,
+63ab6ed1807629f37700f5be,electric,demand,,period1,200.0,200.0,1,12,6,22,5,6,10.45,10.45,$/kW,
+63ab6ed1807629f37700f5be,electric,demand,,period0,0,0,1,12,22,24,5,6,2.04,2.04,$/kW,
+63ab6ed1807629f37700f5be,electric,energy,,period0,0,0,1,12,0,6,0,4,0.0368616,0.0368616,$/kWh,
+63ab6ed1807629f37700f5be,electric,energy,,period1,0,0,1,12,6,22,0,4,0.0516366,0.0516366,$/kWh,
+63ab6ed1807629f37700f5be,electric,energy,,period0,0,0,1,12,22,24,0,4,0.0368616,0.0368616,$/kWh,
+63ab6ed1807629f37700f5be,electric,energy,,period0,0,0,1,12,0,6,5,6,0.0368616,0.0368616,$/kWh,
+63ab6ed1807629f37700f5be,electric,energy,,period1,0,0,1,12,6,22,5,6,0.0516366,0.0516366,$/kWh,
+63ab6ed1807629f37700f5be,electric,energy,,period0,0,0,1,12,22,24,5,6,0.0368616,0.0368616,$/kWh,

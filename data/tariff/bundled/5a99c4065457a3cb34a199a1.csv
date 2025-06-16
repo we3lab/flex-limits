@@ -1,0 +1,12 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5a99c4065457a3cb34a199a1,electric,customer,,,,,,,,,,,22.73,22.73,$/month,https://www.westarenergy.com/Portals/0/Resources/Documents/Tariffs/SGSCO%20eff%2012-2-13.pdf	https://www.westarenergy.com/rates-and-regulations
+5a99c4065457a3cb34a199a1,electric,demand,,flat,0,0,1,5,0,24,0,6,0.0,0.0,$/kW,
+5a99c4065457a3cb34a199a1,electric,demand,,flat,5.0,5.0,1,5,0,24,0,6,1.37,1.37,$/kW,
+5a99c4065457a3cb34a199a1,electric,demand,,flat,5.0,5.0,6,9,0,24,0,6,0.0,0.0,$/kW,
+5a99c4065457a3cb34a199a1,electric,demand,,flat,5.0,5.0,6,9,0,24,0,6,2.5,2.5,$/kW,
+5a99c4065457a3cb34a199a1,electric,demand,,flat,5.0,5.0,10,12,0,24,0,6,0.0,0.0,$/kW,
+5a99c4065457a3cb34a199a1,electric,demand,,flat,5.0,5.0,10,12,0,24,0,6,1.37,1.37,$/kW,
+5a99c4065457a3cb34a199a1,electric,energy,,period0,0,0,1,12,0,24,0,4,0.104095,0.104095,$/kWh,
+5a99c4065457a3cb34a199a1,electric,energy,,period0,1200.0,1200.0,1,12,0,24,0,4,0.084924,0.084924,$/kWh,
+5a99c4065457a3cb34a199a1,electric,energy,,period0,0,0,1,12,0,24,5,6,0.104095,0.104095,$/kWh,
+5a99c4065457a3cb34a199a1,electric,energy,,period0,1200.0,1200.0,1,12,0,24,5,6,0.084924,0.084924,$/kWh,

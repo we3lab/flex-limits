@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+645d2e4f33525f2caf0b5433,electric,customer,,,,,,,,,,,1028.0,1028.0,$/month,https://psc.ky.gov/tariffs/electric/Kenergy%20Corp/Tariff.pdf	https://www.kenergycorp.com/rates/
+645d2e4f33525f2caf0b5433,electric,demand,,flat,0,0,1,12,0,24,0,6,10.715,10.715,$/kW,
+645d2e4f33525f2caf0b5433,electric,energy,,period0,0,0,1,12,0,24,0,4,0.055166,0.055166,$/kWh,
+645d2e4f33525f2caf0b5433,electric,energy,,period0,0,0,1,12,0,24,5,6,0.055166,0.055166,$/kWh,

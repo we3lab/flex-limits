@@ -1,0 +1,18 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+66958250fa529f04690de65e,electric,customer,,,,,,,,,,,10.84,10.84,$/month,https://lge-ku.com/sites/default/files/media/files/downloads/LGE-Electric-Rates-040123.pdf	https://lge-ku.com/regulatory/rates-and-tariffs
+66958250fa529f04690de65e,electric,demand,,period0,0,0,1,4,0,6,0,4,2.39656,2.39656,$/kW,
+66958250fa529f04690de65e,electric,demand,,period1,0,0,1,4,6,12,0,4,7.3343,7.3343,$/kW,
+66958250fa529f04690de65e,electric,demand,,period2,0,0,1,4,12,22,0,4,9.64822,9.64822,$/kW,
+66958250fa529f04690de65e,electric,demand,,period0,0,0,1,4,22,24,0,4,2.39656,2.39656,$/kW,
+66958250fa529f04690de65e,electric,demand,,period0,0,0,5,9,0,10,0,4,2.39656,2.39656,$/kW,
+66958250fa529f04690de65e,electric,demand,,period2,0,0,5,9,10,13,0,4,9.64822,9.64822,$/kW,
+66958250fa529f04690de65e,electric,demand,,period1,0,0,5,9,13,19,0,4,7.3343,7.3343,$/kW,
+66958250fa529f04690de65e,electric,demand,,period2,0,0,5,9,19,22,0,4,9.64822,9.64822,$/kW,
+66958250fa529f04690de65e,electric,demand,,period0,0,0,5,9,22,24,0,4,2.39656,2.39656,$/kW,
+66958250fa529f04690de65e,electric,demand,,period0,0,0,10,12,0,6,0,4,2.39656,2.39656,$/kW,
+66958250fa529f04690de65e,electric,demand,,period1,0,0,10,12,6,12,0,4,7.3343,7.3343,$/kW,
+66958250fa529f04690de65e,electric,demand,,period2,0,0,10,12,12,22,0,4,9.64822,9.64822,$/kW,
+66958250fa529f04690de65e,electric,demand,,period0,0,0,10,12,22,24,0,4,2.39656,2.39656,$/kW,
+66958250fa529f04690de65e,electric,demand,,period0,0,0,1,12,0,24,5,6,2.39656,2.39656,$/kW,
+66958250fa529f04690de65e,electric,energy,,period0,0,0,1,12,0,24,0,4,0.031959999999999995,0.031959999999999995,$/kWh,
+66958250fa529f04690de65e,electric,energy,,period0,0,0,1,12,0,24,5,6,0.031959999999999995,0.031959999999999995,$/kWh,

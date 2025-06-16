@@ -1,0 +1,19 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5d1641965457a3f118de8453,electric,customer,,,,,,,,,,,935.69,935.69,$/month,https://www.kcpl.com/-/media/indexedmedia/my_bill/mo/detailed_tariffs_mo/10mediumgeneralservice-1115.pdf?la=en	http://www.kcpl.com/my-bill/for-home/rate-information/detailed-tariffs
+5d1641965457a3f118de8453,electric,demand,,flat,0,0,1,5,0,24,0,6,4.635,4.635,$/kW,adjustment factor of 2.598
+5d1641965457a3f118de8453,electric,demand,,flat,0,0,6,9,0,24,0,6,6.604,6.604,$/kW,adjustment factor of 2.598
+5d1641965457a3f118de8453,electric,demand,,flat,0,0,10,12,0,24,0,6,4.635,4.635,$/kW,adjustment factor of 2.598
+5d1641965457a3f118de8453,electric,energy,,period1,0,0,1,5,0,24,0,4,0.0972,0.0972,$/kWh,
+5d1641965457a3f118de8453,electric,energy,,period1,180.0,180.0,1,5,0,24,0,4,0.0609,0.0609,$/kWh,
+5d1641965457a3f118de8453,electric,energy,,period1,360.0,360.0,1,5,0,24,0,4,0.05235,0.05235,$/kWh,
+5d1641965457a3f118de8453,electric,energy,,period0,360.0,360.0,6,9,0,24,0,4,0.11139,0.11139,$/kWh,
+5d1641965457a3f118de8453,electric,energy,,period0,180.0,180.0,6,9,0,24,0,4,0.07841999999999999,0.07841999999999999,$/kWh,
+5d1641965457a3f118de8453,electric,energy,,period0,360.0,360.0,6,9,0,24,0,4,0.06717,0.06717,$/kWh,
+5d1641965457a3f118de8453,electric,energy,,period1,360.0,360.0,10,12,0,24,0,4,0.05235,0.05235,$/kWh,
+5d1641965457a3f118de8453,electric,energy,,period1,0,0,1,5,0,24,5,6,0.0972,0.0972,$/kWh,
+5d1641965457a3f118de8453,electric,energy,,period1,180.0,180.0,1,5,0,24,5,6,0.0609,0.0609,$/kWh,
+5d1641965457a3f118de8453,electric,energy,,period1,360.0,360.0,1,5,0,24,5,6,0.05235,0.05235,$/kWh,
+5d1641965457a3f118de8453,electric,energy,,period0,360.0,360.0,6,9,0,24,5,6,0.11139,0.11139,$/kWh,
+5d1641965457a3f118de8453,electric,energy,,period0,180.0,180.0,6,9,0,24,5,6,0.07841999999999999,0.07841999999999999,$/kWh,
+5d1641965457a3f118de8453,electric,energy,,period0,360.0,360.0,6,9,0,24,5,6,0.06717,0.06717,$/kWh,
+5d1641965457a3f118de8453,electric,energy,,period1,360.0,360.0,10,12,0,24,5,6,0.05235,0.05235,$/kWh,

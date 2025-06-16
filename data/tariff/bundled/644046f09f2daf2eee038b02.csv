@@ -1,0 +1,23 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+644046f09f2daf2eee038b02,electric,customer,,,,,,,,,,,580.4625,580.4625,$/month,https://www.rockymountainpower.net/content/dam/pcorp/documents/en/rockymountainpower/rates-regulation/wyoming/price-summary/Wyoming_Price_Summary.pdf	https://www.rockymountainpower.net/about/rates-regulation/wyoming-rates-tariffs.html
+644046f09f2daf2eee038b02,electric,demand,,flat,0,0,1,12,0,24,0,6,2.32185,2.32185,$/kW,adjustment factor of 0.02185
+644046f09f2daf2eee038b02,electric,demand,,period0,0,0,1,12,0,7,0,4,0.0,0.0,$/kW,
+644046f09f2daf2eee038b02,electric,demand,,period1,0,0,1,12,7,9,0,4,20.757,20.757,$/kW,
+644046f09f2daf2eee038b02,electric,demand,,period0,0,0,1,12,9,16,0,4,0.0,0.0,$/kW,
+644046f09f2daf2eee038b02,electric,demand,,period1,0,0,1,12,16,23,0,4,20.757,20.757,$/kW,
+644046f09f2daf2eee038b02,electric,demand,,period0,0,0,1,12,23,24,0,4,0.0,0.0,$/kW,
+644046f09f2daf2eee038b02,electric,demand,,period0,0,0,1,12,0,7,5,6,0.0,0.0,$/kW,
+644046f09f2daf2eee038b02,electric,demand,,period1,0,0,1,12,7,9,5,6,20.757,20.757,$/kW,
+644046f09f2daf2eee038b02,electric,demand,,period0,0,0,1,12,9,16,5,6,0.0,0.0,$/kW,
+644046f09f2daf2eee038b02,electric,demand,,period1,0,0,1,12,16,23,5,6,20.757,20.757,$/kW,
+644046f09f2daf2eee038b02,electric,demand,,period0,0,0,1,12,23,24,5,6,0.0,0.0,$/kW,
+644046f09f2daf2eee038b02,electric,energy,,period0,0,0,1,12,0,7,0,4,0.020913,0.020913,$/kWh,
+644046f09f2daf2eee038b02,electric,energy,,period1,0,0,1,12,7,9,0,4,0.032543,0.032543,$/kWh,
+644046f09f2daf2eee038b02,electric,energy,,period0,0,0,1,12,9,16,0,4,0.020913,0.020913,$/kWh,
+644046f09f2daf2eee038b02,electric,energy,,period1,0,0,1,12,16,23,0,4,0.032543,0.032543,$/kWh,
+644046f09f2daf2eee038b02,electric,energy,,period0,0,0,1,12,23,24,0,4,0.020913,0.020913,$/kWh,
+644046f09f2daf2eee038b02,electric,energy,,period0,0,0,1,12,0,7,5,6,0.020913,0.020913,$/kWh,
+644046f09f2daf2eee038b02,electric,energy,,period1,0,0,1,12,7,9,5,6,0.032543,0.032543,$/kWh,
+644046f09f2daf2eee038b02,electric,energy,,period0,0,0,1,12,9,16,5,6,0.020913,0.020913,$/kWh,
+644046f09f2daf2eee038b02,electric,energy,,period1,0,0,1,12,16,23,5,6,0.032543,0.032543,$/kWh,
+644046f09f2daf2eee038b02,electric,energy,,period0,0,0,1,12,23,24,5,6,0.020913,0.020913,$/kWh,

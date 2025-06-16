@@ -1,0 +1,17 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b4f6c755457a38e72c6d675,electric,customer,,,,,,,,,,,1023.07,1023.07,$/month,https://www.lbwl.com/uploadedFiles/MainSite/Content/Rates/2018_Electric/High%20Load%20Factor%20Rate%2085%20-%20February%202018.pdf	https://www.lbwl.com/Rates/
+5b4f6c755457a38e72c6d675,electric,demand,,flat,0,0,1,12,0,24,0,6,6.15,6.15,$/kW,
+5b4f6c755457a38e72c6d675,electric,demand,,period0,0,0,1,12,0,10,0,4,0.0,0.0,$/kW,
+5b4f6c755457a38e72c6d675,electric,demand,,period1,0,0,1,12,10,18,0,4,17.65,17.65,$/kW,
+5b4f6c755457a38e72c6d675,electric,demand,,period0,0,0,1,12,18,24,0,4,0.0,0.0,$/kW,
+5b4f6c755457a38e72c6d675,electric,demand,,period0,0,0,1,12,0,24,5,6,0.0,0.0,$/kW,
+5b4f6c755457a38e72c6d675,electric,energy,,period1,0,0,1,5,0,10,0,4,0.0477,0.0477,$/kWh,
+5b4f6c755457a38e72c6d675,electric,energy,,period0,0,0,1,5,10,19,0,4,0.0497,0.0497,$/kWh,
+5b4f6c755457a38e72c6d675,electric,energy,,period1,0,0,1,5,19,24,0,4,0.0477,0.0477,$/kWh,
+5b4f6c755457a38e72c6d675,electric,energy,,period1,0,0,6,10,0,10,0,4,0.0477,0.0477,$/kWh,
+5b4f6c755457a38e72c6d675,electric,energy,,period2,0,0,6,10,10,19,0,4,0.0521,0.0521,$/kWh,
+5b4f6c755457a38e72c6d675,electric,energy,,period1,0,0,6,10,19,24,0,4,0.0477,0.0477,$/kWh,
+5b4f6c755457a38e72c6d675,electric,energy,,period1,0,0,11,12,0,10,0,4,0.0477,0.0477,$/kWh,
+5b4f6c755457a38e72c6d675,electric,energy,,period0,0,0,11,12,10,19,0,4,0.0497,0.0497,$/kWh,
+5b4f6c755457a38e72c6d675,electric,energy,,period1,0,0,11,12,19,24,0,4,0.0477,0.0477,$/kWh,
+5b4f6c755457a38e72c6d675,electric,energy,,period1,0,0,1,12,0,24,5,6,0.0477,0.0477,$/kWh,

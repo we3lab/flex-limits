@@ -1,0 +1,15 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63928a3f2f8289f75c0456bc,electric,customer,,,,,,,,,,,102.73,102.73,$/month,https://desitecore10prod-cd.azureedge.net/-/media/pdfs/for-your-home/rates/electric-oh/sheet-no-44-rate-dp-oh-e.pdf?rev=a49713772b324649a03d24df25ba071e	https://www.duke-energy.com/home/billing/rates/electric-tariff
+63928a3f2f8289f75c0456bc,electric,demand,,flat,0,0,1,12,0,24,0,6,8.5888,8.5888,$/kW,adjustment factor of 0.9685
+63928a3f2f8289f75c0456bc,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0745245,0.0745245,$/kWh,
+63928a3f2f8289f75c0456bc,electric,energy,,period0,150.0,150.0,1,12,0,24,0,4,0.0631135,0.0631135,$/kWh,
+63928a3f2f8289f75c0456bc,electric,energy,,period0,300.0,300.0,1,12,0,24,0,4,0.06261850000000001,0.06261850000000001,$/kWh,
+63928a3f2f8289f75c0456bc,electric,energy,,period0,450.0,450.0,1,12,0,24,0,4,0.0621685,0.0621685,$/kWh,
+63928a3f2f8289f75c0456bc,electric,energy,,period0,2000.0,2000.0,1,12,0,24,0,4,0.0617085,0.0617085,$/kWh,
+63928a3f2f8289f75c0456bc,electric,energy,,period0,15000.0,15000.0,1,12,0,24,0,4,0.0611485,0.0611485,$/kWh,
+63928a3f2f8289f75c0456bc,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0745245,0.0745245,$/kWh,
+63928a3f2f8289f75c0456bc,electric,energy,,period0,150.0,150.0,1,12,0,24,5,6,0.0631135,0.0631135,$/kWh,
+63928a3f2f8289f75c0456bc,electric,energy,,period0,300.0,300.0,1,12,0,24,5,6,0.06261850000000001,0.06261850000000001,$/kWh,
+63928a3f2f8289f75c0456bc,electric,energy,,period0,450.0,450.0,1,12,0,24,5,6,0.0621685,0.0621685,$/kWh,
+63928a3f2f8289f75c0456bc,electric,energy,,period0,2000.0,2000.0,1,12,0,24,5,6,0.0617085,0.0617085,$/kWh,
+63928a3f2f8289f75c0456bc,electric,energy,,period0,15000.0,15000.0,1,12,0,24,5,6,0.0611485,0.0611485,$/kWh,

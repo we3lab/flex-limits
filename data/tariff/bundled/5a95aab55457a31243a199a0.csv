@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5a95aab55457a31243a199a0,electric,customer,,,,,,,,,,,10.0,10.0,$/month,https://www.appalachianpower.com/global/utilities/lib/docs/ratesandtariffs/Virginia/PUE_2014_00026-%20Approved_Tariff.pdf	https://www.appalachianpower.com/account/bills/rates/APCORatesTariffsVA.aspx
+5a95aab55457a31243a199a0,electric,energy,,period0,0,0,1,12,0,24,0,4,0.10822000000000001,0.10822000000000001,$/kWh,
+5a95aab55457a31243a199a0,electric,energy,,period0,0,0,1,12,0,24,5,6,0.10822000000000001,0.10822000000000001,$/kWh,

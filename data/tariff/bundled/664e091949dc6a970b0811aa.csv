@@ -1,0 +1,12 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+664e091949dc6a970b0811aa,electric,customer,,,,,,,,,,,29.63,29.63,$/month,https://www.oge.com/wps/wcm/connect/9f40de62-76c9-41d3-96b9-d59d86290127/12.30+-+OGP-TOU+-+Stamped+Approved.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-9f40de62-76c9-41d3-96b9-d59d86290127-oet-U5H	https://www.oge.com/wps/portal/ord/residential/pricing-options/rate-tarrifs/!ut/p/z1/lZLdcoIwEIWfJrdmE5KAvYtCFXQK_oCWmw5MU2RGgUFqX79RR6dUqzV3Sb6zZ87u4hgvcVwkuzxLmrwskrW-v8bijQ5tMfQG4FuRtGFiCOG73YCCJHhxACwKfXAZ9QYj6oAc2faEBzZxTYHjn9_WXGhV_zkcjgMH_BDu6HvsQf0lsNfDH0ee9OeAEPn7gNS0ZpFnwNg46O_mPwN-JB0NMMsMxnPtIB7UDyYjrgFwZMSYAfBP_xsBH_O_BO72L26PyCch0ROA-QvQKYEp-w1cWZGbQO9U4VbIdswrU2gDl232cJyty_S48rJIDSvDca0-VK3qzmetn1dNUz0hQKCKTlmpQuWdss4QJFW1RRDOwqndQ1AnjUKwy9UXAi5USggXnHEzMd5T2uWMEcGuWazKbYOXrdK42oTHs4TczYPNwtrKb1e43IA!/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2XzJIRDZISkcwTzhPUjQwUUIxMzJGREgzT1Ew/
+664e091949dc6a970b0811aa,electric,energy,,period0,0,0,1,4,0,24,0,4,0.046329999999999996,0.046329999999999996,$/kWh,
+664e091949dc6a970b0811aa,electric,energy,,period1,0,0,5,5,0,24,0,4,0.032869999999999996,0.032869999999999996,$/kWh,
+664e091949dc6a970b0811aa,electric,energy,,period2,0,0,6,9,0,14,0,4,0.21093,0.21093,$/kWh,
+664e091949dc6a970b0811aa,electric,energy,,period3,0,0,6,9,14,19,0,4,0.07192000000000001,0.07192000000000001,$/kWh,
+664e091949dc6a970b0811aa,electric,energy,,period2,0,0,6,9,19,24,0,4,0.21093,0.21093,$/kWh,
+664e091949dc6a970b0811aa,electric,energy,,period2,0,0,10,10,0,24,0,4,0.21093,0.21093,$/kWh,
+664e091949dc6a970b0811aa,electric,energy,,period0,0,0,11,12,0,24,0,4,0.046329999999999996,0.046329999999999996,$/kWh,
+664e091949dc6a970b0811aa,electric,energy,,period0,0,0,1,5,0,24,5,6,0.046329999999999996,0.046329999999999996,$/kWh,
+664e091949dc6a970b0811aa,electric,energy,,period1,0,0,6,10,0,24,5,6,0.032869999999999996,0.032869999999999996,$/kWh,
+664e091949dc6a970b0811aa,electric,energy,,period0,0,0,11,12,0,24,5,6,0.046329999999999996,0.046329999999999996,$/kWh,

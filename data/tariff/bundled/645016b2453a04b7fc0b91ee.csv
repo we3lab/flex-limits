@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+645016b2453a04b7fc0b91ee,electric,customer,,,,,,,,,,,1200.0,1200.0,$/month,https://www.mnpower.com/CustomerService/RateBook	https://www.mnpower.com/CustomerService/Rates
+645016b2453a04b7fc0b91ee,electric,demand,,flat,0,0,1,12,0,24,0,6,2.53,2.53,$/kW,adjustment factor of 2.53
+645016b2453a04b7fc0b91ee,electric,demand,,flat,100.0,100.0,1,12,0,24,0,6,14.524000000000001,14.524000000000001,$/kW,adjustment factor of 4.024
+645016b2453a04b7fc0b91ee,electric,energy,,period0,0,0,1,12,0,24,0,4,0.08546200000000001,0.08546200000000001,$/kWh,
+645016b2453a04b7fc0b91ee,electric,energy,,period0,0,0,1,12,0,24,5,6,0.08546200000000001,0.08546200000000001,$/kWh,

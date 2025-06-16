@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+646fa9561baeb24aba01adea,electric,customer,,,,,,,,,,,860.92,860.92,$/month,https://www.hawaiianelectric.com/documents/billing_and_payment/rates/hawaiian_electric_rates/heco_rates_sch_u.pdf	https://www.hawaiianelectric.com/billing-and-payment/rates-and-regulations/effective-rate-summary
+646fa9561baeb24aba01adea,electric,demand,,flat,0,0,1,12,0,24,0,6,23.0,23.0,$/kW,
+646fa9561baeb24aba01adea,electric,energy,,period0,0,0,1,12,0,24,0,4,0.283848,0.283848,$/kWh,
+646fa9561baeb24aba01adea,electric,energy,,period0,0,0,1,12,0,24,5,6,0.283848,0.283848,$/kWh,

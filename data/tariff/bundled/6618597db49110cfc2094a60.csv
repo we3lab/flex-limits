@@ -1,0 +1,23 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6618597db49110cfc2094a60,electric,customer,,,,,,,,,,,15.8,15.8,$/month,https://www.nvenergy.com/publish/content/dam/nvenergy/brochures_arch/about-nvenergy/rates-regulatory/electric-schedules-south/StatementofRates.pdf	https://www.nvenergy.com/about-nvenergy/rates-regulatory/electric-schedules-south
+6618597db49110cfc2094a60,electric,demand,,flat,0,0,1,12,0,24,0,6,2.7,2.7,$/kW,adjustment factor of 2.7
+6618597db49110cfc2094a60,electric,demand,,period0,0,0,1,5,0,24,0,4,1.0,1.0,$/kW,
+6618597db49110cfc2094a60,electric,demand,,period1,0,0,6,9,0,13,0,4,0.0,0.0,$/kW,
+6618597db49110cfc2094a60,electric,demand,,period2,0,0,6,9,13,19,0,4,11.8,11.8,$/kW,
+6618597db49110cfc2094a60,electric,demand,,period1,0,0,6,9,19,24,0,4,0.0,0.0,$/kW,
+6618597db49110cfc2094a60,electric,demand,,period0,0,0,10,12,0,24,0,4,1.0,1.0,$/kW,
+6618597db49110cfc2094a60,electric,demand,,period0,0,0,1,5,0,24,5,6,1.0,1.0,$/kW,
+6618597db49110cfc2094a60,electric,demand,,period1,0,0,6,9,0,13,5,6,0.0,0.0,$/kW,
+6618597db49110cfc2094a60,electric,demand,,period2,0,0,6,9,13,19,5,6,11.8,11.8,$/kW,
+6618597db49110cfc2094a60,electric,demand,,period1,0,0,6,9,19,24,5,6,0.0,0.0,$/kW,
+6618597db49110cfc2094a60,electric,demand,,period0,0,0,10,12,0,24,5,6,1.0,1.0,$/kW,
+6618597db49110cfc2094a60,electric,energy,,period0,0,0,1,5,0,24,0,4,0.10134,0.10134,$/kWh,
+6618597db49110cfc2094a60,electric,energy,,period1,0,0,6,9,0,13,0,4,0.10239000000000001,0.10239000000000001,$/kWh,
+6618597db49110cfc2094a60,electric,energy,,period2,0,0,6,9,13,19,0,4,0.20841,0.20841,$/kWh,
+6618597db49110cfc2094a60,electric,energy,,period1,0,0,6,9,19,24,0,4,0.10239000000000001,0.10239000000000001,$/kWh,
+6618597db49110cfc2094a60,electric,energy,,period0,0,0,10,12,0,24,0,4,0.10134,0.10134,$/kWh,
+6618597db49110cfc2094a60,electric,energy,,period0,0,0,1,5,0,24,5,6,0.10134,0.10134,$/kWh,
+6618597db49110cfc2094a60,electric,energy,,period1,0,0,6,9,0,13,5,6,0.10239000000000001,0.10239000000000001,$/kWh,
+6618597db49110cfc2094a60,electric,energy,,period2,0,0,6,9,13,19,5,6,0.20841,0.20841,$/kWh,
+6618597db49110cfc2094a60,electric,energy,,period1,0,0,6,9,19,24,5,6,0.10239000000000001,0.10239000000000001,$/kWh,
+6618597db49110cfc2094a60,electric,energy,,period0,0,0,10,12,0,24,5,6,0.10134,0.10134,$/kWh,

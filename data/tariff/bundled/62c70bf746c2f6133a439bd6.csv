@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62c70bf746c2f6133a439bd6,electric,customer,,,,,,,,,,,1750.0,1750.0,$/month,"https://cdn-dominionenergy-prd-001.azureedge.net/-/media/pdfs/south-carolina/rates-and-tariffs/rate23.pdf?la=en&rev=819e16694c884765a4b34ef7cf167c04&hash=E011E8033608C855CAE5FED2F7CDAF16
+http://www.sceg.com/NR/rdonlyres/62BF019D-2DCF-42EE-B8EC-9BF54CAE570B/0/rider23.pdf
+
+http://www.sceg.com/NR/rdonlyres/78060303-2E8E-47D8-83EB-819831302B36/0/rider20.pdf	https://www.dominionenergy.com/south-carolina/rates-and-tariffs"
+62c70bf746c2f6133a439bd6,electric,demand,,flat,0,0,1,12,0,24,0,6,15.05,15.05,$/kW,
+62c70bf746c2f6133a439bd6,electric,energy,,period0,0,0,1,12,0,24,0,4,0.046869999999999995,0.046869999999999995,$/kWh,
+62c70bf746c2f6133a439bd6,electric,energy,,period0,0,0,1,12,0,24,5,6,0.046869999999999995,0.046869999999999995,$/kWh,

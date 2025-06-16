@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cdeeb9d5457a3512d40c5d6,electric,customer,,,,,,,,,,,6.0,6.0,$/month,https://www.beachesenergy.com/my-account/residential/commercial-rates	http://www.beachesenergy.com
+5cdeeb9d5457a3512d40c5d6,electric,energy,,period0,0,0,1,12,0,24,0,4,0.10641,0.10641,$/kWh,
+5cdeeb9d5457a3512d40c5d6,electric,energy,,period0,0,0,1,12,0,24,5,6,0.10641,0.10641,$/kWh,

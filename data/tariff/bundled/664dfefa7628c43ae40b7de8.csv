@@ -1,0 +1,10 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+664dfefa7628c43ae40b7de8,electric,customer,,,,,,,,,,,29.63,29.63,$/month,https://www.oge.com/wps/wcm/connect/70edf275-b19f-49a5-b998-4cdbd736e722/12.00+-+OGP-1+Stamped+Approved.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-70edf275-b19f-49a5-b998-4cdbd736e722-mhavEgJ	https://www.oge.com/wps/portal/oge/my-account/billing-payments/oklahoma-rate-tariffs/!ut/p/z1/pZFBT8MwDIV_C4ccaZwsyQq3dB3QDbGtLFrJBaUidJFGWmVlE_-eSohDYVQgfLP13vcsG2tcYO3NwVWmdbU3u65_0OIxpjCBjNFZvBYU5ORK3dwup7BQgDd9wfWcTkHO03TFlynJxgLr__gT9js__FAS_pj_XaCH8Rus-xELokhHgPUd0JxAzr4KTpxoUJB8Ega2mGFd7ery42HSl6O4wjrYZxtsiF5DN962bXOJAIH1Ud1Yb11UhwqBaZo9AnWv8jRBEExrERycPSLgwpaEcMEZH5vRU0kvOGNEsFMR23rf4qKHxs2LUqoAl53r8u0oz94BduPrbg!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/
+664dfefa7628c43ae40b7de8,electric,energy,,period0,0,0,1,4,0,24,0,4,0.04118,0.04118,$/kWh,
+664dfefa7628c43ae40b7de8,electric,energy,,period1,0,0,5,5,0,24,0,4,0.0288,0.0288,$/kWh,
+664dfefa7628c43ae40b7de8,electric,energy,,period2,0,0,6,10,0,24,0,4,0.06429,0.06429,$/kWh,
+664dfefa7628c43ae40b7de8,electric,energy,,period0,0,0,11,12,0,24,0,4,0.04118,0.04118,$/kWh,
+664dfefa7628c43ae40b7de8,electric,energy,,period0,0,0,1,4,0,24,5,6,0.04118,0.04118,$/kWh,
+664dfefa7628c43ae40b7de8,electric,energy,,period1,0,0,5,5,0,24,5,6,0.0288,0.0288,$/kWh,
+664dfefa7628c43ae40b7de8,electric,energy,,period2,0,0,6,10,0,24,5,6,0.06429,0.06429,$/kWh,
+664dfefa7628c43ae40b7de8,electric,energy,,period0,0,0,11,12,0,24,5,6,0.04118,0.04118,$/kWh,

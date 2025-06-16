@@ -1,0 +1,17 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6319f29b3c42094c556d25fe,electric,customer,,,,,,,,,,,35.57,35.57,$/month,https://www.firstenergycorp.com/content/dam/customer/Customer%20Choice/Files/New%20Jersey/tariffs/BPU-13-Part-III-Effective-september12022.pdf	https://www.firstenergycorp.com/content/customer/customer_choice/new_jersey/new_jersey_tariffs.html#gsc.tab=0
+6319f29b3c42094c556d25fe,electric,demand,,flat,0,0,1,5,0,24,0,6,7.82,7.82,$/kW,
+6319f29b3c42094c556d25fe,electric,demand,,flat,0,0,6,9,0,24,0,6,8.36,8.36,$/kW,
+6319f29b3c42094c556d25fe,electric,demand,,flat,0,0,10,12,0,24,0,6,7.82,7.82,$/kW,
+6319f29b3c42094c556d25fe,electric,energy,,period3,0,0,1,5,0,8,0,4,0.084846,0.084846,$/kWh,
+6319f29b3c42094c556d25fe,electric,energy,,period2,0,0,1,5,8,20,0,4,0.116721,0.116721,$/kWh,
+6319f29b3c42094c556d25fe,electric,energy,,period3,0,0,1,5,20,24,0,4,0.084846,0.084846,$/kWh,
+6319f29b3c42094c556d25fe,electric,energy,,period1,0,0,6,9,0,8,0,4,0.082885,0.082885,$/kWh,
+6319f29b3c42094c556d25fe,electric,energy,,period0,0,0,6,9,8,20,0,4,0.122605,0.122605,$/kWh,
+6319f29b3c42094c556d25fe,electric,energy,,period1,0,0,6,9,20,24,0,4,0.082885,0.082885,$/kWh,
+6319f29b3c42094c556d25fe,electric,energy,,period3,0,0,10,12,0,8,0,4,0.084846,0.084846,$/kWh,
+6319f29b3c42094c556d25fe,electric,energy,,period2,0,0,10,12,8,20,0,4,0.116721,0.116721,$/kWh,
+6319f29b3c42094c556d25fe,electric,energy,,period3,0,0,10,12,20,24,0,4,0.084846,0.084846,$/kWh,
+6319f29b3c42094c556d25fe,electric,energy,,period3,0,0,1,5,0,24,5,6,0.084846,0.084846,$/kWh,
+6319f29b3c42094c556d25fe,electric,energy,,period1,0,0,6,9,0,24,5,6,0.082885,0.082885,$/kWh,
+6319f29b3c42094c556d25fe,electric,energy,,period3,0,0,10,12,0,24,5,6,0.084846,0.084846,$/kWh,

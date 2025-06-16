@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63208d148d47b62de36c6dc8,electric,customer,,,,,,,,,,,353.9,353.9,$/month,https://www.peco.com/SiteCollectionDocuments/Rate%20HT%20%20eff%20June%201%202022.pdf	https://www.peco.com/MyAccount/MyBillUsage/Pages/CurrentElectric.aspx
+63208d148d47b62de36c6dc8,electric,demand,,flat,0,0,1,12,0,24,0,6,9.34,9.34,$/kW,adjustment factor of 3.85
+63208d148d47b62de36c6dc8,electric,energy,,period0,0,0,1,12,0,24,0,4,0.01029,0.01029,$/kWh,
+63208d148d47b62de36c6dc8,electric,energy,,period0,0,0,1,12,0,24,5,6,0.01029,0.01029,$/kWh,

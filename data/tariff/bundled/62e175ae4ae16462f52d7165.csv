@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62e175ae4ae16462f52d7165,electric,customer,,,,,,,,,,,2725.94,2725.94,$/month,https://www.mississippipower.com/content/dam/mississippi-power/pdfs/business/pricing-and-rates/standard-application-rates/2022/june/LGS-LV-12.pdf	https://www.mississippipower.com/business/pricing---rates.html
+62e175ae4ae16462f52d7165,electric,demand,,flat,0,0,1,12,0,24,0,6,27.68421052631579,27.68421052631579,$/kW,adjustment factor of 18.05
+62e175ae4ae16462f52d7165,electric,energy,,period0,0,0,1,12,0,24,0,4,0.07671,0.07671,$/kWh,
+62e175ae4ae16462f52d7165,electric,energy,,period0,0,0,1,12,0,24,5,6,0.07671,0.07671,$/kWh,

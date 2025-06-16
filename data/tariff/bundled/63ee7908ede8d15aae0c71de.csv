@@ -1,0 +1,14 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63ee7908ede8d15aae0c71de,electric,customer,,,,,,,,,,,28.97,28.97,$/month,DISTRIBUTION:https://www.aes-ohio.com/sites/default/files/2022-06/D19%20-%20Secondary%206-1-22.pdf | TRANSMISSION: https://www.aes-ohio.com/sites/default/files/2022-06/T08%20-%2021%20TCRR-N%206-1-22.pdf || GENERATION: aes-ohio.com/sites/default/files/2022-06/G10%20-%20Standard%20Offer%20Rate%206-1-22.pdf	http://www.dpandl.com/customer-service/dpl-policies/using-tariffs/customer-tariffs/
+63ee7908ede8d15aae0c71de,electric,demand,,flat,0,0,1,12,0,24,0,6,5.5760000000000005,5.5760000000000005,$/kW,adjustment factor of 1.919
+63ee7908ede8d15aae0c71de,electric,demand,,flat,5.0,5.0,1,12,0,24,0,6,6.388400000000001,6.388400000000001,$/kW,adjustment factor of 1.919
+63ee7908ede8d15aae0c71de,electric,energy,,period0,0,0,1,12,0,24,0,4,0.1238547,0.1238547,$/kWh,
+63ee7908ede8d15aae0c71de,electric,energy,,period0,1500.0,1500.0,1,12,0,24,0,4,0.1200547,0.1200547,$/kWh,
+63ee7908ede8d15aae0c71de,electric,energy,,period0,2000.0,2000.0,1,12,0,24,0,4,0.1195974,0.1195974,$/kWh,
+63ee7908ede8d15aae0c71de,electric,energy,,period0,15000.0,15000.0,1,12,0,24,0,4,0.1190374,0.1190374,$/kWh,
+63ee7908ede8d15aae0c71de,electric,energy,,period0,125000.0,125000.0,1,12,0,24,0,4,0.0180974,0.0180974,$/kWh,
+63ee7908ede8d15aae0c71de,electric,energy,,period0,0,0,1,12,0,24,5,6,0.1238547,0.1238547,$/kWh,
+63ee7908ede8d15aae0c71de,electric,energy,,period0,1500.0,1500.0,1,12,0,24,5,6,0.1200547,0.1200547,$/kWh,
+63ee7908ede8d15aae0c71de,electric,energy,,period0,2000.0,2000.0,1,12,0,24,5,6,0.1195974,0.1195974,$/kWh,
+63ee7908ede8d15aae0c71de,electric,energy,,period0,15000.0,15000.0,1,12,0,24,5,6,0.1190374,0.1190374,$/kWh,
+63ee7908ede8d15aae0c71de,electric,energy,,period0,125000.0,125000.0,1,12,0,24,5,6,0.0180974,0.0180974,$/kWh,

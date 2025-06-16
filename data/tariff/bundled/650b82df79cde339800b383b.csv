@@ -1,0 +1,17 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+650b82df79cde339800b383b,electric,customer,,,,,,,,,,,5.04,5.04,$/month,https://nj.pseg.com/-/media/pseg/public-site/documents/current-electric-tariff/electric-tariff-16-bpu-bgs-nitstec-effective-09012023.ashx	https://nj.pseg.com/aboutpseg/regulatorypage/electrictariffs
+650b82df79cde339800b383b,electric,demand,,flat,0,0,1,5,0,24,0,6,5.302899999999999,5.302899999999999,$/kW,adjustment factor of 1.3001
+650b82df79cde339800b383b,electric,demand,,flat,0,0,6,9,0,24,0,6,15.3407,15.3407,$/kW,adjustment factor of 1.3001
+650b82df79cde339800b383b,electric,demand,,flat,0,0,10,12,0,24,0,6,5.302899999999999,5.302899999999999,$/kW,adjustment factor of 1.3001
+650b82df79cde339800b383b,electric,energy,,period2,0,0,1,5,0,9,0,4,0.094575,0.094575,$/kWh,
+650b82df79cde339800b383b,electric,energy,,period0,0,0,1,5,9,20,0,4,0.09831100000000001,0.09831100000000001,$/kWh,
+650b82df79cde339800b383b,electric,energy,,period2,0,0,1,5,20,24,0,4,0.094575,0.094575,$/kWh,
+650b82df79cde339800b383b,electric,energy,,period3,0,0,6,9,0,9,0,4,0.08492100000000001,0.08492100000000001,$/kWh,
+650b82df79cde339800b383b,electric,energy,,period1,0,0,6,9,9,20,0,4,0.093524,0.093524,$/kWh,
+650b82df79cde339800b383b,electric,energy,,period3,0,0,6,9,20,24,0,4,0.08492100000000001,0.08492100000000001,$/kWh,
+650b82df79cde339800b383b,electric,energy,,period2,0,0,10,12,0,9,0,4,0.094575,0.094575,$/kWh,
+650b82df79cde339800b383b,electric,energy,,period0,0,0,10,12,9,20,0,4,0.09831100000000001,0.09831100000000001,$/kWh,
+650b82df79cde339800b383b,electric,energy,,period2,0,0,10,12,20,24,0,4,0.094575,0.094575,$/kWh,
+650b82df79cde339800b383b,electric,energy,,period2,0,0,1,5,0,24,5,6,0.094575,0.094575,$/kWh,
+650b82df79cde339800b383b,electric,energy,,period3,0,0,6,9,0,24,5,6,0.08492100000000001,0.08492100000000001,$/kWh,
+650b82df79cde339800b383b,electric,energy,,period2,0,0,10,12,0,24,5,6,0.094575,0.094575,$/kWh,

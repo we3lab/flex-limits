@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5d1ccfb15457a3665ea745b6,electric,customer,,,,,,,,,,,190.63,190.63,$/month,https://epb.com/storage/app/media/rates/commercial/GSA%20Summary%20Oct%202016.pdf	https://epb.com/business-solutions/power/rates
+5d1ccfb15457a3665ea745b6,electric,demand,,flat,0,0,1,12,0,24,0,6,16.19,16.19,$/kW,
+5d1ccfb15457a3665ea745b6,electric,demand,,flat,1000.0,1000.0,1,12,0,24,0,6,18.72,18.72,$/kW,
+5d1ccfb15457a3665ea745b6,electric,energy,,period0,0,0,1,12,0,24,0,4,0.058453,0.058453,$/kWh,
+5d1ccfb15457a3665ea745b6,electric,energy,,period0,0,0,1,12,0,24,5,6,0.058453,0.058453,$/kWh,

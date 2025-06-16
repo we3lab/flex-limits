@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b311e715457a34f6f8367be,electric,customer,,,,,,,,,,,310.44,310.44,$/month,http://www.lpandl.com/uploads/downloads/TARIFF-10-1-17_LPL_Elec_Rate.pdf	http://www.lpandl.com/energy-services/rates/
+5b311e715457a34f6f8367be,electric,demand,,flat,0,0,1,12,0,24,0,6,5.15323,5.15323,$/kW,
+5b311e715457a34f6f8367be,electric,energy,,period0,0,0,1,12,0,24,0,4,0.037110000000000004,0.037110000000000004,$/kWh,
+5b311e715457a34f6f8367be,electric,energy,,period0,0,0,1,12,0,24,5,6,0.037110000000000004,0.037110000000000004,$/kWh,

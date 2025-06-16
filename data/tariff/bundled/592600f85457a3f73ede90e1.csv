@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+592600f85457a3f73ede90e1,electric,customer,,,,,,,,,,,160.0,160.0,$/month,"http://www.montana-dakota.com/docs/default-source/rates-tariffs/WYElectricRateSummarySheet
+http://www.montana-dakota.com/rates-and-services/rates-tariffs	http://www.montana-dakota.com/rates-and-services/rates-and-tariffs"
+592600f85457a3f73ede90e1,electric,demand,,flat,0,0,1,12,0,24,0,6,12.0,12.0,$/kW,
+592600f85457a3f73ede90e1,electric,energy,,period0,0,0,1,12,0,24,0,4,0.044520000000000004,0.044520000000000004,$/kWh,
+592600f85457a3f73ede90e1,electric,energy,,period0,0,0,1,12,0,24,5,6,0.044520000000000004,0.044520000000000004,$/kWh,

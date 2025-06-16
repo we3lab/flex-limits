@@ -1,0 +1,18 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5d1a282d5457a3f611a745b6,electric,customer,,,,,,,,,,,43.07,43.07,$/month,https://www.kcpl.com/-/media/indexedmedia/my_bill/mo/detailed_tariffs_mo/electric_rates_and_tariffs/gmo_electric_rates_tariffs_0329_2017.pdf?la=en	https://www.kcpl.com/my-account/rate-information/rate-overviews/commercial-and-industrial-pricing-gmo
+5d1a282d5457a3f611a745b6,electric,demand,,flat,0,0,1,5,0,24,0,6,0.0,0.0,$/kW,
+5d1a282d5457a3f611a745b6,electric,demand,,flat,10.0,10.0,1,5,0,24,0,6,3.14,3.14,$/kW,
+5d1a282d5457a3f611a745b6,electric,demand,,flat,10.0,10.0,6,9,0,24,0,6,0.0,0.0,$/kW,
+5d1a282d5457a3f611a745b6,electric,demand,,flat,10.0,10.0,6,9,0,24,0,6,3.14,3.14,$/kW,
+5d1a282d5457a3f611a745b6,electric,demand,,flat,10.0,10.0,10,12,0,24,0,6,0.0,0.0,$/kW,
+5d1a282d5457a3f611a745b6,electric,demand,,flat,10.0,10.0,10,12,0,24,0,6,3.14,3.14,$/kW,
+5d1a282d5457a3f611a745b6,electric,energy,,period1,0,0,1,5,0,24,0,4,0.09803,0.09803,$/kWh,
+5d1a282d5457a3f611a745b6,electric,energy,,period1,150.0,150.0,1,5,0,24,0,4,0.07813,0.07813,$/kWh,
+5d1a282d5457a3f611a745b6,electric,energy,,period0,150.0,150.0,6,9,0,24,0,4,0.14063,0.14063,$/kWh,
+5d1a282d5457a3f611a745b6,electric,energy,,period0,150.0,150.0,6,9,0,24,0,4,0.10533000000000001,0.10533000000000001,$/kWh,
+5d1a282d5457a3f611a745b6,electric,energy,,period1,150.0,150.0,10,12,0,24,0,4,0.07813,0.07813,$/kWh,
+5d1a282d5457a3f611a745b6,electric,energy,,period1,0,0,1,5,0,24,5,6,0.09803,0.09803,$/kWh,
+5d1a282d5457a3f611a745b6,electric,energy,,period1,150.0,150.0,1,5,0,24,5,6,0.07813,0.07813,$/kWh,
+5d1a282d5457a3f611a745b6,electric,energy,,period0,150.0,150.0,6,9,0,24,5,6,0.14063,0.14063,$/kWh,
+5d1a282d5457a3f611a745b6,electric,energy,,period0,150.0,150.0,6,9,0,24,5,6,0.10533000000000001,0.10533000000000001,$/kWh,
+5d1a282d5457a3f611a745b6,electric,energy,,period1,150.0,150.0,10,12,0,24,5,6,0.07813,0.07813,$/kWh,

@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6303b4e1d9ca8264236c4eb9,electric,customer,,,,,,,,,,,163.45,163.45,$/month,https://www.firstenergycorp.com/content/dam/customer/Customer%20Choice/Files/PA/tariffs/WPP-Tariff-40-Supp-105.pdf	https://www.firstenergycorp.com/customer_choice/pennsylvania/pennsylvania_tariffs.html#WPP
+6303b4e1d9ca8264236c4eb9,electric,demand,,flat,0,0,1,12,0,24,0,6,6.296,6.296,$/kW,adjustment factor of 2.306
+6303b4e1d9ca8264236c4eb9,electric,energy,,period0,0,0,1,12,0,24,0,4,0.09326999999999999,0.09326999999999999,$/kWh,
+6303b4e1d9ca8264236c4eb9,electric,energy,,period0,0,0,1,12,0,24,5,6,0.09326999999999999,0.09326999999999999,$/kWh,

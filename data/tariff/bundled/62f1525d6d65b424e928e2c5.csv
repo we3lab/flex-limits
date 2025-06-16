@@ -1,0 +1,7 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62f1525d6d65b424e928e2c5,electric,customer,,,,,,,,,,,0.0,0.0,$/month,https://www.xcelenergy.com/staticfiles/xe-responsive/Company/Rates%20&%20Regulations/Regulatory%20Filings/PSCo_Electric_Entire_Tariff.pdf	https://www.xcelenergy.com/company/rates_and_regulations/rates/rate_books
+62f1525d6d65b424e928e2c5,electric,demand,,flat,0,0,1,5,0,24,0,6,10.014769999999999,10.014769999999999,$/kW,adjustment factor of 2.41477
+62f1525d6d65b424e928e2c5,electric,demand,,flat,0,0,6,9,0,24,0,6,15.76116,15.76116,$/kW,adjustment factor of 3.08116
+62f1525d6d65b424e928e2c5,electric,demand,,flat,0,0,10,12,0,24,0,6,10.014769999999999,10.014769999999999,$/kW,adjustment factor of 2.41477
+62f1525d6d65b424e928e2c5,electric,energy,,period0,0,0,1,12,0,24,0,4,0.05311916,0.05311916,$/kWh,
+62f1525d6d65b424e928e2c5,electric,energy,,period0,0,0,1,12,0,24,5,6,0.05311916,0.05311916,$/kWh,

@@ -1,0 +1,12 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+650a1a30c18b5d44b90fcd21,electric,customer,,,,,,,,,,,20.0,20.0,$/month,https://www.srpnet.com/assets/srpnet/pdf/price-plans/residential-electric/ratebook.pdf	https://www.srpnet.com/menu/electricres/priceplans.aspx
+650a1a30c18b5d44b90fcd21,electric,energy,,period2,0,0,1,4,0,24,0,4,0.0876,0.0876,$/kWh,
+650a1a30c18b5d44b90fcd21,electric,energy,,period0,0,0,5,6,0,24,0,4,0.1189,0.1189,$/kWh,
+650a1a30c18b5d44b90fcd21,electric,energy,,period1,0,0,7,8,0,24,0,4,0.126,0.126,$/kWh,
+650a1a30c18b5d44b90fcd21,electric,energy,,period0,0,0,9,10,0,24,0,4,0.1189,0.1189,$/kWh,
+650a1a30c18b5d44b90fcd21,electric,energy,,period2,0,0,11,12,0,24,0,4,0.0876,0.0876,$/kWh,
+650a1a30c18b5d44b90fcd21,electric,energy,,period2,0,0,1,4,0,24,5,6,0.0876,0.0876,$/kWh,
+650a1a30c18b5d44b90fcd21,electric,energy,,period0,0,0,5,6,0,24,5,6,0.1189,0.1189,$/kWh,
+650a1a30c18b5d44b90fcd21,electric,energy,,period1,0,0,7,8,0,24,5,6,0.126,0.126,$/kWh,
+650a1a30c18b5d44b90fcd21,electric,energy,,period0,0,0,9,10,0,24,5,6,0.1189,0.1189,$/kWh,
+650a1a30c18b5d44b90fcd21,electric,energy,,period2,0,0,11,12,0,24,5,6,0.0876,0.0876,$/kWh,

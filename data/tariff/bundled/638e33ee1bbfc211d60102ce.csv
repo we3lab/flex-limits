@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+638e33ee1bbfc211d60102ce,electric,customer,,,,,,,,,,,23.06164,23.06164,$/month,https://cdn.entergy-arkansas.com/userfiles/content/price/tariffs/eal_gfs.pdf?_ga=2.203542672.1493478784.1670257083-689127314.1670257083	http://www.entergy-arkansas.com/Your_Business/Business_Tariffs.aspx
+638e33ee1bbfc211d60102ce,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+638e33ee1bbfc211d60102ce,electric,demand,,flat,6.0,6.0,1,12,0,24,0,6,3.94,3.94,$/kW,
+638e33ee1bbfc211d60102ce,electric,energy,,period0,0,0,1,12,0,24,0,4,0.060690999999999995,0.060690999999999995,$/kWh,
+638e33ee1bbfc211d60102ce,electric,energy,,period0,0,0,1,12,0,24,5,6,0.060690999999999995,0.060690999999999995,$/kWh,

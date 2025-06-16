@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b85c8285457a3a8058b4567,electric,customer,,,,,,,,,,,1.0,1.0,$/month,https://www.otpco.com/media/1353/nd_1102.pdf	https://www.otpco.com/pricing/north-dakota/rates-rules-and-regulations-nd/
+5b85c8285457a3a8058b4567,electric,energy,,period1,0,0,1,5,0,24,0,4,0.0621518,0.0621518,$/kWh,
+5b85c8285457a3a8058b4567,electric,energy,,period0,0,0,6,9,0,24,0,4,0.0832121,0.0832121,$/kWh,
+5b85c8285457a3a8058b4567,electric,energy,,period1,0,0,10,12,0,24,0,4,0.0621518,0.0621518,$/kWh,
+5b85c8285457a3a8058b4567,electric,energy,,period1,0,0,1,5,0,24,5,6,0.0621518,0.0621518,$/kWh,
+5b85c8285457a3a8058b4567,electric,energy,,period0,0,0,6,9,0,24,5,6,0.0832121,0.0832121,$/kWh,
+5b85c8285457a3a8058b4567,electric,energy,,period1,0,0,10,12,0,24,5,6,0.0621518,0.0621518,$/kWh,

@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5d76b58f5457a3ed127db2eb,electric,customer,,,,,,,,,,,269.21,269.21,$/month,https://www.firstenergycorp.com/content/dam/customer/Customer%20Choice/Files/PA/tariffs/Met-Ed-Tariff-52-Supp-128.pdf	https://www.firstenergycorp.com/content/customer/customer_choice/pennsylvania/pennsylvania_tariffs.html#Met-Ed
+5d76b58f5457a3ed127db2eb,electric,demand,,flat,0,0,1,12,0,24,0,6,4.689,4.689,$/kW,adjustment factor of 0.529
+5d76b58f5457a3ed127db2eb,electric,energy,,period0,0,0,1,12,0,24,0,4,0.01925,0.01925,$/kWh,
+5d76b58f5457a3ed127db2eb,electric,energy,,period0,0,0,1,12,0,24,5,6,0.01925,0.01925,$/kWh,

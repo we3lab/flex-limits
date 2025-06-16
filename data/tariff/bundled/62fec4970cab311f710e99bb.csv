@@ -1,0 +1,7 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62fec4970cab311f710e99bb,electric,customer,,,,,,,,,,,1100.0,1100.0,$/month,https://www.eversource.com/content/docs/default-source/rates-tariffs/ct-electric/rate-57-ct.pdf?sfvrsn=1940c762_58	https://www.eversource.com/content/ct-c/residential/account-billing/manage-bill/about-your-bill/rates-tariffs/electric-tariffs-rules
+62fec4970cab311f710e99bb,electric,demand,,flat,0,0,1,12,0,24,0,6,16.726315789473684,16.726315789473684,$/kW,adjustment factor of 10.44
+62fec4970cab311f710e99bb,electric,energy,,period0,0,0,1,12,0,12,0,4,0.13691,0.13691,$/kWh,
+62fec4970cab311f710e99bb,electric,energy,,period1,0,0,1,12,12,20,0,4,0.23576999999999998,0.23576999999999998,$/kWh,
+62fec4970cab311f710e99bb,electric,energy,,period0,0,0,1,12,20,24,0,4,0.13691,0.13691,$/kWh,
+62fec4970cab311f710e99bb,electric,energy,,period0,0,0,1,12,0,24,5,6,0.13691,0.13691,$/kWh,

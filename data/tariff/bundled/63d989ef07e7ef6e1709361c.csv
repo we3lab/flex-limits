@@ -1,0 +1,16 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63d989ef07e7ef6e1709361c,electric,customer,,,,,,,,,,,1.4535,1.4535,$/month,https://www.wisconsinpublicservice.com/company/wi_tariffs/cg3otou.pdf	https://www.wisconsinpublicservice.com/company/wi-tariffs
+63d989ef07e7ef6e1709361c,electric,energy,,period0,0,0,1,4,0,8,0,4,0.06822,0.06822,$/kWh,
+63d989ef07e7ef6e1709361c,electric,energy,,period1,0,0,1,4,8,12,0,4,0.23877,0.23877,$/kWh,
+63d989ef07e7ef6e1709361c,electric,energy,,period0,0,0,1,4,12,16,0,4,0.06822,0.06822,$/kWh,
+63d989ef07e7ef6e1709361c,electric,energy,,period1,0,0,1,4,16,21,0,4,0.23877,0.23877,$/kWh,
+63d989ef07e7ef6e1709361c,electric,energy,,period0,0,0,1,4,21,24,0,4,0.06822,0.06822,$/kWh,
+63d989ef07e7ef6e1709361c,electric,energy,,period0,0,0,5,9,0,9,0,4,0.06822,0.06822,$/kWh,
+63d989ef07e7ef6e1709361c,electric,energy,,period1,0,0,5,9,9,19,0,4,0.23877,0.23877,$/kWh,
+63d989ef07e7ef6e1709361c,electric,energy,,period0,0,0,5,9,19,24,0,4,0.06822,0.06822,$/kWh,
+63d989ef07e7ef6e1709361c,electric,energy,,period0,0,0,10,12,0,8,0,4,0.06822,0.06822,$/kWh,
+63d989ef07e7ef6e1709361c,electric,energy,,period1,0,0,10,12,8,12,0,4,0.23877,0.23877,$/kWh,
+63d989ef07e7ef6e1709361c,electric,energy,,period0,0,0,10,12,12,16,0,4,0.06822,0.06822,$/kWh,
+63d989ef07e7ef6e1709361c,electric,energy,,period1,0,0,10,12,16,21,0,4,0.23877,0.23877,$/kWh,
+63d989ef07e7ef6e1709361c,electric,energy,,period0,0,0,10,12,21,24,0,4,0.06822,0.06822,$/kWh,
+63d989ef07e7ef6e1709361c,electric,energy,,period0,0,0,1,12,0,24,5,6,0.06822,0.06822,$/kWh,

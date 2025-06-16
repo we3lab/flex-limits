@@ -1,0 +1,13 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6307f1ca5faa282030445e55,electric,customer,,,,,,,,,,,995.5,995.5,$/month,https://www.nipsco.com/docs/librariesprovider11/rates-and-tariffs/electric-rates/2020-current-rates/table-of-contents/824.pdf?sfvrsn=20544751_7	https://www.nipsco.com/our-company/about-us/regulatory-information/electric-rates
+6307f1ca5faa282030445e55,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+6307f1ca5faa282030445e55,electric,demand,,flat,50.0,50.0,1,12,0,24,0,6,12.3,12.3,$/kW,
+6307f1ca5faa282030445e55,electric,demand,,flat,2000.0,2000.0,1,12,0,24,0,6,11.78,11.78,$/kW,
+6307f1ca5faa282030445e55,electric,energy,,period0,0,0,1,12,0,24,0,4,0.12452099999999999,0.12452099999999999,$/kWh,
+6307f1ca5faa282030445e55,electric,energy,,period0,30000.0,30000.0,1,12,0,24,0,4,0.116821,0.116821,$/kWh,
+6307f1ca5faa282030445e55,electric,energy,,period0,100000.0,100000.0,1,12,0,24,0,4,0.113271,0.113271,$/kWh,
+6307f1ca5faa282030445e55,electric,energy,,period0,1000000.0,1000000.0,1,12,0,24,0,4,0.109671,0.109671,$/kWh,
+6307f1ca5faa282030445e55,electric,energy,,period0,0,0,1,12,0,24,5,6,0.12452099999999999,0.12452099999999999,$/kWh,
+6307f1ca5faa282030445e55,electric,energy,,period0,30000.0,30000.0,1,12,0,24,5,6,0.116821,0.116821,$/kWh,
+6307f1ca5faa282030445e55,electric,energy,,period0,100000.0,100000.0,1,12,0,24,5,6,0.113271,0.113271,$/kWh,
+6307f1ca5faa282030445e55,electric,energy,,period0,1000000.0,1000000.0,1,12,0,24,5,6,0.109671,0.109671,$/kWh,

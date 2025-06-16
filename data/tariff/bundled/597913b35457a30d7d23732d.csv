@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+597913b35457a30d7d23732d,electric,customer,,,,,,,,,,,6.1,6.1,$/month,https://www.firstenergycorp.com/content/dam/customer/Customer%20Choice/Files/New%20York/tariffs/Waverly%20PSC%206%20Tariff-2013.pdf	https://www.firstenergycorp.com/content/customer/customer_choice/new_york/new_york_tariffs.html
+597913b35457a30d7d23732d,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+597913b35457a30d7d23732d,electric,demand,,flat,5.0,5.0,1,12,0,24,0,6,1.83,1.83,$/kW,
+597913b35457a30d7d23732d,electric,energy,,period0,0,0,1,12,0,24,0,4,0.09670000000000001,0.09670000000000001,$/kWh,
+597913b35457a30d7d23732d,electric,energy,,period0,0,0,1,12,0,24,5,6,0.09670000000000001,0.09670000000000001,$/kWh,

@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6377fa066d6fefab3c007eaf,electric,customer,,,,,,,,,,,14.74,14.74,$/month,https://desitecore10prod-cd.azureedge.net/-/media/pdfs/for-your-home/rates/electric-sc/scschedulebc.pdf?rev=5885e9883a754563bf2aac51a23e4156	http://www.duke-energy.com/rates/south-carolina.asp
+6377fa066d6fefab3c007eaf,electric,energy,,period0,0,0,1,12,0,24,0,4,0.068255,0.068255,$/kWh,
+6377fa066d6fefab3c007eaf,electric,energy,,period0,50.0,50.0,1,12,0,24,0,4,0.066792,0.066792,$/kWh,
+6377fa066d6fefab3c007eaf,electric,energy,,period0,0,0,1,12,0,24,5,6,0.068255,0.068255,$/kWh,
+6377fa066d6fefab3c007eaf,electric,energy,,period0,50.0,50.0,1,12,0,24,5,6,0.066792,0.066792,$/kWh,

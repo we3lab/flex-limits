@@ -1,0 +1,10 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6488f28f174417300c099ecd,electric,customer,,,,,,,,,,,1242.7,1242.7,$/month,https://cdn.entergy-neworleans.com/userfiles/content/price/tariffs/enol_elec_mmnr.pdf	https://www.entergy-neworleans.com/your_business/tariffs/
+6488f28f174417300c099ecd,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+6488f28f174417300c099ecd,electric,demand,,flat,100.0,100.0,1,12,0,24,0,6,10.236,10.236,$/kW,adjustment factor of 1.736
+6488f28f174417300c099ecd,electric,energy,,period0,0,0,1,12,0,24,0,4,0.029950000000000004,0.029950000000000004,$/kWh,
+6488f28f174417300c099ecd,electric,energy,,period0,40000.0,40000.0,1,12,0,24,0,4,0.012320000000000001,0.012320000000000001,$/kWh,
+6488f28f174417300c099ecd,electric,energy,,period0,400.0,400.0,1,12,0,24,0,4,0.010279999999999997,0.010279999999999997,$/kWh,
+6488f28f174417300c099ecd,electric,energy,,period0,0,0,1,12,0,24,5,6,0.029950000000000004,0.029950000000000004,$/kWh,
+6488f28f174417300c099ecd,electric,energy,,period0,40000.0,40000.0,1,12,0,24,5,6,0.012320000000000001,0.012320000000000001,$/kWh,
+6488f28f174417300c099ecd,electric,energy,,period0,400.0,400.0,1,12,0,24,5,6,0.010279999999999997,0.010279999999999997,$/kWh,

@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+592dd9fe5457a3fe2571c254,electric,customer,,,,,,,,,,,698.2,698.2,$/month,https://www.mauielectric.com/Documents/my_account/rates/maui_electric_rates_lanai/lanai_rates_sch_p.pdf	https://www.mauielectric.com/my-account/rates-and-regulations/maui-electric-rates---lanai
+592dd9fe5457a3fe2571c254,electric,demand,,flat,0,0,1,12,0,24,0,6,22.0,22.0,$/kW,
+592dd9fe5457a3fe2571c254,electric,energy,,period0,0,0,1,12,0,24,0,4,0.41872600000000004,0.41872600000000004,$/kWh,
+592dd9fe5457a3fe2571c254,electric,energy,,period0,0,0,1,12,0,24,5,6,0.41872600000000004,0.41872600000000004,$/kWh,

@@ -1,0 +1,13 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+590ceb0f5457a303525789ff,electric,customer,,,,,,,,,,,11.05,11.05,$/month,http://www.northwesternenergy.com/account-services/whats-included-in-your-total-bill/tariffs-and-rates/south-dakota-tariffs-and-rates	http://www.northwesternenergy.com/account-services/whats-included-in-your-total-bill/tariffs-and-rates/south-dakota-tariffs-and-rates
+590ceb0f5457a303525789ff,electric,demand,,flat,0,0,1,12,0,24,0,6,1.84,1.84,$/kW,adjustment factor of 1.84
+590ceb0f5457a303525789ff,electric,demand,,flat,100.0,100.0,1,12,0,24,0,6,11.629999999999999,11.629999999999999,$/kW,adjustment factor of 1.84
+590ceb0f5457a303525789ff,electric,demand,,flat,500.0,500.0,1,12,0,24,0,6,10.37,10.37,$/kW,adjustment factor of 1.84
+590ceb0f5457a303525789ff,electric,energy,,period0,0,0,1,12,0,24,0,4,0.06513,0.06513,$/kWh,
+590ceb0f5457a303525789ff,electric,energy,,period0,100.0,100.0,1,12,0,24,0,4,0.0395,0.0395,$/kWh,
+590ceb0f5457a303525789ff,electric,energy,,period0,400.0,400.0,1,12,0,24,0,4,0.03197,0.03197,$/kWh,
+590ceb0f5457a303525789ff,electric,energy,,period0,500.0,500.0,1,12,0,24,0,4,0.02443,0.02443,$/kWh,
+590ceb0f5457a303525789ff,electric,energy,,period0,0,0,1,12,0,24,5,6,0.06513,0.06513,$/kWh,
+590ceb0f5457a303525789ff,electric,energy,,period0,100.0,100.0,1,12,0,24,5,6,0.0395,0.0395,$/kWh,
+590ceb0f5457a303525789ff,electric,energy,,period0,400.0,400.0,1,12,0,24,5,6,0.03197,0.03197,$/kWh,
+590ceb0f5457a303525789ff,electric,energy,,period0,500.0,500.0,1,12,0,24,5,6,0.02443,0.02443,$/kWh,

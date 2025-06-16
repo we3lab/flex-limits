@@ -1,0 +1,12 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63ee555fede8d15aae0c71da,electric,customer,,,,,,,,,,,0.6575,0.6575,$/month,http://www.alliantenergy.com/wcm/groups/wcm_internet/@int/@tariff/documents/document/mdaw/mde1/~edisp/015422.pdf	https://www.alliantenergy.com/accountandbilling/billmeterrates/ratesandtariffs/electricratesiowa#EnergyAdjustmentClause
+63ee555fede8d15aae0c71da,electric,energy,,period0,0,0,1,4,0,24,0,4,0.161104,0.161104,$/kWh,
+63ee555fede8d15aae0c71da,electric,energy,,period0,1200.0,1200.0,1,4,0,24,0,4,0.134714,0.134714,$/kWh,
+63ee555fede8d15aae0c71da,electric,energy,,period1,1200.0,1200.0,5,9,0,24,0,4,0.181514,0.181514,$/kWh,
+63ee555fede8d15aae0c71da,electric,energy,,period1,1200.0,1200.0,5,9,0,24,0,4,0.161844,0.161844,$/kWh,
+63ee555fede8d15aae0c71da,electric,energy,,period0,1200.0,1200.0,10,12,0,24,0,4,0.134714,0.134714,$/kWh,
+63ee555fede8d15aae0c71da,electric,energy,,period0,0,0,1,4,0,24,5,6,0.161104,0.161104,$/kWh,
+63ee555fede8d15aae0c71da,electric,energy,,period0,1200.0,1200.0,1,4,0,24,5,6,0.134714,0.134714,$/kWh,
+63ee555fede8d15aae0c71da,electric,energy,,period1,1200.0,1200.0,5,9,0,24,5,6,0.181514,0.181514,$/kWh,
+63ee555fede8d15aae0c71da,electric,energy,,period1,1200.0,1200.0,5,9,0,24,5,6,0.161844,0.161844,$/kWh,
+63ee555fede8d15aae0c71da,electric,energy,,period0,1200.0,1200.0,10,12,0,24,5,6,0.134714,0.134714,$/kWh,

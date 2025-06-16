@@ -1,0 +1,10 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b1175e85457a34d7b733306,electric,customer,,,,,,,,,,,200.0,200.0,$/month,https://file.sawnee.com/web-docs/rates/SCHS-22-03182015.pdf	https://www.sawnee.com/content/commercial-rate-schedule
+5b1175e85457a34d7b733306,electric,energy,,period0,0,0,1,12,0,24,0,4,0.115,0.115,$/kWh,
+5b1175e85457a34d7b733306,electric,energy,,period0,150.0,150.0,1,12,0,24,0,4,0.052,0.052,$/kWh,
+5b1175e85457a34d7b733306,electric,energy,,period0,300.0,300.0,1,12,0,24,0,4,0.045,0.045,$/kWh,
+5b1175e85457a34d7b733306,electric,energy,,period0,500.0,500.0,1,12,0,24,0,4,0.0424,0.0424,$/kWh,
+5b1175e85457a34d7b733306,electric,energy,,period0,0,0,1,12,0,24,5,6,0.115,0.115,$/kWh,
+5b1175e85457a34d7b733306,electric,energy,,period0,150.0,150.0,1,12,0,24,5,6,0.052,0.052,$/kWh,
+5b1175e85457a34d7b733306,electric,energy,,period0,300.0,300.0,1,12,0,24,5,6,0.045,0.045,$/kWh,
+5b1175e85457a34d7b733306,electric,energy,,period0,500.0,500.0,1,12,0,24,5,6,0.0424,0.0424,$/kWh,

@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5af1eb885457a34f2b618be8,electric,customer,,,,,,,,,,,19.08,19.08,$/month,http://www.mississippipower.com/pdf/rates/T-34.pdf	http://www.mississippipower.com/my-business/our-pricing/rate-and-rider-details
+5af1eb885457a34f2b618be8,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+5af1eb885457a34f2b618be8,electric,demand,,flat,5.0,5.0,1,12,0,24,0,6,5.2,5.2,$/kW,
+5af1eb885457a34f2b618be8,electric,energy,,period0,0,0,1,12,0,24,0,4,0.11383199999999999,0.11383199999999999,$/kWh,
+5af1eb885457a34f2b618be8,electric,energy,,period0,0,0,1,12,0,24,5,6,0.11383199999999999,0.11383199999999999,$/kWh,

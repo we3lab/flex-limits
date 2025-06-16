@@ -1,0 +1,19 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5903799d5457a3d010cd3b42,electric,customer,,,,,,,,,,,69.49,69.49,$/month,https://www.empiredistrict.com/CustomerService/Rates/Electric/MO	https://www.empiredistrict.com/CustomerService/Rates/Electric
+5903799d5457a3d010cd3b42,electric,demand,,flat,0,0,1,5,0,24,0,6,5.01,5.01,$/kW,adjustment factor of 2.13
+5903799d5457a3d010cd3b42,electric,demand,,flat,0,0,6,9,0,24,0,6,5.63,5.63,$/kW,adjustment factor of 2.13
+5903799d5457a3d010cd3b42,electric,demand,,flat,0,0,10,12,0,24,0,6,5.01,5.01,$/kW,adjustment factor of 2.13
+5903799d5457a3d010cd3b42,electric,energy,,period1,0,0,1,5,0,24,0,4,0.07914,0.07914,$/kWh,
+5903799d5457a3d010cd3b42,electric,energy,,period1,150.0,150.0,1,5,0,24,0,4,0.06347,0.06347,$/kWh,
+5903799d5457a3d010cd3b42,electric,energy,,period1,350.0,350.0,1,5,0,24,0,4,0.06222,0.06222,$/kWh,
+5903799d5457a3d010cd3b42,electric,energy,,period0,350.0,350.0,6,9,0,24,0,4,0.10459,0.10459,$/kWh,
+5903799d5457a3d010cd3b42,electric,energy,,period0,150.0,150.0,6,9,0,24,0,4,0.08114,0.08114,$/kWh,
+5903799d5457a3d010cd3b42,electric,energy,,period0,350.0,350.0,6,9,0,24,0,4,0.07307,0.07307,$/kWh,
+5903799d5457a3d010cd3b42,electric,energy,,period1,350.0,350.0,10,12,0,24,0,4,0.06222,0.06222,$/kWh,
+5903799d5457a3d010cd3b42,electric,energy,,period1,0,0,1,5,0,24,5,6,0.07914,0.07914,$/kWh,
+5903799d5457a3d010cd3b42,electric,energy,,period1,150.0,150.0,1,5,0,24,5,6,0.06347,0.06347,$/kWh,
+5903799d5457a3d010cd3b42,electric,energy,,period1,350.0,350.0,1,5,0,24,5,6,0.06222,0.06222,$/kWh,
+5903799d5457a3d010cd3b42,electric,energy,,period0,350.0,350.0,6,9,0,24,5,6,0.10459,0.10459,$/kWh,
+5903799d5457a3d010cd3b42,electric,energy,,period0,150.0,150.0,6,9,0,24,5,6,0.08114,0.08114,$/kWh,
+5903799d5457a3d010cd3b42,electric,energy,,period0,350.0,350.0,6,9,0,24,5,6,0.07307,0.07307,$/kWh,
+5903799d5457a3d010cd3b42,electric,energy,,period1,350.0,350.0,10,12,0,24,5,6,0.06222,0.06222,$/kWh,

@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5ab549095457a34a7fc1d590,electric,customer,,,,,,,,,,,12.55,12.55,$/month,"https://lge-ku.com/sites/default/files/kuelecrates.pdf
+https://lge-ku.com/sites/default/files/ku_billing_adj.pdf	https://lge-ku.com/regulatory/rates-and-tariffs"
+5ab549095457a34a7fc1d590,electric,energy,,period0,0,0,1,12,0,24,0,4,0.090058,0.090058,$/kWh,
+5ab549095457a34a7fc1d590,electric,energy,,period0,0,0,1,12,0,24,5,6,0.090058,0.090058,$/kWh,

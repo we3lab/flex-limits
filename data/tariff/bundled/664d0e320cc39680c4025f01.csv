@@ -1,0 +1,13 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+664d0e320cc39680c4025f01,electric,customer,,,,,,,,,,,135.26,135.26,$/month,https://www.oge.com/wps/wcm/connect/a7c666a1-0fb9-4744-859d-55e65e52bb72/18.00+-+LPL+TOU+-+Stamped+Approved.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-a7c666a1-0fb9-4744-859d-55e65e52bb72-oen86lE	https://www.oge.com/wps/portal/ord/residential/pricing-options/rate-tarrifs/!ut/p/z1/lZLdcoIwEIWfJrdmE5KAvYtCFXQK_oCWmw5MU2RGgUFqX79RR6dUqzV3Sb6zZ87u4hgvcVwkuzxLmrwskrW-v8bijQ5tMfQG4FuRtGFiCOG73YCCJHhxACwKfXAZ9QYj6oAc2faEBzZxTYHjn9_WXGhV_zkcjgMH_BDu6HvsQf0lsNfDH0ee9OeAEPn7gNS0ZpFnwNg46O_mPwN-JB0NMMsMxnPtIB7UDyYjrgFwZMSYAfBP_xsBH_O_BO72L26PyCch0ROA-QvQKYEp-w1cWZGbQO9U4VbIdswrU2gDl232cJyty_S48rJIDSvDca0-VK3qzmetn1dNUz0hQKCKTlmpQuWdss4QJFW1RRDOwqndQ1AnjUKwy9UXAi5USggXnHEzMd5T2uWMEcGuWazKbYOXrdK42oTHs4TczYPNwtrKb1e43IA!/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2XzJIRDZISkcwTzhPUjQwUUIxMzJGREgzT1Ew/
+664d0e320cc39680c4025f01,electric,demand,,flat,0,0,1,12,0,24,0,6,8.66,8.66,$/kW,
+664d0e320cc39680c4025f01,electric,energy,,period0,0,0,1,4,0,24,0,4,0.03023,0.03023,$/kWh,
+664d0e320cc39680c4025f01,electric,energy,,period1,0,0,5,5,0,24,0,4,0.01677,0.01677,$/kWh,
+664d0e320cc39680c4025f01,electric,energy,,period4,0,0,6,10,0,14,0,4,0.02483,0.02483,$/kWh,
+664d0e320cc39680c4025f01,electric,energy,,period3,0,0,6,10,14,19,0,4,0.11472000000000002,0.11472000000000002,$/kWh,
+664d0e320cc39680c4025f01,electric,energy,,period4,0,0,6,10,19,24,0,4,0.02483,0.02483,$/kWh,
+664d0e320cc39680c4025f01,electric,energy,,period2,0,0,11,12,0,24,0,4,0.025670000000000002,0.025670000000000002,$/kWh,
+664d0e320cc39680c4025f01,electric,energy,,period0,0,0,1,4,0,24,5,6,0.03023,0.03023,$/kWh,
+664d0e320cc39680c4025f01,electric,energy,,period1,0,0,5,5,0,24,5,6,0.01677,0.01677,$/kWh,
+664d0e320cc39680c4025f01,electric,energy,,period4,0,0,6,10,0,24,5,6,0.02483,0.02483,$/kWh,
+664d0e320cc39680c4025f01,electric,energy,,period2,0,0,11,12,0,24,5,6,0.025670000000000002,0.025670000000000002,$/kWh,

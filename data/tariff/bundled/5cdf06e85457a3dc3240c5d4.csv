@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cdf06e85457a3dc3240c5d4,electric,customer,,,,,,,,,,,15.0,15.0,$/month,http://www.ocalafl.org/uploadedFiles/Utility_Services_Redesign/Rate_%20Booklet_June_2012.pdf	http://www.ocalafl.org/us/
+5cdf06e85457a3dc3240c5d4,electric,energy,,period0,0,0,1,12,0,24,0,4,0.08623,0.08623,$/kWh,
+5cdf06e85457a3dc3240c5d4,electric,energy,,period0,0,0,1,12,0,24,5,6,0.08623,0.08623,$/kWh,

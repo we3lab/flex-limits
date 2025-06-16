@@ -1,0 +1,17 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cdc8d5f5457a31b7940c5d4,electric,customer,,,,,,,,,,,38.0,38.0,$/month,https://www.ouc.com/docs/rates---elctric-water-meter/ouc_sc_tariff_rates.pdf?sfvrsn=a080a15b_0	http://www.ouc.com/business/service-rates-costs/electric-rates
+5cdc8d5f5457a31b7940c5d4,electric,demand,,flat,0,0,1,12,0,24,0,6,9.0,9.0,$/kW,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period0,0,0,1,3,0,6,0,4,0.05627,0.05627,$/kWh,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period1,0,0,1,3,6,10,0,4,0.07205,0.07205,$/kWh,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period0,0,0,1,3,10,18,0,4,0.05627,0.05627,$/kWh,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period1,0,0,1,3,18,22,0,4,0.07205,0.07205,$/kWh,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period0,0,0,1,3,22,24,0,4,0.05627,0.05627,$/kWh,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period0,0,0,4,10,0,12,0,4,0.05627,0.05627,$/kWh,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period1,0,0,4,10,12,21,0,4,0.07205,0.07205,$/kWh,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period0,0,0,4,10,21,24,0,4,0.05627,0.05627,$/kWh,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period0,0,0,11,12,0,6,0,4,0.05627,0.05627,$/kWh,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period1,0,0,11,12,6,10,0,4,0.07205,0.07205,$/kWh,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period0,0,0,11,12,10,18,0,4,0.05627,0.05627,$/kWh,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period1,0,0,11,12,18,22,0,4,0.07205,0.07205,$/kWh,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period0,0,0,11,12,22,24,0,4,0.05627,0.05627,$/kWh,
+5cdc8d5f5457a31b7940c5d4,electric,energy,,period0,0,0,1,12,0,24,5,6,0.05627,0.05627,$/kWh,

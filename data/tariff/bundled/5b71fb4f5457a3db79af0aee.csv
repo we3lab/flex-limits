@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b71fb4f5457a3db79af0aee,electric,customer,,,,,,,,,,,57.5,57.5,$/month,https://www.appalachianpower.com/global/utilities/lib/docs/ratesandtariffs/Tennessee/2017-11-10%20KgPCo%20Tariff%202-MSTRP.pdf	https://www.appalachianpower.com/account/bills/rates/APCORatesTariffsTN.aspx
+5b71fb4f5457a3db79af0aee,electric,energy,,period0,0,0,1,12,0,24,0,4,0.09752000000000001,0.09752000000000001,$/kWh,
+5b71fb4f5457a3db79af0aee,electric,energy,,period0,0,0,1,12,0,24,5,6,0.09752000000000001,0.09752000000000001,$/kWh,

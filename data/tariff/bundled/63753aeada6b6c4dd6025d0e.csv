@@ -1,0 +1,17 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63753aeada6b6c4dd6025d0e,electric,customer,,,,,,,,,,,656.772,656.772,$/month,https://www.firstenergycorp.com/content/dam/customer/Customer%20Choice/Files/Ohio/tariffs/OE-2022-Electric-Service.pdf	https://www.firstenergycorp.com/content/customer/customer_choice/ohio_/ohio_tariffs.html#gsc.tab=0
+63753aeada6b6c4dd6025d0e,electric,demand,,flat,0,0,1,12,0,24,0,6,6.568583157894738,6.568583157894738,$/kW,adjustment factor of 5.402154
+63753aeada6b6c4dd6025d0e,electric,energy,,period0,0,0,1,5,0,24,0,4,0.055412699999999995,0.055412699999999995,$/kWh,
+63753aeada6b6c4dd6025d0e,electric,energy,,period0,2000.0,2000.0,1,5,0,24,0,4,0.0549527,0.0549527,$/kWh,
+63753aeada6b6c4dd6025d0e,electric,energy,,period0,15000.0,15000.0,1,5,0,24,0,4,0.054411999999999995,0.054411999999999995,$/kWh,
+63753aeada6b6c4dd6025d0e,electric,energy,,period1,15000.0,15000.0,6,8,0,24,0,4,0.0636897,0.0636897,$/kWh,
+63753aeada6b6c4dd6025d0e,electric,energy,,period1,2000.0,2000.0,6,8,0,24,0,4,0.0632297,0.0632297,$/kWh,
+63753aeada6b6c4dd6025d0e,electric,energy,,period1,15000.0,15000.0,6,8,0,24,0,4,0.062689,0.062689,$/kWh,
+63753aeada6b6c4dd6025d0e,electric,energy,,period0,15000.0,15000.0,9,12,0,24,0,4,0.054411999999999995,0.054411999999999995,$/kWh,
+63753aeada6b6c4dd6025d0e,electric,energy,,period0,0,0,1,5,0,24,5,6,0.055412699999999995,0.055412699999999995,$/kWh,
+63753aeada6b6c4dd6025d0e,electric,energy,,period0,2000.0,2000.0,1,5,0,24,5,6,0.0549527,0.0549527,$/kWh,
+63753aeada6b6c4dd6025d0e,electric,energy,,period0,15000.0,15000.0,1,5,0,24,5,6,0.054411999999999995,0.054411999999999995,$/kWh,
+63753aeada6b6c4dd6025d0e,electric,energy,,period1,15000.0,15000.0,6,8,0,24,5,6,0.0636897,0.0636897,$/kWh,
+63753aeada6b6c4dd6025d0e,electric,energy,,period1,2000.0,2000.0,6,8,0,24,5,6,0.0632297,0.0632297,$/kWh,
+63753aeada6b6c4dd6025d0e,electric,energy,,period1,15000.0,15000.0,6,8,0,24,5,6,0.062689,0.062689,$/kWh,
+63753aeada6b6c4dd6025d0e,electric,energy,,period0,15000.0,15000.0,9,12,0,24,5,6,0.054411999999999995,0.054411999999999995,$/kWh,

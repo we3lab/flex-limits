@@ -1,0 +1,13 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62e15dc8f39cb15ca37f589b,electric,customer,,,,,,,,,,,2.24,2.24,$/month,https://www.mississippipower.com/content/dam/mississippi-power/pdfs/business/pricing-and-rates/standard-application-rates/2022/june/GS-HV-16.pdf	https://www.mississippipower.com/business/pricing---rates.html
+62e15dc8f39cb15ca37f589b,electric,demand,,flat,0,0,1,12,0,24,0,6,2.0,2.0,$/kW,
+62e15dc8f39cb15ca37f589b,electric,energy,,period1,0,0,1,4,0,24,0,4,0.129137,0.129137,$/kWh,
+62e15dc8f39cb15ca37f589b,electric,energy,,period1,39000.0,39000.0,1,4,0,24,0,4,0.11121700000000001,0.11121700000000001,$/kWh,
+62e15dc8f39cb15ca37f589b,electric,energy,,period0,39000.0,39000.0,5,10,0,24,0,4,0.129857,0.129857,$/kWh,
+62e15dc8f39cb15ca37f589b,electric,energy,,period0,39000.0,39000.0,5,10,0,24,0,4,0.111517,0.111517,$/kWh,
+62e15dc8f39cb15ca37f589b,electric,energy,,period1,39000.0,39000.0,11,12,0,24,0,4,0.11121700000000001,0.11121700000000001,$/kWh,
+62e15dc8f39cb15ca37f589b,electric,energy,,period1,0,0,1,4,0,24,5,6,0.129137,0.129137,$/kWh,
+62e15dc8f39cb15ca37f589b,electric,energy,,period1,39000.0,39000.0,1,4,0,24,5,6,0.11121700000000001,0.11121700000000001,$/kWh,
+62e15dc8f39cb15ca37f589b,electric,energy,,period0,39000.0,39000.0,5,10,0,24,5,6,0.129857,0.129857,$/kWh,
+62e15dc8f39cb15ca37f589b,electric,energy,,period0,39000.0,39000.0,5,10,0,24,5,6,0.111517,0.111517,$/kWh,
+62e15dc8f39cb15ca37f589b,electric,energy,,period1,39000.0,39000.0,11,12,0,24,5,6,0.11121700000000001,0.11121700000000001,$/kWh,

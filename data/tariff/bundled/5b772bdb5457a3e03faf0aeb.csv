@@ -1,0 +1,11 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b772bdb5457a3e03faf0aeb,electric,customer,,,,,,,,,,,235.19,235.19,$/month,https://www.cwlp.com/Departments/ElectricDeptHome/ElectricInformation/ElectricRates.aspx	https://www.cwlp.com/Departments/ElectricDeptHome/ElectricInformation/ElectricRates.aspx
+5b772bdb5457a3e03faf0aeb,electric,demand,,flat,0,0,1,4,0,24,0,6,11.89,11.89,$/kW,
+5b772bdb5457a3e03faf0aeb,electric,demand,,flat,0,0,5,8,0,24,0,6,14.01,14.01,$/kW,
+5b772bdb5457a3e03faf0aeb,electric,demand,,flat,0,0,9,12,0,24,0,6,11.89,11.89,$/kW,
+5b772bdb5457a3e03faf0aeb,electric,energy,,period0,0,0,1,4,0,24,0,4,0.08778999999999999,0.08778999999999999,$/kWh,
+5b772bdb5457a3e03faf0aeb,electric,energy,,period1,0,0,5,8,0,24,0,4,0.09619,0.09619,$/kWh,
+5b772bdb5457a3e03faf0aeb,electric,energy,,period0,0,0,9,12,0,24,0,4,0.08778999999999999,0.08778999999999999,$/kWh,
+5b772bdb5457a3e03faf0aeb,electric,energy,,period0,0,0,1,4,0,24,5,6,0.08778999999999999,0.08778999999999999,$/kWh,
+5b772bdb5457a3e03faf0aeb,electric,energy,,period1,0,0,5,8,0,24,5,6,0.09619,0.09619,$/kWh,
+5b772bdb5457a3e03faf0aeb,electric,energy,,period0,0,0,9,12,0,24,5,6,0.08778999999999999,0.08778999999999999,$/kWh,

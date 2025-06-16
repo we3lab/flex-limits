@@ -1,0 +1,19 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+648c83ee58dd6aa5ff092960,electric,customer,,,,,,,,,,,724.76,724.76,$/month,https://www.evergy.com/-/media/documents/billing/kansas-metro/detailed-tariffs/large-general-service-01012021.pdf	https://www.evergy.com/manage-account/rate-information-link/how-rates-are-set/rate-overviews/detailed-tariffs
+648c83ee58dd6aa5ff092960,electric,demand,,flat,0,0,1,4,0,24,0,6,8.37404,8.37404,$/kW,adjustment factor of 5.08704
+648c83ee58dd6aa5ff092960,electric,demand,,flat,0,0,5,9,0,24,0,6,9.783999999999999,9.783999999999999,$/kW,adjustment factor of 3.287
+648c83ee58dd6aa5ff092960,electric,demand,,flat,0,0,10,12,0,24,0,6,8.37404,8.37404,$/kW,adjustment factor of 5.08704
+648c83ee58dd6aa5ff092960,electric,energy,,period0,0,0,1,4,0,24,0,4,0.08394800000000001,0.08394800000000001,$/kWh,
+648c83ee58dd6aa5ff092960,electric,energy,,period0,180.0,180.0,1,4,0,24,0,4,0.059128,0.059128,$/kWh,
+648c83ee58dd6aa5ff092960,electric,energy,,period0,360.0,360.0,1,4,0,24,0,4,0.049158,0.049158,$/kWh,
+648c83ee58dd6aa5ff092960,electric,energy,,period1,360.0,360.0,5,9,0,24,0,4,0.083958,0.083958,$/kWh,
+648c83ee58dd6aa5ff092960,electric,energy,,period1,180.0,180.0,5,9,0,24,0,4,0.065618,0.065618,$/kWh,
+648c83ee58dd6aa5ff092960,electric,energy,,period1,360.0,360.0,5,9,0,24,0,4,0.045828,0.045828,$/kWh,
+648c83ee58dd6aa5ff092960,electric,energy,,period0,360.0,360.0,10,12,0,24,0,4,0.049158,0.049158,$/kWh,
+648c83ee58dd6aa5ff092960,electric,energy,,period0,0,0,1,4,0,24,5,6,0.08394800000000001,0.08394800000000001,$/kWh,
+648c83ee58dd6aa5ff092960,electric,energy,,period0,180.0,180.0,1,4,0,24,5,6,0.059128,0.059128,$/kWh,
+648c83ee58dd6aa5ff092960,electric,energy,,period0,360.0,360.0,1,4,0,24,5,6,0.049158,0.049158,$/kWh,
+648c83ee58dd6aa5ff092960,electric,energy,,period1,360.0,360.0,5,9,0,24,5,6,0.083958,0.083958,$/kWh,
+648c83ee58dd6aa5ff092960,electric,energy,,period1,180.0,180.0,5,9,0,24,5,6,0.065618,0.065618,$/kWh,
+648c83ee58dd6aa5ff092960,electric,energy,,period1,360.0,360.0,5,9,0,24,5,6,0.045828,0.045828,$/kWh,
+648c83ee58dd6aa5ff092960,electric,energy,,period0,360.0,360.0,10,12,0,24,5,6,0.049158,0.049158,$/kWh,

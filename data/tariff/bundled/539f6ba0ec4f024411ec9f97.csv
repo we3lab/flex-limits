@@ -1,0 +1,14 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+539f6ba0ec4f024411ec9f97,electric,customer,,,,,,,,,,,58.87,58.87,$/month,http://www.riversideca.gov/utilities/elec-provrate.asp
+539f6ba0ec4f024411ec9f97,electric,energy,,period0,0,0,1,4,0,16,0,4,0.0496,0.0496,$/kWh,
+539f6ba0ec4f024411ec9f97,electric,energy,,period1,0,0,1,4,16,22,0,4,0.2045,0.2045,$/kWh,
+539f6ba0ec4f024411ec9f97,electric,energy,,period0,0,0,1,4,22,24,0,4,0.0496,0.0496,$/kWh,
+539f6ba0ec4f024411ec9f97,electric,energy,,period2,0,0,5,10,0,12,0,4,0.0624,0.0624,$/kWh,
+539f6ba0ec4f024411ec9f97,electric,energy,,period3,0,0,5,10,12,20,0,4,0.2367,0.2367,$/kWh,
+539f6ba0ec4f024411ec9f97,electric,energy,,period2,0,0,5,10,20,24,0,4,0.0624,0.0624,$/kWh,
+539f6ba0ec4f024411ec9f97,electric,energy,,period0,0,0,11,12,0,16,0,4,0.0496,0.0496,$/kWh,
+539f6ba0ec4f024411ec9f97,electric,energy,,period1,0,0,11,12,16,22,0,4,0.2045,0.2045,$/kWh,
+539f6ba0ec4f024411ec9f97,electric,energy,,period0,0,0,11,12,22,24,0,4,0.0496,0.0496,$/kWh,
+539f6ba0ec4f024411ec9f97,electric,energy,,period0,0,0,1,4,0,24,5,6,0.0496,0.0496,$/kWh,
+539f6ba0ec4f024411ec9f97,electric,energy,,period2,0,0,5,10,0,24,5,6,0.0624,0.0624,$/kWh,
+539f6ba0ec4f024411ec9f97,electric,energy,,period0,0,0,11,12,0,24,5,6,0.0496,0.0496,$/kWh,

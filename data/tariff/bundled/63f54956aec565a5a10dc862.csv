@@ -1,0 +1,18 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63f54956aec565a5a10dc862,electric,customer,,,,,,,,,,,16.0,16.0,$/month,https://docs.idahopower.com/pdfs/aboutus/ratesregulatory/tariffs/38.pdf	https://www.idahopower.com/about-us/company-information/rates-and-regulatory/retail-tariffs-idaho/
+63f54956aec565a5a10dc862,electric,demand,,flat,0,0,1,5,0,24,0,6,0.0,0.0,$/kW,
+63f54956aec565a5a10dc862,electric,demand,,flat,20.0,20.0,1,5,0,24,0,6,5.48,5.48,$/kW,adjustment factor of 1.03
+63f54956aec565a5a10dc862,electric,demand,,flat,20.0,20.0,6,8,0,24,0,6,0.0,0.0,$/kW,
+63f54956aec565a5a10dc862,electric,demand,,flat,20.0,20.0,6,8,0,24,0,6,7.09,7.09,$/kW,adjustment factor of 1.03
+63f54956aec565a5a10dc862,electric,demand,,flat,20.0,20.0,9,12,0,24,0,6,0.0,0.0,$/kW,
+63f54956aec565a5a10dc862,electric,demand,,flat,20.0,20.0,9,12,0,24,0,6,5.48,5.48,$/kW,adjustment factor of 1.03
+63f54956aec565a5a10dc862,electric,energy,,period0,0,0,1,5,0,24,0,4,0.10905000000000001,0.10905000000000001,$/kWh,
+63f54956aec565a5a10dc862,electric,energy,,period0,2000.0,2000.0,1,5,0,24,0,4,0.056937,0.056937,$/kWh,
+63f54956aec565a5a10dc862,electric,energy,,period1,2000.0,2000.0,6,8,0,24,0,4,0.11988399999999999,0.11988399999999999,$/kWh,
+63f54956aec565a5a10dc862,electric,energy,,period1,2000.0,2000.0,6,8,0,24,0,4,0.061597,0.061597,$/kWh,
+63f54956aec565a5a10dc862,electric,energy,,period0,2000.0,2000.0,9,12,0,24,0,4,0.056937,0.056937,$/kWh,
+63f54956aec565a5a10dc862,electric,energy,,period0,0,0,1,5,0,24,5,6,0.10905000000000001,0.10905000000000001,$/kWh,
+63f54956aec565a5a10dc862,electric,energy,,period0,2000.0,2000.0,1,5,0,24,5,6,0.056937,0.056937,$/kWh,
+63f54956aec565a5a10dc862,electric,energy,,period1,2000.0,2000.0,6,8,0,24,5,6,0.11988399999999999,0.11988399999999999,$/kWh,
+63f54956aec565a5a10dc862,electric,energy,,period1,2000.0,2000.0,6,8,0,24,5,6,0.061597,0.061597,$/kWh,
+63f54956aec565a5a10dc862,electric,energy,,period0,2000.0,2000.0,9,12,0,24,5,6,0.056937,0.056937,$/kWh,

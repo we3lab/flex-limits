@@ -1,0 +1,10 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5d3f22485457a3d71ddc8c3c,electric,customer,,,,,,,,,,,98.97,98.97,$/month,https://greenmountainpower.com/wp-content/uploads/2019/01/Rate-63-65-Comml-Ind-TOU-1-3-19.pdf	http://www.greenmountainpower.com/rates/
+5d3f22485457a3d71ddc8c3c,electric,demand,,period0,0,0,1,12,0,6,0,4,4.867,4.867,$/kW,
+5d3f22485457a3d71ddc8c3c,electric,demand,,period1,0,0,1,12,6,22,0,4,16.679,16.679,$/kW,
+5d3f22485457a3d71ddc8c3c,electric,demand,,period0,0,0,1,12,22,24,0,4,4.867,4.867,$/kW,
+5d3f22485457a3d71ddc8c3c,electric,demand,,period0,0,0,1,12,0,24,5,6,4.867,4.867,$/kW,
+5d3f22485457a3d71ddc8c3c,electric,energy,,period0,0,0,1,12,0,6,0,4,0.07162,0.07162,$/kWh,
+5d3f22485457a3d71ddc8c3c,electric,energy,,period1,0,0,1,12,6,22,0,4,0.09555999999999999,0.09555999999999999,$/kWh,
+5d3f22485457a3d71ddc8c3c,electric,energy,,period0,0,0,1,12,22,24,0,4,0.07162,0.07162,$/kWh,
+5d3f22485457a3d71ddc8c3c,electric,energy,,period0,0,0,1,12,0,24,5,6,0.07162,0.07162,$/kWh,

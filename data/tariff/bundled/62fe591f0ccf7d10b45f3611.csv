@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62fe591f0ccf7d10b45f3611,electric,customer,,,,,,,,,,,0.0,0.0,$/month,"http://pse.com/aboutpse/Rates/Documents/elec_sch_049.pdf
+http://pse.com/aboutpse/Rates/Documents/summ_elec_prices_2017_01_30.pdf	https://www.pse.com/pages/rates/schedule-summaries#sort=%40documentdate%20descending&f:ServiceType=[Electric]"
+62fe591f0ccf7d10b45f3611,electric,demand,,flat,0,0,1,12,0,24,0,6,5.947368421052632,5.947368421052632,$/kW,
+62fe591f0ccf7d10b45f3611,electric,energy,,period0,0,0,1,12,0,24,0,4,0.062598,0.062598,$/kWh,
+62fe591f0ccf7d10b45f3611,electric,energy,,period0,0,0,1,12,0,24,5,6,0.062598,0.062598,$/kWh,

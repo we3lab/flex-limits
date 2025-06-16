@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+646fa8c8145b24c88d0af860,electric,customer,,,,,,,,,,,810.92,810.92,$/month,https://www.hawaiianelectric.com/documents/billing_and_payment/rates/effective_rate_summary/efs_2023_05.pdf	https://www.hawaiianelectric.com/billing-and-payment/rates-and-regulations/effective-rate-summary
+646fa8c8145b24c88d0af860,electric,demand,,flat,0,0,1,12,0,24,0,6,26.5,26.5,$/kW,
+646fa8c8145b24c88d0af860,electric,energy,,period0,0,0,1,12,0,24,0,4,0.293804,0.293804,$/kWh,
+646fa8c8145b24c88d0af860,electric,energy,,period0,0,0,1,12,0,24,5,6,0.293804,0.293804,$/kWh,

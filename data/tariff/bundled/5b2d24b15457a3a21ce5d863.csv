@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b2d24b15457a3a21ce5d863,electric,customer,,,,,,,,,,,28.0,28.0,$/month,https://www.otpco.com/media/1303/mn_903.pdf	https://www.otpco.com/pricing/minnesota/rates-rules-and-regulations-mn/
+5b2d24b15457a3a21ce5d863,electric,energy,,period1,0,0,1,5,0,24,0,4,0.088752,0.088752,$/kWh,
+5b2d24b15457a3a21ce5d863,electric,energy,,period0,0,0,6,9,0,24,0,4,0.1075743,0.1075743,$/kWh,
+5b2d24b15457a3a21ce5d863,electric,energy,,period1,0,0,10,12,0,24,0,4,0.088752,0.088752,$/kWh,
+5b2d24b15457a3a21ce5d863,electric,energy,,period1,0,0,1,5,0,24,5,6,0.088752,0.088752,$/kWh,
+5b2d24b15457a3a21ce5d863,electric,energy,,period0,0,0,6,9,0,24,5,6,0.1075743,0.1075743,$/kWh,
+5b2d24b15457a3a21ce5d863,electric,energy,,period1,0,0,10,12,0,24,5,6,0.088752,0.088752,$/kWh,

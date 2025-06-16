@@ -1,0 +1,11 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5ae8b91c5457a34026a3d164,electric,customer,,,,,,,,,,,32.3,32.3,$/month,"https://www.xcelenergy.com/staticfiles/xe-responsive/Marketing/tx_sps_e_entire.pdf	https://www.xcelenergy.com/company/rates_and_regulations/rates/texas_rates,_rights,_&_service_rules"
+5ae8b91c5457a34026a3d164,electric,demand,,flat,0,0,1,12,0,24,0,6,9.996,9.996,$/kW,adjustment factor of 0.326
+5ae8b91c5457a34026a3d164,electric,energy,,period0,0,0,1,5,0,24,0,4,0.039141,0.039141,$/kWh,
+5ae8b91c5457a34026a3d164,electric,energy,,period1,0,0,6,9,0,13,0,4,0.039141,0.039141,$/kWh,
+5ae8b91c5457a34026a3d164,electric,energy,,period2,0,0,6,9,13,19,0,4,0.18209,0.18209,$/kWh,
+5ae8b91c5457a34026a3d164,electric,energy,,period1,0,0,6,9,19,24,0,4,0.039141,0.039141,$/kWh,
+5ae8b91c5457a34026a3d164,electric,energy,,period0,0,0,10,12,0,24,0,4,0.039141,0.039141,$/kWh,
+5ae8b91c5457a34026a3d164,electric,energy,,period0,0,0,1,5,0,24,5,6,0.039141,0.039141,$/kWh,
+5ae8b91c5457a34026a3d164,electric,energy,,period1,0,0,6,9,0,24,5,6,0.039141,0.039141,$/kWh,
+5ae8b91c5457a34026a3d164,electric,energy,,period0,0,0,10,12,0,24,5,6,0.039141,0.039141,$/kWh,

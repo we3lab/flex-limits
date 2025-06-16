@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b1189f15457a3ad76733307,electric,customer,,,,,,,,,,,5.5,5.5,$/month,http://www.azcc.gov/Divisions/Utilities/Tariff/Electric/The%20Morenci%20Water%20and%20Electric%20Company.pdf	http://www.azcc.gov/Divisions/Utilities/Tariff/Tariffs-elect.asp
+5b1189f15457a3ad76733307,electric,energy,,period0,0,0,1,12,0,24,0,4,0.07628,0.07628,$/kWh,
+5b1189f15457a3ad76733307,electric,energy,,period0,0,0,1,12,0,24,5,6,0.07628,0.07628,$/kWh,

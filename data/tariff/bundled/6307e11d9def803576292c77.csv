@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6307e11d9def803576292c77,electric,customer,,,,,,,,,,,30.0,30.0,$/month,https://www.nipsco.com/docs/librariesprovider11/rates-and-tariffs/electric-rates/2020-current-rates/table-of-contents/821.pdf?sfvrsn=17574751_7	https://www.nipsco.com/our-company/about-us/regulatory-information/electric-rates
+6307e11d9def803576292c77,electric,energy,,period0,0,0,1,12,0,24,0,4,0.179961,0.179961,$/kWh,
+6307e11d9def803576292c77,electric,energy,,period0,0,0,1,12,0,24,5,6,0.179961,0.179961,$/kWh,

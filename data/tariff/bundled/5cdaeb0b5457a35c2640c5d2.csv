@@ -1,0 +1,10 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cdaeb0b5457a35c2640c5d2,electric,customer,,,,,,,,,,,271.39,271.39,$/month,https://www.ameren.com/-/media/rates/files/illinois/2018/aiifmappatrb318.ashx	https://www.ameren.com/illinois/business/rates/electric-rates
+5cdaeb0b5457a35c2640c5d2,electric,energy,,period0,0,0,1,5,0,24,0,4,0.0857867,0.0857867,$/kWh,
+5cdaeb0b5457a35c2640c5d2,electric,energy,,period0,2000.0,2000.0,1,5,0,24,0,4,0.0740467,0.0740467,$/kWh,
+5cdaeb0b5457a35c2640c5d2,electric,energy,,period1,2000.0,2000.0,6,9,0,24,0,4,0.1068567,0.1068567,$/kWh,
+5cdaeb0b5457a35c2640c5d2,electric,energy,,period0,2000.0,2000.0,10,12,0,24,0,4,0.0740467,0.0740467,$/kWh,
+5cdaeb0b5457a35c2640c5d2,electric,energy,,period0,0,0,1,5,0,24,5,6,0.0857867,0.0857867,$/kWh,
+5cdaeb0b5457a35c2640c5d2,electric,energy,,period0,2000.0,2000.0,1,5,0,24,5,6,0.0740467,0.0740467,$/kWh,
+5cdaeb0b5457a35c2640c5d2,electric,energy,,period1,2000.0,2000.0,6,9,0,24,5,6,0.1068567,0.1068567,$/kWh,
+5cdaeb0b5457a35c2640c5d2,electric,energy,,period0,2000.0,2000.0,10,12,0,24,5,6,0.0740467,0.0740467,$/kWh,

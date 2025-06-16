@@ -1,0 +1,16 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+646fa7feeb955d66360a84ee,electric,customer,,,,,,,,,,,375.0,375.0,$/month,"https://www.hawaiianelectric.com/documents/billing_and_payment/rates/hawaiian_electric_rates/heco_rates_sch_u.pdf
+https://www.hawaiianelectric.com/documents/billing_and_payment/rates/effective_rate_summary/efs_2023_05.pdf	https://www.hawaiianelectric.com/billing-and-payment/rates-and-regulations/effective-rate-summary"
+646fa7feeb955d66360a84ee,electric,demand,,period0,0,0,1,12,0,7,0,4,0.0,0.0,$/kW,
+646fa7feeb955d66360a84ee,electric,demand,,period2,0,0,1,12,7,17,0,4,27.5,27.5,$/kW,
+646fa7feeb955d66360a84ee,electric,demand,,period1,0,0,1,12,17,21,0,4,30.5,30.5,$/kW,
+646fa7feeb955d66360a84ee,electric,demand,,period0,0,0,1,12,21,24,0,4,0.0,0.0,$/kW,
+646fa7feeb955d66360a84ee,electric,demand,,period0,0,0,1,12,0,7,5,6,0.0,0.0,$/kW,
+646fa7feeb955d66360a84ee,electric,demand,,period2,0,0,1,12,7,21,5,6,27.5,27.5,$/kW,
+646fa7feeb955d66360a84ee,electric,demand,,period0,0,0,1,12,21,24,5,6,0.0,0.0,$/kW,
+646fa7feeb955d66360a84ee,electric,energy,,period0,0,0,1,12,0,7,0,4,0.305103,0.305103,$/kWh,
+646fa7feeb955d66360a84ee,electric,energy,,period1,0,0,1,12,7,21,0,4,0.314116,0.314116,$/kWh,
+646fa7feeb955d66360a84ee,electric,energy,,period0,0,0,1,12,21,24,0,4,0.305103,0.305103,$/kWh,
+646fa7feeb955d66360a84ee,electric,energy,,period0,0,0,1,12,0,7,5,6,0.305103,0.305103,$/kWh,
+646fa7feeb955d66360a84ee,electric,energy,,period1,0,0,1,12,7,21,5,6,0.314116,0.314116,$/kWh,
+646fa7feeb955d66360a84ee,electric,energy,,period0,0,0,1,12,21,24,5,6,0.305103,0.305103,$/kWh,

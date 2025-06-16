@@ -1,0 +1,16 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62fd189725af804798561a08,electric,customer,,,,,,,,,,,58.63,58.63,$/month,https://www.psoklahoma.com/lib/docs/ratesandtariffs/Oklahoma/PSO%20Tariff%20Package%20Complete%20July%202022.pdf	https://www.psoklahoma.com/company/about/rates/
+62fd189725af804798561a08,electric,energy,,period1,0,0,1,5,0,24,0,4,0.056595,0.056595,$/kWh,
+62fd189725af804798561a08,electric,energy,,period1,150.0,150.0,1,5,0,24,0,4,0.047264999999999995,0.047264999999999995,$/kWh,
+62fd189725af804798561a08,electric,energy,,period1,300.0,300.0,1,5,0,24,0,4,0.031224999999999996,0.031224999999999996,$/kWh,
+62fd189725af804798561a08,electric,energy,,period0,300.0,300.0,6,10,0,24,0,4,0.079405,0.079405,$/kWh,
+62fd189725af804798561a08,electric,energy,,period0,150.0,150.0,6,10,0,24,0,4,0.068745,0.068745,$/kWh,
+62fd189725af804798561a08,electric,energy,,period0,300.0,300.0,6,10,0,24,0,4,0.033885,0.033885,$/kWh,
+62fd189725af804798561a08,electric,energy,,period1,300.0,300.0,11,12,0,24,0,4,0.031224999999999996,0.031224999999999996,$/kWh,
+62fd189725af804798561a08,electric,energy,,period1,0,0,1,5,0,24,5,6,0.056595,0.056595,$/kWh,
+62fd189725af804798561a08,electric,energy,,period1,150.0,150.0,1,5,0,24,5,6,0.047264999999999995,0.047264999999999995,$/kWh,
+62fd189725af804798561a08,electric,energy,,period1,300.0,300.0,1,5,0,24,5,6,0.031224999999999996,0.031224999999999996,$/kWh,
+62fd189725af804798561a08,electric,energy,,period0,300.0,300.0,6,10,0,24,5,6,0.079405,0.079405,$/kWh,
+62fd189725af804798561a08,electric,energy,,period0,150.0,150.0,6,10,0,24,5,6,0.068745,0.068745,$/kWh,
+62fd189725af804798561a08,electric,energy,,period0,300.0,300.0,6,10,0,24,5,6,0.033885,0.033885,$/kWh,
+62fd189725af804798561a08,electric,energy,,period1,300.0,300.0,11,12,0,24,5,6,0.031224999999999996,0.031224999999999996,$/kWh,

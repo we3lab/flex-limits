@@ -1,0 +1,12 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cb6395f5457a3c70d9b6ec2,electric,customer,,,,,,,,,,,54.0,54.0,$/month,"https://www.rockymountainpower.net/content/dam/rocky_mountain_power/doc/About_Us/Rates_and_Regulation/Utah/Approved_Tariffs/Rate_Schedules/General_Service_Distribution_Voltage.pdf
+https://www.rockymountainpower.net/content/dam/rocky_mountain_power/doc/About_Us/Rates_and_Regulation/Utah/Approved_Tariffs/Rate_Schedules/Transition_Program_for_Customer_Generators.pdf	https://www.rockymountainpower.net/about/rar/uri.html"
+5cb6395f5457a3c70d9b6ec2,electric,demand,,flat,0,0,1,4,0,24,0,6,15.030000000000001,15.030000000000001,$/kW,adjustment factor of 4.12
+5cb6395f5457a3c70d9b6ec2,electric,demand,,flat,0,0,5,9,0,24,0,6,18.77,18.77,$/kW,adjustment factor of 4.15
+5cb6395f5457a3c70d9b6ec2,electric,demand,,flat,0,0,10,12,0,24,0,6,15.030000000000001,15.030000000000001,$/kW,adjustment factor of 4.12
+5cb6395f5457a3c70d9b6ec2,electric,energy,,period0,0,0,1,4,0,24,0,4,0.0353995,0.0353995,$/kWh,
+5cb6395f5457a3c70d9b6ec2,electric,energy,,period1,0,0,5,9,0,24,0,4,0.0384053,0.0384053,$/kWh,
+5cb6395f5457a3c70d9b6ec2,electric,energy,,period0,0,0,10,12,0,24,0,4,0.0353995,0.0353995,$/kWh,
+5cb6395f5457a3c70d9b6ec2,electric,energy,,period0,0,0,1,4,0,24,5,6,0.0353995,0.0353995,$/kWh,
+5cb6395f5457a3c70d9b6ec2,electric,energy,,period1,0,0,5,9,0,24,5,6,0.0384053,0.0384053,$/kWh,
+5cb6395f5457a3c70d9b6ec2,electric,energy,,period0,0,0,10,12,0,24,5,6,0.0353995,0.0353995,$/kWh,

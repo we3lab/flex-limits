@@ -1,0 +1,16 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62c70a6c40a0c425535d387b,electric,customer,,,,,,,,,,,22.0,22.0,$/month,https://cdn-dominionenergy-prd-001.azureedge.net/-/media/pdfs/south-carolina/rates-and-tariffs/rate9.pdf?la=en&rev=6f247fb68c354ba2b9133bff818d105f&hash=2404E181503EC911E9F8A8AA789C4170	https://www.dominionenergy.com/south-carolina/rates-and-tariffs
+62c70a6c40a0c425535d387b,electric,demand,,flat,0,0,1,5,0,24,0,6,0.0,0.0,$/kW,
+62c70a6c40a0c425535d387b,electric,demand,,flat,0,0,6,9,0,24,0,6,0.0,0.0,$/kW,
+62c70a6c40a0c425535d387b,electric,demand,,flat,250.0,250.0,6,9,0,24,0,6,4.052631578947369,4.052631578947369,$/kW,
+62c70a6c40a0c425535d387b,electric,demand,,flat,250.0,250.0,10,12,0,24,0,6,0.0,0.0,$/kW,
+62c70a6c40a0c425535d387b,electric,energy,,period1,0,0,1,5,0,24,0,4,0.12323,0.12323,$/kWh,
+62c70a6c40a0c425535d387b,electric,energy,,period1,3000.0,3000.0,1,5,0,24,0,4,0.11532,0.11532,$/kWh,
+62c70a6c40a0c425535d387b,electric,energy,,period0,3000.0,3000.0,6,9,0,24,0,4,0.12323,0.12323,$/kWh,
+62c70a6c40a0c425535d387b,electric,energy,,period0,3000.0,3000.0,6,9,0,24,0,4,0.13057,0.13057,$/kWh,
+62c70a6c40a0c425535d387b,electric,energy,,period1,3000.0,3000.0,10,12,0,24,0,4,0.11532,0.11532,$/kWh,
+62c70a6c40a0c425535d387b,electric,energy,,period1,0,0,1,5,0,24,5,6,0.12323,0.12323,$/kWh,
+62c70a6c40a0c425535d387b,electric,energy,,period1,3000.0,3000.0,1,5,0,24,5,6,0.11532,0.11532,$/kWh,
+62c70a6c40a0c425535d387b,electric,energy,,period0,3000.0,3000.0,6,9,0,24,5,6,0.12323,0.12323,$/kWh,
+62c70a6c40a0c425535d387b,electric,energy,,period0,3000.0,3000.0,6,9,0,24,5,6,0.13057,0.13057,$/kWh,
+62c70a6c40a0c425535d387b,electric,energy,,period1,3000.0,3000.0,10,12,0,24,5,6,0.11532,0.11532,$/kWh,

@@ -1,0 +1,21 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+60ba80fc5457a39d117ef40f,electric,customer,,,,,,,,,,,240.25,240.25,$/month,https://www.sce.com/NR/sc3/tm2/pdf/ce116-12.pdf	https://www.sce.com/regulatory/tariff-books/rates-pricing-choices/business-rates
+60ba80fc5457a39d117ef40f,electric,demand,,flat,0,0,1,12,0,24,0,6,11.53,11.53,$/kW,adjustment factor of 0.0
+60ba80fc5457a39d117ef40f,electric,energy,,period0,0,0,1,5,0,8,0,4,0.07403,0.07403,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period1,0,0,1,5,8,14,0,4,0.08144,0.08144,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period2,0,0,1,5,14,20,0,4,0.08532,0.08532,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period1,0,0,1,5,20,22,0,4,0.08144,0.08144,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period0,0,0,1,5,22,24,0,4,0.07403,0.07403,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period3,0,0,6,9,0,8,0,4,0.06982,0.06982,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period4,0,0,6,9,8,14,0,4,0.08965,0.08965,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period5,0,0,6,9,14,20,0,4,0.44614,0.44614,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period4,0,0,6,9,20,22,0,4,0.08965,0.08965,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period3,0,0,6,9,22,24,0,4,0.06982,0.06982,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period0,0,0,10,12,0,8,0,4,0.07403,0.07403,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period1,0,0,10,12,8,14,0,4,0.08144,0.08144,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period2,0,0,10,12,14,20,0,4,0.08532,0.08532,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period1,0,0,10,12,20,22,0,4,0.08144,0.08144,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period0,0,0,10,12,22,24,0,4,0.07403,0.07403,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period0,0,0,1,5,0,24,5,6,0.07403,0.07403,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period3,0,0,6,9,0,24,5,6,0.06982,0.06982,$/kWh,
+60ba80fc5457a39d117ef40f,electric,energy,,period0,0,0,10,12,0,24,5,6,0.07403,0.07403,$/kWh,

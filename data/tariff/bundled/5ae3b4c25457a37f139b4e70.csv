@@ -1,0 +1,12 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5ae3b4c25457a37f139b4e70,electric,customer,,,,,,,,,,,11.0,11.0,$/month,https://www.georgiapower.com/content/dam/georgia-power/pdfs/business-pdfs/rates-schedules/8.10-fs.pdf	https://www.georgiapower.com/business/billing-and-rates/business-rates.html
+5ae3b4c25457a37f139b4e70,electric,energy,,period2,0,0,1,5,0,24,0,4,0.113117,0.113117,$/kWh,
+5ae3b4c25457a37f139b4e70,electric,energy,,period2,650.0,650.0,1,5,0,24,0,4,0.069781,0.069781,$/kWh,
+5ae3b4c25457a37f139b4e70,electric,energy,,period1,650.0,650.0,6,9,0,14,0,4,0.113117,0.113117,$/kWh,
+5ae3b4c25457a37f139b4e70,electric,energy,,period0,0,0,6,9,14,19,0,4,0.26075099999999996,0.26075099999999996,$/kWh,
+5ae3b4c25457a37f139b4e70,electric,energy,,period1,0,0,6,9,19,24,0,4,0.113117,0.113117,$/kWh,
+5ae3b4c25457a37f139b4e70,electric,energy,,period2,0,0,10,12,0,24,0,4,0.069781,0.069781,$/kWh,
+5ae3b4c25457a37f139b4e70,electric,energy,,period2,0,0,1,5,0,24,5,6,0.113117,0.113117,$/kWh,
+5ae3b4c25457a37f139b4e70,electric,energy,,period2,650.0,650.0,1,5,0,24,5,6,0.069781,0.069781,$/kWh,
+5ae3b4c25457a37f139b4e70,electric,energy,,period1,650.0,650.0,6,9,0,24,5,6,0.113117,0.113117,$/kWh,
+5ae3b4c25457a37f139b4e70,electric,energy,,period2,650.0,650.0,10,12,0,24,5,6,0.069781,0.069781,$/kWh,

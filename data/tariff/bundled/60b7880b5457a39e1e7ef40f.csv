@@ -1,0 +1,19 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+60b7880b5457a39e1e7ef40f,electric,customer,,,,,,,,,,,58.6,58.6,$/month,https://www.rockymountainpower.net/content/dam/rocky_mountain_power/doc/About_Us/Rates_and_Regulation/Utah/Approved_Tariffs/Rate_Schedules/General_Service_Demand_Time_of_Day_Option.pdf	http://www.rockymountainpower.net/about/rar/uri.html
+60b7880b5457a39e1e7ef40f,electric,demand,,flat,0,0,1,12,0,24,0,6,4.207256,4.207256,$/kW,adjustment factor of 0.167256
+60b7880b5457a39e1e7ef40f,electric,demand,,period2,0,0,1,4,0,7,0,4,0.0,0.0,$/kW,
+60b7880b5457a39e1e7ef40f,electric,demand,,period0,0,0,1,4,7,23,0,4,11.1282,11.1282,$/kW,
+60b7880b5457a39e1e7ef40f,electric,demand,,period2,0,0,1,4,23,24,0,4,0.0,0.0,$/kW,
+60b7880b5457a39e1e7ef40f,electric,demand,,period2,0,0,5,9,0,7,0,4,0.0,0.0,$/kW,
+60b7880b5457a39e1e7ef40f,electric,demand,,period1,0,0,5,9,7,23,0,4,14.9124,14.9124,$/kW,
+60b7880b5457a39e1e7ef40f,electric,demand,,period2,0,0,5,9,23,24,0,4,0.0,0.0,$/kW,
+60b7880b5457a39e1e7ef40f,electric,demand,,period2,0,0,10,12,0,7,0,4,0.0,0.0,$/kW,
+60b7880b5457a39e1e7ef40f,electric,demand,,period0,0,0,10,12,7,23,0,4,11.1282,11.1282,$/kW,
+60b7880b5457a39e1e7ef40f,electric,demand,,period2,0,0,10,12,23,24,0,4,0.0,0.0,$/kW,
+60b7880b5457a39e1e7ef40f,electric,demand,,period2,0,0,1,12,0,24,5,6,0.0,0.0,$/kW,
+60b7880b5457a39e1e7ef40f,electric,energy,,period0,0,0,1,4,0,24,0,4,0.03584586,0.03584586,$/kWh,
+60b7880b5457a39e1e7ef40f,electric,energy,,period1,0,0,5,9,0,24,0,4,0.03888954,0.03888954,$/kWh,
+60b7880b5457a39e1e7ef40f,electric,energy,,period0,0,0,10,12,0,24,0,4,0.03584586,0.03584586,$/kWh,
+60b7880b5457a39e1e7ef40f,electric,energy,,period0,0,0,1,4,0,24,5,6,0.03584586,0.03584586,$/kWh,
+60b7880b5457a39e1e7ef40f,electric,energy,,period1,0,0,5,9,0,24,5,6,0.03888954,0.03888954,$/kWh,
+60b7880b5457a39e1e7ef40f,electric,energy,,period0,0,0,10,12,0,24,5,6,0.03584586,0.03584586,$/kWh,
