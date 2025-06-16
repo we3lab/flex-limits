@@ -293,9 +293,21 @@ class flexloadMILP:
             desired_charge_type="demand",
             model=model,
         )
-        model.total_flex_cost_signal = (
-            demand_flex_cost_signal + energy_flex_cost_signal
-        )
+        # when there is only one component in the cost function
+        # there is a RuntimeError due to identical components in the same block
+        try:
+            model.total_flex_cost_signal = (
+                energy_flex_cost_signal + demand_flex_cost_signal
+            )
+        except RuntimeError:
+            model.total_flex_cost_signal = Var()
+
+            @model.Constraint()
+            def flex_tariff_equality_rule(b):
+                return b.total_flex_cost_signal == (
+                    energy_flex_cost_signal + demand_flex_cost_signal
+                )
+            
         return model
 
     def build(self):
