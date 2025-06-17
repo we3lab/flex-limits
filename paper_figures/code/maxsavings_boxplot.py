@@ -33,7 +33,6 @@ tariff_savings_sweep = []
 for i, reg in enumerate(regions):
     region_list = []
     for j, month in enumerate(month_arr):
-        month_list = []
         print(f"Processing region: {reg}, month: {month}")
 
         # MEF
@@ -79,11 +78,9 @@ for i, reg in enumerate(regions):
                     enddate_dt=enddate_dt,
                     uptime_equality=False
                 )
-                month_list.append(tariff_savings)
+                region_list.append(tariff_savings)
             except ZeroDivisionError:
                 print(f"ZeroDivisionError in tariff {tariff['label'].values[0]}")
-
-        region_list.append(month_list)
 
     tariff_savings_sweep.append(region_list)
 
@@ -95,11 +92,12 @@ sorted_indices = np.argsort(max_savings)[::-1]
 mef_savings_sweep = mef_savings_sweep[sorted_indices, :]
 aef_savings_sweep = aef_savings_sweep[sorted_indices, :]
 dam_savings_sweep = dam_savings_sweep[sorted_indices, :]
-tariff_savings_sweep = tariff_savings_sweep[sorted_indices, :]
+sorted_tariff_savings_sweep = []
+for i in range(len(tariff_savings_sweep)):
+    sorted_tariff_savings_sweep.append(tariff_savings_sweep[sorted_indices[i]])
 
 # reorder the regions based on sorted indices
 regions = [regions[i] for i in sorted_indices]
-# aef_savings_sweep and tariff_savings_sweep are not used in this plot, but can be calculated similarly if needed
 
 # plot box and whisker
 # create a plot of the emissions savings
@@ -147,7 +145,7 @@ dam_plot = ax.boxplot(
 )
 
 tariff_plot = ax.boxplot(
-    tariff_savings_sweep,
+    sorted_tariff_savings_sweep,
     positions=np.arange(len(regions)) + 0.3,
     widths=0.15,
     tick_labels=regions,
@@ -201,12 +199,28 @@ fig.savefig(
 # save data in a pandas DataFrame
 regions_expanded = np.repeat(regions, len(month_arr))
 months_expanded = np.tile(month_arr, len(regions))
+# when we flatten tariff savings it is of different length,
+# so cannot be included in the DataFrame with MEF, AEF, and DAM
+flat_tariff_savings = [
+    tariff 
+    for region_list in sorted_tariff_savings_sweep 
+    for tariffs in region_list
+]
+tariff_regions = []
+for i, region_list in enumerate(sorted_tariff_savings_sweep):
+    tariff_regions += [regions[i]] * len(reigon_list)
+
+tariff_savings_data = {
+    "region": tariff_regions.flatten(),
+    "tariff_savings": flat_tariff_savings
+}
 savings_data = {
     "region": regions_expanded,
     "month": months_expanded,
     "mef_savings": mef_savings_sweep.flatten(),
     "aef_savings": aef_savings_sweep.flatten(),
     "dam_savings": dam_savings_sweep.flatten(),
-    "tariff_savings": tariff_savings_sweep.flatten()}
+}
 
 pd.DataFrame(savings_data).to_csv(figpath + "/processed_data/savings_limit_boxplot.csv", index=False)
+pd.DataFrame(savings_data).to_csv(figpath + "/processed_data/tariff_savings_limit_boxplot.csv", index=False)
