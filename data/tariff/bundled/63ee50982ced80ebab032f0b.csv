@@ -1,0 +1,20 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63ee50982ced80ebab032f0b,electric,customer,,,,,,,,,,,0.0,0.0,$/month,https://www.alliantenergy.com/-/media/Alliant/Documents/CustomerService/AlliantEnergyService/RatesandTariffs/IowaElectricRates/NetMeteringPilot.pdf?la=en	https://www.alliantenergy.com/accountandbilling/billmeterrates/ratesandtariffs/electricratesiowa#EnergyAdjustmentClause
+63ee50982ced80ebab032f0b,electric,demand,,flat,0,0,1,4,0,24,0,6,24.18,24.18,$/kW,adjustment factor of 9.66
+63ee50982ced80ebab032f0b,electric,demand,,flat,200.0,200.0,1,4,0,24,0,6,21.08,21.08,$/kW,adjustment factor of 9.66
+63ee50982ced80ebab032f0b,electric,demand,,flat,1000.0,1000.0,1,4,0,24,0,6,20.62,20.62,$/kW,adjustment factor of 9.66
+63ee50982ced80ebab032f0b,electric,demand,,flat,10000.0,10000.0,1,4,0,24,0,6,20.29,20.29,$/kW,adjustment factor of 9.66
+63ee50982ced80ebab032f0b,electric,demand,,flat,10000.0,10000.0,5,8,0,24,0,6,30.95,30.95,$/kW,adjustment factor of 9.66
+63ee50982ced80ebab032f0b,electric,demand,,flat,200.0,200.0,5,8,0,24,0,6,30.25,30.25,$/kW,adjustment factor of 9.66
+63ee50982ced80ebab032f0b,electric,demand,,flat,1000.0,1000.0,5,8,0,24,0,6,29.44,29.44,$/kW,adjustment factor of 9.66
+63ee50982ced80ebab032f0b,electric,demand,,flat,10000.0,10000.0,5,8,0,24,0,6,28.63,28.63,$/kW,adjustment factor of 9.66
+63ee50982ced80ebab032f0b,electric,demand,,flat,10000.0,10000.0,9,12,0,24,0,6,24.18,24.18,$/kW,adjustment factor of 9.66
+63ee50982ced80ebab032f0b,electric,demand,,flat,200.0,200.0,9,12,0,24,0,6,21.08,21.08,$/kW,adjustment factor of 9.66
+63ee50982ced80ebab032f0b,electric,demand,,flat,1000.0,1000.0,9,12,0,24,0,6,20.62,20.62,$/kW,adjustment factor of 9.66
+63ee50982ced80ebab032f0b,electric,demand,,flat,10000.0,10000.0,9,12,0,24,0,6,20.29,20.29,$/kW,adjustment factor of 9.66
+63ee50982ced80ebab032f0b,electric,energy,,period0,0,0,1,4,0,24,0,4,0.041746,0.041746,$/kWh,
+63ee50982ced80ebab032f0b,electric,energy,,period1,0,0,5,9,0,24,0,4,0.047116000000000005,0.047116000000000005,$/kWh,
+63ee50982ced80ebab032f0b,electric,energy,,period0,0,0,10,12,0,24,0,4,0.041746,0.041746,$/kWh,
+63ee50982ced80ebab032f0b,electric,energy,,period0,0,0,1,4,0,24,5,6,0.041746,0.041746,$/kWh,
+63ee50982ced80ebab032f0b,electric,energy,,period1,0,0,5,9,0,24,5,6,0.047116000000000005,0.047116000000000005,$/kWh,
+63ee50982ced80ebab032f0b,electric,energy,,period0,0,0,10,12,0,24,5,6,0.041746,0.041746,$/kWh,

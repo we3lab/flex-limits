@@ -1,0 +1,7 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63d94964e4d32d7c2307e13e,electric,customer,,,,,,,,,,,758.9,758.9,$/month,https://www.nyseg.com/documents/40132/5890332/PSC120ServiceClassification_7.pdf/fd481f75-74e0-8272-8392-1aa921489a06	https://www.nyseg.com/web/nyseg/account/understandyourbill/electricpricing/psc__120
+63d94964e4d32d7c2307e13e,electric,demand,,flat,0,0,1,12,0,24,0,6,8.94,8.94,$/kW,adjustment factor of 0.67
+63d94964e4d32d7c2307e13e,electric,energy,,period0,0,0,1,12,0,7,0,4,0.059976,0.059976,$/kWh,
+63d94964e4d32d7c2307e13e,electric,energy,,period1,0,0,1,12,7,22,0,4,0.083576,0.083576,$/kWh,
+63d94964e4d32d7c2307e13e,electric,energy,,period0,0,0,1,12,22,24,0,4,0.059976,0.059976,$/kWh,
+63d94964e4d32d7c2307e13e,electric,energy,,period0,0,0,1,12,0,24,5,6,0.059976,0.059976,$/kWh,

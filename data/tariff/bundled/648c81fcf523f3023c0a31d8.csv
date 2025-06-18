@@ -1,0 +1,17 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+648c81fcf523f3023c0a31d8,electric,customer,,,,,,,,,,,47.41,47.41,$/month,https://www.evergy.com/-/media/documents/billing/kansas-metro/detailed-tariffs/small-general-service-01012021.pdf	https://www.evergy.com/manage-account/rate-information-link/how-rates-are-set/rate-overviews/detailed-tariffs
+648c81fcf523f3023c0a31d8,electric,demand,,flat,0,0,1,12,0,24,0,6,2.794,2.794,$/kW,
+648c81fcf523f3023c0a31d8,electric,energy,,period0,0,0,1,4,0,24,0,4,0.13861800000000002,0.13861800000000002,$/kWh,
+648c81fcf523f3023c0a31d8,electric,energy,,period0,180.0,180.0,1,4,0,24,0,4,0.079698,0.079698,$/kWh,
+648c81fcf523f3023c0a31d8,electric,energy,,period0,360.0,360.0,1,4,0,24,0,4,0.06858800000000001,0.06858800000000001,$/kWh,
+648c81fcf523f3023c0a31d8,electric,energy,,period1,360.0,360.0,5,9,0,24,0,4,0.167198,0.167198,$/kWh,
+648c81fcf523f3023c0a31d8,electric,energy,,period1,180.0,180.0,5,9,0,24,0,4,0.088658,0.088658,$/kWh,
+648c81fcf523f3023c0a31d8,electric,energy,,period1,360.0,360.0,5,9,0,24,0,4,0.082108,0.082108,$/kWh,
+648c81fcf523f3023c0a31d8,electric,energy,,period0,360.0,360.0,10,12,0,24,0,4,0.06858800000000001,0.06858800000000001,$/kWh,
+648c81fcf523f3023c0a31d8,electric,energy,,period0,0,0,1,4,0,24,5,6,0.13861800000000002,0.13861800000000002,$/kWh,
+648c81fcf523f3023c0a31d8,electric,energy,,period0,180.0,180.0,1,4,0,24,5,6,0.079698,0.079698,$/kWh,
+648c81fcf523f3023c0a31d8,electric,energy,,period0,360.0,360.0,1,4,0,24,5,6,0.06858800000000001,0.06858800000000001,$/kWh,
+648c81fcf523f3023c0a31d8,electric,energy,,period1,360.0,360.0,5,9,0,24,5,6,0.167198,0.167198,$/kWh,
+648c81fcf523f3023c0a31d8,electric,energy,,period1,180.0,180.0,5,9,0,24,5,6,0.088658,0.088658,$/kWh,
+648c81fcf523f3023c0a31d8,electric,energy,,period1,360.0,360.0,5,9,0,24,5,6,0.082108,0.082108,$/kWh,
+648c81fcf523f3023c0a31d8,electric,energy,,period0,360.0,360.0,10,12,0,24,5,6,0.06858800000000001,0.06858800000000001,$/kWh,

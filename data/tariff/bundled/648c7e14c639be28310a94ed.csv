@@ -1,0 +1,17 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+648c7e14c639be28310a94ed,electric,customer,,,,,,,,,,,47.41,47.41,$/month,https://www.evergy.com/-/media/documents/billing/kansas-metro/detailed-tariffs/small-general-service-01012021.pdf	https://www.evergy.com/manage-account/rate-information-link/how-rates-are-set/rate-overviews/detailed-tariffs
+648c7e14c639be28310a94ed,electric,demand,,flat,0,0,1,12,0,24,0,6,2.364,2.364,$/kW,
+648c7e14c639be28310a94ed,electric,energy,,period0,0,0,1,4,0,24,0,4,0.135778,0.135778,$/kWh,
+648c7e14c639be28310a94ed,electric,energy,,period0,180.0,180.0,1,4,0,24,0,4,0.078398,0.078398,$/kWh,
+648c7e14c639be28310a94ed,electric,energy,,period0,360.0,360.0,1,4,0,24,0,4,0.067438,0.067438,$/kWh,
+648c7e14c639be28310a94ed,electric,energy,,period1,360.0,360.0,5,9,0,24,0,4,0.163688,0.163688,$/kWh,
+648c7e14c639be28310a94ed,electric,energy,,period1,180.0,180.0,5,9,0,24,0,4,0.086968,0.086968,$/kWh,
+648c7e14c639be28310a94ed,electric,energy,,period1,360.0,360.0,5,9,0,24,0,4,0.080678,0.080678,$/kWh,
+648c7e14c639be28310a94ed,electric,energy,,period0,360.0,360.0,10,12,0,24,0,4,0.067438,0.067438,$/kWh,
+648c7e14c639be28310a94ed,electric,energy,,period0,0,0,1,4,0,24,5,6,0.135778,0.135778,$/kWh,
+648c7e14c639be28310a94ed,electric,energy,,period0,180.0,180.0,1,4,0,24,5,6,0.078398,0.078398,$/kWh,
+648c7e14c639be28310a94ed,electric,energy,,period0,360.0,360.0,1,4,0,24,5,6,0.067438,0.067438,$/kWh,
+648c7e14c639be28310a94ed,electric,energy,,period1,360.0,360.0,5,9,0,24,5,6,0.163688,0.163688,$/kWh,
+648c7e14c639be28310a94ed,electric,energy,,period1,180.0,180.0,5,9,0,24,5,6,0.086968,0.086968,$/kWh,
+648c7e14c639be28310a94ed,electric,energy,,period1,360.0,360.0,5,9,0,24,5,6,0.080678,0.080678,$/kWh,
+648c7e14c639be28310a94ed,electric,energy,,period0,360.0,360.0,10,12,0,24,5,6,0.067438,0.067438,$/kWh,

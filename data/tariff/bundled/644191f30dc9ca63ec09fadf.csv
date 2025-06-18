@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+644191f30dc9ca63ec09fadf,electric,customer,,,,,,,,,,,8.7,8.7,$/month,https://northwesternenergy.com/docs/default-source/default-document-library/billing-and-payment/rates-and-tariffs/montana/rates/gseds-1	https://www.northwesternenergy.com/billing-payment/rates-tariffs/rates-tariffs-montana/electric-rates-tariffs
+644191f30dc9ca63ec09fadf,electric,demand,,flat,0,0,1,12,0,24,0,6,9.672918,9.672918,$/kW,adjustment factor of 2.115388
+644191f30dc9ca63ec09fadf,electric,energy,,period0,0,0,1,12,0,24,0,4,0.08651299999999999,0.08651299999999999,$/kWh,
+644191f30dc9ca63ec09fadf,electric,energy,,period0,0,0,1,12,0,24,5,6,0.08651299999999999,0.08651299999999999,$/kWh,

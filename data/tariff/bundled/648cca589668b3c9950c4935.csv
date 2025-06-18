@@ -1,0 +1,7 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+648cca589668b3c9950c4935,electric,customer,,,,,,,,,,,133.91,133.91,$/month,https://www.rge.com/documents/40137/2114698/PSC19ServiceClassification_9.pdf/1b12cfd4-490b-2039-e0d6-59cb25a870b5?t=1654895219648	https://www.rge.com/web/rge/account/understandyourbill/pricing/psc19
+648cca589668b3c9950c4935,electric,demand,,flat,0,0,1,12,0,24,0,6,13.834176,13.834176,$/kW,adjustment factor of 0.574176
+648cca589668b3c9950c4935,electric,energy,,period0,0,0,1,12,0,7,0,4,0.042934,0.042934,$/kWh,
+648cca589668b3c9950c4935,electric,energy,,period1,0,0,1,12,7,21,0,4,0.080961,0.080961,$/kWh,
+648cca589668b3c9950c4935,electric,energy,,period0,0,0,1,12,21,24,0,4,0.042934,0.042934,$/kWh,
+648cca589668b3c9950c4935,electric,energy,,period0,0,0,1,12,0,24,5,6,0.042934,0.042934,$/kWh,

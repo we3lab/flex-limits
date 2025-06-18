@@ -1,0 +1,21 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+60ba7e835457a39d117ef40e,electric,customer,,,,,,,,,,,450.75,450.75,$/month,https://www.sce.com/NR/sc3/tm2/pdf/ce116-12.pdf	https://www.sce.com/regulatory/tariff-books/rates-pricing-choices/business-rates
+60ba7e835457a39d117ef40e,electric,demand,,flat,0,0,1,12,0,24,0,6,11.66,11.66,$/kW,adjustment factor of 0.0
+60ba7e835457a39d117ef40e,electric,energy,,period0,0,0,1,5,0,8,0,4,0.07775,0.07775,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period1,0,0,1,5,8,14,0,4,0.0853,0.0853,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period2,0,0,1,5,14,20,0,4,0.08926,0.08926,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period1,0,0,1,5,20,22,0,4,0.0853,0.0853,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period0,0,0,1,5,22,24,0,4,0.07775,0.07775,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period3,0,0,6,9,0,8,0,4,0.07345,0.07345,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period4,0,0,6,9,8,14,0,4,0.09406,0.09406,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period5,0,0,6,9,14,20,0,4,0.45389,0.45389,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period4,0,0,6,9,20,22,0,4,0.09406,0.09406,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period3,0,0,6,9,22,24,0,4,0.07345,0.07345,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period0,0,0,10,12,0,8,0,4,0.07775,0.07775,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period1,0,0,10,12,8,14,0,4,0.0853,0.0853,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period2,0,0,10,12,14,20,0,4,0.08926,0.08926,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period1,0,0,10,12,20,22,0,4,0.0853,0.0853,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period0,0,0,10,12,22,24,0,4,0.07775,0.07775,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period0,0,0,1,5,0,24,5,6,0.07775,0.07775,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period3,0,0,6,9,0,24,5,6,0.07345,0.07345,$/kWh,
+60ba7e835457a39d117ef40e,electric,energy,,period0,0,0,10,12,0,24,5,6,0.07775,0.07775,$/kWh,

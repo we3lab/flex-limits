@@ -1,0 +1,19 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6320e64652367753220a3c9c,electric,customer,,,,,,,,,,,175.0,175.0,$/month,https://www.midamericanenergy.com/media/pdf/iowa-electric-tariffs.pdf	https://www.midamericanenergy.com/rates-tariffs
+6320e64652367753220a3c9c,electric,demand,,flat,0,0,1,5,0,24,0,6,5.539999999999999,5.539999999999999,$/kW,adjustment factor of 0.98
+6320e64652367753220a3c9c,electric,demand,,flat,0,0,6,9,0,24,0,6,5.789999999999999,5.789999999999999,$/kW,adjustment factor of 0.98
+6320e64652367753220a3c9c,electric,demand,,flat,0,0,10,12,0,24,0,6,5.539999999999999,5.539999999999999,$/kW,adjustment factor of 0.98
+6320e64652367753220a3c9c,electric,energy,,period0,0,0,1,5,0,24,0,4,0.05507,0.05507,$/kWh,
+6320e64652367753220a3c9c,electric,energy,,period0,200.0,200.0,1,5,0,24,0,4,0.05407,0.05407,$/kWh,
+6320e64652367753220a3c9c,electric,energy,,period0,400.0,400.0,1,5,0,24,0,4,0.05307,0.05307,$/kWh,
+6320e64652367753220a3c9c,electric,energy,,period1,400.0,400.0,6,9,0,24,0,4,0.08976,0.08976,$/kWh,
+6320e64652367753220a3c9c,electric,energy,,period1,200.0,200.0,6,9,0,24,0,4,0.07957,0.07957,$/kWh,
+6320e64652367753220a3c9c,electric,energy,,period1,400.0,400.0,6,9,0,24,0,4,0.07277,0.07277,$/kWh,
+6320e64652367753220a3c9c,electric,energy,,period0,400.0,400.0,10,12,0,24,0,4,0.05307,0.05307,$/kWh,
+6320e64652367753220a3c9c,electric,energy,,period0,0,0,1,5,0,24,5,6,0.05507,0.05507,$/kWh,
+6320e64652367753220a3c9c,electric,energy,,period0,200.0,200.0,1,5,0,24,5,6,0.05407,0.05407,$/kWh,
+6320e64652367753220a3c9c,electric,energy,,period0,400.0,400.0,1,5,0,24,5,6,0.05307,0.05307,$/kWh,
+6320e64652367753220a3c9c,electric,energy,,period1,400.0,400.0,6,9,0,24,5,6,0.08976,0.08976,$/kWh,
+6320e64652367753220a3c9c,electric,energy,,period1,200.0,200.0,6,9,0,24,5,6,0.07957,0.07957,$/kWh,
+6320e64652367753220a3c9c,electric,energy,,period1,400.0,400.0,6,9,0,24,5,6,0.07277,0.07277,$/kWh,
+6320e64652367753220a3c9c,electric,energy,,period0,400.0,400.0,10,12,0,24,5,6,0.05307,0.05307,$/kWh,

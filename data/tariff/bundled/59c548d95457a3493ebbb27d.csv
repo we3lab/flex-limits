@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+59c548d95457a3493ebbb27d,electric,customer,,,,,,,,,,,275.93,275.93,$/month,http://www.dteenergy.com/pdfs/detroitEdisonTariff.pdf	http://www.michigan.gov/documents/mpsc/dtee1cur_579203_7.pdf
+59c548d95457a3493ebbb27d,electric,energy,,period1,0,0,1,5,0,24,0,4,0.110398,0.110398,$/kWh,
+59c548d95457a3493ebbb27d,electric,energy,,period0,0,0,6,10,0,24,0,4,0.092388,0.092388,$/kWh,
+59c548d95457a3493ebbb27d,electric,energy,,period1,0,0,11,12,0,24,0,4,0.110398,0.110398,$/kWh,
+59c548d95457a3493ebbb27d,electric,energy,,period1,0,0,1,5,0,24,5,6,0.110398,0.110398,$/kWh,
+59c548d95457a3493ebbb27d,electric,energy,,period0,0,0,6,10,0,24,5,6,0.092388,0.092388,$/kWh,
+59c548d95457a3493ebbb27d,electric,energy,,period1,0,0,11,12,0,24,5,6,0.110398,0.110398,$/kWh,

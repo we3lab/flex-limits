@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6397c075f3a5b1dab2072684,electric,customer,,,,,,,,,,,6600.0,6600.0,$/month,https://ets.dps.ny.gov/ets_web/search/showPDF.cfm?M%3AIS%20%3B%2A%29LOUNWD%5CJ%5E8%2B%22%2B5%2F0MD%2F0%29%21AF%26SLO%5EU2R%2AK%3AR%5CA%5B%2A2H%22N%5EAISF%20XNY%0A%27N7JEJK%5F%2CB%40%20%20%0A	https://www.cenhud.com/rates
+6397c075f3a5b1dab2072684,electric,demand,,flat,0,0,1,12,0,24,0,6,9.879999999999999,9.879999999999999,$/kW,adjustment factor of -0.15
+6397c075f3a5b1dab2072684,electric,energy,,period0,0,0,1,12,0,24,0,4,0.11627,0.11627,$/kWh,
+6397c075f3a5b1dab2072684,electric,energy,,period0,0,0,1,12,0,24,5,6,0.11627,0.11627,$/kWh,

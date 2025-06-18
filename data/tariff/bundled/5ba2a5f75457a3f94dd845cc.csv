@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5ba2a5f75457a3f94dd845cc,electric,customer,,,,,,,,,,,53.0,53.0,$/month,https://www.duke-energy.com/pdfs/Sheet.No.42.RATE.EH.OH.E.pdf	https://www.duke-energy.com/rates/ohio/electric.asp
+5ba2a5f75457a3f94dd845cc,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0912768,0.0912768,$/kWh,
+5ba2a5f75457a3f94dd845cc,electric,energy,,period0,2000.0,2000.0,1,12,0,24,0,4,0.0908168,0.0908168,$/kWh,
+5ba2a5f75457a3f94dd845cc,electric,energy,,period0,15000.0,15000.0,1,12,0,24,0,4,0.0902568,0.0902568,$/kWh,
+5ba2a5f75457a3f94dd845cc,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0912768,0.0912768,$/kWh,
+5ba2a5f75457a3f94dd845cc,electric,energy,,period0,2000.0,2000.0,1,12,0,24,5,6,0.0908168,0.0908168,$/kWh,
+5ba2a5f75457a3f94dd845cc,electric,energy,,period0,15000.0,15000.0,1,12,0,24,5,6,0.0902568,0.0902568,$/kWh,

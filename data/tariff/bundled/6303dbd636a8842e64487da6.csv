@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6303dbd636a8842e64487da6,electric,customer,,,,,,,,,,,250.0,250.0,$/month,https://www.cleco.com/docs/default-source/rates-and-fees/rate-schedule/02-gs-general-service-1-1-22.pdf?sfvrsn=60977168_2	https://www.cleco.com/residential-commercial/rates-billing-payment/rates-fees
+6303dbd636a8842e64487da6,electric,demand,,flat,0,0,1,12,0,24,0,6,15.61,15.61,$/kW,adjustment factor of 1.96
+6303dbd636a8842e64487da6,electric,energy,,period0,0,0,1,12,0,24,0,4,0.07311999999999999,0.07311999999999999,$/kWh,
+6303dbd636a8842e64487da6,electric,energy,,period0,0,0,1,12,0,24,5,6,0.07311999999999999,0.07311999999999999,$/kWh,

@@ -1,0 +1,19 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+648b9514bb20d8089404053d,electric,customer,,,,,,,,,,,50.38,50.38,$/month,https://www.evergy.com/-/media/documents/billing/kansas-metro/detailed-tariffs/medium-general-service-01012021.pdf	https://www.evergy.com/manage-account/rate-information-link/how-rates-are-set/rate-overviews/detailed-tariffs
+648b9514bb20d8089404053d,electric,demand,,flat,0,0,1,4,0,24,0,6,6.650399999999999,6.650399999999999,$/kW,adjustment factor of 4.6064
+648b9514bb20d8089404053d,electric,demand,,flat,0,0,5,9,0,24,0,6,8.6324,8.6324,$/kW,adjustment factor of 4.6064
+648b9514bb20d8089404053d,electric,demand,,flat,0,0,10,12,0,24,0,6,6.650399999999999,6.650399999999999,$/kW,adjustment factor of 4.6064
+648b9514bb20d8089404053d,electric,energy,,period0,0,0,1,4,0,24,0,4,0.0969475,0.0969475,$/kWh,
+648b9514bb20d8089404053d,electric,energy,,period0,180.0,180.0,1,4,0,24,0,4,0.06311749999999999,0.06311749999999999,$/kWh,
+648b9514bb20d8089404053d,electric,energy,,period0,360.0,360.0,1,4,0,24,0,4,0.0539275,0.0539275,$/kWh,
+648b9514bb20d8089404053d,electric,energy,,period1,360.0,360.0,5,9,0,24,0,4,0.1057675,0.1057675,$/kWh,
+648b9514bb20d8089404053d,electric,energy,,period1,180.0,180.0,5,9,0,24,0,4,0.0733775,0.0733775,$/kWh,
+648b9514bb20d8089404053d,electric,energy,,period1,360.0,360.0,5,9,0,24,0,4,0.0709975,0.0709975,$/kWh,
+648b9514bb20d8089404053d,electric,energy,,period0,360.0,360.0,10,12,0,24,0,4,0.0539275,0.0539275,$/kWh,
+648b9514bb20d8089404053d,electric,energy,,period0,0,0,1,4,0,24,5,6,0.0969475,0.0969475,$/kWh,
+648b9514bb20d8089404053d,electric,energy,,period0,180.0,180.0,1,4,0,24,5,6,0.06311749999999999,0.06311749999999999,$/kWh,
+648b9514bb20d8089404053d,electric,energy,,period0,360.0,360.0,1,4,0,24,5,6,0.0539275,0.0539275,$/kWh,
+648b9514bb20d8089404053d,electric,energy,,period1,360.0,360.0,5,9,0,24,5,6,0.1057675,0.1057675,$/kWh,
+648b9514bb20d8089404053d,electric,energy,,period1,180.0,180.0,5,9,0,24,5,6,0.0733775,0.0733775,$/kWh,
+648b9514bb20d8089404053d,electric,energy,,period1,360.0,360.0,5,9,0,24,5,6,0.0709975,0.0709975,$/kWh,
+648b9514bb20d8089404053d,electric,energy,,period0,360.0,360.0,10,12,0,24,5,6,0.0539275,0.0539275,$/kWh,

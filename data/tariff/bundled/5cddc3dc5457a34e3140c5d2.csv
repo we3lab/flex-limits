@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cddc3dc5457a34e3140c5d2,electric,customer,,,,,,,,,,,350.0,350.0,$/month,\https://www.gru.com/Portals/0/Rates%20FY18%20Non%20Residential_FEB%20Change.pdf	https://www.gru.com
+5cddc3dc5457a34e3140c5d2,electric,demand,,flat,0,0,1,12,0,24,0,6,9.75,9.75,$/kW,
+5cddc3dc5457a34e3140c5d2,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0927,0.0927,$/kWh,
+5cddc3dc5457a34e3140c5d2,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0927,0.0927,$/kWh,

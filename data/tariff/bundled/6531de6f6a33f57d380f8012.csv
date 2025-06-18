@@ -1,0 +1,17 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6531de6f6a33f57d380f8012,electric,customer,,,,,,,,,,,252.99,252.99,$/month,https://www.consumersenergy.com/-/media/CE/Documents/rates/electric-rate-book.pdf	https://www.consumersenergy.com/business/rates/electric-rates-and-programs/how-electric-rates-are-set
+6531de6f6a33f57d380f8012,electric,demand,,flat,0,0,1,5,0,24,0,6,25.55,25.55,$/kW,
+6531de6f6a33f57d380f8012,electric,demand,,flat,0,0,6,9,0,24,0,6,28.23,28.23,$/kW,
+6531de6f6a33f57d380f8012,electric,demand,,flat,0,0,10,12,0,24,0,6,25.55,25.55,$/kW,
+6531de6f6a33f57d380f8012,electric,energy,,period2,0,0,1,5,0,11,0,4,0.034197000000000005,0.034197000000000005,$/kWh,
+6531de6f6a33f57d380f8012,electric,energy,,period3,0,0,1,5,11,19,0,4,0.03895,0.03895,$/kWh,
+6531de6f6a33f57d380f8012,electric,energy,,period2,0,0,1,5,19,24,0,4,0.034197000000000005,0.034197000000000005,$/kWh,
+6531de6f6a33f57d380f8012,electric,energy,,period0,0,0,6,9,0,11,0,4,0.031731999999999996,0.031731999999999996,$/kWh,
+6531de6f6a33f57d380f8012,electric,energy,,period1,0,0,6,9,11,19,0,4,0.047425999999999996,0.047425999999999996,$/kWh,
+6531de6f6a33f57d380f8012,electric,energy,,period0,0,0,6,9,19,24,0,4,0.031731999999999996,0.031731999999999996,$/kWh,
+6531de6f6a33f57d380f8012,electric,energy,,period2,0,0,10,12,0,11,0,4,0.034197000000000005,0.034197000000000005,$/kWh,
+6531de6f6a33f57d380f8012,electric,energy,,period3,0,0,10,12,11,19,0,4,0.03895,0.03895,$/kWh,
+6531de6f6a33f57d380f8012,electric,energy,,period2,0,0,10,12,19,24,0,4,0.034197000000000005,0.034197000000000005,$/kWh,
+6531de6f6a33f57d380f8012,electric,energy,,period2,0,0,1,5,0,24,5,6,0.034197000000000005,0.034197000000000005,$/kWh,
+6531de6f6a33f57d380f8012,electric,energy,,period0,0,0,6,9,0,24,5,6,0.031731999999999996,0.031731999999999996,$/kWh,
+6531de6f6a33f57d380f8012,electric,energy,,period2,0,0,10,12,0,24,5,6,0.034197000000000005,0.034197000000000005,$/kWh,

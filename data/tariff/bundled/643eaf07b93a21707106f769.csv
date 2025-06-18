@@ -1,0 +1,17 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+643eaf07b93a21707106f769,electric,customer,,,,,,,,,,,123.9,123.9,$/month,https://www.nvenergy.com/publish/content/dam/nvenergy/brochures_arch/about-nvenergy/rates-regulatory/electric-schedules-north/Statement_of_Rates_Electric_North.pdf	https://www.nvenergy.com/about-nvenergy/rates-regulatory/electric-schedules-north
+643eaf07b93a21707106f769,electric,demand,,flat,0,0,1,12,0,24,0,6,5.2,5.2,$/kW,
+643eaf07b93a21707106f769,electric,demand,,period0,0,0,1,5,0,24,0,4,1.41,1.41,$/kW,
+643eaf07b93a21707106f769,electric,demand,,period0,0,0,6,9,0,15,0,4,1.41,1.41,$/kW,
+643eaf07b93a21707106f769,electric,demand,,period1,0,0,6,9,15,21,0,4,17.09,17.09,$/kW,
+643eaf07b93a21707106f769,electric,demand,,period0,0,0,6,9,21,24,0,4,1.41,1.41,$/kW,
+643eaf07b93a21707106f769,electric,demand,,period0,0,0,10,12,0,24,0,4,1.41,1.41,$/kW,
+643eaf07b93a21707106f769,electric,demand,,period0,0,0,1,12,0,24,5,6,1.41,1.41,$/kW,
+643eaf07b93a21707106f769,electric,energy,,period0,0,0,1,5,0,24,0,4,0.06063,0.06063,$/kWh,
+643eaf07b93a21707106f769,electric,energy,,period1,0,0,6,9,0,15,0,4,0.07288,0.07288,$/kWh,
+643eaf07b93a21707106f769,electric,energy,,period2,0,0,6,9,15,21,0,4,0.17093,0.17093,$/kWh,
+643eaf07b93a21707106f769,electric,energy,,period1,0,0,6,9,21,24,0,4,0.07288,0.07288,$/kWh,
+643eaf07b93a21707106f769,electric,energy,,period0,0,0,10,12,0,24,0,4,0.06063,0.06063,$/kWh,
+643eaf07b93a21707106f769,electric,energy,,period0,0,0,1,5,0,24,5,6,0.06063,0.06063,$/kWh,
+643eaf07b93a21707106f769,electric,energy,,period1,0,0,6,9,0,24,5,6,0.07288,0.07288,$/kWh,
+643eaf07b93a21707106f769,electric,energy,,period0,0,0,10,12,0,24,5,6,0.06063,0.06063,$/kWh,

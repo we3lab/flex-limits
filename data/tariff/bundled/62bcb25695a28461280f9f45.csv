@@ -1,0 +1,14 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62bcb25695a28461280f9f45,electric,customer,,,,,,,,,,,0.81,0.81,$/month,https://www.snopud.com/wp-content/uploads/2021/10/electricrates.pdf	https://www.snopud.com/account/about-my-bill/rates/electric/
+62bcb25695a28461280f9f45,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+62bcb25695a28461280f9f45,electric,demand,,flat,100.0,100.0,1,12,0,24,0,6,5.95,5.95,$/kW,
+62bcb25695a28461280f9f45,electric,energy,,period0,0,0,1,3,0,24,0,4,0.0896,0.0896,$/kWh,
+62bcb25695a28461280f9f45,electric,energy,,period0,30000.0,30000.0,1,3,0,24,0,4,0.0714,0.0714,$/kWh,
+62bcb25695a28461280f9f45,electric,energy,,period1,30000.0,30000.0,4,6,0,24,0,4,0.0896,0.0896,$/kWh,
+62bcb25695a28461280f9f45,electric,energy,,period1,30000.0,30000.0,4,6,0,24,0,4,0.0614,0.0614,$/kWh,
+62bcb25695a28461280f9f45,electric,energy,,period0,30000.0,30000.0,7,12,0,24,0,4,0.0714,0.0714,$/kWh,
+62bcb25695a28461280f9f45,electric,energy,,period0,0,0,1,3,0,24,5,6,0.0896,0.0896,$/kWh,
+62bcb25695a28461280f9f45,electric,energy,,period0,30000.0,30000.0,1,3,0,24,5,6,0.0714,0.0714,$/kWh,
+62bcb25695a28461280f9f45,electric,energy,,period1,30000.0,30000.0,4,6,0,24,5,6,0.0896,0.0896,$/kWh,
+62bcb25695a28461280f9f45,electric,energy,,period1,30000.0,30000.0,4,6,0,24,5,6,0.0614,0.0614,$/kWh,
+62bcb25695a28461280f9f45,electric,energy,,period0,30000.0,30000.0,7,12,0,24,5,6,0.0714,0.0714,$/kWh,

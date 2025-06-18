@@ -1,0 +1,7 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+648344f46714aadbf807c598,electric,customer,,,,,,,,,,,200.0,200.0,$/month,https://p-cd.duke-energy.com/-/media/pdfs/for-your-home/rates/dep-sc/leaf-no-528-schedule-lgs.pdf?rev=5b7a1001e9354a879f66e895c8f97b1b&_gl=1*mamqoe*_ga*MTM4NjEzMDE3NC4xNjY4ODAwMzQ3*_ga_HB58MJRNTY*MTY4NjMyMjA2MS4xOC4xLjE2ODYzMjM2MTMuMC4wLjA.&_ga=2.38771107.1010759222.1686269017-1386130174.1668800347	https://www.duke-energy.com/home/billing/rates
+648344f46714aadbf807c598,electric,demand,,flat,0,0,1,12,0,24,0,6,14.22,14.22,$/kW,
+648344f46714aadbf807c598,electric,demand,,flat,5000.0,5000.0,1,12,0,24,0,6,13.22,13.22,$/kW,
+648344f46714aadbf807c598,electric,demand,,flat,10000.0,10000.0,1,12,0,24,0,6,12.22,12.22,$/kW,
+648344f46714aadbf807c598,electric,energy,,period0,0,0,1,12,0,24,0,4,0.06622,0.06622,$/kWh,
+648344f46714aadbf807c598,electric,energy,,period0,0,0,1,12,0,24,5,6,0.06622,0.06622,$/kWh,

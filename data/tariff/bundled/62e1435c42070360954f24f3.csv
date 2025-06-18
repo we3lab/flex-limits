@@ -1,0 +1,16 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62e1435c42070360954f24f3,electric,customer,,,,,,,,,,,1.29,1.29,$/month,https://www.mississippipower.com/content/dam/mississippi-power/pdfs/business/pricing-and-rates/standard-application-rates/2022/june/GS-LVS-17.pdf	https://www.mississippipower.com/business/pricing---rates.html
+62e1435c42070360954f24f3,electric,energy,,period1,0,0,1,4,0,24,0,4,0.127917,0.127917,$/kWh,
+62e1435c42070360954f24f3,electric,energy,,period1,1200.0,1200.0,1,4,0,24,0,4,0.11860699999999999,0.11860699999999999,$/kWh,
+62e1435c42070360954f24f3,electric,energy,,period1,6000.0,6000.0,1,4,0,24,0,4,0.10980700000000002,0.10980700000000002,$/kWh,
+62e1435c42070360954f24f3,electric,energy,,period0,6000.0,6000.0,5,10,0,24,0,4,0.141237,0.141237,$/kWh,
+62e1435c42070360954f24f3,electric,energy,,period0,1200.0,1200.0,5,10,0,24,0,4,0.131717,0.131717,$/kWh,
+62e1435c42070360954f24f3,electric,energy,,period0,6000.0,6000.0,5,10,0,24,0,4,0.12464700000000001,0.12464700000000001,$/kWh,
+62e1435c42070360954f24f3,electric,energy,,period1,6000.0,6000.0,11,12,0,24,0,4,0.10980700000000002,0.10980700000000002,$/kWh,
+62e1435c42070360954f24f3,electric,energy,,period1,0,0,1,4,0,24,5,6,0.127917,0.127917,$/kWh,
+62e1435c42070360954f24f3,electric,energy,,period1,1200.0,1200.0,1,4,0,24,5,6,0.11860699999999999,0.11860699999999999,$/kWh,
+62e1435c42070360954f24f3,electric,energy,,period1,6000.0,6000.0,1,4,0,24,5,6,0.10980700000000002,0.10980700000000002,$/kWh,
+62e1435c42070360954f24f3,electric,energy,,period0,6000.0,6000.0,5,10,0,24,5,6,0.141237,0.141237,$/kWh,
+62e1435c42070360954f24f3,electric,energy,,period0,1200.0,1200.0,5,10,0,24,5,6,0.131717,0.131717,$/kWh,
+62e1435c42070360954f24f3,electric,energy,,period0,6000.0,6000.0,5,10,0,24,5,6,0.12464700000000001,0.12464700000000001,$/kWh,
+62e1435c42070360954f24f3,electric,energy,,period1,6000.0,6000.0,11,12,0,24,5,6,0.10980700000000002,0.10980700000000002,$/kWh,

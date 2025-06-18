@@ -1,0 +1,14 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5d41fa1f5457a3fc35dc8c3e,electric,customer,,,,,,,,,,,192.0,192.0,$/month,https://www.epelectric.com/files/html/Rates_and_Regulatory/Docket_46831_Stamped_Tariffs/15_-_Rate_25_Large_Power_Service_Rate.pdf	https://www.epelectric.com/tx/business/rate-tariffs-2
+5d41fa1f5457a3fc35dc8c3e,electric,demand,,period0,0,0,1,5,0,24,0,4,12.29,12.29,$/kW,
+5d41fa1f5457a3fc35dc8c3e,electric,demand,,period0,0,0,6,9,0,12,0,4,12.29,12.29,$/kW,
+5d41fa1f5457a3fc35dc8c3e,electric,demand,,period1,0,0,6,9,12,18,0,4,25.44,25.44,$/kW,
+5d41fa1f5457a3fc35dc8c3e,electric,demand,,period0,0,0,6,9,18,24,0,4,12.29,12.29,$/kW,
+5d41fa1f5457a3fc35dc8c3e,electric,demand,,period0,0,0,10,12,0,24,0,4,12.29,12.29,$/kW,
+5d41fa1f5457a3fc35dc8c3e,electric,demand,,period0,0,0,1,12,0,24,5,6,12.29,12.29,$/kW,
+5d41fa1f5457a3fc35dc8c3e,electric,energy,,period0,0,0,1,5,0,24,0,4,0.020279,0.020279,$/kWh,
+5d41fa1f5457a3fc35dc8c3e,electric,energy,,period0,0,0,6,9,0,12,0,4,0.020279,0.020279,$/kWh,
+5d41fa1f5457a3fc35dc8c3e,electric,energy,,period1,0,0,6,9,12,18,0,4,0.130529,0.130529,$/kWh,
+5d41fa1f5457a3fc35dc8c3e,electric,energy,,period0,0,0,6,9,18,24,0,4,0.020279,0.020279,$/kWh,
+5d41fa1f5457a3fc35dc8c3e,electric,energy,,period0,0,0,10,12,0,24,0,4,0.020279,0.020279,$/kWh,
+5d41fa1f5457a3fc35dc8c3e,electric,energy,,period0,0,0,1,12,0,24,5,6,0.020279,0.020279,$/kWh,

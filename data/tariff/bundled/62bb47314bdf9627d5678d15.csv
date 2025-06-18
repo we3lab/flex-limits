@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62bb47314bdf9627d5678d15,electric,customer,,,,,,,,,,,274.0,274.0,$/month,https://www.cowlitzpud.org/wp-content/uploads/rate_schedule_8_large_commercial_industrial_service_10012017.pdf	https://www.cowlitzpud.org/rates-fees-and-policies
+62bb47314bdf9627d5678d15,electric,demand,,flat,0,0,1,12,0,24,0,6,7.25,7.25,$/kW,
+62bb47314bdf9627d5678d15,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0549,0.0549,$/kWh,
+62bb47314bdf9627d5678d15,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0549,0.0549,$/kWh,

@@ -1,0 +1,10 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5bb51ca35457a33a5b68a12c,electric,customer,,,,,,,,,,,0.36,0.36,$/month,https://www.firstenergycorp.com/content/dam/customer/Customer%20Choice/Files/maryland/tariffs/PotomacEdisonRetailTariff.pdf	https://www.firstenergycorp.com/content/customer/customer_choice/maryland/maryland_tariffs.html
+5bb51ca35457a33a5b68a12c,electric,demand,,flat,0,0,1,12,0,24,0,6,16.19,16.19,$/kW,adjustment factor of 2.04
+5bb51ca35457a33a5b68a12c,electric,demand,,flat,500.0,500.0,1,12,0,24,0,6,15.84,15.84,$/kW,adjustment factor of 2.04
+5bb51ca35457a33a5b68a12c,electric,demand,,period0,0,0,1,12,0,24,0,4,1.52,1.52,$/kW,
+5bb51ca35457a33a5b68a12c,electric,demand,,period0,0,0,1,12,0,24,5,6,1.52,1.52,$/kW,
+5bb51ca35457a33a5b68a12c,electric,energy,,period0,0,0,1,12,0,24,0,4,0.047016,0.047016,$/kWh,
+5bb51ca35457a33a5b68a12c,electric,energy,,period0,100000.0,100000.0,1,12,0,24,0,4,0.043556,0.043556,$/kWh,
+5bb51ca35457a33a5b68a12c,electric,energy,,period0,0,0,1,12,0,24,5,6,0.047016,0.047016,$/kWh,
+5bb51ca35457a33a5b68a12c,electric,energy,,period0,100000.0,100000.0,1,12,0,24,5,6,0.043556,0.043556,$/kWh,

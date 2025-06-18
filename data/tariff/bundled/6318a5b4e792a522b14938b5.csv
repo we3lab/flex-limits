@@ -1,0 +1,14 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6318a5b4e792a522b14938b5,electric,customer,,,,,,,,,,,14.24,14.24,$/month,https://www.xcelenergy.com/staticfiles/xe-responsive/Company/Rates%20&%20Regulations/Me_Section_5.pdf	https://www.xcelenergy.com/company/rates_and_regulations/rates/rate_riders
+6318a5b4e792a522b14938b5,electric,energy,,period2,0,0,1,5,0,9,0,4,0.09367,0.09367,$/kWh,
+6318a5b4e792a522b14938b5,electric,energy,,period3,0,0,1,5,9,21,0,4,0.18678,0.18678,$/kWh,
+6318a5b4e792a522b14938b5,electric,energy,,period2,0,0,1,5,21,24,0,4,0.09367,0.09367,$/kWh,
+6318a5b4e792a522b14938b5,electric,energy,,period0,0,0,6,9,0,9,0,4,0.09367,0.09367,$/kWh,
+6318a5b4e792a522b14938b5,electric,energy,,period1,0,0,6,9,9,21,0,4,0.22571,0.22571,$/kWh,
+6318a5b4e792a522b14938b5,electric,energy,,period0,0,0,6,9,21,24,0,4,0.09367,0.09367,$/kWh,
+6318a5b4e792a522b14938b5,electric,energy,,period2,0,0,10,12,0,9,0,4,0.09367,0.09367,$/kWh,
+6318a5b4e792a522b14938b5,electric,energy,,period3,0,0,10,12,9,21,0,4,0.18678,0.18678,$/kWh,
+6318a5b4e792a522b14938b5,electric,energy,,period2,0,0,10,12,21,24,0,4,0.09367,0.09367,$/kWh,
+6318a5b4e792a522b14938b5,electric,energy,,period2,0,0,1,5,0,24,5,6,0.09367,0.09367,$/kWh,
+6318a5b4e792a522b14938b5,electric,energy,,period0,0,0,6,9,0,24,5,6,0.09367,0.09367,$/kWh,
+6318a5b4e792a522b14938b5,electric,energy,,period2,0,0,10,12,0,24,5,6,0.09367,0.09367,$/kWh,

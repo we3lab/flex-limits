@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+64834ef97b3391a4bf09067b,electric,customer,,,,,,,,,,,53.16,53.16,$/month,https://mte.com/sites/default/files/Documents/Finance/MTE_Rate_Schedule.pdf	https://mte.com/Rates
+64834ef97b3391a4bf09067b,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+64834ef97b3391a4bf09067b,electric,demand,,flat,50.0,50.0,1,12,0,24,0,6,13.95,13.95,$/kW,
+64834ef97b3391a4bf09067b,electric,energy,,period0,0,0,1,12,0,24,0,4,0.11496999999999999,0.11496999999999999,$/kWh,
+64834ef97b3391a4bf09067b,electric,energy,,period0,15000.0,15000.0,1,12,0,24,0,4,0.06812,0.06812,$/kWh,
+64834ef97b3391a4bf09067b,electric,energy,,period0,0,0,1,12,0,24,5,6,0.11496999999999999,0.11496999999999999,$/kWh,
+64834ef97b3391a4bf09067b,electric,energy,,period0,15000.0,15000.0,1,12,0,24,5,6,0.06812,0.06812,$/kWh,

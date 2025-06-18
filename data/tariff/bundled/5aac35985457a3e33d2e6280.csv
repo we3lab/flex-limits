@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5aac35985457a3e33d2e6280,electric,customer,,,,,,,,,,,82.0,82.0,$/month,http://www.iplpower.com/Our_Company/Rates/Rates_and_Tariffs/
+5aac35985457a3e33d2e6280,electric,energy,,period0,0,0,1,12,0,6,0,4,0.04259,0.04259,$/kWh,
+5aac35985457a3e33d2e6280,electric,energy,,period1,0,0,1,12,6,22,0,4,0.11759,0.11759,$/kWh,
+5aac35985457a3e33d2e6280,electric,energy,,period0,0,0,1,12,22,24,0,4,0.04259,0.04259,$/kWh,
+5aac35985457a3e33d2e6280,electric,energy,,period0,0,0,1,12,0,24,5,6,0.04259,0.04259,$/kWh,

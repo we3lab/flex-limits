@@ -1,0 +1,15 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62e1c06b5024eb6c391d1d19,electric,customer,,,,,,,,,,,223.0,223.0,$/month,"https://www.nationalgridus.com/media/pdfs/billing-payments/tariffs/mae/meco_delivery.pdf
+
+https://www.nationalgridus.com/media/pdfs/billing-payments/tariffs/mae/meco_basic_service.pdf
+
+https://www.nationalgridus.com/media/pdfs/billing-payments/tariffs/mae/meco_g3.pdf	https://www.nationalgridus.com/MA-Home/Rates/Tariff-Provisions"
+62e1c06b5024eb6c391d1d19,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+62e1c06b5024eb6c391d1d19,electric,demand,,period0,0,0,1,12,0,8,0,4,0.0,0.0,$/kW,
+62e1c06b5024eb6c391d1d19,electric,demand,,period1,0,0,1,12,8,21,0,4,8.55,8.55,$/kW,
+62e1c06b5024eb6c391d1d19,electric,demand,,period0,0,0,1,12,21,24,0,4,0.0,0.0,$/kW,
+62e1c06b5024eb6c391d1d19,electric,demand,,period0,0,0,1,12,0,24,5,6,0.0,0.0,$/kW,
+62e1c06b5024eb6c391d1d19,electric,energy,,period0,0,0,1,12,0,8,0,4,0.26073999999999997,0.26073999999999997,$/kWh,
+62e1c06b5024eb6c391d1d19,electric,energy,,period1,0,0,1,12,8,21,0,4,0.26261,0.26261,$/kWh,
+62e1c06b5024eb6c391d1d19,electric,energy,,period0,0,0,1,12,21,24,0,4,0.26073999999999997,0.26073999999999997,$/kWh,
+62e1c06b5024eb6c391d1d19,electric,energy,,period0,0,0,1,12,0,24,5,6,0.26073999999999997,0.26073999999999997,$/kWh,

@@ -1,0 +1,23 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+59c166015457a3ff5ebbb27b,electric,customer,,,,,,,,,,,38.72,38.72,$/month,http://www.midamericanenergy.com/include/pdf/rates/elecrates/ilelectric/il-elec.pdf	http://www.midamericanenergy.com/rates1.aspx
+59c166015457a3ff5ebbb27b,electric,demand,,flat,0,0,1,12,0,24,0,6,10.89,10.89,$/kW,adjustment factor of 4.89
+59c166015457a3ff5ebbb27b,electric,energy,,period4,0,0,1,5,0,8,0,4,0.043300000000000005,0.043300000000000005,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period3,0,0,1,5,8,22,0,4,0.04836,0.04836,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period4,0,0,1,5,22,24,0,4,0.043300000000000005,0.043300000000000005,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period1,0,0,6,9,0,8,0,4,0.0377,0.0377,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period2,0,0,6,9,8,13,0,4,0.060020000000000004,0.060020000000000004,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period0,0,0,6,9,13,18,0,4,0.1403,0.1403,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period2,0,0,6,9,18,22,0,4,0.060020000000000004,0.060020000000000004,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period1,0,0,6,9,22,24,0,4,0.0377,0.0377,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period4,0,0,10,12,0,8,0,4,0.043300000000000005,0.043300000000000005,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period3,0,0,10,12,8,22,0,4,0.04836,0.04836,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period4,0,0,10,12,22,24,0,4,0.043300000000000005,0.043300000000000005,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period4,0,0,1,5,0,8,5,6,0.043300000000000005,0.043300000000000005,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period3,0,0,1,5,8,22,5,6,0.04836,0.04836,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period4,0,0,1,5,22,24,5,6,0.043300000000000005,0.043300000000000005,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period1,0,0,6,9,0,8,5,6,0.0377,0.0377,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period2,0,0,6,9,8,22,5,6,0.060020000000000004,0.060020000000000004,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period1,0,0,6,9,22,24,5,6,0.0377,0.0377,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period4,0,0,10,12,0,8,5,6,0.043300000000000005,0.043300000000000005,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period3,0,0,10,12,8,22,5,6,0.04836,0.04836,$/kWh,
+59c166015457a3ff5ebbb27b,electric,energy,,period4,0,0,10,12,22,24,5,6,0.043300000000000005,0.043300000000000005,$/kWh,

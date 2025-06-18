@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5baa5f3e5457a32d0dc4a515,electric,customer,,,,,,,,,,,10.43,10.43,$/month,https://www.firstenergycorp.com/content/dam/customer/Customer%20Choice/Files/PA/tariffs/PP-Tariff-36-Supp-12.pdf	https://www.firstenergycorp.com/content/customer/customer_choice/pennsylvania/pennsylvania_tariffs.html#Penelec
+5baa5f3e5457a32d0dc4a515,electric,energy,,period0,0,0,1,12,0,24,0,4,0.13933,0.13933,$/kWh,
+5baa5f3e5457a32d0dc4a515,electric,energy,,period0,0,0,1,12,0,24,5,6,0.13933,0.13933,$/kWh,

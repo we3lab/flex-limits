@@ -1,0 +1,9 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5ed7b9135457a3487edd15ac,electric,customer,,,,,,,,,,,90.09,90.09,$/month,https://www.blackhillsenergy.com/sites/blackhillsenergy.com/files/bhe-coe-rates-tariff.pdf	https://www.blackhillsenergy.com/rates
+5ed7b9135457a3487edd15ac,electric,demand,,flat,0,0,1,12,0,24,0,6,25.255999999999997,25.255999999999997,$/kW,adjustment factor of 1.926
+5ed7b9135457a3487edd15ac,electric,energy,,period0,0,0,1,5,0,24,0,4,0.05233,0.05233,$/kWh,
+5ed7b9135457a3487edd15ac,electric,energy,,period0,0,0,6,9,0,13,0,4,0.05233,0.05233,$/kWh,
+5ed7b9135457a3487edd15ac,electric,energy,,period1,0,0,6,9,13,19,0,4,0.07785,0.07785,$/kWh,
+5ed7b9135457a3487edd15ac,electric,energy,,period0,0,0,6,9,19,24,0,4,0.05233,0.05233,$/kWh,
+5ed7b9135457a3487edd15ac,electric,energy,,period0,0,0,10,12,0,24,0,4,0.05233,0.05233,$/kWh,
+5ed7b9135457a3487edd15ac,electric,energy,,period0,0,0,1,12,0,24,5,6,0.05233,0.05233,$/kWh,

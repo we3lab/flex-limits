@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63c98d9dac88b59405049d7b,electric,customer,,,,,,,,,,,125.73,125.73,$/month,https://cdn.entergy-texas.com/userfiles/content/price/tariffs/eti_lgs.pdf?_ga=2.129172620.1285041151.1674146430-1395332778.1673550392&_gl=1*nx9814*_ga*MTM5NTMzMjc3OC4xNjczNTUwMzky*_ga_HK6YSZ6LT0*MTY3NDE0NjQyOS40LjAuMTY3NDE0NjQyOS4wLjAuMA..*_ga_8YKL3FLBBC*MTY3NDE0NjQyOS40LjAuMTY3NDE0NjQyOS4wLjAuMA..	https://www.entergy-texas.com/your_business/business_tariffs/
+63c98d9dac88b59405049d7b,electric,demand,,flat,0,0,1,12,0,24,0,6,16.913400000000003,16.913400000000003,$/kW,adjustment factor of 4.2834
+63c98d9dac88b59405049d7b,electric,energy,,period0,0,0,1,12,0,24,0,4,0.062054,0.062054,$/kWh,
+63c98d9dac88b59405049d7b,electric,energy,,period0,0,0,1,12,0,24,5,6,0.062054,0.062054,$/kWh,

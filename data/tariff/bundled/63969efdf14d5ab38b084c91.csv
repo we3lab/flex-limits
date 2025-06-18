@@ -1,0 +1,10 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63969efdf14d5ab38b084c91,electric,customer,,,,,,,,,,,35.0,35.0,$/month,https://www.coserv.com/Portals/0/PDFs/2017-PDFs/Tariff_Revised2017-0518_FINAL.pdf	https://www.coserv.com/Customer-Care/Electric-Rates-And-Tariff/Industrial
+63969efdf14d5ab38b084c91,electric,demand,,period1,0,0,1,4,0,24,0,4,10.04,10.04,$/kW,
+63969efdf14d5ab38b084c91,electric,demand,,period0,0,0,5,10,0,24,0,4,13.04,13.04,$/kW,
+63969efdf14d5ab38b084c91,electric,demand,,period1,0,0,11,12,0,24,0,4,10.04,10.04,$/kW,
+63969efdf14d5ab38b084c91,electric,demand,,period1,0,0,1,4,0,24,5,6,10.04,10.04,$/kW,
+63969efdf14d5ab38b084c91,electric,demand,,period0,0,0,5,10,0,24,5,6,13.04,13.04,$/kW,
+63969efdf14d5ab38b084c91,electric,demand,,period1,0,0,11,12,0,24,5,6,10.04,10.04,$/kW,
+63969efdf14d5ab38b084c91,electric,energy,,period0,0,0,1,12,0,24,0,4,0.090362,0.090362,$/kWh,
+63969efdf14d5ab38b084c91,electric,energy,,period0,0,0,1,12,0,24,5,6,0.090362,0.090362,$/kWh,

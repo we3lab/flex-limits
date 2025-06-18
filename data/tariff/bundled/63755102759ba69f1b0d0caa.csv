@@ -1,0 +1,17 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63755102759ba69f1b0d0caa,electric,customer,,,,,,,,,,,407.628,407.628,$/month,https://www.firstenergycorp.com/content/dam/customer/Customer%20Choice/Files/Ohio/tariffs/OE-2022-Electric-Service.pdf	https://www.firstenergycorp.com/content/customer/customer_choice/ohio_/ohio_tariffs.html#gsc.tab=0
+63755102759ba69f1b0d0caa,electric,demand,,flat,0,0,1,12,0,24,0,6,8.9295,8.9295,$/kW,adjustment factor of 6.6745
+63755102759ba69f1b0d0caa,electric,energy,,period0,0,0,1,5,0,24,0,4,0.0581887,0.0581887,$/kWh,
+63755102759ba69f1b0d0caa,electric,energy,,period0,2000.0,2000.0,1,5,0,24,0,4,0.0577287,0.0577287,$/kWh,
+63755102759ba69f1b0d0caa,electric,energy,,period0,15000.0,15000.0,1,5,0,24,0,4,0.0571887,0.0571887,$/kWh,
+63755102759ba69f1b0d0caa,electric,energy,,period1,15000.0,15000.0,6,8,0,24,0,4,0.06670469999999999,0.06670469999999999,$/kWh,
+63755102759ba69f1b0d0caa,electric,energy,,period1,2000.0,2000.0,6,8,0,24,0,4,0.0662447,0.0662447,$/kWh,
+63755102759ba69f1b0d0caa,electric,energy,,period1,15000.0,15000.0,6,8,0,24,0,4,0.06570469999999999,0.06570469999999999,$/kWh,
+63755102759ba69f1b0d0caa,electric,energy,,period0,15000.0,15000.0,9,12,0,24,0,4,0.0571887,0.0571887,$/kWh,
+63755102759ba69f1b0d0caa,electric,energy,,period0,0,0,1,5,0,24,5,6,0.0581887,0.0581887,$/kWh,
+63755102759ba69f1b0d0caa,electric,energy,,period0,2000.0,2000.0,1,5,0,24,5,6,0.0577287,0.0577287,$/kWh,
+63755102759ba69f1b0d0caa,electric,energy,,period0,15000.0,15000.0,1,5,0,24,5,6,0.0571887,0.0571887,$/kWh,
+63755102759ba69f1b0d0caa,electric,energy,,period1,15000.0,15000.0,6,8,0,24,5,6,0.06670469999999999,0.06670469999999999,$/kWh,
+63755102759ba69f1b0d0caa,electric,energy,,period1,2000.0,2000.0,6,8,0,24,5,6,0.0662447,0.0662447,$/kWh,
+63755102759ba69f1b0d0caa,electric,energy,,period1,15000.0,15000.0,6,8,0,24,5,6,0.06570469999999999,0.06570469999999999,$/kWh,
+63755102759ba69f1b0d0caa,electric,energy,,period0,15000.0,15000.0,9,12,0,24,5,6,0.0571887,0.0571887,$/kWh,

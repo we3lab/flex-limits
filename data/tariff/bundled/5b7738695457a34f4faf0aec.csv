@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b7738695457a34f4faf0aec,electric,customer,,,,,,,,,,,36.5,36.5,$/month,https://www.bentonpud.org/Services/Energy/View-Rates	https://www.bentonpud.org/Services/Energy/View-Rates
+5b7738695457a34f4faf0aec,electric,demand,,flat,0,0,1,12,0,24,0,6,3.57,3.57,$/kW,
+5b7738695457a34f4faf0aec,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0441,0.0441,$/kWh,
+5b7738695457a34f4faf0aec,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0441,0.0441,$/kWh,

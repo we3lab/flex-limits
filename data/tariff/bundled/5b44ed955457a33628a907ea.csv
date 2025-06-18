@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b44ed955457a33628a907ea,electric,customer,,,,,,,,,,,20.0,20.0,$/month,https://www.scribd.com/document/298190165/Guadalupe-Valley-Elec-Coop-Inc-Residential-Rates	https://www.gvec.org/
+5b44ed955457a33628a907ea,electric,energy,,period0,0,0,1,12,0,24,0,4,0.092431,0.092431,$/kWh,
+5b44ed955457a33628a907ea,electric,energy,,period0,3000.0,3000.0,1,12,0,24,0,4,0.082431,0.082431,$/kWh,
+5b44ed955457a33628a907ea,electric,energy,,period0,0,0,1,12,0,24,5,6,0.092431,0.092431,$/kWh,
+5b44ed955457a33628a907ea,electric,energy,,period0,3000.0,3000.0,1,12,0,24,5,6,0.082431,0.082431,$/kWh,

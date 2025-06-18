@@ -1,0 +1,7 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62cc806f57890c10b8441289,electric,customer,,,,,,,,,,,2750.0,2750.0,$/month,https://austinenergy.com/wcm/connect/c4f3dd41-c714-43bc-9279-e92940094731/Tariff-FY2022.pdf?MOD=AJPERES&CVID=nPpTNhX	https://austinenergy.com/ae/rates/approved-rates-schedules
+62cc806f57890c10b8441289,electric,demand,,flat,0,0,1,5,0,24,0,6,15.25,15.25,$/kW,adjustment factor of 3.25
+62cc806f57890c10b8441289,electric,demand,,flat,0,0,6,9,0,24,0,6,15.25,15.25,$/kW,adjustment factor of 3.25
+62cc806f57890c10b8441289,electric,demand,,flat,0,0,10,12,0,24,0,6,15.25,15.25,$/kW,adjustment factor of 3.25
+62cc806f57890c10b8441289,electric,energy,,period0,0,0,1,12,0,24,0,4,0.03563,0.03563,$/kWh,
+62cc806f57890c10b8441289,electric,energy,,period0,0,0,1,12,0,24,5,6,0.03563,0.03563,$/kWh,

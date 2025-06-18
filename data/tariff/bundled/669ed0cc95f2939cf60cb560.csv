@@ -1,0 +1,9 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+669ed0cc95f2939cf60cb560,electric,customer,,,,,,,,,,,26.0,26.0,$/month,https://www.santeecooper.com/Rates/_pdfs/Business/GL-17.pdf	https://www.santeecooper.com/rates/
+669ed0cc95f2939cf60cb560,electric,demand,,flat,0,0,1,12,0,24,0,6,23.6,23.6,$/kW,
+669ed0cc95f2939cf60cb560,electric,energy,,period0,0,0,1,5,0,24,0,4,0.0365,0.0365,$/kWh,
+669ed0cc95f2939cf60cb560,electric,energy,,period1,0,0,6,9,0,24,0,4,0.0465,0.0465,$/kWh,
+669ed0cc95f2939cf60cb560,electric,energy,,period0,0,0,10,12,0,24,0,4,0.0365,0.0365,$/kWh,
+669ed0cc95f2939cf60cb560,electric,energy,,period0,0,0,1,5,0,24,5,6,0.0365,0.0365,$/kWh,
+669ed0cc95f2939cf60cb560,electric,energy,,period1,0,0,6,9,0,24,5,6,0.0465,0.0465,$/kWh,
+669ed0cc95f2939cf60cb560,electric,energy,,period0,0,0,10,12,0,24,5,6,0.0365,0.0365,$/kWh,

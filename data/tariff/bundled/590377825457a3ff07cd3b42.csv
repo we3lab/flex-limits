@@ -1,0 +1,19 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+590377825457a3ff07cd3b42,electric,customer,,,,,,,,,,,69.49,69.49,$/month,https://www.empiredistrict.com/CustomerService/Rates/Electric/MO	https://www.empiredistrict.com/CustomerService/Rates/Electric
+590377825457a3ff07cd3b42,electric,demand,,flat,0,0,1,5,0,24,0,6,7.779999999999999,7.779999999999999,$/kW,adjustment factor of 2.07
+590377825457a3ff07cd3b42,electric,demand,,flat,0,0,6,9,0,24,0,6,9.4,9.4,$/kW,adjustment factor of 2.07
+590377825457a3ff07cd3b42,electric,demand,,flat,0,0,10,12,0,24,0,6,7.779999999999999,7.779999999999999,$/kW,adjustment factor of 2.07
+590377825457a3ff07cd3b42,electric,energy,,period1,0,0,1,5,0,24,0,4,0.07441,0.07441,$/kWh,
+590377825457a3ff07cd3b42,electric,energy,,period1,150.0,150.0,1,5,0,24,0,4,0.06061999999999999,0.06061999999999999,$/kWh,
+590377825457a3ff07cd3b42,electric,energy,,period1,350.0,350.0,1,5,0,24,0,4,0.0601,0.0601,$/kWh,
+590377825457a3ff07cd3b42,electric,energy,,period0,350.0,350.0,6,9,0,24,0,4,0.08666,0.08666,$/kWh,
+590377825457a3ff07cd3b42,electric,energy,,period0,150.0,150.0,6,9,0,24,0,4,0.06726,0.06726,$/kWh,
+590377825457a3ff07cd3b42,electric,energy,,period0,350.0,350.0,6,9,0,24,0,4,0.060399999999999995,0.060399999999999995,$/kWh,
+590377825457a3ff07cd3b42,electric,energy,,period1,350.0,350.0,10,12,0,24,0,4,0.0601,0.0601,$/kWh,
+590377825457a3ff07cd3b42,electric,energy,,period1,0,0,1,5,0,24,5,6,0.07441,0.07441,$/kWh,
+590377825457a3ff07cd3b42,electric,energy,,period1,150.0,150.0,1,5,0,24,5,6,0.06061999999999999,0.06061999999999999,$/kWh,
+590377825457a3ff07cd3b42,electric,energy,,period1,350.0,350.0,1,5,0,24,5,6,0.0601,0.0601,$/kWh,
+590377825457a3ff07cd3b42,electric,energy,,period0,350.0,350.0,6,9,0,24,5,6,0.08666,0.08666,$/kWh,
+590377825457a3ff07cd3b42,electric,energy,,period0,150.0,150.0,6,9,0,24,5,6,0.06726,0.06726,$/kWh,
+590377825457a3ff07cd3b42,electric,energy,,period0,350.0,350.0,6,9,0,24,5,6,0.060399999999999995,0.060399999999999995,$/kWh,
+590377825457a3ff07cd3b42,electric,energy,,period1,350.0,350.0,10,12,0,24,5,6,0.0601,0.0601,$/kWh,

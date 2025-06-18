@@ -1,0 +1,10 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+634846d1b7fcc6a615050c11,electric,customer,,,,,,,,,,,21.26,21.26,$/month,https://p-scapi.duke-energy.com/-/media/pdfs/for-your-home/rates/electric-in/iurc-15/011-de-in-rider-10-llf.pdf?_gl=1*1tr1roy*_ga*NzAzMDcxNzQ1LjE2NTgzMzkyNTE.*_ga_HB58MJRNTY*MTY2NTY3ODEwMS4xNS4xLjE2NjU2Nzk0MTUuMC4wLjA.&_ga=2.33418615.834363625.1665601923-703071745.1658339251	https://www.duke-energy.com/home/billing/rates/electric-tariff
+634846d1b7fcc6a615050c11,electric,energy,,period0,0,0,1,12,0,24,0,4,0.237073,0.237073,$/kWh,
+634846d1b7fcc6a615050c11,electric,energy,,period0,300.0,300.0,1,12,0,24,0,4,0.200288,0.200288,$/kWh,
+634846d1b7fcc6a615050c11,electric,energy,,period0,1000.0,1000.0,1,12,0,24,0,4,0.185365,0.185365,$/kWh,
+634846d1b7fcc6a615050c11,electric,energy,,period0,2500.0,2500.0,1,12,0,24,0,4,0.150493,0.150493,$/kWh,
+634846d1b7fcc6a615050c11,electric,energy,,period0,0,0,1,12,0,24,5,6,0.237073,0.237073,$/kWh,
+634846d1b7fcc6a615050c11,electric,energy,,period0,300.0,300.0,1,12,0,24,5,6,0.200288,0.200288,$/kWh,
+634846d1b7fcc6a615050c11,electric,energy,,period0,1000.0,1000.0,1,12,0,24,5,6,0.185365,0.185365,$/kWh,
+634846d1b7fcc6a615050c11,electric,energy,,period0,2500.0,2500.0,1,12,0,24,5,6,0.150493,0.150493,$/kWh,

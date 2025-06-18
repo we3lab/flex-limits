@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62c46af3924e2352a30de5d7,electric,customer,,,,,,,,,,,83.32,83.32,$/month,https://www.fpl.com/content/dam/fplgp/us/en/rates/pdf/electric-tariff-section8.pdf	https://www.fpl.com/rates/retail-tariffs.html
+62c46af3924e2352a30de5d7,electric,demand,,flat,0,0,1,12,0,24,0,6,14.93,14.93,$/kW,adjustment factor of 2.15
+62c46af3924e2352a30de5d7,electric,energy,,period0,0,0,1,12,0,24,0,4,0.05911,0.05911,$/kWh,
+62c46af3924e2352a30de5d7,electric,energy,,period0,0,0,1,12,0,24,5,6,0.05911,0.05911,$/kWh,

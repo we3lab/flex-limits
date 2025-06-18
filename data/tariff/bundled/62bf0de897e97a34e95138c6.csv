@@ -1,0 +1,18 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62bf0de897e97a34e95138c6,electric,customer,,,,,,,,,,,9.1,9.1,$/month,https://www.cpsenergy.com/content/dam/corporate/en/Documents/Rate_GeneralService.pdf	https://www.cpsenergy.com/content/corporate/en/about-us/who-we-are/rates.html
+62bf0de897e97a34e95138c6,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+62bf0de897e97a34e95138c6,electric,demand,,flat,5.0,5.0,1,12,0,24,0,6,4.16,4.16,$/kW,
+62bf0de897e97a34e95138c6,electric,energy,,period1,0,0,1,5,0,24,0,4,0.12448999999999999,0.12448999999999999,$/kWh,
+62bf0de897e97a34e95138c6,electric,energy,,period1,600.0,600.0,1,5,0,24,0,4,0.1349,0.1349,$/kWh,
+62bf0de897e97a34e95138c6,electric,energy,,period1,1600.0,1600.0,1,5,0,24,0,4,0.09463,0.09463,$/kWh,
+62bf0de897e97a34e95138c6,electric,energy,,period0,1600.0,1600.0,6,9,0,24,0,4,0.12448999999999999,0.12448999999999999,$/kWh,
+62bf0de897e97a34e95138c6,electric,energy,,period0,600.0,600.0,6,9,0,24,0,4,0.14509,0.14509,$/kWh,
+62bf0de897e97a34e95138c6,electric,energy,,period0,1600.0,1600.0,6,9,0,24,0,4,0.10482,0.10482,$/kWh,
+62bf0de897e97a34e95138c6,electric,energy,,period1,1600.0,1600.0,10,12,0,24,0,4,0.09463,0.09463,$/kWh,
+62bf0de897e97a34e95138c6,electric,energy,,period1,0,0,1,5,0,24,5,6,0.12448999999999999,0.12448999999999999,$/kWh,
+62bf0de897e97a34e95138c6,electric,energy,,period1,600.0,600.0,1,5,0,24,5,6,0.1349,0.1349,$/kWh,
+62bf0de897e97a34e95138c6,electric,energy,,period1,1600.0,1600.0,1,5,0,24,5,6,0.09463,0.09463,$/kWh,
+62bf0de897e97a34e95138c6,electric,energy,,period0,1600.0,1600.0,6,9,0,24,5,6,0.12448999999999999,0.12448999999999999,$/kWh,
+62bf0de897e97a34e95138c6,electric,energy,,period0,600.0,600.0,6,9,0,24,5,6,0.14509,0.14509,$/kWh,
+62bf0de897e97a34e95138c6,electric,energy,,period0,1600.0,1600.0,6,9,0,24,5,6,0.10482,0.10482,$/kWh,
+62bf0de897e97a34e95138c6,electric,energy,,period1,1600.0,1600.0,10,12,0,24,5,6,0.09463,0.09463,$/kWh,

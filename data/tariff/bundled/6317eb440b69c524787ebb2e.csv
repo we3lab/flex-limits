@@ -1,0 +1,9 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6317eb440b69c524787ebb2e,electric,customer,,,,,,,,,,,30.43,30.43,$/month,https://www.xcelenergy.com/staticfiles/xe-responsive/Company/Rates%20&%20Regulations/Me_Section_5.pdf	https://www.xcelenergy.com/company/rates_and_regulations/rates/rate_riders
+6317eb440b69c524787ebb2e,electric,demand,,flat,0,0,1,5,0,24,0,6,8.94,8.94,$/kW,
+6317eb440b69c524787ebb2e,electric,demand,,flat,0,0,6,9,0,24,0,6,13.24,13.24,$/kW,
+6317eb440b69c524787ebb2e,electric,demand,,flat,0,0,10,12,0,24,0,6,8.94,8.94,$/kW,
+6317eb440b69c524787ebb2e,electric,energy,,period0,0,0,1,12,0,24,0,4,0.07988999999999999,0.07988999999999999,$/kWh,
+6317eb440b69c524787ebb2e,electric,energy,,period0,400.0,400.0,1,12,0,24,0,4,0.061169999999999995,0.061169999999999995,$/kWh,
+6317eb440b69c524787ebb2e,electric,energy,,period0,0,0,1,12,0,24,5,6,0.07988999999999999,0.07988999999999999,$/kWh,
+6317eb440b69c524787ebb2e,electric,energy,,period0,400.0,400.0,1,12,0,24,5,6,0.061169999999999995,0.061169999999999995,$/kWh,

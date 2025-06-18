@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6435868d9aec8689460d858b,electric,customer,,,,,,,,,,,511.73,511.73,$/month,https://www.oppd.com/media/172612/oppd-rate-manual.pdf	https://www.oppd.com/business/business-rates/
+6435868d9aec8689460d858b,electric,demand,,flat,0,0,1,12,0,24,0,6,13.47,13.47,$/kW,
+6435868d9aec8689460d858b,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0439,0.0439,$/kWh,
+6435868d9aec8689460d858b,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0439,0.0439,$/kWh,

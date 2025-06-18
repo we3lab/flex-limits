@@ -1,0 +1,13 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63f64af0aec565a5a10dc864,electric,customer,,,,,,,,,,,299.0,299.0,$/month,https://docs.idahopower.com/pdfs/aboutus/ratesregulatory/tariffs/42.pdf	https://www.idahopower.com/about-us/company-information/rates-and-regulatory/retail-tariffs-idaho/
+63f64af0aec565a5a10dc864,electric,demand,,flat,0,0,1,4,0,24,0,6,0.0,0.0,$/kW,
+63f64af0aec565a5a10dc864,electric,demand,,flat,0,0,5,9,0,24,0,6,6.66,6.66,$/kW,
+63f64af0aec565a5a10dc864,electric,demand,,flat,0,0,10,12,0,24,0,6,0.0,0.0,$/kW,
+63f64af0aec565a5a10dc864,electric,energy,,period0,0,0,1,4,0,24,0,4,0.07738500000000001,0.07738500000000001,$/kWh,
+63f64af0aec565a5a10dc864,electric,energy,,period1,0,0,5,9,0,24,0,4,0.069081,0.069081,$/kWh,
+63f64af0aec565a5a10dc864,electric,energy,,period1,164.0,164.0,5,9,0,24,0,4,0.066251,0.066251,$/kWh,
+63f64af0aec565a5a10dc864,electric,energy,,period0,164.0,164.0,10,12,0,24,0,4,0.07738500000000001,0.07738500000000001,$/kWh,
+63f64af0aec565a5a10dc864,electric,energy,,period0,0,0,1,4,0,24,5,6,0.07738500000000001,0.07738500000000001,$/kWh,
+63f64af0aec565a5a10dc864,electric,energy,,period1,0,0,5,9,0,24,5,6,0.069081,0.069081,$/kWh,
+63f64af0aec565a5a10dc864,electric,energy,,period1,164.0,164.0,5,9,0,24,5,6,0.066251,0.066251,$/kWh,
+63f64af0aec565a5a10dc864,electric,energy,,period0,164.0,164.0,10,12,0,24,5,6,0.07738500000000001,0.07738500000000001,$/kWh,

@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b44f81a5457a31c4ea907e9,electric,customer,,,,,,,,,,,120.0,120.0,$/month,https://irea.coop/wp-content/uploads/2017/04/ProposedRRAmendmentsMay2017.pdf	https://irea.coop/
+5b44f81a5457a31c4ea907e9,electric,demand,,flat,0,0,1,12,0,24,0,6,14.0,14.0,$/kW,
+5b44f81a5457a31c4ea907e9,electric,energy,,period0,0,0,1,12,0,24,0,4,0.06449,0.06449,$/kWh,
+5b44f81a5457a31c4ea907e9,electric,energy,,period0,0,0,1,12,0,24,5,6,0.06449,0.06449,$/kWh,

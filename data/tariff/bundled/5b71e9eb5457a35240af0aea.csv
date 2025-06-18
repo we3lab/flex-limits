@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b71e9eb5457a35240af0aea,electric,customer,,,,,,,,,,,361.32,361.32,$/month,http://www.faypwc.com/wp-content/uploads/2018/05/rate-rb5-large-power-may18.pdf	https://www.faypwc.com/commercial-industrial-rates/
+5b71e9eb5457a35240af0aea,electric,demand,,flat,0,0,1,12,0,24,0,6,17.25,17.25,$/kW,
+5b71e9eb5457a35240af0aea,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0525,0.0525,$/kWh,
+5b71e9eb5457a35240af0aea,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0525,0.0525,$/kWh,

@@ -1,0 +1,18 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62c6ffdcf5e27b56c2476589,electric,customer,,,,,,,,,,,25.65,25.65,$/month,https://cdn-dominionenergy-prd-001.azureedge.net/-/media/pdfs/south-carolina/rates-and-tariffs/rate16.pdf?la=en&rev=ff767e506a8c422b8940285a2b76c7cf&hash=292DE20C283CBEC2FEA2802BDF591E16	https://www.dominionenergy.com/south-carolina/rates-and-tariffs
+62c6ffdcf5e27b56c2476589,electric,energy,,period0,0,0,1,5,0,6,0,4,0.09509999999999999,0.09509999999999999,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period0,1000.0,1000.0,1,5,0,6,0,4,0.09977,0.09977,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period2,0,0,1,5,6,10,0,4,0.17143,0.17143,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period0,0,0,1,5,10,18,0,4,0.09977,0.09977,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period2,0,0,1,5,18,22,0,4,0.17143,0.17143,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period0,0,0,1,5,22,24,0,4,0.09977,0.09977,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period0,0,0,6,9,0,13,0,4,0.09977,0.09977,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period1,0,0,6,9,13,21,0,4,0.22238,0.22238,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period0,0,0,6,9,21,24,0,4,0.09977,0.09977,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period0,0,0,10,12,0,6,0,4,0.09977,0.09977,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period2,0,0,10,12,6,10,0,4,0.17143,0.17143,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period0,0,0,10,12,10,18,0,4,0.09977,0.09977,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period2,0,0,10,12,18,22,0,4,0.17143,0.17143,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period0,0,0,10,12,22,24,0,4,0.09977,0.09977,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period0,0,0,1,12,0,24,5,6,0.09509999999999999,0.09509999999999999,$/kWh,
+62c6ffdcf5e27b56c2476589,electric,energy,,period0,1000.0,1000.0,1,12,0,24,5,6,0.09977,0.09977,$/kWh,

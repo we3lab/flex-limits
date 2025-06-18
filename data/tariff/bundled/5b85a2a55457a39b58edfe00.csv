@@ -1,0 +1,18 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b85a2a55457a39b58edfe00,electric,customer,,,,,,,,,,,40.0,40.0,$/month,https://www.otpco.com/media/1389/nd_1003.pdf	https://www.otpco.com/pricing/north-dakota/rates-rules-and-regulations-nd/
+5b85a2a55457a39b58edfe00,electric,demand,,flat,0,0,1,5,0,24,0,6,8.74,8.74,$/kW,adjustment factor of 2.83
+5b85a2a55457a39b58edfe00,electric,demand,,flat,1000.0,1000.0,1,5,0,24,0,6,8.559999999999999,8.559999999999999,$/kW,adjustment factor of 2.8
+5b85a2a55457a39b58edfe00,electric,demand,,flat,1000.0,1000.0,6,9,0,24,0,6,10.761,10.761,$/kW,adjustment factor of 3.171
+5b85a2a55457a39b58edfe00,electric,demand,,flat,1000.0,1000.0,6,9,0,24,0,6,10.58,10.58,$/kW,adjustment factor of 3.14
+5b85a2a55457a39b58edfe00,electric,demand,,flat,1000.0,1000.0,10,12,0,24,0,6,8.74,8.74,$/kW,adjustment factor of 2.83
+5b85a2a55457a39b58edfe00,electric,demand,,flat,1000.0,1000.0,10,12,0,24,0,6,8.559999999999999,8.559999999999999,$/kW,adjustment factor of 2.8
+5b85a2a55457a39b58edfe00,electric,energy,,period1,0,0,1,5,0,24,0,4,0.0569623,0.0569623,$/kWh,
+5b85a2a55457a39b58edfe00,electric,energy,,period1,700000.0,700000.0,1,5,0,24,0,4,0.052103199999999995,0.052103199999999995,$/kWh,
+5b85a2a55457a39b58edfe00,electric,energy,,period0,700000.0,700000.0,6,9,0,24,0,4,0.056361,0.056361,$/kWh,
+5b85a2a55457a39b58edfe00,electric,energy,,period0,700000.0,700000.0,6,9,0,24,0,4,0.0515499,0.0515499,$/kWh,
+5b85a2a55457a39b58edfe00,electric,energy,,period1,700000.0,700000.0,10,12,0,24,0,4,0.052103199999999995,0.052103199999999995,$/kWh,
+5b85a2a55457a39b58edfe00,electric,energy,,period1,0,0,1,5,0,24,5,6,0.0569623,0.0569623,$/kWh,
+5b85a2a55457a39b58edfe00,electric,energy,,period1,700000.0,700000.0,1,5,0,24,5,6,0.052103199999999995,0.052103199999999995,$/kWh,
+5b85a2a55457a39b58edfe00,electric,energy,,period0,700000.0,700000.0,6,9,0,24,5,6,0.056361,0.056361,$/kWh,
+5b85a2a55457a39b58edfe00,electric,energy,,period0,700000.0,700000.0,6,9,0,24,5,6,0.0515499,0.0515499,$/kWh,
+5b85a2a55457a39b58edfe00,electric,energy,,period1,700000.0,700000.0,10,12,0,24,5,6,0.052103199999999995,0.052103199999999995,$/kWh,

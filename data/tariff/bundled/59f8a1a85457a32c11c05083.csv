@@ -1,0 +1,13 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+59f8a1a85457a32c11c05083,electric,customer,,,,,,,,,,,16.2,16.2,$/month,http://www.ntua.com/utility_rates/generalservices.html	http://www.ntua.com/utility_rates/electric_rates.html
+59f8a1a85457a32c11c05083,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+59f8a1a85457a32c11c05083,electric,demand,,flat,25.0,25.0,1,12,0,24,0,6,6.0,6.0,$/kW,
+59f8a1a85457a32c11c05083,electric,demand,,flat,200.0,200.0,1,12,0,24,0,6,4.0,4.0,$/kW,
+59f8a1a85457a32c11c05083,electric,energy,,period0,0,0,1,12,0,24,0,4,0.11,0.11,$/kWh,
+59f8a1a85457a32c11c05083,electric,energy,,period0,200.0,200.0,1,12,0,24,0,4,0.092,0.092,$/kWh,
+59f8a1a85457a32c11c05083,electric,energy,,period0,1000.0,1000.0,1,12,0,24,0,4,0.09,0.09,$/kWh,
+59f8a1a85457a32c11c05083,electric,energy,,period0,16000.0,16000.0,1,12,0,24,0,4,0.084,0.084,$/kWh,
+59f8a1a85457a32c11c05083,electric,energy,,period0,0,0,1,12,0,24,5,6,0.11,0.11,$/kWh,
+59f8a1a85457a32c11c05083,electric,energy,,period0,200.0,200.0,1,12,0,24,5,6,0.092,0.092,$/kWh,
+59f8a1a85457a32c11c05083,electric,energy,,period0,1000.0,1000.0,1,12,0,24,5,6,0.09,0.09,$/kWh,
+59f8a1a85457a32c11c05083,electric,energy,,period0,16000.0,16000.0,1,12,0,24,5,6,0.084,0.084,$/kWh,

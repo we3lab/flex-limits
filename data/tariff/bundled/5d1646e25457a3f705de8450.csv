@@ -1,0 +1,28 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5d1646e25457a3f705de8450,electric,customer,,,,,,,,,,,1149.23,1149.23,$/month,https://www.kcpl.com/-/media/indexedmedia/my_bill/mo/detailed_tariffs_mo/14largepowerservice-1115.pdf?la=en	http://www.kcpl.com/my-bill/for-home/rate-information/detailed-tariffs
+5d1646e25457a3f705de8450,electric,demand,,flat,0,0,1,5,0,24,0,6,13.999,13.999,$/kW,adjustment factor of 3.849
+5d1646e25457a3f705de8450,electric,demand,,flat,2443.0,2443.0,1,5,0,24,0,6,11.769,11.769,$/kW,adjustment factor of 3.849
+5d1646e25457a3f705de8450,electric,demand,,flat,4886.0,4886.0,1,5,0,24,0,6,10.836,10.836,$/kW,adjustment factor of 3.849
+5d1646e25457a3f705de8450,electric,demand,,flat,7329.0,7329.0,1,5,0,24,0,6,9.228,9.228,$/kW,adjustment factor of 3.849
+5d1646e25457a3f705de8450,electric,demand,,flat,7329.0,7329.0,6,9,0,24,0,6,18.781,18.781,$/kW,adjustment factor of 3.849
+5d1646e25457a3f705de8450,electric,demand,,flat,2443.0,2443.0,6,9,0,24,0,6,15.793000000000001,15.793000000000001,$/kW,adjustment factor of 3.849
+5d1646e25457a3f705de8450,electric,demand,,flat,4886.0,4886.0,6,9,0,24,0,6,13.855,13.855,$/kW,adjustment factor of 3.849
+5d1646e25457a3f705de8450,electric,demand,,flat,7329.0,7329.0,6,9,0,24,0,6,11.153,11.153,$/kW,adjustment factor of 3.849
+5d1646e25457a3f705de8450,electric,demand,,flat,7329.0,7329.0,10,12,0,24,0,6,13.999,13.999,$/kW,adjustment factor of 3.849
+5d1646e25457a3f705de8450,electric,demand,,flat,2443.0,2443.0,10,12,0,24,0,6,11.769,11.769,$/kW,adjustment factor of 3.849
+5d1646e25457a3f705de8450,electric,demand,,flat,4886.0,4886.0,10,12,0,24,0,6,10.836,10.836,$/kW,adjustment factor of 3.849
+5d1646e25457a3f705de8450,electric,demand,,flat,7329.0,7329.0,10,12,0,24,0,6,9.228,9.228,$/kW,adjustment factor of 3.849
+5d1646e25457a3f705de8450,electric,energy,,period1,0,0,1,5,0,24,0,4,0.08269,0.08269,$/kWh,
+5d1646e25457a3f705de8450,electric,energy,,period1,180.0,180.0,1,5,0,24,0,4,0.05521,0.05521,$/kWh,
+5d1646e25457a3f705de8450,electric,energy,,period1,360.0,360.0,1,5,0,24,0,4,0.032100000000000004,0.032100000000000004,$/kWh,
+5d1646e25457a3f705de8450,electric,energy,,period0,360.0,360.0,6,9,0,24,0,4,0.09632,0.09632,$/kWh,
+5d1646e25457a3f705de8450,electric,energy,,period0,180.0,180.0,6,9,0,24,0,4,0.060020000000000004,0.060020000000000004,$/kWh,
+5d1646e25457a3f705de8450,electric,energy,,period0,360.0,360.0,6,9,0,24,0,4,0.032350000000000004,0.032350000000000004,$/kWh,
+5d1646e25457a3f705de8450,electric,energy,,period1,360.0,360.0,10,12,0,24,0,4,0.032100000000000004,0.032100000000000004,$/kWh,
+5d1646e25457a3f705de8450,electric,energy,,period1,0,0,1,5,0,24,5,6,0.08269,0.08269,$/kWh,
+5d1646e25457a3f705de8450,electric,energy,,period1,180.0,180.0,1,5,0,24,5,6,0.05521,0.05521,$/kWh,
+5d1646e25457a3f705de8450,electric,energy,,period1,360.0,360.0,1,5,0,24,5,6,0.032100000000000004,0.032100000000000004,$/kWh,
+5d1646e25457a3f705de8450,electric,energy,,period0,360.0,360.0,6,9,0,24,5,6,0.09632,0.09632,$/kWh,
+5d1646e25457a3f705de8450,electric,energy,,period0,180.0,180.0,6,9,0,24,5,6,0.060020000000000004,0.060020000000000004,$/kWh,
+5d1646e25457a3f705de8450,electric,energy,,period0,360.0,360.0,6,9,0,24,5,6,0.032350000000000004,0.032350000000000004,$/kWh,
+5d1646e25457a3f705de8450,electric,energy,,period1,360.0,360.0,10,12,0,24,5,6,0.032100000000000004,0.032100000000000004,$/kWh,

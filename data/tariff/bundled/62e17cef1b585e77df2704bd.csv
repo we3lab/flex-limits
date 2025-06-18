@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62e17cef1b585e77df2704bd,electric,customer,,,,,,,,,,,40.16,40.16,$/month,http://provopower.org/wp-content/uploads/2022/03/Rate-Schedule-No.-04_2021.pdf	http://provopower.org/customer-service/
+62e17cef1b585e77df2704bd,electric,demand,,flat,0,0,1,12,0,24,0,6,12.8898,12.8898,$/kW,adjustment factor of 0.2898
+62e17cef1b585e77df2704bd,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0456258,0.0456258,$/kWh,
+62e17cef1b585e77df2704bd,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0456258,0.0456258,$/kWh,

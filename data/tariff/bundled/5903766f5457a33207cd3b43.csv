@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5903766f5457a33207cd3b43,electric,customer,,,,,,,,,,,19.51,19.51,$/month,https://www.empiredistrict.com/CustomerService/Rates/Electric/MO	https://www.empiredistrict.com/CustomerService/Rates/Electric
+5903766f5457a33207cd3b43,electric,energy,,period0,0,0,1,12,0,24,0,4,0.09741,0.09741,$/kWh,
+5903766f5457a33207cd3b43,electric,energy,,period0,0,0,1,12,0,24,5,6,0.09741,0.09741,$/kWh,

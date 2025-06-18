@@ -1,0 +1,13 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6393a016b523a2f7310ed569,electric,customer,,,,,,,,,,,10.0,10.0,$/month,https://www.eversource.com/content/docs/default-source/rates-tariffs/ma-electric/1-tariff-ma.pdf?sfvrsn=769dc462_40	https://www.eversource.com/content/ema-c/residential/my-account/billing-payments/about-your-bill/rates-tariffs/electric-tariffs-rules
+6393a016b523a2f7310ed569,electric,demand,,flat,0,0,1,12,0,24,0,6,16.99,16.99,$/kW,
+6393a016b523a2f7310ed569,electric,energy,,period0,0,0,1,2,0,16,0,4,0.21693,0.21693,$/kWh,
+6393a016b523a2f7310ed569,electric,energy,,period1,0,0,1,2,16,21,0,4,0.22477999999999998,0.22477999999999998,$/kWh,
+6393a016b523a2f7310ed569,electric,energy,,period0,0,0,1,2,21,24,0,4,0.21693,0.21693,$/kWh,
+6393a016b523a2f7310ed569,electric,energy,,period0,0,0,3,10,0,9,0,4,0.21693,0.21693,$/kWh,
+6393a016b523a2f7310ed569,electric,energy,,period1,0,0,3,10,9,18,0,4,0.22477999999999998,0.22477999999999998,$/kWh,
+6393a016b523a2f7310ed569,electric,energy,,period0,0,0,3,10,18,24,0,4,0.21693,0.21693,$/kWh,
+6393a016b523a2f7310ed569,electric,energy,,period0,0,0,11,12,0,16,0,4,0.21693,0.21693,$/kWh,
+6393a016b523a2f7310ed569,electric,energy,,period1,0,0,11,12,16,21,0,4,0.22477999999999998,0.22477999999999998,$/kWh,
+6393a016b523a2f7310ed569,electric,energy,,period0,0,0,11,12,21,24,0,4,0.21693,0.21693,$/kWh,
+6393a016b523a2f7310ed569,electric,energy,,period0,0,0,1,12,0,24,5,6,0.21693,0.21693,$/kWh,

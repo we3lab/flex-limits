@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63c9d9ce005b41877208ffe1,electric,customer,,,,,,,,,,,16.51,16.51,$/month,https://www.delmarva.com/SiteCollectionDocuments/My%20Account/MyBillUsage/DPL_DE-MasterElectricTariff.pdf	https://www.delmarva.com/MyAccount/MyBillUsage/Pages/DE/Electric/CurrentTariffs.aspx
+63c9d9ce005b41877208ffe1,electric,energy,,period1,0,0,1,5,0,24,0,4,0.12321800000000001,0.12321800000000001,$/kWh,
+63c9d9ce005b41877208ffe1,electric,energy,,period0,0,0,6,9,0,24,0,4,0.11868300000000001,0.11868300000000001,$/kWh,
+63c9d9ce005b41877208ffe1,electric,energy,,period1,0,0,10,12,0,24,0,4,0.12321800000000001,0.12321800000000001,$/kWh,
+63c9d9ce005b41877208ffe1,electric,energy,,period1,0,0,1,5,0,24,5,6,0.12321800000000001,0.12321800000000001,$/kWh,
+63c9d9ce005b41877208ffe1,electric,energy,,period0,0,0,6,9,0,24,5,6,0.11868300000000001,0.11868300000000001,$/kWh,
+63c9d9ce005b41877208ffe1,electric,energy,,period1,0,0,10,12,0,24,5,6,0.12321800000000001,0.12321800000000001,$/kWh,

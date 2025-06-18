@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+633db183a8a752f8190dcf51,electric,customer,,,,,,,,,,,9.01,9.01,$/month,https://desitecoreprod-cd.azureedge.net/_/media/pdfs/for-your-home/rates/rates-fl/retail-rates-by-rate-schedule.pdf?la=en&rev=5845ca5a33054d2e91e22b17d65a48ae	https://www.duke-energy.com/home/billing/rates
+633db183a8a752f8190dcf51,electric,energy,,period0,0,0,1,12,0,24,0,4,0.08754999999999999,0.08754999999999999,$/kWh,
+633db183a8a752f8190dcf51,electric,energy,,period0,0,0,1,12,0,24,5,6,0.08754999999999999,0.08754999999999999,$/kWh,

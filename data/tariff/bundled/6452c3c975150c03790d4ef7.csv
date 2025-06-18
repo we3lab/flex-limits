@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6452c3c975150c03790d4ef7,electric,customer,,,,,,,,,,,0.0,0.0,$/month,https://www.swepco.com/lib/docs/ratesandtariffs/Texas/TexasRatesChargesandFees04-26-2022.pdf	https://www.swepco.com/company/about/rates/tx
+6452c3c975150c03790d4ef7,electric,demand,,flat,0,0,1,12,0,24,0,6,12.69,12.69,$/kW,
+6452c3c975150c03790d4ef7,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0495865,0.0495865,$/kWh,
+6452c3c975150c03790d4ef7,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0495865,0.0495865,$/kWh,

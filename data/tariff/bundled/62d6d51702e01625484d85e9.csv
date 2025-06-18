@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62d6d51702e01625484d85e9,electric,customer,,,,,,,,,,,1.43,1.43,$/month,https://www.seattle.gov/city-light/business-solutions/business-billing-and-account-information/business-rates#burienlakeforestparkseatacandshorelinebusinesses	https://www.seattle.gov/city-light/business-solutions/business-billing-and-account-information/business-rates#burienlakeforestparkseatacandshorelinebusinesses
+62d6d51702e01625484d85e9,electric,demand,,flat,0,0,1,12,0,24,0,6,4.5,4.5,$/kW,
+62d6d51702e01625484d85e9,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0883,0.0883,$/kWh,
+62d6d51702e01625484d85e9,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0883,0.0883,$/kWh,

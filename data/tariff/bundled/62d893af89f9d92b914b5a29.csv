@@ -1,0 +1,17 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+62d893af89f9d92b914b5a29,electric,customer,,,,,,,,,,,311.66,311.66,$/month,https://www.pepco.com/SiteCollectionDocuments/10.%20DC%20Rates%20Update%202.25.22%20GT%203B.pdf	https://www.pepco.com/MyAccount/MyBillUsage/Pages/DC/CurrentTariffsDC.aspx
+62d893af89f9d92b914b5a29,electric,demand,,flat,0,0,1,5,0,24,0,6,2.18,2.18,$/kW,
+62d893af89f9d92b914b5a29,electric,demand,,flat,0,0,6,10,0,24,0,6,2.03,2.03,$/kW,
+62d893af89f9d92b914b5a29,electric,demand,,flat,0,0,11,12,0,24,0,6,2.18,2.18,$/kW,
+62d893af89f9d92b914b5a29,electric,demand,,period0,0,0,1,5,0,24,0,4,1.1541,1.1541,$/kW,
+62d893af89f9d92b914b5a29,electric,demand,,period0,0,0,6,10,0,12,0,4,1.1541,1.1541,$/kW,
+62d893af89f9d92b914b5a29,electric,demand,,period1,0,0,6,10,12,20,0,4,1.4183,1.4183,$/kW,
+62d893af89f9d92b914b5a29,electric,demand,,period0,0,0,6,10,20,24,0,4,1.1541,1.1541,$/kW,
+62d893af89f9d92b914b5a29,electric,demand,,period0,0,0,11,12,0,24,0,4,1.1541,1.1541,$/kW,
+62d893af89f9d92b914b5a29,electric,demand,,period0,0,0,1,12,0,24,5,6,1.1541,1.1541,$/kW,
+62d893af89f9d92b914b5a29,electric,energy,,period0,0,0,1,5,0,24,0,4,0.11646329999999999,0.11646329999999999,$/kWh,
+62d893af89f9d92b914b5a29,electric,energy,,period1,0,0,6,10,0,24,0,4,0.11646329999999999,0.11646329999999999,$/kWh,
+62d893af89f9d92b914b5a29,electric,energy,,period0,0,0,11,12,0,24,0,4,0.11646329999999999,0.11646329999999999,$/kWh,
+62d893af89f9d92b914b5a29,electric,energy,,period0,0,0,1,5,0,24,5,6,0.11646329999999999,0.11646329999999999,$/kWh,
+62d893af89f9d92b914b5a29,electric,energy,,period1,0,0,6,10,0,24,5,6,0.11646329999999999,0.11646329999999999,$/kWh,
+62d893af89f9d92b914b5a29,electric,energy,,period0,0,0,11,12,0,24,5,6,0.11646329999999999,0.11646329999999999,$/kWh,

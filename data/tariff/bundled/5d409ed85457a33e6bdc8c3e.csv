@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5d409ed85457a33e6bdc8c3e,electric,customer,,,,,,,,,,,86.0,86.0,$/month,https://www.kentuckypower.com/global/utilities/lib/docs/ratesandtariffs/kentucky/KYTAR07-28-2016.pdf	https://www.kentuckypower.com/account/bills/rates/KentuckyPowerRatesTariffsKY.aspx
+5d409ed85457a33e6bdc8c3e,electric,energy,,period1,0,0,1,12,0,7,0,4,0.08293355,0.08293355,$/kWh,
+5d409ed85457a33e6bdc8c3e,electric,energy,,period0,0,0,1,12,7,21,0,4,0.17676602,0.17676602,$/kWh,
+5d409ed85457a33e6bdc8c3e,electric,energy,,period1,0,0,1,12,21,24,0,4,0.08293355,0.08293355,$/kWh,
+5d409ed85457a33e6bdc8c3e,electric,energy,,period1,0,0,1,12,0,24,5,6,0.08293355,0.08293355,$/kWh,

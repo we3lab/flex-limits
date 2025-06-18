@@ -1,0 +1,18 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b7735965457a3452daf0aef,electric,customer,,,,,,,,,,,59.62,59.62,$/month,https://www.bentonpud.org/Services/Energy/View-Rates	https://www.bentonpud.org/Services/Energy/View-Rates
+5b7735965457a3452daf0aef,electric,demand,,period0,0,0,1,12,0,24,0,4,0.0,0.0,$/kW,
+5b7735965457a3452daf0aef,electric,demand,,period0,50.0,50.0,1,12,0,24,0,4,7.93,7.93,$/kW,
+5b7735965457a3452daf0aef,electric,demand,,period0,0,0,1,12,0,24,5,6,0.0,0.0,$/kW,
+5b7735965457a3452daf0aef,electric,demand,,period0,50.0,50.0,1,12,0,24,5,6,7.93,7.93,$/kW,
+5b7735965457a3452daf0aef,electric,energy,,period3,0,0,1,3,0,6,0,4,0.0432,0.0432,$/kWh,
+5b7735965457a3452daf0aef,electric,energy,,period2,0,0,1,3,6,22,0,4,0.0506,0.0506,$/kWh,
+5b7735965457a3452daf0aef,electric,energy,,period3,0,0,1,3,22,24,0,4,0.0432,0.0432,$/kWh,
+5b7735965457a3452daf0aef,electric,energy,,period1,0,0,4,8,0,6,0,4,0.0381,0.0381,$/kWh,
+5b7735965457a3452daf0aef,electric,energy,,period0,0,0,4,8,6,22,0,4,0.0413,0.0413,$/kWh,
+5b7735965457a3452daf0aef,electric,energy,,period1,0,0,4,8,22,24,0,4,0.0381,0.0381,$/kWh,
+5b7735965457a3452daf0aef,electric,energy,,period3,0,0,9,12,0,6,0,4,0.0432,0.0432,$/kWh,
+5b7735965457a3452daf0aef,electric,energy,,period2,0,0,9,12,6,22,0,4,0.0506,0.0506,$/kWh,
+5b7735965457a3452daf0aef,electric,energy,,period3,0,0,9,12,22,24,0,4,0.0432,0.0432,$/kWh,
+5b7735965457a3452daf0aef,electric,energy,,period3,0,0,1,3,0,24,5,6,0.0432,0.0432,$/kWh,
+5b7735965457a3452daf0aef,electric,energy,,period1,0,0,4,8,0,24,5,6,0.0381,0.0381,$/kWh,
+5b7735965457a3452daf0aef,electric,energy,,period3,0,0,9,12,0,24,5,6,0.0432,0.0432,$/kWh,

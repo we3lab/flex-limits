@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+539fcaebec4f024d2f5400de,electric,customer,,,,,,,,,,,22.7,22.7,$/month,http://www.cityofbushnellfl.com/Documents/Resident/Utility%20Customer%20Forms/UB%20Rate%20Schedule.pdf	http://www.cityofbushnellfl.com/departments/utilities_department/electric_division.php
+539fcaebec4f024d2f5400de,electric,demand,,flat,0,0,1,12,0,24,0,6,7.45,7.45,$/kW,
+539fcaebec4f024d2f5400de,electric,energy,,period0,0,0,1,12,0,24,0,4,0.07355,0.07355,$/kWh,
+539fcaebec4f024d2f5400de,electric,energy,,period0,0,0,1,12,0,24,5,6,0.07355,0.07355,$/kWh,

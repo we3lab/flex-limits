@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5a79f6ef5457a3d8065d8b10,electric,customer,,,,,,,,,,,237.86,237.86,$/month,http://www.alabamapower.com/content/dam/alabamapower/Rates/OFP.pdf	http://www.alabamapower.com/business/pricing-rates/home.asp
+5a79f6ef5457a3d8065d8b10,electric,demand,,flat,0,0,1,12,0,24,0,6,12.5,12.5,$/kW,
+5a79f6ef5457a3d8065d8b10,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0562973,0.0562973,$/kWh,
+5a79f6ef5457a3d8065d8b10,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0562973,0.0562973,$/kWh,

@@ -1,0 +1,11 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+648b78ff9668b3c9950c4930,electric,customer,,,,,,,,,,,71.0,71.0,$/month,https://www.jacksonemc.com/assets/uploads/pdfs/GSTOU-23_final.pdf	https://www.jacksonemc.com/my-cooperative/rates/commercial-rates
+648b78ff9668b3c9950c4930,electric,demand,,flat,0,0,1,12,0,24,0,6,3.0,3.0,$/kW,
+648b78ff9668b3c9950c4930,electric,demand,,period0,0,0,1,5,0,24,0,4,0.0,0.0,$/kW,
+648b78ff9668b3c9950c4930,electric,demand,,period0,0,0,6,9,0,16,0,4,0.0,0.0,$/kW,
+648b78ff9668b3c9950c4930,electric,demand,,period1,0,0,6,9,16,20,0,4,13.4,13.4,$/kW,
+648b78ff9668b3c9950c4930,electric,demand,,period0,0,0,6,9,20,24,0,4,0.0,0.0,$/kW,
+648b78ff9668b3c9950c4930,electric,demand,,period0,0,0,10,12,0,24,0,4,0.0,0.0,$/kW,
+648b78ff9668b3c9950c4930,electric,demand,,period0,0,0,1,12,0,24,5,6,0.0,0.0,$/kW,
+648b78ff9668b3c9950c4930,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0571,0.0571,$/kWh,
+648b78ff9668b3c9950c4930,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0571,0.0571,$/kWh,

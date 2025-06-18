@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6394a506476abb50d80f6d38,electric,customer,,,,,,,,,,,97.0,97.0,$/month,https://www.eversource.com/content/docs/default-source/rates-tariffs/ma-electric/1-tariff-ma.pdf?sfvrsn=769dc462_40	https://www.eversource.com/content/ema-c/residential/my-account/billing-payments/about-your-bill/rates-tariffs/electric-tariffs-rules
+6394a506476abb50d80f6d38,electric,demand,,flat,0,0,1,12,0,24,0,6,12.305263157894737,12.305263157894737,$/kW,
+6394a506476abb50d80f6d38,electric,demand,,flat,100.0,100.0,1,12,0,24,0,6,22.589473684210528,22.589473684210528,$/kW,
+6394a506476abb50d80f6d38,electric,energy,,period0,0,0,1,12,0,24,0,4,0.25808,0.25808,$/kWh,
+6394a506476abb50d80f6d38,electric,energy,,period0,0,0,1,12,0,24,5,6,0.25808,0.25808,$/kWh,

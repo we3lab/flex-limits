@@ -1,0 +1,6 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b5f88145457a3336b409a7d,electric,customer,,,,,,,,,,,25.0,25.0,$/month,http://united-cs.com/sites/unitedcs/files/Documents%20and%20Forms/2017%20Documents/United%20Tariff%20for%20Electric%20Service%20-%20Revised%202017-04-17%20-%20all%20sections%20combined%20jd.pdf	http://united-cs.com/content/tariff
+5b5f88145457a3336b409a7d,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,
+5b5f88145457a3336b409a7d,electric,demand,,flat,150.0,150.0,1,12,0,24,0,6,5.809003000000001,5.809003000000001,$/kW,
+5b5f88145457a3336b409a7d,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0448,0.0448,$/kWh,
+5b5f88145457a3336b409a7d,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0448,0.0448,$/kWh,

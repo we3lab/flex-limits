@@ -1,0 +1,24 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cb63ab85457a3c4469b6ec3,electric,customer,,,,,,,,,,,70.0,70.0,$/month,"https://www.rockymountainpower.net/content/dam/rocky_mountain_power/doc/About_Us/Rates_and_Regulation/Utah/Approved_Tariffs/Rate_Schedules/Large_General_Service_1_000_kW_and_Over_Distribution_Voltage.pdf
+https://www.rockymountainpower.net/content/dam/rocky_mountain_power/doc/About_Us/Rates_and_Regulation/Utah/Approved_Tariffs/Rate_Schedules/Transition_Program_for_Customer_Generators.pdf	https://www.rockymountainpower.net/about/rar/uri.html"
+5cb63ab85457a3c4469b6ec3,electric,demand,,flat,0,0,1,12,0,24,0,6,4.81236,4.81236,$/kW,adjustment factor of 0.05236
+5cb63ab85457a3c4469b6ec3,electric,demand,,period2,0,0,1,4,0,7,0,4,0.0,0.0,$/kW,
+5cb63ab85457a3c4469b6ec3,electric,demand,,period1,0,0,1,4,7,23,0,4,11.313089999999999,11.313089999999999,$/kW,
+5cb63ab85457a3c4469b6ec3,electric,demand,,period2,0,0,1,4,23,24,0,4,0.0,0.0,$/kW,
+5cb63ab85457a3c4469b6ec3,electric,demand,,period2,0,0,5,9,0,13,0,4,0.0,0.0,$/kW,
+5cb63ab85457a3c4469b6ec3,electric,demand,,period0,0,0,5,9,13,21,0,4,15.731160000000001,15.731160000000001,$/kW,
+5cb63ab85457a3c4469b6ec3,electric,demand,,period2,0,0,5,9,21,24,0,4,0.0,0.0,$/kW,
+5cb63ab85457a3c4469b6ec3,electric,demand,,period2,0,0,10,12,0,7,0,4,0.0,0.0,$/kW,
+5cb63ab85457a3c4469b6ec3,electric,demand,,period1,0,0,10,12,7,23,0,4,11.313089999999999,11.313089999999999,$/kW,
+5cb63ab85457a3c4469b6ec3,electric,demand,,period2,0,0,10,12,23,24,0,4,0.0,0.0,$/kW,
+5cb63ab85457a3c4469b6ec3,electric,demand,,period2,0,0,1,12,0,24,5,6,0.0,0.0,$/kW,
+5cb63ab85457a3c4469b6ec3,electric,energy,,period2,0,0,1,4,0,7,0,4,0.034376,0.034376,$/kWh,
+5cb63ab85457a3c4469b6ec3,electric,energy,,period1,0,0,1,4,7,23,0,4,0.0399456,0.0399456,$/kWh,
+5cb63ab85457a3c4469b6ec3,electric,energy,,period2,0,0,1,4,23,24,0,4,0.034376,0.034376,$/kWh,
+5cb63ab85457a3c4469b6ec3,electric,energy,,period2,0,0,5,9,0,13,0,4,0.034376,0.034376,$/kWh,
+5cb63ab85457a3c4469b6ec3,electric,energy,,period0,0,0,5,9,13,21,0,4,0.0510292,0.0510292,$/kWh,
+5cb63ab85457a3c4469b6ec3,electric,energy,,period2,0,0,5,9,21,24,0,4,0.034376,0.034376,$/kWh,
+5cb63ab85457a3c4469b6ec3,electric,energy,,period2,0,0,10,12,0,7,0,4,0.034376,0.034376,$/kWh,
+5cb63ab85457a3c4469b6ec3,electric,energy,,period1,0,0,10,12,7,23,0,4,0.0399456,0.0399456,$/kWh,
+5cb63ab85457a3c4469b6ec3,electric,energy,,period2,0,0,10,12,23,24,0,4,0.034376,0.034376,$/kWh,
+5cb63ab85457a3c4469b6ec3,electric,energy,,period2,0,0,1,12,0,24,5,6,0.034376,0.034376,$/kWh,

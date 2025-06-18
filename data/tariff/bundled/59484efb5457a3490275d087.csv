@@ -1,0 +1,4 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+59484efb5457a3490275d087,electric,customer,,,,,,,,,,,28.0,28.0,$/month,http://www.bagleymn.us/index.asp?Type=B_BASIC&SEC={1F447633-A6DA-40BB-8E51-883CBDFB6AD9}
+59484efb5457a3490275d087,electric,energy,,period0,0,0,1,12,0,24,0,4,0.118,0.118,$/kWh,
+59484efb5457a3490275d087,electric,energy,,period0,0,0,1,12,0,24,5,6,0.118,0.118,$/kWh,

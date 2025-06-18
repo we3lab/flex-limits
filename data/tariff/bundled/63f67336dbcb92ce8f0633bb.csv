@@ -1,0 +1,8 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63f67336dbcb92ce8f0633bb,electric,customer,,,,,,,,,,,1857.08,1857.08,$/month,https://cdn.entergy-mississippi.com/userfiles/content/price/tariffs/eml_hlf.pdf?_gl=1*6tlo6c*_ga*MTI2MjczOTcxMy4xNjc3MDg2MjM4*_ga_BRL6QLSBRR*MTY3NzA4NjIzNy4xLjEuMTY3NzA5MTYyMi4wLjAuMA..*_ga_8YKL3FLBBC*MTY3NzA4NjIzNy4xLjEuMTY3NzA5MTYyMi4wLjAuMA..*_ga_HK6YSZ6LT0*MTY3NzA4NjIzNy4xLjEuMTY3NzA5MTYyMi4wLjAuMA..&_ga=2.240015562.83525669.1677086238-1262739713.1677086238	https://www.entergy-mississippi.com/your_business/business_tariffs/
+63f67336dbcb92ce8f0633bb,electric,demand,,flat,0,0,1,12,0,24,0,6,0.0,0.0,$/kW,adjustment factor of 0.0
+63f67336dbcb92ce8f0633bb,electric,demand,,flat,200.0,200.0,1,12,0,24,0,6,5.93733,5.93733,$/kW,adjustment factor of 0.73733
+63f67336dbcb92ce8f0633bb,electric,energy,,period0,0,0,1,12,0,24,0,4,0.084772,0.084772,$/kWh,
+63f67336dbcb92ce8f0633bb,electric,energy,,period0,400.0,400.0,1,12,0,24,0,4,0.06712499999999999,0.06712499999999999,$/kWh,
+63f67336dbcb92ce8f0633bb,electric,energy,,period0,0,0,1,12,0,24,5,6,0.084772,0.084772,$/kWh,
+63f67336dbcb92ce8f0633bb,electric,energy,,period0,400.0,400.0,1,12,0,24,5,6,0.06712499999999999,0.06712499999999999,$/kWh,

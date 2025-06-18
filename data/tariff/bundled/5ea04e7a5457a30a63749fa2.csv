@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5ea04e7a5457a30a63749fa2,electric,customer,,,,,,,,,,,320.0,320.0,$/month,https://www.westarenergy.com/Portals/0/Resources/Documents/Tariffs/Large_General_Service-20180928.pdf	https://www.westarenergy.com/rates-and-regulations
+5ea04e7a5457a30a63749fa2,electric,demand,,flat,0,0,1,12,0,24,0,6,15.934113,15.934113,$/kW,adjustment factor of 3.817052
+5ea04e7a5457a30a63749fa2,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0369589,0.0369589,$/kWh,
+5ea04e7a5457a30a63749fa2,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0369589,0.0369589,$/kWh,

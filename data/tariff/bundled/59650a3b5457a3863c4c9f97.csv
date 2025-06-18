@@ -1,0 +1,10 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+59650a3b5457a3863c4c9f97,electric,customer,,,,,,,,,,,763.57,763.57,$/month,https://www.aepohio.com/global/utilities/lib/docs/ratesandtariffs/Ohio/2015-12-31_AEP_Ohio_Standard_Tariff.pdf	https://www.aepohio.com/account/bills/rates/AEPOhioRatesTariffsOH.aspx
+59650a3b5457a3863c4c9f97,electric,demand,,flat,0,0,1,12,0,24,0,6,4.463157894736843,4.463157894736843,$/kW,adjustment factor of 4.24
+59650a3b5457a3863c4c9f97,electric,demand,,flat,100.0,100.0,1,12,0,24,0,6,10.368873894736842,10.368873894736842,$/kW,adjustment factor of 6.0304302
+59650a3b5457a3863c4c9f97,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0670685,0.0670685,$/kWh,
+59650a3b5457a3863c4c9f97,electric,energy,,period0,2000.0,2000.0,1,12,0,24,0,4,0.0666085,0.0666085,$/kWh,
+59650a3b5457a3863c4c9f97,electric,energy,,period0,15000.0,15000.0,1,12,0,24,0,4,0.0660485,0.0660485,$/kWh,
+59650a3b5457a3863c4c9f97,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0670685,0.0670685,$/kWh,
+59650a3b5457a3863c4c9f97,electric,energy,,period0,2000.0,2000.0,1,12,0,24,5,6,0.0666085,0.0666085,$/kWh,
+59650a3b5457a3863c4c9f97,electric,energy,,period0,15000.0,15000.0,1,12,0,24,5,6,0.0660485,0.0660485,$/kWh,

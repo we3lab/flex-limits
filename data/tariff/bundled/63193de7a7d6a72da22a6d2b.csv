@@ -1,0 +1,18 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+63193de7a7d6a72da22a6d2b,electric,customer,,,,,,,,,,,4.09,4.09,$/month,https://www.firstenergycorp.com/content/dam/customer/Customer%20Choice/Files/New%20Jersey/tariffs/BPU-13-Part-III-Effective-september12022.pdf	https://www.firstenergycorp.com/content/customer/customer_choice/new_jersey/new_jersey_tariffs.html#gsc.tab=0
+63193de7a7d6a72da22a6d2b,electric,demand,,flat,0,0,1,5,0,24,0,6,0.0,0.0,$/kW,
+63193de7a7d6a72da22a6d2b,electric,demand,,flat,10.0,10.0,1,5,0,24,0,6,7.38,7.38,$/kW,
+63193de7a7d6a72da22a6d2b,electric,demand,,flat,10.0,10.0,6,9,0,24,0,6,0.0,0.0,$/kW,
+63193de7a7d6a72da22a6d2b,electric,demand,,flat,10.0,10.0,6,9,0,24,0,6,7.92,7.92,$/kW,
+63193de7a7d6a72da22a6d2b,electric,demand,,flat,10.0,10.0,10,12,0,24,0,6,0.0,0.0,$/kW,
+63193de7a7d6a72da22a6d2b,electric,demand,,flat,10.0,10.0,10,12,0,24,0,6,7.38,7.38,$/kW,
+63193de7a7d6a72da22a6d2b,electric,energy,,period1,0,0,1,5,0,24,0,4,0.158824,0.158824,$/kWh,
+63193de7a7d6a72da22a6d2b,electric,energy,,period1,1000.0,1000.0,1,5,0,24,0,4,0.102731,0.102731,$/kWh,
+63193de7a7d6a72da22a6d2b,electric,energy,,period0,1000.0,1000.0,6,9,0,24,0,4,0.16406199999999999,0.16406199999999999,$/kWh,
+63193de7a7d6a72da22a6d2b,electric,energy,,period0,1000.0,1000.0,6,9,0,24,0,4,0.10301099999999999,0.10301099999999999,$/kWh,
+63193de7a7d6a72da22a6d2b,electric,energy,,period1,1000.0,1000.0,10,12,0,24,0,4,0.102731,0.102731,$/kWh,
+63193de7a7d6a72da22a6d2b,electric,energy,,period1,0,0,1,5,0,24,5,6,0.158824,0.158824,$/kWh,
+63193de7a7d6a72da22a6d2b,electric,energy,,period1,1000.0,1000.0,1,5,0,24,5,6,0.102731,0.102731,$/kWh,
+63193de7a7d6a72da22a6d2b,electric,energy,,period0,1000.0,1000.0,6,9,0,24,5,6,0.16406199999999999,0.16406199999999999,$/kWh,
+63193de7a7d6a72da22a6d2b,electric,energy,,period0,1000.0,1000.0,6,9,0,24,5,6,0.10301099999999999,0.10301099999999999,$/kWh,
+63193de7a7d6a72da22a6d2b,electric,energy,,period1,1000.0,1000.0,10,12,0,24,5,6,0.102731,0.102731,$/kWh,

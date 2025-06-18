@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5cb4fc9d5457a3fd7f9b6ec2,electric,customer,,,,,,,,,,,27.25,27.25,$/month,"https://www.nvenergy.com/company/rates/snv/schedules/images/StatementofRates.pdf
+https://www.nvenergy.com/account-services/energy-pricing-plans/net-metering/nmr-405	https://www.nvenergy.com/company/rates/snv/schedules/"
+5cb4fc9d5457a3fd7f9b6ec2,electric,energy,,period0,0,0,1,12,0,24,0,4,0.06741,0.06741,$/kWh,
+5cb4fc9d5457a3fd7f9b6ec2,electric,energy,,period0,0,0,1,12,0,24,5,6,0.06741,0.06741,$/kWh,

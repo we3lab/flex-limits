@@ -1,0 +1,5 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+5b7c58c15457a3c2330a2ad2,electric,customer,,,,,,,,,,,619.42,619.42,$/month,http://www.mlandp.com/Portals/0/pdf/mlp%20tariff%20rate%20schedules%2020180629.pdf	http://www.mlandp.com/Customers/Rates/Commercial-Rates#48136-schedule-28-net-requirements-service-at-secondary-voltage
+5b7c58c15457a3c2330a2ad2,electric,demand,,flat,0,0,1,12,0,24,0,6,44.53,44.53,$/kW,
+5b7c58c15457a3c2330a2ad2,electric,energy,,period0,0,0,1,12,0,24,0,4,0.0267156,0.0267156,$/kWh,
+5b7c58c15457a3c2330a2ad2,electric,energy,,period0,0,0,1,12,0,24,5,6,0.0267156,0.0267156,$/kWh,

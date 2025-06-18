@@ -1,0 +1,10 @@
+label,utility,type,assessed,period,basic_charge_limit (imperial),basic_charge_limit (metric),month_start,month_end,hour_start,hour_end,weekday_start,weekday_end,charge (imperial),charge (metric),units,Notes
+6557f198c0a5ef6ec909b84e,electric,customer,,,,,,,,,,,36.639,36.639,$/month,https://www.aps.com/-/media/APS/APSCOM-PDFs/Utility/Regulatory-and-Legal/Regulatory-Plan-Details-Tariffs/Business/Business-NonResidential-Plans/e32_Large.ashx?la=en	https://www.aps.com/en/Utility/Regulatory-and-Legal/Rates-Schedules-and-Adjustors#Business
+6557f198c0a5ef6ec909b84e,electric,demand,,flat,0,0,1,12,0,24,0,6,17.049,17.049,$/kW,adjustment factor of 0.271
+6557f198c0a5ef6ec909b84e,electric,demand,,flat,100.0,100.0,1,12,0,24,0,6,11.504000000000001,11.504000000000001,$/kW,adjustment factor of 0.271
+6557f198c0a5ef6ec909b84e,electric,energy,,period1,0,0,1,4,0,24,0,4,0.061731,0.061731,$/kWh,
+6557f198c0a5ef6ec909b84e,electric,energy,,period0,0,0,5,10,0,24,0,4,0.078891,0.078891,$/kWh,
+6557f198c0a5ef6ec909b84e,electric,energy,,period1,0,0,11,12,0,24,0,4,0.061731,0.061731,$/kWh,
+6557f198c0a5ef6ec909b84e,electric,energy,,period1,0,0,1,4,0,24,5,6,0.061731,0.061731,$/kWh,
+6557f198c0a5ef6ec909b84e,electric,energy,,period0,0,0,5,10,0,24,5,6,0.078891,0.078891,$/kWh,
+6557f198c0a5ef6ec909b84e,electric,energy,,period1,0,0,11,12,0,24,5,6,0.061731,0.061731,$/kWh,
