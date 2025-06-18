@@ -141,7 +141,7 @@ for a in ax.flatten():
         xticks=np.arange(10, 101, 20),
         yticks=np.arange(0, 101, 20),
         ylim=(5, 100),
-        xlabel="Continuous Flexibility (%)",
+        xlabel="Power Capacity (%)",
         ylabel="System Uptime (%)",
     )
 

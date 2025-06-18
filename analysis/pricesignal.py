@@ -53,3 +53,17 @@ def gettariff(
 
     # Return the entire tariff sheet (month will be processed later)
     return tariff_data
+
+def gettariff_wwtp(
+    cwns_no, basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))        
+): 
+    """Get the tariff for a given cwns number."""
+    # Load the tariff data
+    tariff_path = os.path.join(basepath, "data", "tariff_wwtp", f"WWTP_Billing.xlsx")
+    
+    # read df
+    tariff_data = pd.read_csv(tariff_path)
+
+    # Return the entire tariff sheet (month will be processed later)
+    return tariff_data
+

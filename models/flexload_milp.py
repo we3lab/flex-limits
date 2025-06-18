@@ -42,6 +42,7 @@ class flexloadMILP:
         cost_signal_units=u.USD / u.MWh,
         emissions_signal_units=u.kg / u.MWh,
         cost_of_carbon_units=u.USD / u.metric_ton,
+        weight_of_cost = 1, 
         consumption_units=u.kW,
         numerical_tolerance=1e-8,
     ):
@@ -111,6 +112,7 @@ class flexloadMILP:
         self.electricity_costing_CWNS_No = electricity_costing_CWNS_No
         self.cost_col_name = cost_col_name
         self.emissions_col_name = emissions_col_name
+        self.weight_of_cost = weight_of_cost
         self.cost_of_carbon = cost_of_carbon
         self.tol = numerical_tolerance
 
@@ -318,6 +320,10 @@ class flexloadMILP:
         model.rte = Param(initialize=self.rte)
         model.min_onsteps = Param(initialize=self.min_onsteps)
         model.horizonlength = Param(initialize=self.horizonlength)
+        model.cost_of_carbon = Param(initialize = self.cost_of_carbon, mutable = True)
+        model.weight_of_cost = Param(initialize = self.weight_of_cost, mutable = True)
+
+
         if self.max_status_switch is not None:
             model.max_status_switch = Param(initialize=self.max_status_switch)
 
@@ -510,15 +516,15 @@ class flexloadMILP:
 
         if self.uptime_equality:
             model.objective = Objective(
-                expr=model.total_flex_cost_signal
-                + self.cost_of_carbon * model.total_flex_emissions_signal,
+                expr=model.weight_of_cost*model.total_flex_cost_signal
+                + model.cost_of_carbon * model.total_flex_emissions_signal,
                 sense=minimize,
             )
         else:
             # get active objectives
             model.objective = Objective(
-                expr=model.total_flex_cost_signal
-                + self.cost_of_carbon * model.total_flex_emissions_signal
+                expr=model.weight_of_cost*model.total_flex_cost_signal
+                + model.cost_of_carbon * model.total_flex_emissions_signal
                 + model.max_contload_penalty_rule
                 + model.min_contload_penalty_rule,
                 sense=minimize,
@@ -546,7 +552,7 @@ class flexloadMILP:
 
         return self.upflex_powercapacity, self.discharge_capacity
 
-    def solve(self, tee=False, print_results=False, max_iter=10, descent_stepsize=1):
+    def solve(self, tee=False, print_results=False, max_iter=10, descent_stepsize=1, threads = 10, mipgap = 0.01):
         """
         Solve the model for the flexible load using gurobi
 
@@ -573,10 +579,10 @@ class flexloadMILP:
         self.t2 = time()
 
         if self.uptime_equality:
-            model, results = self.solve_baseproblem(tee=tee)
+            self.model, results = self.solve_baseproblem(tee=tee, threads = threads, mipgap = mipgap)
         else:
             print("Solving the relaxed problem with heuristic bounds enforcement.")
-            model, results = self.solve_relaxedproblem(tee=tee, max_iter=max_iter, descent_stepsize=descent_stepsize)
+            self.model, results = self.solve_relaxedproblem(tee=tee, max_iter=max_iter, descent_stepsize=descent_stepsize, threads = threads, mipgap = mipgap)
 
         self.t3 = time()
 
@@ -591,19 +597,23 @@ class flexloadMILP:
 
         return self.model, results
 
-    def solve_baseproblem(self, tee=False):
+    def solve_baseproblem(self, tee=False, threads = 10, mipgap = 0.01):
         """
         Solve the model for the flexible load using gurobi
         """
         solver = SolverFactory("gurobi")
+        solver.options["threads"] = threads 
+        solver.options["MIPGap"] = mipgap 
         results = solver.solve(self.model, tee=tee)
         return self.model, results
 
-    def solve_relaxedproblem(self, max_iter, descent_stepsize, tee=False, recursion_counter=0):
+    def solve_relaxedproblem(self, max_iter, descent_stepsize, tee=False, recursion_counter=0, threads = 10, mipgap = 0.01):
         """
         Solve the model for the flexible load using gurobi with bound constraints on the contload relaxed
         """
         solver = SolverFactory("gurobi")
+        solver.options["threads"] = threads
+        solver.options["MIPGap"] = mipgap
         results = solver.solve(self.model, tee=tee)
 
         # check the continuous load

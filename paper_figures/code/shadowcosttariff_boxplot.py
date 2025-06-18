@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 from analysis import pricesignal as ps
 from analysis import emissionscost as ec
@@ -23,10 +24,12 @@ plt.rcParams.update(
     }
 )
 
-generate_data = False
+generate_data = True
+months = [1,7]
 
 
 regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
+
 
 systems = {
     "maxflex" : {
@@ -47,25 +50,44 @@ systems = {
     },
 }
 
+
 paperfigs_basepath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+tariff_costing_path = os.path.join(os.path.dirname(paperfigs_basepath),"data","tariff_wwtp", "WWTP_Billing.xlsx")
+tariff_metadata_path = os.path.join(os.path.dirname(paperfigs_basepath),"data","tariff_wwtp", "metadata_iso.csv")
+
+tariffs_df = pd.read_csv(tariff_metadata_path)
+
 
 if generate_data == True:
     for region in regions:
+        # create a new dataframe for all tariffs in the specified region 
+        region_tariffs = tariffs_df.loc[tariffs_df.ISO == region, :]
+
+        print('region: {}/n'.format(region))
+        print(region_tariffs)
+        
         for system_name, params in systems.items():
             results_dicts = []
-            for month in range(1,13):
-                tmp = ec.shadowcost_wholesale(region=region,
-                                                    month=month,
-                                                    system_uptime=params['system_uptime'],
-                                                    continuous_flexibility=params['continuous_flexibility'])
+            month_list = []
+            for tariff_no in region_tariffs.CWNS_No: 
+                
+                for month in months:
+                    tmp = ec.shadowcost_tariff(region=region,
+                                                        electricity_costing_CWNS_No = str(tariff_no), 
+                                                        tariff_costing_path = tariff_costing_path, 
+                                                        month=month,
+                                                        system_uptime=params['system_uptime'],
+                                                        continuous_flexibility=params['continuous_flexibility'])
 
-                results_dicts.append(tmp)
-            
+                    results_dicts.append(tmp)
+                    month_list.append(month)
+                
             # collapse the list of dicts into a dict of lists 
             results_df = pd.DataFrame(results_dicts)
 
             # add a months columns and rearrange the columns to have it first
-            results_df["month"] = range(1,13) # add a col for month
+            results_df["month"] = month_list # add a col for month
             cols = ["month"] + [col for col in results_df.columns if col != "month"]  
             results_df = results_df[cols]  
 
@@ -73,9 +95,8 @@ if generate_data == True:
             params["results"] = results_df
 
             # save df in results folder as a csv file
-            results_df.to_csv(os.path.join(paperfigs_basepath, "processed_data", "shadowcost_wholesale", f"{region}_{system_name}.csv"), index=False)
+            results_df.to_csv(os.path.join(paperfigs_basepath, "processed_data", "shadowcost_tariff", f"{region}_{system_name}.csv"), index=False)
 else:
-    ##
     pass
 
 # Plotting the results
@@ -99,7 +120,7 @@ for region_idx, region in enumerate(regions):
     idx = 0 
     for sys in system_names:
         # Load the results for the current region and system 
-        results_df = pd.read_csv(os.path.join(paperfigs_basepath, "processed_data", "shadowcost_wholesale", f"{region}_{sys}.csv"))
+        results_df = pd.read_csv(os.path.join(paperfigs_basepath, "processed_data", "shadowcost_tariff", f"{region}_{sys}.csv"))
         
         # Plot the shadow price as a bar plot
         bottom = results_df["shadow_price_usd_ton"].min()
@@ -128,13 +149,13 @@ ax.set(
     yscale="log"
 )
 
-fig.savefig(os.path.join(paperfigs_basepath, "figures/png", "shadowcost_wholesale_boxplot.png"),
+fig.savefig(os.path.join(paperfigs_basepath, "figures/png", "shadowcost_tariff_boxplot.png"),
     dpi=300,
     bbox_inches="tight",
 )
 
 fig.savefig(
-    os.path.join(paperfigs_basepath, "figures/pdf", "shadowcost_wholesale_boxplot.pdf"),
+    os.path.join(paperfigs_basepath, "figures/pdf", "shadowcost_tariff_boxplot.pdf"),
     dpi=300,
     bbox_inches="tight",
 )

@@ -23,6 +23,7 @@ plt.rcParams.update(
 )
 
 month_arr = np.arange(1, 13)
+tariff_month_arr = [1,7]
 regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
 mef_savings_sweep = np.zeros((len(regions), len(month_arr)))
 aef_savings_sweep = np.zeros((len(regions), len(month_arr)))
