@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle, Patch
 
 from analysis import pricesignal as ps
 from analysis import emissionscost as ec
@@ -108,7 +109,7 @@ for region_idx, region in enumerate(regions):
                     height = height, 
                     bottom=bottom, 
                     width=width, 
-                    label=system_name, 
+                    label=sys, 
                     facecolor=colors[idx],
                     edgecolor='k',
                     linewidth=1.5,
@@ -125,6 +126,67 @@ ax.set(
     ylabel="Cost of Abatement (USD/ton CO2)",
     ylim=(1e-2, 1e5),
     yscale="log"
+)
+
+def _add_scc_and_rec(ax, regions, ps, width, scc=True, rec=True):
+    values_df = pd.read_csv("data/rec/values.csv") # TODO: update with more regional data
+    rec_price_usd_mw = values_df[values_df['type'] == 'rec']['typical'].values[0]  # $/MW
+    scc_price_usd_ton = values_df[values_df['type'] == 'scc']['typical'].values[0]  # $/ton
+    
+    legend_info = {'handles': [], 'labels': []}
+    
+    if scc:  # Add SCC line
+        scc_line = ax.axhline(
+            y=scc_price_usd_ton, color='black', linestyle='-', alpha=0.7, linewidth=2,
+            label=f'Social Cost of Carbon (${scc_price_usd_ton}/ton)', zorder=0
+        )
+        legend_info['handles'].append(scc_line)
+        legend_info['labels'].append(f'Social Cost of Carbon (${scc_price_usd_ton}/ton)')
+
+    if rec:  # Add REC boxes
+        rec_prices_by_region = {}
+        for region_idx, region in enumerate(regions):
+            # Gather MEF values (kg/MWh) for this ISO across months and hours
+            all_mef_kg_per_mwh = []
+            for month in range(1, 13):
+                mef_data = ps.getmef(region, month) # for 24 hr
+                all_mef_kg_per_mwh.extend(mef_data)
+            all_mef_ton_per_mwh = np.array(all_mef_kg_per_mwh) / 1000  # kg to ton
+            
+            # If a wholesaler has a fixed REC price, then
+            # the relative value in $/kg varies each hour
+            # during the year based on MEF
+            # REC price in $/MWh = $/MW * 1 hr
+            # REV value in $/kg = ($/MWh) / (kg/MWh) = $/kg
+            rec_prices_region = rec_price_usd_mw / all_mef_ton_per_mwh  # $/ton
+            rec_prices_region = rec_prices_region[~np.isnan(rec_prices_region)]  # remove nans
+            rec_prices_by_region[region] = rec_prices_region
+            min_rec = np.min(rec_prices_region)
+            max_rec = np.max(rec_prices_region)
+            
+            # Rectangle spanning bars for ISO
+            rec_rect = Rectangle(
+                (region_idx - width*2.5, min_rec),  # x, y (left edge, bottom)
+                width*5,  # width to cover all bars
+                max_rec - min_rec,  # height
+                facecolor='lightgray',
+                edgecolor='grey',
+                alpha=0.5,
+                zorder=0,  # behind the bars
+                label=f'REC Price $({rec_price_usd_mw}/MW)' if region_idx == 0 else None
+            )
+            ax.add_patch(rec_rect)
+        rec_patch = Patch(
+            facecolor='lightgray', alpha=0.5, edgecolor='grey', 
+            label=f'REC Price $({rec_price_usd_mw}/MW)'
+            )
+        legend_info['handles'].append(rec_patch)
+        legend_info['labels'].append(f'REC Price $({rec_price_usd_mw}/MW)')
+    ax.legend(legend_info['handles'], legend_info['labels'], loc='upper right', frameon=False, fontsize=14)
+
+# Comment this line out out to disable SCC and REC overlays
+_add_scc_and_rec(
+    ax, regions=regions, ps=ps, width=width, scc=True, rec=True
 )
 
 fig.savefig(os.path.join(paperfigs_basepath, "figures/png", "shadowcost_wholesale_boxplot.png"),
