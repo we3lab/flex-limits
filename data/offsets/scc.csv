@@ -1,0 +1,4 @@
+value,value_type,unit,source
+150,mean,$/ton,EPA 2023 "EPA Report on the Social Cost of Greenhouse Gases: Estimates Incorporating Recent Scientific Advances". $125/ton - representing the cost of a ton emitted in 2023. That's $147/ton when converted to 2023USD using https://www.bls.gov/data/inflation_calculator.htm
+150,min,$/ton,Placeholder
+150,max,$/ton,Placeholder

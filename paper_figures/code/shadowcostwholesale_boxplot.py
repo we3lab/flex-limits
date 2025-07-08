@@ -24,6 +24,24 @@ plt.rcParams.update(
     }
 )
 
+# define overlay parameters
+overlay_params = {
+    'scc': {
+        'line_color': 'black',
+        'line_alpha': 0.7,
+        'line_width': 2,
+        'box_alpha': 0.3,
+        'box_color': 'black'
+    },
+    'rec': {
+        'face_color': 'white',
+        'edge_color': 'black',
+        'alpha': 0.5,
+        'hatching_intensity': 5,
+        'zorder': 0
+    }
+}
+
 generate_data = False
 
 
@@ -128,65 +146,151 @@ ax.set(
     yscale="log"
 )
 
-def _add_scc_and_rec(ax, regions, ps, width, scc=True, rec=True):
-    values_df = pd.read_csv("data/rec/values.csv") # TODO: update with more regional data
-    rec_price_usd_mw = values_df[values_df['type'] == 'rec']['typical'].values[0]  # $/MW
-    scc_price_usd_ton = values_df[values_df['type'] == 'scc']['typical'].values[0]  # $/ton
+def _add_scc_and_rec(ax, regions, ps, width, scc=True, rec=True, plot_scc_by="mean"):
+    scc_df = pd.read_csv("data/offsets/scc.csv")
+    rec_df = pd.read_csv("data/offsets/rec.csv")
     
     legend_info = {'handles': [], 'labels': []}
     
-    if scc:  # Add SCC line
-        scc_line = ax.axhline(
-            y=scc_price_usd_ton, color='black', linestyle='-', alpha=0.7, linewidth=2,
-            label=f'Social Cost of Carbon (${scc_price_usd_ton}/ton)', zorder=0
-        )
-        legend_info['handles'].append(scc_line)
-        legend_info['labels'].append(f'Social Cost of Carbon (${scc_price_usd_ton}/ton)')
+    if scc:  # Add SCC
+        if plot_scc_by == "mean":  # Plot as line 
+            scc_price_usd_ton = scc_df[scc_df['value_type'] == 'mean']['value'].item()
+            scc_line = ax.axhline(
+                y=scc_price_usd_ton, 
+                color=overlay_params['scc']['line_color'], 
+                alpha=overlay_params['scc']['line_alpha'], 
+                linewidth=overlay_params['scc']['line_width'],
+                zorder=overlay_params['rec']['zorder']
+            )
+            legend_info['handles'].append(scc_line)
+            legend_info['labels'].append('Social Cost of Carbon')
+        elif plot_scc_by == "max_min":  # Plot as box
+            scc_min = scc_df[scc_df['value_type'] == 'min']['value'].item()
+            scc_max = scc_df[scc_df['value_type'] == 'max']['value'].item()
+            scc_rect = Rectangle(
+                (0 - width*2.5, scc_min),  # x, y (left edge, bottom)
+                len(regions) + width*5,  # width to cover all regions
+                scc_max - scc_min,  # height
+                facecolor=overlay_params['scc']['box_color'],
+                edgecolor=overlay_params['scc']['box_color'],
+                alpha=overlay_params['scc']['box_alpha'],
+                zorder=overlay_params['rec']['zorder'],  # behind the bars
+            )
+            ax.add_patch(scc_rect)
+            scc_patch = Patch(
+                facecolor=overlay_params['scc']['box_color'], 
+                alpha=overlay_params['scc']['box_alpha'], 
+                edgecolor=overlay_params['scc']['box_color'], 
+            )
+            legend_info['handles'].append(scc_patch)
+            legend_info['labels'].append('Social Cost of Carbon')
 
     if rec:  # Add REC boxes
-        rec_prices_by_region = {}
+        # converting to float
+        rec_df['price'] = rec_df['price'].astype(float)
+        
+        rec_params = {
+            'compliance': {
+                'hatch': '\\'*overlay_params['rec']['hatching_intensity'],
+                'label': 'Compliance REC'
+            },
+            'voluntary': {
+                'hatch': '.'*overlay_params['rec']['hatching_intensity'],
+                'label': 'Voluntary REC'
+            },
+            'srec': {
+                'hatch': '+'*overlay_params['rec']['hatching_intensity'],
+                'label': 'SREC'
+            }
+        }
+        
+        # Calculate average REC price for each ISO by type
+        iso_rec_prices_by_type = {}
+        national_data = rec_df[rec_df['iso'].str.lower() == 'national']
+        national_averages = {}
+        if len(national_data) > 0:
+            for rec_type in ['compliance', 'voluntary']:  # national has compliance and voluntary
+                type_data = national_data[national_data['type'] == rec_type]
+                if len(type_data) > 0:
+                    national_averages[rec_type] = type_data['price'].mean()
+        
+        for region in regions:
+            region_lower = region.lower()
+            region_data = rec_df[rec_df['iso'].str.lower() == region_lower]
+            
+            type_averages = {}
+            
+            if len(region_data) > 0:
+                # Group by type and calculate average REC prices for ISO
+                for rec_type in ['compliance', 'voluntary', 'srec']:
+                    type_data = region_data[region_data['type'] == rec_type]
+                    if len(type_data) > 0:
+                        type_averages[rec_type] = type_data['price'].mean()
+            
+            # For regions with specific data, only use national averages for missing types
+            if len(type_averages) > 0:
+                for rec_type in ['compliance', 'voluntary']:
+                    if rec_type not in type_averages and rec_type in national_averages:
+                        type_averages[rec_type] = national_averages[rec_type]
+                
+                iso_rec_prices_by_type[region] = type_averages
+            else:
+                # Use national average if no specific data for ISO
+                if national_averages:
+                    iso_rec_prices_by_type[region] = national_averages
+        
+        # Plot REC values for each ISO by type
         for region_idx, region in enumerate(regions):
-            # Gather MEF values (kg/MWh) for this ISO across months and hours
-            all_mef_kg_per_mwh = []
+            # Gather MEF values (kg/MWh) for this ISO and calculate hourly averages for each month
+            monthly_hourly_avg_mef_kg_per_mwh = []
             for month in range(1, 13):
-                mef_data = ps.getmef(region, month) # for 24 hr
-                all_mef_kg_per_mwh.extend(mef_data)
-            all_mef_ton_per_mwh = np.array(all_mef_kg_per_mwh) / 1000  # kg to ton
+                mef_data = ps.getmef(region, month)  # for 24 hr
+                # Calculate hourly average for this month
+                hourly_avg_mef = np.mean(mef_data)
+                monthly_hourly_avg_mef_kg_per_mwh.append(hourly_avg_mef)
             
-            # If a wholesaler has a fixed REC price, then
-            # the relative value in $/kg varies each hour
-            # during the year based on MEF
-            # REC price in $/MWh = $/MW * 1 hr
-            # REV value in $/kg = ($/MWh) / (kg/MWh) = $/kg
-            rec_prices_region = rec_price_usd_mw / all_mef_ton_per_mwh  # $/ton
-            rec_prices_region = rec_prices_region[~np.isnan(rec_prices_region)]  # remove nans
-            rec_prices_by_region[region] = rec_prices_region
-            min_rec = np.min(rec_prices_region)
-            max_rec = np.max(rec_prices_region)
+            # Calculate REC $/kg equivalent using max and min of hourly-averaged MEF
+            monthly_hourly_avg_mef_ton_per_mwh = np.array(monthly_hourly_avg_mef_kg_per_mwh) / 1000  # kg to ton
             
-            # Rectangle spanning bars for ISO
-            rec_rect = Rectangle(
-                (region_idx - width*2.5, min_rec),  # x, y (left edge, bottom)
-                width*5,  # width to cover all bars
-                max_rec - min_rec,  # height
-                facecolor='lightgray',
-                edgecolor='grey',
-                alpha=0.5,
-                zorder=0,  # behind the bars
-                label=f'REC Price $({rec_price_usd_mw}/MW)' if region_idx == 0 else None
-            )
-            ax.add_patch(rec_rect)
-        rec_patch = Patch(
-            facecolor='lightgray', alpha=0.5, edgecolor='grey', 
-            label=f'REC Price $({rec_price_usd_mw}/MW)'
-            )
-        legend_info['handles'].append(rec_patch)
-        legend_info['labels'].append(f'REC Price $({rec_price_usd_mw}/MW)')
-    ax.legend(legend_info['handles'], legend_info['labels'], loc='upper right', frameon=False, fontsize=14)
+            # Plot each REC type for this region
+            for rec_type, rec_price_usd_mw in iso_rec_prices_by_type[region].items():
+                # REC price in $/MWh = $/MW * 1 hr
+                # REC value in $/ton = ($/MWh) / (ton/MWh) = $/ton
+                rec_price_min_mef = rec_price_usd_mw / np.max(monthly_hourly_avg_mef_ton_per_mwh)
+                rec_price_max_mef = rec_price_usd_mw / np.min(monthly_hourly_avg_mef_ton_per_mwh)
+                
+                # Rectangle spanning bars for ISO showing REC range with type-specific hatching
+                rec_rect = Rectangle(
+                    (region_idx - width*2.5, rec_price_min_mef),  # x, y (left edge, bottom)
+                    width*5,  # width to cover all bars
+                    rec_price_max_mef - rec_price_min_mef,  # height
+                    facecolor=overlay_params['rec']['face_color'],
+                    edgecolor=overlay_params['rec']['edge_color'],
+                    alpha=overlay_params['rec']['alpha'],
+                    hatch=rec_params[rec_type]['hatch'],
+                    zorder=overlay_params['rec']['zorder'],  # behind the bars
+                    label=None
+                )
+                ax.add_patch(rec_rect)
+        
+        # Add legend entries for each REC type
+        for rec_type in ['compliance', 'voluntary', 'srec']:
+            if rec_type in rec_params:
+                rec_patch = Patch(
+                    facecolor=overlay_params['rec']['face_color'], 
+                    edgecolor=overlay_params['rec']['edge_color'], 
+                    alpha=overlay_params['rec']['alpha'],
+                    hatch=rec_params[rec_type]['hatch'],
+                    label=rec_params[rec_type]['label']
+                )
+                legend_info['handles'].append(rec_patch)
+                legend_info['labels'].append(rec_params[rec_type]['label'])
+    
+    ax.legend(legend_info['handles'], legend_info['labels'], loc='upper left', frameon=False, fontsize=14)
 
 # Comment this line out out to disable SCC and REC overlays
 _add_scc_and_rec(
-    ax, regions=regions, ps=ps, width=width, scc=True, rec=True
+    ax, regions=regions, ps=ps, width=width, scc=True, rec=True, plot_scc_by="mean"
 )
 
 fig.savefig(os.path.join(paperfigs_basepath, "figures/png", "shadowcost_wholesale_boxplot.png"),
