@@ -98,7 +98,7 @@ fig, ax = plt.subplots(figsize=(12, 8))
 width = 0.15
 
 offset = [-width * 1.6, -width * 0.55, width * 0.55, width * 1.6]  # Offset for each system's shadow price for better visibility
-colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]  # Colors for each system
+colors= ["#FF6347", "#A9A9A9", "#FFD700", "#008080"]  # Colors for each system
 
 
 ax.set_xlabel("Region")
