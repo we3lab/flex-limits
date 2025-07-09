@@ -96,7 +96,7 @@ def getdam(
     return dam_data[dam_data["month"] == month]["USD_per_MWh"].values
 
 def gettariff(
-    region, full_list=False, basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    region, full_list=False, return_ids = False, basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ):
     """Get a single tariff or list of tariffs for a given region.
     
@@ -108,6 +108,10 @@ def gettariff(
     full_list : bool
         Whether to get a single sample tariff or the full list of tariffs for `region`.
         False by default, meaning only a single tariff is returned.
+
+    return_ids: bool 
+        Whether to return the tariff ids in addition to the list of tariff data. 
+        This option is not available for a single tariff. False by default, meaning only the tariff data is returned. 
 
     basepath : str
         The path to the root where the data folder is located. 
@@ -122,15 +126,20 @@ def gettariff(
     tariff_base = os.path.join(basepath, "data", "tariff")
     if full_list:
         tariff_list = []
+        tariff_id_list  = []
         metadata_df = pd.read_csv(os.path.join(tariff_base, "metadata.csv"))
         for tariff_id in metadata_df["label"][metadata_df["ISO"] == region]:
             try:
                 tariff = pd.read_csv(os.path.join(tariff_base, "bundled", tariff_id + ".csv"))
                 tariff_list.append(tariff)
+                tariff_id_list.append(tariff_id)
             except FileNotFoundError:
                 print(f"Tariff {tariff_id} not found in {os.path.join(tariff_base, 'bundled')}")
 
-        return tariff_list
+        if return_ids:         
+            return tariff_list, tariff_id_list
+        else: 
+            return tariff_list
     else:
         # Load the tariff data
         tariff_path = os.path.join(tariff_base, f"{region}tariff.csv")

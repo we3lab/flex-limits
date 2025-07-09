@@ -144,19 +144,19 @@ def shadowcost_wholesale(
 
 
 
-
-
-
 def shadowcost_tariff(
     region, 
-    electricity_costing_CWNS_No, #change this for larger dataset + add to parameters below 
-    tariff_costing_path, 
+    tariff_data, 
+    # electricity_costing_CWNS_No, #change this for larger dataset + add to parameters below 
+    # tariff_costing_path, 
     month, 
     system_uptime,
     continuous_flexibility,
     baseload=None,
     basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
-    year = 2023
+    uptime_equality = True, 
+    threads = 10, 
+    year = 2023 
 ):
     """
     Calculate the cost of savings from wholesale energy prices.
@@ -199,21 +199,20 @@ def shadowcost_tariff(
     # Calculate cost optimal while tracking emissions
     flex_cost = flexloadMILP(
                     baseload=baseload,
-                    cost_signal=None,
+                    cost_signal=tariff_data,
                     costing_type="tariff",
+                    costing_path = None, 
                     startdate_dt=startdate_dt,
                     enddate_dt=enddate_dt,
-                    electricity_costing_CWNS_No = electricity_costing_CWNS_No,
-                    costing_path=tariff_costing_path,
                     emissions_type=None,
                     emissions_path=None,
                     flex_capacity=continuous_flexibility,
                     rte=1.0,
                     min_onsteps=max(int(len(aef) * (system_uptime)), 1),  # assuming daily cycles
-                    uptime_equality=True,
+                    uptime_equality=uptime_equality,
 )
     flex_cost.build()
-    flex_cost.solve()
+    flex_cost.solve(threads = threads)
     # Calculate the net facility load
     net_facility_load_costopt = idxparam_value(flex_cost.model.net_facility_load)
 
@@ -226,12 +225,12 @@ def shadowcost_tariff(
     # Calculate emissions optimal while tracking cost
     flex_emissions = flexloadMILP(
         baseload=baseload,
-        emissions_signal=aef,
         costing_type="tariff",
+        cost_signal=tariff_data,
+        costing_path = None,
         startdate_dt=startdate_dt,
         enddate_dt=enddate_dt,
-        electricity_costing_CWNS_No = electricity_costing_CWNS_No,
-        costing_path=tariff_costing_path,
+        emissions_signal=aef,
         emissions_type="aef",
         emissions_path=None,
         flex_capacity=continuous_flexibility,
@@ -239,10 +238,10 @@ def shadowcost_tariff(
         cost_of_carbon=1.0,
         rte=1.0,
         min_onsteps=max(int(len(aef) * (system_uptime)), 1),  # assuming daily cycles
-        uptime_equality=True,
+        uptime_equality=uptime_equality,
     )
     flex_emissions.build()
-    flex_emissions.solve()
+    flex_emissions.solve(threads = threads)
 
     # Calculate the net facility load
     net_facility_load_emisopt = idxparam_value(flex_emissions.model.net_facility_load)
