@@ -209,7 +209,7 @@ flat_tariff_savings = [
 ]
 tariff_regions = []
 for i, region_list in enumerate(sorted_tariff_savings_sweep):
-    tariff_regions += [regions[i]] * len(reigon_list)
+    tariff_regions += [regions[i]] * len(region_list)
 
 tariff_savings_data = {
     "region": tariff_regions.flatten(),
