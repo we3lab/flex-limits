@@ -9,7 +9,7 @@ from analysis.pricesignal import getmef, getaef, getdam, gettariff
 from analysis.acc_curve import acc_curve
 
 
-
+# VB parameter settings 
 systems = {
     "maxflex" : {
         "system_uptime": 0.0,  # minimum uptime
@@ -37,28 +37,34 @@ systems = {
     },
 }
 
+# grid parameter settings 
 region = "CAISO"
 month = 4
 year = 2023
-threads = 10 
 
-generate_data = False  
+# data/figure gen settings 
+generate_data = False
+threads = 10 
+figure_type = "svg"  
+
 basepath =  os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# get wholesale energy market + marginal emissions 
-dam = getdam(region, month, basepath)
-mef = getmef(region, month, basepath)
-
-# get tariff + average emissions 
+# get date info 
 _, num_days = calendar.monthrange(year, month = month) 
 startdate_dt, enddate_dt = ms.get_start_end(month)
-tariff = gettariff(region, basepath=basepath)
-aef = getaef(region, month, basepath)   
-aef = np.tile(aef, num_days) 
-
 
 if generate_data == True: 
 
+    # get wholesale energy market + marginal emissions 
+    dam = getdam(region, month, basepath)
+    mef = getmef(region, month, basepath)
+
+    # get tariff + average emissions 
+    tariff = gettariff(region, basepath=basepath)
+    aef = getaef(region, month, basepath)   
+    aef = np.tile(aef, num_days) 
+
+    # generate pareto curves for each system 
     pareto_wholesale_list = []
     pareto_tariff_list = []
     for system_name, system_dict in systems.items(): 
@@ -116,7 +122,7 @@ if generate_data == True:
         pareto_tariff_list.append(pareto_sys_df)
 
 else: 
-
+    # read saved data 
     pareto_wholesale_list = []
     for system_name, _ in systems.items(): 
         savepath = basepath + "/paper_figures/processed_data/pareto_wholesale/pareto_front_wholesale_{}.csv".format(system_name)
@@ -131,21 +137,16 @@ else:
         pareto_sys_df["system"] = system_name 
         pareto_tariff_list.append(pareto_sys_df)
 
-
+# combine system dfs
 pareto_wholesale_df = pd.concat(pareto_wholesale_list).reset_index(drop = True)
 pareto_tariff_df = pd.concat(pareto_tariff_list).reset_index(drop = True)
 
-# Calculate wholesale emissions/costs for entire month 
+# calculate wholesale emissions/costs for entire month 
 pareto_wholesale_df["emissions"] *= num_days
 pareto_wholesale_df["electricity_cost"] *=num_days
 
-system_titles = ["Maximum Savings", "25% Uptime, 0% Power Capacity", "50% Uptime, 50% Power Capacity", "100% Uptime, 25% Power Capacity"]
-
-colors = ["#FF6347", "#A9A9A9", "#FFD700", "#008080"] # Colors for each system
-num_systems = len(systems)  # Number of systems to plot
-system_names = list(systems.keys())
-color_map = dict(zip(system_names, colors))
-
+# Plot the results  
+# define plotting defaults
 plt.rcParams.update(
     {
         "font.size": 24,
@@ -163,9 +164,14 @@ plt.rcParams.update(
     }
 )
 
+# create color map 
+colors = ["#FF6347", "#A9A9A9", "#FFD700", "#008080"] # Colors for each system
+num_systems = len(systems)  # Number of systems to plot
+system_names = list(systems.keys())
+color_map = dict(zip(system_names, colors))
+
+# create figure 
 fig, ax = plt.subplots(1, 2, figsize=(12, 6))
-
-
 
 # wholesale plot 
 sns.lineplot(pareto_wholesale_df, x = "electricity_cost", y = "emissions", hue = "system", 
@@ -174,7 +180,6 @@ sns.lineplot(pareto_wholesale_df, x = "electricity_cost", y = "emissions", hue =
 # tariff plot 
 l1 = sns.lineplot(pareto_tariff_df, x = "electricity_cost", y = "emissions", hue = "system", 
                 palette=color_map, ax=ax[1])
-
 
 # yaxis labels / range 
 ylabel = "Emissions (tons $CO_2$)"
@@ -193,26 +198,17 @@ ax[1].set_xlim(0, 600)
 handles, _ = l1.get_legend_handles_labels()
 ax[1].legend().remove()
 
-
+system_titles = ["Maximum Savings", "25% Uptime, 0% Power Capacity", "50% Uptime, 50% Power Capacity", "100% Uptime, 25% Power Capacity"]
 fig.legend(handles, system_titles, ncol = 1, loc="lower left", bbox_to_anchor=(0.22, -0.32), frameon = False)
 
 plt.tight_layout()  
 
 
-fig.savefig(os.path.join(basepath, "paper_figures/figures/png", "pareto_emissions_cost_curve.png"),
-    dpi=300, bbox_inches="tight",
-)
+# save figure 
+if figure_type in ["png","svg", "pdf"]: 
+    fig.savefig(os.path.join(basepath, "paper_figures/figures", figure_type, "pareto_emissions_cost_curve." + figure_type),
+        dpi=300, bbox_inches="tight",
+    )
 
-fig.savefig(os.path.join(basepath, "paper_figures/figures/svg", "pareto_emissions_cost_curve.svg"),
-    dpi=300, bbox_inches="tight",
-)
-
-fig.savefig(
-    os.path.join(basepath, "paper_figures/figures/pdf", "pareto_emissions_cost_curve.pdf"),
-    dpi=300, bbox_inches="tight",
-)
-
-
-
-
-
+else: 
+    raise Warning("Figure type not supported.")
