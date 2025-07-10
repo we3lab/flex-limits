@@ -47,7 +47,6 @@ year = 2023
 # data/figure gen settings 
 generate_data = False
 threads = 10 
-figure_type = "svg"  
 
 basepath =  os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -227,10 +226,7 @@ plt.tight_layout()
 
 
 # save figure 
-if figure_type in ["png","svg", "pdf"]: 
+for figure_type in ["png","svg", "pdf"]: 
     fig.savefig(os.path.join(basepath, "paper_figures/figures", figure_type, "pareto_emissions_cost_curve." + figure_type),
         dpi=300, bbox_inches="tight",
     )
-
-else: 
-    raise Warning("Figure type not supported.")
