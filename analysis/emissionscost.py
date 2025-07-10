@@ -5,6 +5,41 @@ from analysis.pricesignal import getmef, getaef, getdam
 from models.flexload_milp import flexloadMILP, idxparam_value
 from electric_emission_cost.units import u
 
+def get_hourly_average_emission_factors(region, emission_type="mef"):
+    """
+    Calculate hourly average emission factors for a region across all months.
+    
+    Parameters:
+    -----------
+    region : str
+        The region/ISO for which to get emission factors.
+    emission_type : str
+        Type of emission factor: "mef" or "aef".
+    
+    Returns:
+    --------
+    tuple
+        (min_emission_factor, max_emission_factor) in ton/MWh
+    """
+    monthly_hourly_avg_emission_kg_per_mwh = []
+    
+    for month in range(1, 13):
+        if emission_type.lower() == "mef":
+            emission_data = getmef(region, month)
+        elif emission_type.lower() == "aef":
+            emission_data = getaef(region, month)
+        else:
+            raise ValueError("emission_type must be 'mef' or 'aef'")
+        
+        # Calculate hourly average for this month
+        hourly_avg_emission = np.mean(emission_data)
+        monthly_hourly_avg_emission_kg_per_mwh.append(hourly_avg_emission)
+    
+    # Convert to ton/MWh
+    monthly_hourly_avg_emission_ton_per_mwh = np.array(monthly_hourly_avg_emission_kg_per_mwh) / 1000
+    
+    return monthly_hourly_avg_emission_ton_per_mwh
+
 def shadowcost_wholesale(
     region, 
     month, 
