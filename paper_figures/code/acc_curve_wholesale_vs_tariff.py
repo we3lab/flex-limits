@@ -7,7 +7,9 @@ import seaborn as sns
 import analysis.maxsavings as ms 
 from analysis.pricesignal import getmef, getaef, getdam, gettariff
 from analysis.acc_curve import acc_curve
-
+from electric_emission_cost import costs
+from electric_emission_cost.units import u
+from electric_emission_cost import utils
 
 # VB parameter settings 
 systems = {
@@ -145,6 +147,24 @@ pareto_tariff_df = pd.concat(pareto_tariff_list).reset_index(drop = True)
 pareto_wholesale_df["emissions"] *= num_days
 pareto_wholesale_df["electricity_cost"] *=num_days
 
+
+# calculate baselines 
+baseline_dam = getdam(region, month, basepath).sum() * num_days / 1000      # convert $/MWh to $/kWh
+baseline_mef = getmef(region, month, basepath).sum() * num_days / 1000**2   # convert kg/MWh to mton/kWh
+baseline_aef = getaef(region, month, basepath).sum() * num_days / 1000**2   # convert kg/MWh to mton/kWh
+
+# calculate tariff baseline
+tariff = gettariff(region, basepath=basepath, full_list=False) 
+baseload = np.ones(num_days*4*24)
+charge_dict = costs.get_charge_dict(startdate_dt, enddate_dt, tariff, resolution="15m")
+baseline_tariff, _= costs.calculate_cost(
+    charge_dict,
+    {"electric":baseload,
+    "gas": np.zeros_like(baseload)},
+    resolution="15m",
+    consumption_estimate=0,
+)
+
 # Plot the results  
 # define plotting defaults
 plt.rcParams.update(
@@ -174,26 +194,28 @@ color_map = dict(zip(system_names, colors))
 fig, ax = plt.subplots(1, 2, figsize=(12, 6))
 
 # wholesale plot 
-sns.lineplot(pareto_wholesale_df, x = "electricity_cost", y = "emissions", hue = "system", 
+sns.lineplot(pareto_wholesale_df, y = "electricity_cost", x = "emissions", hue = "system", 
                 palette=color_map, legend=False, ax=ax[0])
+ax[0].scatter(baseline_mef, baseline_dam, color="black", marker="o", s=100, label="Baseline Wholesale")
 
 # tariff plot 
-l1 = sns.lineplot(pareto_tariff_df, x = "electricity_cost", y = "emissions", hue = "system", 
+l1 = sns.lineplot(pareto_tariff_df, y = "electricity_cost", x = "emissions", hue = "system", 
                 palette=color_map, ax=ax[1])
-
-# yaxis labels / range 
-ylabel = "Emissions (tons $CO_2$)"
-ax[0].set_ylabel(ylabel)
-ax[1].set_ylabel(ylabel)
-ax[0].set_ylim(0.18, 0.28)
-ax[1].set_ylim(0.1, 0.20)
+ax[1].scatter(baseline_aef, baseline_tariff, color="black", marker="o", s=100, label="Baseline Tariff")
 
 # xaxis labels / range 
-xlabel = "Electricity Cost ($)"
-ax[0].set_xlabel(xlabel) 
+xlabel = "Emissions (tons CO$_2$)"
+ax[0].set_xlabel(xlabel)
 ax[1].set_xlabel(xlabel)
-ax[0].set_xlim(-20, 40)
-ax[1].set_xlim(0, 600)
+ax[0].set_xlim(0.0, 0.30)
+ax[1].set_xlim(0.0, 0.30)
+
+# yaxis labels / range 
+ylabel = "Electricity Cost ($)"
+ax[0].set_ylabel(ylabel) 
+ax[1].set_ylabel(ylabel)
+ax[0].set_ylim(-20, 40)
+ax[1].set_ylim(0, 600)
 
 handles, _ = l1.get_legend_handles_labels()
 ax[1].legend().remove()
