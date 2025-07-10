@@ -182,11 +182,8 @@ ax.legend(handles, system_titles, ncol = 1, loc = (0.15, -0.48), frameon = False
 
 
 # save figure 
-if figure_type in ["png","svg", "pdf"]: 
+for figure_type in ["png","svg", "pdf"]: 
     fig.savefig(os.path.join(paperfigs_basepath, "figures", figure_type, "shadowcost_tariff_violinplot." + figure_type),
         dpi=300,
         bbox_inches="tight",
     )
-
-else: 
-    raise Warning("Figure type not supported.")
