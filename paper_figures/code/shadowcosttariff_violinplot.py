@@ -173,7 +173,7 @@ ax.set(
     yscale="log"
 )
 
-_add_scc_and_rec(ax, regions, width=0.15, scc=True, rec=True, plot_scc_by="mean", emission_basis="mef")
+_add_scc_and_rec(ax, regions, width=0.15, scc=True, rec=True, plot_scc_by="mean", emission_basis="aef")
 
 # create legend 
 handles, _ = p1.get_legend_handles_labels()
