@@ -46,7 +46,7 @@ regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
 systems = {
     "maxflex" : {
         "system_uptime": 1/24,  # minimum uptime
-        "continuous_flexibility": 0.0
+        "continuous_flexibility": 1.0 # full flexibility
     }, 
     "25uptime_0flex" : {
         "system_uptime": 0.25,  
@@ -90,6 +90,7 @@ if generate_data == True:
             # save df in results folder as a csv file
             results_df.to_csv(os.path.join(paperfigs_basepath, "processed_data", "shadowcost_wholesale", f"{region}_{system_name}.csv"), index=False)
 else:
+    ##
     pass
 
 # Plotting the results
