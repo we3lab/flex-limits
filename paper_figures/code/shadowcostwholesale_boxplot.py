@@ -143,9 +143,12 @@ ax.set(
 )
 
 def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean", emission_basis="mef"):
-    scc_df = pd.read_csv("data/offsets/scc.csv")
-    rec_df = pd.read_csv("data/offsets/rec.csv")
-    
+    """
+    """
+    basepath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    scc_df = pd.read_csv(os.path.join(basepath, "data", "offsets", "scc.csv"))
+    rec_df = pd.read_csv(os.path.join(basepath, "data", "offsets", "rec.csv"))
+        
     def _create_arrow_label(text, xy, xytext, rad=0.2, va='bottom'):
         ax.annotate(text, xy=xy, xytext=xytext,
                    arrowprops=dict(arrowstyle='->', color='black', lw=1.5, 
