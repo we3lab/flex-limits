@@ -7,6 +7,7 @@ import time
 from analysis import pricesignal as ps
 from analysis import emissionscost as ec
 
+from paper_figures.code.shadowcostwholesale_boxplot import _add_scc_and_rec
 
 # VB parameter settings 
 systems = {
@@ -164,14 +165,15 @@ p1 = sns.violinplot(data=results_df, x = "region", y ="shadow_price_usd_ton", hu
                    palette=color_map, log_scale=True, split=True,  ax=ax)
 
 ax.set(
-    xlabel="Region",
     xticks=np.arange(len(regions)),
     xticklabels=regions,
-    ylabel="Cost of Abatement (USD/ton $CO_2$)",
+    xlim=(-0.5, len(regions) - 0.5),
+    ylabel="Cost of Abatement (USD/ton CO$_2$)",
     ylim=(1e-2, 1e5),
     yscale="log"
 )
 
+_add_scc_and_rec(ax, regions, width=0.15, scc=True, rec=True, plot_scc_by="mean", emission_basis="mef")
 
 # create legend 
 handles, _ = p1.get_legend_handles_labels()
