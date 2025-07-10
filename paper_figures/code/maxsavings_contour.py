@@ -132,11 +132,6 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         columns="continuous_flex_pct",
         values="max_tariff_savings"
     )
-    # create the figure path if it doesn't exist
-    figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    figpath = os.path.join(figpath, "figures", "png", "max_savings_contours")
-
-
 
     # create figure - 2x2 grid for MEF[0,0], AEF[1,0], DAM[0,1], Tariffs[1,1] savings
     fig, ax = plt.subplots(2, 2, figsize=(18, 14))
@@ -260,19 +255,13 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
     )
 
     if save:
-
-        # save figure
-        fig.savefig(
-            os.path.join(figpath, "figures/png/max_savings_contours", f"{region}_month{month}.png"),
-            dpi=300,
-            bbox_inches="tight",
-        )
-        fig.savefig(
-            os.path.join(figpath, "figures/pdf/max_savings_contours", f"{region}_month{month}.pdf"),
-            dpi=300,
-            bbox_inches="tight",
-        )
-
+        for fig_fmt in ["png", "pdf", "svg"]:
+            # save the figure
+            plt.savefig(
+                os.path.join(figpath, "figures/{}/max_savings_contours/{}_month{}.{}".format(fig_fmt,region, month, fig_fmt)),
+                dpi=300,
+                bbox_inches="tight",
+            )
 
 # define the region and month
 
@@ -315,5 +304,7 @@ generate_figure(
     "CAISO", 
     4, 
     overlay_points=overlay_points, 
-    overlay=overlay
+    overlay=overlay,
+    save=True
 )
+
