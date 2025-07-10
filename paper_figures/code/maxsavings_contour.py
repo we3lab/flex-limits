@@ -12,7 +12,6 @@ from analysis.maxsavings import (
     max_tariff_savings, 
     get_start_end
 )
-from joblib import Parallel, delayed
 
 # define plotting defaults
 plt.rcParams.update(
@@ -277,7 +276,7 @@ overlay_points = np.array([
     [0.25, 0.99]
 ])
 
-
+# to run the analysis 
 # for region in regions:
 #     for month in months:
 #         # generate the data
@@ -292,6 +291,7 @@ overlay_points = np.array([
 #             overlay=overlay
 #         )
 
+# to generate the figure from existing data / CAISO month 4
 figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 datafile = os.path.join( figpath, "processed_data", "max_savings_contours", "CAISO_month4.csv")
 df = pd.read_csv(datafile)
