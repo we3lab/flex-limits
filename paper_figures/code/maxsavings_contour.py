@@ -220,15 +220,30 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
                 overlay_points[0,:] = np.array([max_pc, max_uptime]) / 100
 
             # overlay points
-            a.scatter(
-                overlay_points[:, 0] * 100, 
-                overlay_points[:, 1] * 100, 
-                marker="s", 
-                edgecolor="black",
-                linewidth=2,
-                color=overlay_colors, 
-                s=500, 
-                clip_on=True)
+            overlay_shapes = ["s", "^", "P", "o"]
+            for i, point in enumerate(overlay_points):
+                # calculate the color based on the index
+                color = overlay_colors[i % len(overlay_colors)]
+                # scatter the points
+                a.scatter(
+                    point[0] * 100, 
+                    point[1] * 100, 
+                    marker=overlay_shapes[i],
+                    edgecolor="black",
+                    linewidth=2,
+                    color=color, 
+                    s=500, 
+                    clip_on=True
+                )
+            # a.scatter(
+            #     overlay_points[:, 0] * 100, 
+            #     overlay_points[:, 1] * 100, 
+            #     marker="s", 
+            #     edgecolor="black",
+            #     linewidth=2,
+            #     color=overlay_colors, 
+            #     s=500, 
+            #     clip_on=True)
 
     # add a pad between subplots
     plt.subplots_adjust(wspace=0.3, hspace=0.3)
