@@ -29,7 +29,7 @@ overlay_params = {
     'scc': {
         'face_color': 'black',
         'edge_color': 'black',
-        'alpha': 0.5,
+        'alpha': 1.0,
     },
     'rec': {
         'face_color': 'lightgrey',
@@ -46,7 +46,7 @@ regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
 systems = {
     "maxflex" : {
         "system_uptime": 1/24,  # minimum uptime
-        "continuous_flexibility": 0.0
+        "continuous_flexibility": 1.0 # full flexibility
     }, 
     "25uptime_0flex" : {
         "system_uptime": 0.25,  
@@ -90,6 +90,7 @@ if generate_data == True:
             # save df in results folder as a csv file
             results_df.to_csv(os.path.join(paperfigs_basepath, "processed_data", "shadowcost_wholesale", f"{region}_{system_name}.csv"), index=False)
 else:
+    ##
     pass
 
 # Plotting the results
@@ -127,17 +128,17 @@ for region_idx, region in enumerate(regions):
                     facecolor=colors[idx],
                     edgecolor='k',
                     linewidth=1.5,
-                    alpha=0.5)
+                    alpha=0.9)
         
         # Scatter plot for the shadow price for each month
         ax.scatter(np.ones(len(results_df)) * region_idx + offset[idx], results_df["shadow_price_usd_ton"].values, s=15, color='k')
         idx += 1
 
 ax.set(
-    xlabel="Region",
     xticks=np.arange(len(regions)),
     xticklabels=regions,
-    ylabel="Cost of Abatement (USD/ton CO2)",
+    xlim=(-0.5, len(regions) - 0.5),
+    ylabel="Cost of Abatement (USD/ton CO$_2$)",
     ylim=(1e-2, 1e5),
     yscale="log"
 )
@@ -157,28 +158,30 @@ def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean",
     
     if scc:  # Plot scc
         if plot_scc_by == "mean":  # Use 50th percentile to create "line"
-            scc_bottom = scc_df[scc_df['percentile'] == 50]['value'].item()
-            scc_top = scc_bottom
+            scc = scc_df[scc_df['percentile'] == 50]['value'].item()
+
+            ax.hlines(scc, -1, 10, ls="--", color='k')
+
         else:  # Use 25th and 75th percentiles
             scc_bottom = scc_df[scc_df['percentile'] == 25]['value'].item()
             scc_top = scc_df[scc_df['percentile'] == 75]['value'].item()
         
-        scc_rect = Rectangle(
-            (0 - width*2.5, scc_bottom),  # x, y (left edge, bottom)
-            len(regions) + width*5,  # width to cover all regions
-            scc_top - scc_bottom,  # height
-            facecolor=overlay_params['scc']['face_color'],
-            edgecolor=overlay_params['scc']['edge_color'],
-            alpha=overlay_params['scc']['alpha'],
-            zorder=0,  # behind the bars
-        )
-        ax.add_patch(scc_rect)
+            scc_rect = Rectangle(
+                (0 - width*2.5, scc_bottom),  # x, y (left edge, bottom)
+                len(regions) + width*5,  # width to cover all regions
+                scc_top - scc_bottom,  # height
+                facecolor=overlay_params['scc']['face_color'],
+                edgecolor=overlay_params['scc']['edge_color'],
+                alpha=overlay_params['scc']['alpha'],
+                zorder=0,  # behind the bars
+            )
+            ax.add_patch(scc_rect)
         
         # Arrow pointing to SCC box
-        _create_arrow_label('Social Cost\nof Carbon', 
-                           (len(regions)/2 + 0.1, scc_top), 
-                           (len(regions)/2 - 0.5, ax.get_ylim()[0] + 500), 
-                           rad=-0.2)
+        # _create_arrow_label('Social Cost\nof Carbon', 
+        #                    (len(regions)/2 + 0.1, scc_top), 
+        #                    (len(regions)/2 - 0.5, ax.get_ylim()[0] + 500), 
+        #                    rad=-0.2)
 
     if rec:  # Add REC boxes
         # converting to float
@@ -244,13 +247,13 @@ def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean",
             ax.add_patch(rec_rect)
             
             # Arrow pointing to ERCOT REC box
-            if region == "ERCOT":
-                ax.annotate('Typical\nREC Price\nRange', 
-                           xy=(region_idx, min_rec_price_emission), 
-                           xytext=(region_idx - 0.5, ax.get_ylim()[0] + 2),
-                           arrowprops=dict(arrowstyle='->', color='black', lw=1.5, 
-                                           connectionstyle='arc3,rad=0.3'),
-                           ha='center', va='top', fontsize=18)
+            # if region == "ERCOT":
+            #     ax.annotate('Typical\nREC Price\nRange', 
+            #                xy=(region_idx, min_rec_price_emission), 
+            #                xytext=(region_idx - 0.5, ax.get_ylim()[0] + 2),
+            #                arrowprops=dict(arrowstyle='->', color='black', lw=1.5, 
+            #                                connectionstyle='arc3,rad=0.3'),
+            #                ha='center', va='top', fontsize=18)
     
 # Comment this line out out to disable SCC and REC overlays
 _add_scc_and_rec(

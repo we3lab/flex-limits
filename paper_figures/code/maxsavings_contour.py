@@ -132,11 +132,6 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         columns="continuous_flex_pct",
         values="max_tariff_savings"
     )
-    # create the figure path if it doesn't exist
-    figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    figpath = os.path.join(figpath, "figures", "png", "max_savings_contours")
-
-
 
     # create figure - 2x2 grid for MEF[0,0], AEF[1,0], DAM[0,1], Tariffs[1,1] savings
     fig, ax = plt.subplots(2, 2, figsize=(18, 14))
@@ -220,15 +215,30 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
                 overlay_points[0,:] = np.array([max_pc, max_uptime]) / 100
 
             # overlay points
-            a.scatter(
-                overlay_points[:, 0] * 100, 
-                overlay_points[:, 1] * 100, 
-                marker="s", 
-                edgecolor="black",
-                linewidth=2,
-                color=overlay_colors, 
-                s=500, 
-                clip_on=True)
+            overlay_shapes = ["s", "^", "P", "o"]
+            for i, point in enumerate(overlay_points):
+                # calculate the color based on the index
+                color = overlay_colors[i % len(overlay_colors)]
+                # scatter the points
+                a.scatter(
+                    point[0] * 100, 
+                    point[1] * 100, 
+                    marker=overlay_shapes[i],
+                    edgecolor="black",
+                    linewidth=2,
+                    color=color, 
+                    s=500, 
+                    clip_on=True
+                )
+            # a.scatter(
+            #     overlay_points[:, 0] * 100, 
+            #     overlay_points[:, 1] * 100, 
+            #     marker="s", 
+            #     edgecolor="black",
+            #     linewidth=2,
+            #     color=overlay_colors, 
+            #     s=500, 
+            #     clip_on=True)
 
     # add a pad between subplots
     plt.subplots_adjust(wspace=0.3, hspace=0.3)
@@ -245,19 +255,13 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
     )
 
     if save:
-
-        # save figure
-        fig.savefig(
-            os.path.join(figpath, "figures/png/max_savings_contours", f"{region}_month{month}.png"),
-            dpi=300,
-            bbox_inches="tight",
-        )
-        fig.savefig(
-            os.path.join(figpath, "figures/pdf/max_savings_contours", f"{region}_month{month}.pdf"),
-            dpi=300,
-            bbox_inches="tight",
-        )
-
+        for fig_fmt in ["png", "pdf", "svg"]:
+            # save the figure
+            plt.savefig(
+                os.path.join(figpath, "figures/{}/max_savings_contours/{}_month{}.{}".format(fig_fmt,region, month, fig_fmt)),
+                dpi=300,
+                bbox_inches="tight",
+            )
 
 # define the region and month
 
@@ -300,5 +304,7 @@ generate_figure(
     "CAISO", 
     4, 
     overlay_points=overlay_points, 
-    overlay=overlay
+    overlay=overlay,
+    save=True
 )
+

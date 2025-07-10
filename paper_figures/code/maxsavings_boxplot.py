@@ -23,6 +23,7 @@ plt.rcParams.update(
 )
 
 month_arr = np.arange(1, 13)
+tariff_month_arr = [1,7]
 regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
 mef_savings_sweep = np.zeros((len(regions), len(month_arr)))
 aef_savings_sweep = np.zeros((len(regions), len(month_arr)))
@@ -208,7 +209,7 @@ flat_tariff_savings = [
 ]
 tariff_regions = []
 for i, region_list in enumerate(sorted_tariff_savings_sweep):
-    tariff_regions += [regions[i]] * len(reigon_list)
+    tariff_regions += [regions[i]] * len(region_list)
 
 tariff_savings_data = {
     "region": tariff_regions.flatten(),
