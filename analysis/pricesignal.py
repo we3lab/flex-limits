@@ -147,5 +147,7 @@ def gettariff(
         # read df
         tariff_data = pd.read_csv(tariff_path)
 
-        # Return the entire tariff sheet (month will be processed later)
-        return tariff_data
+    # Return the entire tariff sheet (month will be processed later)
+    return tariff_data
+
+
