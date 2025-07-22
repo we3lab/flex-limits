@@ -1,9 +1,10 @@
 # imports
 import os
 import numpy as np
+from electric_emission_cost import costs
 import analysis.pricesignal as ps
 from models.flexload_milp import flexloadMILP
-
+from models.flexload_milp import idxparam_value
 
 region = "CAISO"
 month = 1
@@ -98,6 +99,7 @@ def max_tariff_savings(
     startdate_dt, 
     enddate_dt,
     uptime_equality=True,
+    resolution="1h"
 ):
     """Calculate the maximum savings for a tariff as a percentage."""
     flex = flexloadMILP(
@@ -118,4 +120,31 @@ def max_tariff_savings(
     flex.build()
     flex.solve()
 
-    return flex.model.pct_cost_savings()
+    # (1) get the charge dictionary
+    charge_dict = costs.get_charge_dict(
+        startdate_dt, enddate_dt, data, resolution=resolution
+    )
+
+    # (2) set up consumption data dictionary
+    consumption_data_dict = {"electric": idxparam_value(flex.model.flexload)}
+
+    energy_flex_cost, _ = costs.calculate_cost(
+            charge_dict,
+            consumption_data_dict,
+            resolution=resolution,
+            desired_utility="electric",
+            desired_charge_type="energy",
+            model=None,
+        )
+    demand_flex_cost, _ = costs.calculate_cost(
+        charge_dict,
+        consumption_data_dict,
+        resolution=resolution,
+        desired_utility="electric",
+        desired_charge_type="demand",
+        model=None,
+    )
+
+    total_base_cost = flex.model.total_base_cost_signal
+    total_flex_cost = demand_flex_cost + energy_flex_cost
+    return (100 * (total_base_cost - total_flex_cost) / total_base_cost)
