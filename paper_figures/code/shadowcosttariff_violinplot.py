@@ -36,7 +36,7 @@ systems = {
 
 # grid parameter settings 
 months = [1,7]
-regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
+regions = ["SPP", "CAISO", "ERCOT",  "PJM", "MISO", "NYISO", "ISONE"]
 
 # data/figure gen settings 
 generate_data = False
@@ -134,9 +134,10 @@ results_df.loc[results_df.shadow_price_usd_ton < 1e-3, "shadow_price_usd_ton"] =
 # define plotting defaults
 plt.rcParams.update(
     {
-        "font.size": 24,
-        "axes.linewidth": 2,
-        "lines.linewidth": 2,
+        "font.family": "Arial",
+        "font.size": 7,
+        "axes.linewidth": 1,
+        "lines.linewidth": 1,
         "lines.markersize": 6,
         "xtick.major.size": 3,
         "xtick.major.width": 1,
@@ -144,41 +145,50 @@ plt.rcParams.update(
         "ytick.major.width": 1,
         "xtick.direction": "out",
         "ytick.direction": "out",
-        "legend.fontsize": 22,
-        "ytick.labelsize": 22, 
+        "legend.fontsize": 7,
+        "ytick.labelsize": 7, 
+        "xtick.labelsize": 7,
     }
 )
 
 # create color map 
-colors = ["#FF6347", "#A9A9A9", "#FFD700", "#008080"] # Colors for each system
+colors= ["#FF6347", "#A9A9A9", "#FFD700", "#008080"]  # Colors for each system
 num_systems = len(systems)  # Number of systems to plot
 system_names = list(systems.keys())
 color_map = dict(zip(system_names, colors))
 
 # create figure 
-fig, ax = plt.subplots(figsize=(12, 8))
+fig, ax = plt.subplots(figsize=(180 / 25.4, 45 / 25.4))
+
+_add_scc_and_rec(ax, regions, width=0.15, scc=True, rec=True, plot_scc_by="mean", emission_basis="aef")
 
 # violin plots 
 p1 = sns.violinplot(data=results_df, x = "region", y ="shadow_price_usd_ton", hue = "system", 
                     gap = 0.4, inner = "point", density_norm="width", 
-                    inner_kws= {"s": 15, "alpha":0.5,}, alpha = 0.9, 
-                   palette=color_map, log_scale=True, split=True,  ax=ax)
+                    inner_kws= {"s": 0.1, "alpha":0.5,}, alpha = 1.0, 
+                   palette=color_map, log_scale=True, split=True,  ax=ax, cut=0)
 
 ax.set(
+    xlabel="",
     xticks=np.arange(len(regions)),
     xticklabels=regions,
     xlim=(-0.5, len(regions) - 0.5),
-    ylabel="Cost of Abatement (USD/ton CO$_2$)",
     ylim=(1e-2, 1e5),
+    yticks=np.logspace(-2, 5, num=8),
     yscale="log"
 )
+ax.set_ylabel("Cost of Abatement (USD/ton CO$_2$)",labelpad=-1)
+# rotate x-axis labels
+# plt.setp(ax.get_xticklabels(), rotation=45, ha="center")
 
-_add_scc_and_rec(ax, regions, width=0.15, scc=True, rec=True, plot_scc_by="mean", emission_basis="aef")
+ax.text(-0.1, 1.06, 'b.', transform=ax.transAxes,
+        fontsize=7, fontweight='bold', va='top', ha='left')
 
 # create legend 
 handles, _ = p1.get_legend_handles_labels()
 system_titles = ["Maximum Savings", "25% Uptime, 0% Power Capacity", "50% Uptime, 50% Power Capacity", "100% Uptime, 25% Power Capacity"]
-ax.legend(handles, system_titles, ncol = 1, loc = (0.15, -0.48), frameon = False)
+# ax.legend(handles, system_titles, ncol = 1, loc = (0.15, -0.48), frameon = False)
+ax.get_legend().remove()
 
 
 # save figure 

@@ -9,7 +9,7 @@ from analysis import maxsavings as ms
 # define plotting defaults
 plt.rcParams.update(
     {
-        "font.size": 24,
+        "font.size": 16,
         "axes.linewidth": 1.5,
         "lines.linewidth": 2,
         "lines.markersize": 6,
@@ -80,6 +80,7 @@ for i, reg in enumerate(regions):
                     uptime_equality=False
                 )
                 region_list.append(tariff_savings)
+            
             except ZeroDivisionError:
                 print(f"ZeroDivisionError in tariff {tariff['label'].values[0]}")
 
@@ -102,7 +103,7 @@ regions = [regions[i] for i in sorted_indices]
 
 # plot box and whisker
 # create a plot of the emissions savings
-fig, ax = plt.subplots(figsize=(10, 6))
+fig, ax = plt.subplots(figsize=(90/25.4, 60/25.4))
 aef_plot = ax.boxplot(
     aef_savings_sweep.T,
     positions=np.arange(len(regions)) - 0.3,
@@ -112,7 +113,7 @@ aef_plot = ax.boxplot(
     showfliers=False,
     whis=(0, 100),
     medianprops={"linewidth": 0},
-    boxprops={"linewidth": 1.5, "facecolor": "royalblue"},
+    boxprops={"linewidth": 1.5, "facecolor": "#437AB5"},
     whiskerprops={"linewidth": 1.5},
     capprops={"linewidth": 1.5},
 )                    
@@ -126,7 +127,7 @@ mef_plot = ax.boxplot(
     showfliers=False,
     whis=(0, 100),
     medianprops={"linewidth": 0},
-    boxprops={"linewidth": 1.5, "facecolor": "darkseagreen"},
+    boxprops={"linewidth": 1.5, "facecolor": "#2C954D"},
     whiskerprops={"linewidth": 1.5},
     capprops={"linewidth": 1.5},
 )
@@ -140,7 +141,7 @@ dam_plot = ax.boxplot(
     showfliers=False,
     whis=(0, 100),
     medianprops={"linewidth": 0},
-    boxprops={"linewidth": 1.5, "facecolor": "palegoldenrod"},
+    boxprops={"linewidth": 1.5, "facecolor": "#D5702F"},
     whiskerprops={"linewidth": 1.5},
     capprops={"linewidth": 1.5},
 )
@@ -154,14 +155,13 @@ tariff_plot = ax.boxplot(
     showfliers=False,
     whis=(0, 100),
     medianprops={"linewidth": 0},
-    boxprops={"linewidth": 1.5, "facecolor": "violet"},
+    boxprops={"linewidth": 1.5, "facecolor": "#C97CB6"},
     whiskerprops={"linewidth": 1.5},
     capprops={"linewidth": 1.5},
 )
 
 ax.set(
     ylabel="Savings [%]",
-    title="Maximum savings from flexibility",
     xticks=np.arange(len(regions)),
     xticklabels=regions,
     yticks=np.arange(0, 161, 20),

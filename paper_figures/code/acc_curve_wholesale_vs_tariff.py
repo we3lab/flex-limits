@@ -41,7 +41,7 @@ systems = {
 
 # grid parameter settings 
 region = "CAISO"
-month = 4
+month = 7
 year = 2023
 
 # data/figure gen settings 
@@ -168,9 +168,10 @@ baseline_tariff, _= costs.calculate_cost(
 # define plotting defaults
 plt.rcParams.update(
     {
-        "font.size": 24,
-        "axes.linewidth": 2,
-        "lines.linewidth": 3,
+        "font.family": "Arial",
+        "font.size": 7,
+        "axes.linewidth": 1,
+        "lines.linewidth": 2.5,
         "lines.markersize": 10,
         "xtick.major.size": 6,
         "xtick.major.width": 1.5,
@@ -178,8 +179,9 @@ plt.rcParams.update(
         "ytick.major.width": 1.5,
         "xtick.direction": "out",
         "ytick.direction": "out",
-        "legend.fontsize": 22,
-        # "ytick.labelsize": 22, 
+        "legend.fontsize": 7,
+        "ytick.labelsize": 7,
+        "xtick.labelsize": 7, 
     }
 )
 
@@ -190,39 +192,51 @@ system_names = list(systems.keys())
 color_map = dict(zip(system_names, colors))
 
 # create figure 
-fig, ax = plt.subplots(1, 2, figsize=(12, 6))
+fig, ax = plt.subplots(1, 2, figsize=(180 / 25.4, 80 / 25.4), layout="tight")
 
 # wholesale plot 
 sns.lineplot(pareto_wholesale_df, y = "electricity_cost", x = "emissions", hue = "system", 
                 palette=color_map, legend=False, ax=ax[0])
-ax[0].scatter(baseline_mef, baseline_dam, color="black", marker="o", s=100, label="Baseline Wholesale")
+ax[0].scatter(baseline_mef, baseline_dam, color="black", marker="o", s=20, label="Baseline Wholesale")
 
 # tariff plot 
 l1 = sns.lineplot(pareto_tariff_df, y = "electricity_cost", x = "emissions", hue = "system", 
                 palette=color_map, ax=ax[1])
-ax[1].scatter(baseline_aef, baseline_tariff, color="black", marker="o", s=100, label="Baseline Tariff")
+ax[1].scatter(baseline_aef, baseline_tariff, color="black", marker="o", s=20, label="Baseline Tariff")
 
 # xaxis labels / range 
 xlabel = "Emissions (tons CO$_2$)"
 ax[0].set_xlabel(xlabel)
 ax[1].set_xlabel(xlabel)
-ax[0].set_xlim(0.0, 0.30)
-ax[1].set_xlim(0.0, 0.30)
+# ax[0].set_xlim(0.0, 0.30)
+# ax[1].set_xlim(0.0, 0.30)
 
 # yaxis labels / range 
 ylabel = "Electricity Cost ($)"
-ax[0].set_ylabel(ylabel) 
-ax[1].set_ylabel(ylabel)
+ax[0].set_ylabel(ylabel, labelpad=1) 
+ax[1].set_ylabel(ylabel, labelpad=1)
 ax[0].set_ylim(-20, 40)
 ax[1].set_ylim(0, 600)
+
+# set xticks
+ax[0].set_xticks(np.arange(0.10, 0.41, 0.05))
+ax[1].set_xticks(np.arange(0, 0.31, 0.05))
+
+# set yticks
+ax[0].set_yticks(np.arange(-20, 41, 10))
+ax[1].set_yticks(np.arange(0, 601, 100))
 
 handles, _ = l1.get_legend_handles_labels()
 ax[1].legend().remove()
 
 system_titles = ["Maximum Savings", "25% Uptime, 0% Power Capacity", "50% Uptime, 50% Power Capacity", "100% Uptime, 25% Power Capacity"]
-fig.legend(handles, system_titles, ncol = 1, loc="lower left", bbox_to_anchor=(0.22, -0.32), frameon = False)
+# fig.legend(handles, system_titles, ncol = 1, loc="lower left", bbox_to_anchor=(0.22, -0.32), frameon = False)
 
-plt.tight_layout()  
+subplot_labels = ['a.', 'b.']
+
+for a in ax.flatten():
+    a.text(-0.15, 1.03, subplot_labels.pop(0), transform=a.transAxes,
+           fontsize=7, fontweight='bold', va='top', ha='left')
 
 
 # save figure 

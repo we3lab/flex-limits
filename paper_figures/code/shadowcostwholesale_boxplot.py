@@ -11,9 +11,10 @@ from analysis import maxsavings as ms
 # define plotting defaults
 plt.rcParams.update(
     {
-        "font.size": 24,
-        "axes.linewidth": 2,
-        "lines.linewidth": 2,
+        "font.family": "Arial",
+        "font.size": 7,
+        "axes.linewidth": 1,
+        "lines.linewidth": 1,
         "lines.markersize": 6,
         "xtick.major.size": 3,
         "xtick.major.width": 1,
@@ -21,9 +22,11 @@ plt.rcParams.update(
         "ytick.major.width": 1,
         "xtick.direction": "out",
         "ytick.direction": "out",
+        "legend.fontsize": 7,
+        "ytick.labelsize": 7, 
+        "xtick.labelsize": 7,
     }
 )
-
 # define overlay parameters
 overlay_params = {
     'scc': {
@@ -32,16 +35,16 @@ overlay_params = {
         'alpha': 1.0,
     },
     'rec': {
-        'face_color': 'lightgrey',
-        'edge_color': 'grey',
-        'alpha': 0.5
+        'face_color': 'plum',
+        'edge_color': 'k',
+        'alpha': 1
     }
 }
 
 generate_data = False
 
 
-regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
+regions = ["SPP", "CAISO", "ERCOT",  "PJM", "MISO", "NYISO", "ISONE"]
 
 systems = {
     "maxflex" : {
@@ -94,7 +97,7 @@ else:
     pass
 
 # Plotting the results
-fig, ax = plt.subplots(figsize=(12, 8))
+fig, ax = plt.subplots(figsize=(180 / 25.4, 45 / 25.4))
 
 width = 0.15
 
@@ -102,11 +105,7 @@ offset = [-width * 1.6, -width * 0.55, width * 0.55, width * 1.6]  # Offset for 
 colors= ["#FF6347", "#A9A9A9", "#FFD700", "#008080"]  # Colors for each system
 
 
-ax.set_xlabel("Region")
-ax.set_ylabel("Wholesale Shadow Price (USD/metric ton CO2)")
-
 num_systems = len(systems)  # Number of systems to plot
-
 system_names = list(systems.keys())
 
 for region_idx, region in enumerate(regions):
@@ -131,7 +130,7 @@ for region_idx, region in enumerate(regions):
                     alpha=0.9)
         
         # Scatter plot for the shadow price for each month
-        ax.scatter(np.ones(len(results_df)) * region_idx + offset[idx], results_df["shadow_price_usd_ton"].values, s=15, color='k')
+        ax.scatter(np.ones(len(results_df)) * region_idx + offset[idx], results_df["shadow_price_usd_ton"].values, s=0.1, alpha=0.5, color='k')
         idx += 1
 
 ax.set(
@@ -140,8 +139,15 @@ ax.set(
     xlim=(-0.5, len(regions) - 0.5),
     ylabel="Cost of Abatement (USD/ton CO$_2$)",
     ylim=(1e-2, 1e5),
+    yticks=np.logspace(-2, 5, num=8),  # Logarithmic scale for y-axis
+    yticklabels=[f"{int(10**i):,}" for i in range(-2, 6)],
     yscale="log"
 )
+ax.set_ylabel("Cost of Abatement (USD/ton CO$_2$)",labelpad=-1)
+
+ax.text(-0.1, 1.06, 'a.', transform=ax.transAxes,
+        fontsize=7, fontweight='bold', va='top', ha='left')
+
 
 def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean", emission_basis="mef"):
     """
