@@ -1,7 +1,6 @@
-import calendar
+import calendar, os, json
 import numpy as np
 import pandas as pd 
-import os 
 import matplotlib.pyplot as plt 
 import seaborn as sns 
 import analysis.maxsavings as ms 
@@ -10,6 +9,11 @@ from analysis.acc_curve import acc_curve
 from electric_emission_cost import costs
 from electric_emission_cost.units import u
 from electric_emission_cost import utils
+
+# import color maps as json
+with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:
+    colors = json.load(f)
+sys_colors=colors["examplesys_colors"]
 
 # VB parameter settings 
 systems = {
@@ -31,9 +35,9 @@ systems = {
         "uptime_equality": True, 
         "pareto_stepsize": 0.1 
     },
-    "100uptime_75flex" : {
+    "100uptime_25flex" : {
         "system_uptime": 1.0,  
-        "continuous_flexibility": 0.75, 
+        "continuous_flexibility": 0.25, 
         "uptime_equality": True, 
         "pareto_stepsize": 0.05 
     },
@@ -186,10 +190,10 @@ plt.rcParams.update(
 )
 
 # create color map 
-colors = ["#FF6347", "#A9A9A9", "#FFD700", "#008080"] # Colors for each system
 num_systems = len(systems)  # Number of systems to plot
 system_names = list(systems.keys())
-color_map = dict(zip(system_names, colors))
+# color_map = dict(zip(system_names, colors))
+color_map = {k: sys_colors[k] for k in system_names if k in sys_colors}
 
 # create figure 
 fig, ax = plt.subplots(1, 2, figsize=(180 / 25.4, 80 / 25.4), layout="tight")
@@ -215,7 +219,7 @@ ax[1].set_xlim(0.10, 0.20)
 ylabel = "Electricity Cost ($)"
 ax[0].set_ylabel(ylabel, labelpad=1) 
 ax[1].set_ylabel(ylabel, labelpad=1)
-ax[0].set_ylim(-20, 40)
+ax[0].set_ylim(-20, 50)
 ax[1].set_ylim(0, 600)
 
 # set xticks
@@ -223,14 +227,13 @@ ax[0].set_xticks(np.arange(0.20, 0.31, 0.02))
 ax[1].set_xticks(np.arange(0.10, 0.21, 0.02))
 
 # set yticks
-ax[0].set_yticks(np.arange(-20, 41, 10))
+ax[0].set_yticks(np.arange(-20, 51, 10))
 ax[1].set_yticks(np.arange(0, 601, 100))
 
 handles, _ = l1.get_legend_handles_labels()
 ax[1].legend().remove()
 
 system_titles = ["Maximum Savings", "25% Uptime, 0% Power Capacity", "50% Uptime, 50% Power Capacity", "100% Uptime, 25% Power Capacity"]
-# fig.legend(handles, system_titles, ncol = 1, loc="lower left", bbox_to_anchor=(0.22, -0.32), frameon = False)
 
 subplot_labels = ['a.', 'b.']
 # add subplot labels

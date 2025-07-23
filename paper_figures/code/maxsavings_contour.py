@@ -1,5 +1,5 @@
 # imports
-import os
+import os, json
 import datetime
 import numpy as np
 import pandas as pd
@@ -12,6 +12,13 @@ from analysis.maxsavings import (
     max_tariff_savings, 
     get_start_end
 )
+
+# import color maps as json
+with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:
+    colors = json.load(f)
+
+cmaps=colors["incentive_cmaps"]
+sys_colors=colors["examplesys_colors"]
 
 # define plotting defaults
 plt.rcParams.update(
@@ -146,7 +153,7 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         max_mef_savings_results,
         levels=np.arange(0,30.1, 2.5),
         extend="max",
-        cmap="Greens",
+        cmap=cmaps["mef"],
     )
     cbar = fig.colorbar(contour, ax=ax[0, 0])
 
@@ -161,7 +168,7 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         levels=np.arange(0,30.1, 2.5),
         vmax=30,
         extend="max",
-        cmap="Blues",
+        cmap=cmaps["aef"],
     )
     cbar = fig.colorbar(contour, ax=ax[1,0])
     # ax[1, 0].set_title("Average Emissions")
@@ -174,7 +181,7 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         max_dam_savings_results,
         extend="max",
         levels=np.arange(0,50.1, 5),
-        cmap="YlOrBr",
+        cmap=cmaps["dam"],
     )
     cbar = fig.colorbar(contour, ax=ax[0, 1])
     # ax[0, 1].set_title("Day-ahead Prices")
@@ -187,7 +194,7 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         max_tariff_savings_results, 
         extend="max", 
         levels=np.arange(0, 51, 5),
-        cmap="PuRd",
+        cmap=cmaps["tariff"],
     )
     cbar = fig.colorbar(contour, ax=ax[1,1])
     # ax[1, 1].set_title(f"Sample Tariff: {region}")
@@ -212,7 +219,10 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
                 fontsize=7, fontweight='bold', va='top', ha='left')
 
         if overlay:
-            overlay_colors= ["#FF6347", "#A9A9A9", "#FFD700", "#008080"]    
+            overlay_colors= [sys_colors["maxflex"], 
+                            sys_colors["25uptime_0flex"],
+                            sys_colors["50uptime_50flex"],
+                            sys_colors["100uptime_25flex"]]
 
             if idx == 3:
                 # remove the 1st overlay pair and replace it with the index of the max 
@@ -280,8 +290,8 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
 regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
 months = np.arange(1, 13)
 
-# regions = ["CAISO"]
-# months = [7]
+regions = ["CAISO"]
+months = [7]
 
 # power capacity, uptime
 overlay = True
@@ -310,11 +320,11 @@ for region in regions:
             month, 
             overlay_points=overlay_points, 
             overlay=overlay,
-            save=True
+            save=False
         )
 
         # close the figure
-        plt.close()
+        # plt.close()
 
 
 # to generate the figure from existing data / CAISO month 4

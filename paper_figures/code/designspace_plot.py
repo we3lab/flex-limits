@@ -22,6 +22,11 @@ plt.rcParams.update(
     }
 )
 
+# import colors
+with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:
+    colors = json.load(f)
+sys_colors=colors["examplesys_colors"]
+
 fig, a = plt.subplots(figsize=(180 / 25.4/2, 120 / 25.4/2), layout="tight")
 
 a.set_aspect("equal", adjustable="box")
@@ -45,7 +50,10 @@ overlay_points = np.array([
 ])
 
 if overlay:
-    overlay_colors= ["#FF6347", "#A9A9A9", "#FFD700", "#008080"]    
+    overlay_colors= [sys_colors["maxflex"], 
+                    sys_colors["25uptime_0flex"],
+                    sys_colors["50uptime_50flex"],
+                    sys_colors["100uptime_25flex"]]
 
     # overlay points
     overlay_shapes = ["s", "^", "P", "o"]

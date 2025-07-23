@@ -34,6 +34,10 @@ systems = {
     },
 }
 
+with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:
+    colors = json.load(f)
+sys_colors=colors["examplesys_colors"]
+
 # grid parameter settings 
 months = [1,7]
 regions = ["SPP", "CAISO", "ERCOT",  "PJM", "MISO", "NYISO", "ISONE"]
@@ -152,10 +156,9 @@ plt.rcParams.update(
 )
 
 # create color map 
-colors= ["#FF6347", "#A9A9A9", "#FFD700", "#008080"]  # Colors for each system
 num_systems = len(systems)  # Number of systems to plot
 system_names = list(systems.keys())
-color_map = dict(zip(system_names, colors))
+color_map = {k: sys_colors[k] for k in system_names if k in sys_colors}
 
 # create figure 
 fig, ax = plt.subplots(figsize=(180 / 25.4, 45 / 25.4))
