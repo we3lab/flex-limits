@@ -1,0 +1,24 @@
+{
+    "incentive_cmaps": {
+        "aef":"Blues",
+        "mef":"Greens",
+        "dam":"YlOrBr",
+        "tariff":"PuRd"
+    },
+    "incentive_colors": {
+        "aef":"#437AB5",
+        "mef":"#2C954D",
+        "dam":"#D5702F",
+        "tariff":"#C97CB6"
+    },
+    "examplesys_colors": {
+        "maxflex":"#FF9687",
+        "25uptime_0flex":"#748C69",
+        "50uptime_50flex":"#FDD878",
+        "100uptime_25flex":"#44BBCA"
+    },
+    "other": {
+        "rec":"#C5AECF",
+        "scc":"#28282D"
+    }
+}
