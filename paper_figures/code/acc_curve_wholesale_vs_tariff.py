@@ -197,19 +197,19 @@ fig, ax = plt.subplots(1, 2, figsize=(180 / 25.4, 80 / 25.4), layout="tight")
 # wholesale plot 
 sns.lineplot(pareto_wholesale_df, y = "electricity_cost", x = "emissions", hue = "system", 
                 palette=color_map, legend=False, ax=ax[0])
-ax[0].scatter(baseline_mef, baseline_dam, color="black", marker="o", s=20, label="Baseline Wholesale")
+ax[0].scatter(baseline_mef, baseline_dam, color="black", marker="o", s=50, label="Baseline Wholesale")
 
 # tariff plot 
 l1 = sns.lineplot(pareto_tariff_df, y = "electricity_cost", x = "emissions", hue = "system", 
                 palette=color_map, ax=ax[1])
-ax[1].scatter(baseline_aef, baseline_tariff, color="black", marker="o", s=20, label="Baseline Tariff")
+ax[1].scatter(baseline_aef, baseline_tariff, color="black", marker="o", s=50, label="Baseline Tariff")
 
 # xaxis labels / range 
 xlabel = "Emissions (tons CO$_2$)"
 ax[0].set_xlabel(xlabel)
 ax[1].set_xlabel(xlabel)
-# ax[0].set_xlim(0.0, 0.30)
-# ax[1].set_xlim(0.0, 0.30)
+ax[0].set_xlim(0.20, 0.30)
+ax[1].set_xlim(0.10, 0.20)
 
 # yaxis labels / range 
 ylabel = "Electricity Cost ($)"
@@ -219,8 +219,8 @@ ax[0].set_ylim(-20, 40)
 ax[1].set_ylim(0, 600)
 
 # set xticks
-ax[0].set_xticks(np.arange(0.10, 0.41, 0.05))
-ax[1].set_xticks(np.arange(0, 0.31, 0.05))
+ax[0].set_xticks(np.arange(0.20, 0.31, 0.02))
+ax[1].set_xticks(np.arange(0.10, 0.21, 0.02))
 
 # set yticks
 ax[0].set_yticks(np.arange(-20, 41, 10))
@@ -233,11 +233,10 @@ system_titles = ["Maximum Savings", "25% Uptime, 0% Power Capacity", "50% Uptime
 # fig.legend(handles, system_titles, ncol = 1, loc="lower left", bbox_to_anchor=(0.22, -0.32), frameon = False)
 
 subplot_labels = ['a.', 'b.']
-
+# add subplot labels
 for a in ax.flatten():
     a.text(-0.15, 1.03, subplot_labels.pop(0), transform=a.transAxes,
            fontsize=7, fontweight='bold', va='top', ha='left')
-
 
 # save figure 
 for figure_type in ["png","svg", "pdf"]: 
