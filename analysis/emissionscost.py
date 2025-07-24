@@ -5,6 +5,7 @@ import calendar
 from analysis.pricesignal import getmef, getaef, getdam, gettariff
 from analysis import maxsavings as ms
 from models.flexload_milp import flexloadMILP, idxparam_value
+from electric_emission_cost import costs
 from electric_emission_cost.units import u
 
 def get_hourly_average_emission_factors(region, emission_type="mef"):
@@ -216,9 +217,23 @@ def shadowcost_tariff(
     # Calculate the net facility load
     net_facility_load_costopt = idxparam_value(flex_cost.model.net_facility_load)
 
-    # calculate the total cost and total emissions using the output power
-    # cost_optimal_cost = tariff@net_facility_load_costopt
-    cost_optimal_cost = flex_cost.model.total_flex_cost_signal()
+    # (1) get the charge dictionary
+    charge_dict = costs.get_charge_dict(
+        startdate_dt, enddate_dt, tariff_data, resolution="1h"
+    )
+
+    # (2) set up consumption data dictionary
+    consumption_data_dict_costopt = {"electric": net_facility_load_costopt}
+
+    cost_optimal_cost, _ = costs.calculate_cost(
+            charge_dict,
+            consumption_data_dict_costopt,
+            resolution="1h",
+            desired_utility="electric",
+            desired_charge_type=None,
+            model=None,
+        )
+
         # TODO: replace the unit conversion using pint
     cost_optimal_emissions = aef@net_facility_load_costopt* 0.001 # convert from $/kg to $/ton (metric)
 
@@ -246,9 +261,18 @@ def shadowcost_tariff(
     # Calculate the net facility load
     net_facility_load_emisopt = idxparam_value(flex_emissions.model.net_facility_load)
    
-    # calculate the total cost and total emissions using the output power
-    # emissions_optimal_cost = tariff@net_facility_load_emisopt
-    emissions_optimal_cost = flex_emissions.model.total_flex_cost_signal()
+    # (2) set up consumption data dictionary
+    consumption_data_dict_emisopt = {"electric": net_facility_load_emisopt}
+
+    emissions_optimal_cost, _ = costs.calculate_cost(
+            charge_dict,
+            consumption_data_dict_emisopt,
+            resolution="1h",
+            desired_utility="electric",
+            desired_charge_type=None,
+            model=None,
+        )
+
         # TODO: replace the unit conversion using pint
     emissions_optimal_emissions = aef@net_facility_load_emisopt* 0.001 # convert from kg to ton (metric)
 
