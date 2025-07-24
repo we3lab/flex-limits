@@ -49,6 +49,7 @@ overlay_params = {
 generate_data = False
 
 
+# The order of regions has been updated to reflect the desired processing sequence.
 regions = ["SPP", "CAISO", "ERCOT",  "PJM", "MISO", "NYISO", "ISONE"]
 
 systems = {

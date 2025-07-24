@@ -41,7 +41,7 @@ if generate_results:
     aef_savings_sweep = np.zeros((len(regions), len(month_arr)))
     dam_savings_sweep = np.zeros((len(regions), len(month_arr)))
     # cannot be np.array because each region has different number of tariffs
-    tariff_savings_sweep = []\
+    tariff_savings_sweep = []
     
     for i, reg in enumerate(regions):
         region_list = []
