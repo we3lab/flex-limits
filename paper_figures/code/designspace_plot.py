@@ -1,5 +1,5 @@
 # imports
-import os
+import os, json
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -8,8 +8,8 @@ plt.rcParams.update(
     {   
         "font.family": "Arial",
         "font.size": 7,
-        "axes.linewidth": 1.5,
-        "lines.linewidth": 2,
+        "axes.linewidth": 1,
+        "lines.linewidth": 1,
         "lines.markersize": 6,
         "xtick.major.size": 3,
         "xtick.major.width": 1,
@@ -17,6 +17,7 @@ plt.rcParams.update(
         "ytick.major.width": 1,
         "xtick.direction": "out",
         "ytick.direction": "out",
+        "legend.fontsize": 7,
         "ytick.labelsize": 7,
         "xtick.labelsize": 7, 
     }

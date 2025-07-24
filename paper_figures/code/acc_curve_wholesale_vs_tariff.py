@@ -175,12 +175,12 @@ plt.rcParams.update(
         "font.family": "Arial",
         "font.size": 7,
         "axes.linewidth": 1,
-        "lines.linewidth": 2.5,
-        "lines.markersize": 10,
-        "xtick.major.size": 6,
-        "xtick.major.width": 1.5,
-        "ytick.major.size": 6,
-        "ytick.major.width": 1.5,
+        "lines.linewidth": 1,
+        "lines.markersize": 6,
+        "xtick.major.size": 3,
+        "xtick.major.width": 1,
+        "ytick.major.size": 3,
+        "ytick.major.width": 1,
         "xtick.direction": "out",
         "ytick.direction": "out",
         "legend.fontsize": 7,
@@ -192,7 +192,6 @@ plt.rcParams.update(
 # create color map 
 num_systems = len(systems)  # Number of systems to plot
 system_names = list(systems.keys())
-# color_map = dict(zip(system_names, colors))
 color_map = {k: sys_colors[k] for k in system_names if k in sys_colors}
 
 # create figure 

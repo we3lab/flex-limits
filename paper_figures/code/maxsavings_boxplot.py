@@ -20,8 +20,9 @@ plt.rcParams.update(
         "ytick.major.width": 1,
         "xtick.direction": "out",
         "ytick.direction": "out",
+        "legend.fontsize": 7,
         "ytick.labelsize": 7,
-        "xtick.labelsize": 7,
+        "xtick.labelsize": 7, 
     }
 )
 
