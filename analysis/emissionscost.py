@@ -49,7 +49,8 @@ def shadowcost_wholesale(
     system_uptime,
     continuous_flexibility,
     baseload=None,
-    basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    emissions_type="mef",
 ):
     """
     Calculate the cost of savings from wholesale energy prices.
@@ -73,14 +74,19 @@ def shadowcost_wholesale(
         The cost of emissions in usd/ton.
     """
     # Get the marginal emissions factor (MEF)
-    mef = getmef(region, month, basepath)
+    if emissions_type.lower() == "mef":
+        emis = getmef(region, month, basepath)
+    elif emissions_type.lower() == "aef":
+        emis = getaef(region, month, basepath)
+    else:
+        raise ValueError("emissions_type must be 'mef' or 'aef'")
 
     # Get the day ahead market price (LMP)
     dam = getdam(region, month, basepath)
 
     if baseload is None:
         # define a flat 1MW baseload 
-        baseload = np.ones_like(mef)  
+        baseload = np.ones_like(emis)  
         
     # Calculate cost optimal while tracking emissions
     flex_cost = flexloadMILP(
@@ -92,7 +98,7 @@ def shadowcost_wholesale(
                     emissions_path=None,
                     flex_capacity=continuous_flexibility,
                     rte=1.0,
-                    min_onsteps=max(int(len(mef) * (system_uptime)), 1),  # assuming daily cycles
+                    min_onsteps=max(int(len(emis) * (system_uptime)), 1),  # assuming daily cycles
                     uptime_equality=True,
                 )
     flex_cost.build()
@@ -103,20 +109,20 @@ def shadowcost_wholesale(
     # calculate the total cost and total emissions using the output power
     cost_optimal_cost = dam@net_facility_load_costopt
         # TODO: replace the unit conversion using pint
-    cost_optimal_emissions = mef@net_facility_load_costopt* 0.001 # convert from $/kg to $/ton (metric)
+    cost_optimal_emissions = emis@net_facility_load_costopt* 0.001 # convert from $/kg to $/ton (metric)
 
     # Calculate emissions optimal while tracking cost
     flex_emissions = flexloadMILP(
         baseload=baseload,
-        emissions_signal=mef,
+        emissions_signal=emis,
         costing_type=None,
         costing_path=None,
-        emissions_type="mef",
+        emissions_type=emissions_type,
         emissions_path=None,
         flex_capacity=continuous_flexibility,
         cost_of_carbon=1.0,
         rte=1.0,
-        min_onsteps=max(int(len(mef) * (system_uptime)), 1),  # assuming daily cycles
+        min_onsteps=max(int(len(emis) * (system_uptime)), 1),  # assuming daily cycles
         uptime_equality=True,
     )
     flex_emissions.build()
@@ -128,7 +134,7 @@ def shadowcost_wholesale(
     # calculate the total cost and total emissions using the output power
     emissions_optimal_cost = dam@net_facility_load_emisopt
         # TODO: replace the unit conversion using pint
-    emissions_optimal_emissions = mef@net_facility_load_emisopt* 0.001 # convert from kg to ton (metric)
+    emissions_optimal_emissions = emis@net_facility_load_emisopt* 0.001 # convert from kg to ton (metric)
 
     # Calculate the shadow price 
     shadow_price = -(cost_optimal_cost - emissions_optimal_cost) / (cost_optimal_emissions - emissions_optimal_emissions + 1e-8) 
@@ -157,7 +163,8 @@ def shadowcost_tariff(
     basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
     uptime_equality = True, 
     threads = 10, 
-    year = 2023 
+    year = 2023,
+    emissions_type="aef",
 ):
     """
     Calculate the cost of savings from wholesale energy prices.
@@ -184,18 +191,20 @@ def shadowcost_tariff(
     _, num_days = calendar.monthrange(year, month = month) 
     startdate_dt, enddate_dt = ms.get_start_end(month)
 
-    # Get the marginal emissions factor (MEF)
-    aef = getaef(region, month, basepath)
-    aef = np.tile(aef, num_days)
-    # mef = getmef(region,month, basepath)
+    # Get the emissions factor (MEF)
+    if emissions_type.lower() == "mef":
+        emis = getmef(region, month, basepath)
+    elif emissions_type.lower() == "aef":
+        emis = getaef(region, month, basepath)
+    else:
+        raise ValueError("emissions_type must be 'mef' or 'aef'")
 
-    # Get the day ahead market price (LMP)
-    # tariff = gettariff_wwtp(region, month, basepath)
+
+    emis = np.tile(emis, num_days)
 
     if baseload is None:
         # define a flat 1MW baseload 
-
-        baseload = np.ones_like(aef)
+        baseload = np.ones_like(emis)
         
     # Calculate cost optimal while tracking emissions
     flex_cost = flexloadMILP(
@@ -209,7 +218,7 @@ def shadowcost_tariff(
                     emissions_path=None,
                     flex_capacity=continuous_flexibility,
                     rte=1.0,
-                    min_onsteps=max(int(len(aef) * (system_uptime)), 1),  # assuming daily cycles
+                    min_onsteps=max(int(len(emis) * (system_uptime)), 1),  # assuming daily cycles
                     uptime_equality=uptime_equality,
 )
     flex_cost.build()
@@ -235,26 +244,24 @@ def shadowcost_tariff(
         )
 
         # TODO: replace the unit conversion using pint
-    cost_optimal_emissions = aef@net_facility_load_costopt* 0.001 # convert from $/kg to $/ton (metric)
+    cost_optimal_emissions = emis@net_facility_load_costopt* 0.001 # convert from $/kg to $/ton (metric)
 
     # Calculate emissions optimal while tracking cost
+
     flex_emissions = flexloadMILP(
         baseload=baseload,
-        costing_type="tariff",
-        cost_signal=tariff_data,
-        costing_path = None,
-        startdate_dt=startdate_dt,
-        enddate_dt=enddate_dt,
-        emissions_signal=aef,
-        emissions_type="aef",
+        emissions_signal=emis,
+        costing_type=None,
+        costing_path=None,
+        emissions_type=emissions_type,
         emissions_path=None,
         flex_capacity=continuous_flexibility,
-        weight_of_cost = 0.0, 
         cost_of_carbon=1.0,
         rte=1.0,
-        min_onsteps=max(int(len(aef) * (system_uptime)), 1),  # assuming daily cycles
-        uptime_equality=uptime_equality,
+        min_onsteps=max(int(len(emis) * (system_uptime)), 1),  # assuming daily cycles
+        uptime_equality=True,
     )
+
     flex_emissions.build()
     flex_emissions.solve(threads = threads)
 
@@ -274,7 +281,7 @@ def shadowcost_tariff(
         )
 
         # TODO: replace the unit conversion using pint
-    emissions_optimal_emissions = aef@net_facility_load_emisopt* 0.001 # convert from kg to ton (metric)
+    emissions_optimal_emissions = emis@net_facility_load_emisopt* 0.001 # convert from kg to ton (metric)
 
     # Calculate the shadow price 
     shadow_price = -(cost_optimal_cost - emissions_optimal_cost) / (cost_optimal_emissions - emissions_optimal_emissions + 1e-8) 
