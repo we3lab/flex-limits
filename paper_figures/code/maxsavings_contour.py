@@ -1,5 +1,5 @@
 # imports
-import os
+import os, json
 import datetime
 import numpy as np
 import pandas as pd
@@ -12,13 +12,21 @@ from analysis.maxsavings import (
     max_tariff_savings, 
     get_start_end
 )
+GENERATE_DATA = False
+# import color maps as json
+with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:
+    colors = json.load(f)
+
+cmaps=colors["incentive_cmaps"]
+sys_colors=colors["examplesys_colors"]
 
 # define plotting defaults
 plt.rcParams.update(
-    {
-        "font.size": 24,
-        "axes.linewidth": 1.5,
-        "lines.linewidth": 2,
+    {   
+        "font.family": "Arial",
+        "font.size": 7,
+        "axes.linewidth": 1,
+        "lines.linewidth": 1,
         "lines.markersize": 6,
         "xtick.major.size": 3,
         "xtick.major.width": 1,
@@ -26,6 +34,9 @@ plt.rcParams.update(
         "ytick.major.width": 1,
         "xtick.direction": "out",
         "ytick.direction": "out",
+        "legend.fontsize": 7,
+        "ytick.labelsize": 7,
+        "xtick.labelsize": 7, 
     }
 )
 
@@ -134,7 +145,7 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
     )
 
     # create figure - 2x2 grid for MEF[0,0], AEF[1,0], DAM[0,1], Tariffs[1,1] savings
-    fig, ax = plt.subplots(2, 2, figsize=(18, 14))
+    fig, ax = plt.subplots(2, 2, figsize=(180 / 25.4, 120 / 25.4), layout="tight")
 
     # plot max MEF savings
     contour = ax[0, 0].contourf(
@@ -143,10 +154,11 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         max_mef_savings_results,
         levels=np.arange(0,30.1, 2.5),
         extend="max",
-        cmap="Greens",
+        cmap=cmaps["mef"],
     )
     cbar = fig.colorbar(contour, ax=ax[0, 0])
-    ax[0, 0].set_title("Marginal Emissions")
+
+    # ax[0, 0].set_title("Marginal Emissions")
     cbar.set_label("Savings (%)")
 
     # plot max AEF savings
@@ -157,10 +169,10 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         levels=np.arange(0,30.1, 2.5),
         vmax=30,
         extend="max",
-        cmap="Blues",
+        cmap=cmaps["aef"],
     )
     cbar = fig.colorbar(contour, ax=ax[1,0])
-    ax[1, 0].set_title("Average Emissions")
+    # ax[1, 0].set_title("Average Emissions")
     cbar.set_label("Savings (%)")
 
     # plot max DAM savings
@@ -169,11 +181,11 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         uptimes * 100,
         max_dam_savings_results,
         extend="max",
-        levels=np.arange(0,160.1, 10),
-        cmap="YlOrBr",
+        levels=np.arange(0,50.1, 5),
+        cmap=cmaps["dam"],
     )
     cbar = fig.colorbar(contour, ax=ax[0, 1])
-    ax[0, 1].set_title("Day-ahead Prices")
+    # ax[0, 1].set_title("Day-ahead Prices")
     cbar.set_label("Savings (%)")
 
     # plot max Tariff savings
@@ -182,25 +194,36 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         uptimes * 100, 
         max_tariff_savings_results, 
         extend="max", 
-        levels=np.arange(0, 15.1, 1.5),
-        cmap="PuRd",
+        levels=np.arange(0, 51, 5),
+        cmap=cmaps["tariff"],
     )
     cbar = fig.colorbar(contour, ax=ax[1,1])
-    ax[1, 1].set_title(f"Sample Tariff: {region}")
+    # ax[1, 1].set_title(f"Sample Tariff: {region}")
     cbar.set_label("Savings (%)")
+    
+    # Define labels for your subplots
+    subplot_labels = ['a.', 'b.', 'c.', 'd.']
 
     for idx, a in enumerate(ax.flatten()):
         a.set_aspect("equal", adjustable="box")
         a.set(
             xlim=(0, 100),
-            xticks=np.arange(0, 101, 20),
-            yticks=np.arange(0, 101, 20),
+            xticks=np.arange(0, 101, 10),
+            yticks=np.arange(0, 101, 10),
             ylim=(2, 100),
-            xlabel="Continuous Flexibility (%)",
-            ylabel="System Uptime (%)",
+            aspect="equal",
         )
+        a.set_xlabel("Power Capacity (%)", labelpad=1)
+        a.set_ylabel("System Uptime (%)", labelpad=1)
+
+        a.text(-0.2, 1.04, subplot_labels[idx], transform=a.transAxes,
+                fontsize=7, fontweight='bold', va='top', ha='left')
+
         if overlay:
-            overlay_colors= ["#FF6347", "#A9A9A9", "#FFD700", "#008080"]    
+            overlay_colors= [sys_colors["maxflex"], 
+                            sys_colors["25uptime_0flex"],
+                            sys_colors["50uptime_50flex"],
+                            sys_colors["100uptime_25flex"]]
 
             if idx == 3:
                 # remove the 1st overlay pair and replace it with the index of the max 
@@ -212,33 +235,27 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
                 max_pc = min([max_pc, 99])  # if it is 100% push it to 99% to make it easier to visualize
                 max_uptime = min([max_uptime, 99])  # if it is 100% push it to 4% to make it easier to visualize
 
-                overlay_points[0,:] = np.array([max_pc, max_uptime]) / 100
+                max_flex = np.array([max_pc, max_uptime]) / 100
 
             # overlay points
             overlay_shapes = ["s", "^", "P", "o"]
             for i, point in enumerate(overlay_points):
                 # calculate the color based on the index
                 color = overlay_colors[i % len(overlay_colors)]
+                if i == 0 and idx == 3:
+                    # use the max point for the tariff overlay
+                    point = max_flex
                 # scatter the points
                 a.scatter(
                     point[0] * 100, 
                     point[1] * 100, 
                     marker=overlay_shapes[i],
                     edgecolor="black",
-                    linewidth=2,
+                    linewidth=1,
                     color=color, 
-                    s=500, 
+                    s=100, 
                     clip_on=True
                 )
-            # a.scatter(
-            #     overlay_points[:, 0] * 100, 
-            #     overlay_points[:, 1] * 100, 
-            #     marker="s", 
-            #     edgecolor="black",
-            #     linewidth=2,
-            #     color=overlay_colors, 
-            #     s=500, 
-            #     clip_on=True)
 
     # add a pad between subplots
     plt.subplots_adjust(wspace=0.3, hspace=0.3)
@@ -248,11 +265,6 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
     fig.align_ylabels(ax[:, 1])
     fig.align_xlabels(ax[0, :])
     fig.align_xlabels(ax[1, :])
-
-    # add a title
-    fig.suptitle(
-        f"Max Savings for {region} in Month {month}", fontsize=24, fontweight="bold"
-    )
 
     if save:
         for fig_fmt in ["png", "pdf", "svg"]:
@@ -269,7 +281,7 @@ regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
 months = np.arange(1, 13)
 
 regions = ["CAISO"]
-months = [4]
+months = [7]
 
 # power capacity, uptime
 overlay = True
@@ -280,31 +292,31 @@ overlay_points = np.array([
     [0.25, 0.99]
 ])
 
-# to run the analysis 
-# for region in regions:
-#     for month in months:
-#         # generate the data
-#         df = generate_data(region, month)
-
-#         # generate the figure
-#         generate_figure(
-#             df, 
-#             region, 
-#             month, 
-#             overlay_points=overlay_points, 
-#             overlay=overlay
-#         )
-
-# to generate the figure from existing data / CAISO month 4
 figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-datafile = os.path.join( figpath, "processed_data", "max_savings_contours", "CAISO_month4.csv")
-df = pd.read_csv(datafile)
-generate_figure(
-    df, 
-    "CAISO", 
-    4, 
-    overlay_points=overlay_points, 
-    overlay=overlay,
-    save=True
-)
 
+# to run the analysis 
+for region in regions:
+    for month in months:
+        if GENERATE_DATA:
+            # generate the data
+            df = generate_data(region, month)
+            datafile = os.path.join( figpath, "processed_data", "max_savings_contours", f"{region}_month{month}.csv")
+            df.to_csv(datafile)
+
+        else:
+            # read the data from the csv file
+            datafile = os.path.join( figpath, "processed_data", "max_savings_contours", f"{region}_month{month}.csv")
+            df = pd.read_csv(datafile)
+
+        # generate the figure
+        generate_figure(
+            df, 
+            region, 
+            month, 
+            overlay_points=overlay_points, 
+            overlay=overlay,
+            save=True
+        )
+
+        # close the figure
+        plt.close()
