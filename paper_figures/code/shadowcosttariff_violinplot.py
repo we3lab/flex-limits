@@ -42,9 +42,10 @@ sys_colors=colors["examplesys_colors"]
 # grid parameter settings 
 months = [1,7]
 regions = ["SPP", "CAISO", "ERCOT",  "PJM", "MISO", "NYISO", "ISONE"]
+emissions_type = "mef"
 
 # data/figure gen settings 
-generate_data = False
+generate_data = True
 threads = 20 
 
 paperfigs_basepath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -63,7 +64,8 @@ def generate_data_single(system_name, params, region, month):
                                                 system_uptime=params["system_uptime"],
                                                 continuous_flexibility=params["continuous_flexibility"], 
                                                 uptime_equality=params["uptime_equality"], 
-                                                threads = 4
+                                                threads = 4,
+                                                emissions_type=emissions_type,
                                                 )
 
         except ZeroDivisionError: # skipping over tariffs with zero division error in pct_savings calculation - todo: debug this error 
@@ -97,7 +99,7 @@ if generate_data == True:
                 tasks.append(delayed(generate_data_single)(system_name, params, region, month))
     
         sys_results_df = pd.concat(Parallel(n_jobs=threads, backend="loky")(tasks))
-        sys_results_df.to_csv(os.path.join(paperfigs_basepath, "processed_data", "shadowcost_tariff", f"{region}.csv"), index=False)
+        sys_results_df.to_csv(os.path.join(paperfigs_basepath, "processed_data", f"shadowcost_tariff_{emissions_type}", f"{region}.csv"), index=False)
 
 
 # read in results
@@ -106,14 +108,14 @@ sys_list = []
 region_list = []
 for region_idx, region in enumerate(regions):
     # Load the results for the current region and system 
-    sys_results_df = pd.read_csv(os.path.join(paperfigs_basepath, "processed_data", "shadowcost_tariff", f"{region}.csv"))
+    sys_results_df = pd.read_csv(os.path.join(paperfigs_basepath, "processed_data", f"shadowcost_tariff_{emissions_type}", f"{region}.csv"))
     results_list.append(sys_results_df)
 
 # create combined data frame                             
 results_df = pd.concat(results_list, ignore_index=True)
 results_df.dropna(how = "any", inplace=True)
 results_df = results_df[results_df.shadow_price_usd_ton > -1e-8]  # filter out negative shadow prices - error in convex approximation
-results_df.loc[results_df.shadow_price_usd_ton < 1e-3, "shadow_price_usd_ton"] = 1e-3 #clip very small/negative prices (necessary for log scale)
+results_df.loc[results_df.shadow_price_usd_ton < 1e-2, "shadow_price_usd_ton"] = 1e-2 #clip very small/negative prices (necessary for log scale)
 
 
 # Plot the results  
@@ -145,7 +147,7 @@ color_map = {k: sys_colors[k] for k in system_names if k in sys_colors}
 # create figure 
 fig, ax = plt.subplots(figsize=(180 / 25.4, 45 / 25.4))
 
-_add_scc_and_rec(ax, regions, width=0.15, scc=True, rec=True, plot_scc_by="mean", emission_basis="aef")
+_add_scc_and_rec(ax, regions, width=0.15, scc=True, rec=True, plot_scc_by="mean", emission_basis=emissions_type)
 
 # violin plots 
 p1 = sns.violinplot(data=results_df, x = "region", y ="shadow_price_usd_ton", hue = "system", 
@@ -178,7 +180,7 @@ ax.get_legend().remove()
 
 # save figure 
 for figure_type in ["png","svg", "pdf"]: 
-    fig.savefig(os.path.join(paperfigs_basepath, "figures", figure_type, "shadowcost_tariff_violinplot." + figure_type),
+    fig.savefig(os.path.join(paperfigs_basepath, "figures", figure_type, f"shadowcost_tariff_violinplot_{emissions_type}." + figure_type),
         dpi=300,
         bbox_inches="tight",
     )
