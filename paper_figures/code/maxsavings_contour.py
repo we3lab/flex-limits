@@ -12,7 +12,7 @@ from analysis.maxsavings import (
     max_tariff_savings, 
     get_start_end
 )
-
+GENERATE_DATA = False
 # import color maps as json
 with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:
     colors = json.load(f)
@@ -257,17 +257,6 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
                     clip_on=True
                 )
 
-                
-            # a.scatter(
-            #     overlay_points[:, 0] * 100, 
-            #     overlay_points[:, 1] * 100, 
-            #     marker="s", 
-            #     edgecolor="black",
-            #     linewidth=2,
-            #     color=overlay_colors, 
-            #     s=500, 
-            #     clip_on=True)
-
     # add a pad between subplots
     plt.subplots_adjust(wspace=0.3, hspace=0.3)
 
@@ -308,11 +297,16 @@ figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # to run the analysis 
 for region in regions:
     for month in months:
-        # generate the data
-        # df = generate_data(region, month)
+        if GENERATE_DATA:
+            # generate the data
+            df = generate_data(region, month)
+            datafile = os.path.join( figpath, "processed_data", "max_savings_contours", f"{region}_month{month}.csv")
+            df.to_csv(datafile)
 
-        datafile = os.path.join( figpath, "processed_data", "max_savings_contours", f"{region}_month{month}.csv")
-        df = pd.read_csv(datafile)
+        else:
+            # read the data from the csv file
+            datafile = os.path.join( figpath, "processed_data", "max_savings_contours", f"{region}_month{month}.csv")
+            df = pd.read_csv(datafile)
 
         # generate the figure
         generate_figure(
@@ -321,22 +315,8 @@ for region in regions:
             month, 
             overlay_points=overlay_points, 
             overlay=overlay,
-            save=False
+            save=True
         )
 
         # close the figure
-        # plt.close()
-
-
-# to generate the figure from existing data / CAISO month 4
-# figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# datafile = os.path.join( figpath, "processed_data", "max_savings_contours", f"CAISO_month{months[0]}.csv")
-# df = pd.read_csv(datafile)
-# generate_figure(
-#     df, 
-#     "CAISO", 
-#     months[0], 
-#     overlay_points=overlay_points, 
-#     overlay=overlay,
-#     save=True
-# )
+        plt.close()
