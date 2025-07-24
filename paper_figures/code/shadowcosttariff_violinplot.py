@@ -44,9 +44,8 @@ months = [1,7]
 regions = ["SPP", "CAISO", "ERCOT",  "PJM", "MISO", "NYISO", "ISONE"]
 
 # data/figure gen settings 
-generate_data = True
+generate_data = False
 threads = 20 
-figure_type = "svg"
 
 paperfigs_basepath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -113,7 +112,7 @@ for region_idx, region in enumerate(regions):
 # create combined data frame                             
 results_df = pd.concat(results_list, ignore_index=True)
 results_df.dropna(how = "any", inplace=True)
-results_df = results_df[results_df.shadow_price_usd_ton > 0]  # filter out negative shadow prices - error in convex approximation
+results_df = results_df[results_df.shadow_price_usd_ton > -1e-8]  # filter out negative shadow prices - error in convex approximation
 results_df.loc[results_df.shadow_price_usd_ton < 1e-3, "shadow_price_usd_ton"] = 1e-3 #clip very small/negative prices (necessary for log scale)
 
 
@@ -152,7 +151,7 @@ _add_scc_and_rec(ax, regions, width=0.15, scc=True, rec=True, plot_scc_by="mean"
 p1 = sns.violinplot(data=results_df, x = "region", y ="shadow_price_usd_ton", hue = "system", 
                     gap = 0.4, inner = "point", density_norm="width", 
                     inner_kws= {"s": 0.1, "alpha":0.5,}, alpha = 1.0, 
-                   palette=color_map, log_scale=True, split=True,  ax=ax, cut=0)
+                   palette=color_map, log_scale=True, split=True,  ax=ax, cut=0, common_norm=True)
 
 ax.set(
     xlabel="",
