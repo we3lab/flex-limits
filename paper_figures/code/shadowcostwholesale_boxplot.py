@@ -168,15 +168,21 @@ def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean",
                    ha='center', va=va, fontsize=18)
     
     if scc:  # Plot scc
+        discount_rate = 0.02
         if plot_scc_by == "mean":  # Use 50th percentile to create "line"
-            scc = scc_df[scc_df['percentile'] == 50]['value'].item()
+            scc = (scc_df[scc_df['percentile'] == 50]
+                   [scc_df['discount_rate'] == discount_rate]
+                   ['value'].item())
 
             ax.hlines(scc, -1, 10, ls="--", color=other_colors["scc"])
 
         else:  # Use 25th and 75th percentiles
-            scc_bottom = scc_df[scc_df['percentile'] == 25]['value'].item()
-            scc_top = scc_df[scc_df['percentile'] == 75]['value'].item()
-        
+            scc_bottom = (scc_df[scc_df['percentile'] == 25]
+                         [scc_df['discount_rate'] == discount_rate]
+                         ['value'].item())
+            scc_top = (scc_df[scc_df['percentile'] == 75]
+                      [scc_df['discount_rate'] == discount_rate]
+                      ['value'].item())
             scc_rect = Rectangle(
                 (0 - width*2.5, scc_bottom),  # x, y (left edge, bottom)
                 len(regions) + width*5,  # width to cover all regions
