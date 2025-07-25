@@ -49,8 +49,8 @@ month = 7
 year = 2023
 
 # data/figure gen settings 
-generate_data = False
-threads = 10 
+generate_data = True
+threads = 60 
 
 basepath =  os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
