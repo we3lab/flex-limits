@@ -122,12 +122,12 @@ class acc_curve(flexloadMILP):
         print(self.cost_optimal_emissions, self.emissions_optimal_emissions)
         steps = 0
 
-        while (sweep_emissions[-1] - self.emissions_optimal_emissions)/self.emissions_optimal_emissions > rel_tol and steps<max_steps:
+        while (sweep_emissions[-1] - self.emissions_optimal_emissions)/self.emissions_optimal_emissions > rel_tol:
             # step up the carbon cost
             self.model.cost_of_carbon = value(self.model.cost_of_carbon) + stepsize
             
             # re-solve the model
-            (self.model, results) = self.solve(self.model, threads = threads, max_iter=100, descent_stepsize=0.0)
+            (self.model, results) = self.solve(self.model, threads = threads, max_iter=500)
             total_electrical_emissions = np.sum(self.model.total_flex_emissions_signal()) 
             sweep_emissions.append(total_electrical_emissions)  
 
@@ -144,7 +144,8 @@ class acc_curve(flexloadMILP):
                         consumption_data_dict,
                         desired_utility="electric",
                         desired_charge_type=None,
-                        model=None
+                        model=None,
+                        resolution="1h"
                     )[0]
                 )
             else:
