@@ -21,13 +21,13 @@ systems = {
         "system_uptime": 0.0,  # minimum uptime
         "continuous_flexibility": 1.0, # full flexibility
         "uptime_equality": False,
-        "pareto_stepsize": 0.01
+        "pareto_stepsize": 0.05
     }, 
     "25uptime_0flex" : {
         "system_uptime": 0.25,  
         "continuous_flexibility": 0.0, 
         "uptime_equality": True, 
-        "pareto_stepsize": 0.05  
+        "pareto_stepsize": 0.05
     },
     "50uptime_50flex" : {
         "system_uptime": 0.5,  
@@ -39,7 +39,7 @@ systems = {
         "system_uptime": 1.0,  
         "continuous_flexibility": 0.25, 
         "uptime_equality": True, 
-        "pareto_stepsize": 0.05 
+        "pareto_stepsize": 0.1 
     },
 }
 
@@ -49,7 +49,7 @@ month = 7
 year = 2023
 
 # data/figure gen settings 
-generate_data = True
+generate_data = False
 threads = 60 
 
 basepath =  os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -166,6 +166,7 @@ baseline_tariff, _= costs.calculate_cost(
     "gas": np.zeros_like(baseload)},
     resolution="15m",
     consumption_estimate=0,
+    model=None,
 )
 
 # Plot the results  
@@ -175,7 +176,7 @@ plt.rcParams.update(
         "font.family": "Arial",
         "font.size": 7,
         "axes.linewidth": 1,
-        "lines.linewidth": 1,
+        "lines.linewidth": 1.5,
         "lines.markersize": 6,
         "xtick.major.size": 3,
         "xtick.major.width": 1,
@@ -200,34 +201,34 @@ fig, ax = plt.subplots(1, 2, figsize=(180 / 25.4, 80 / 25.4), layout="tight")
 # wholesale plot 
 sns.lineplot(pareto_wholesale_df, y = "electricity_cost", x = "emissions", hue = "system", 
                 palette=color_map, legend=False, ax=ax[0])
-ax[0].scatter(baseline_mef, baseline_dam, color="black", marker="o", s=50, label="Baseline Wholesale")
+ax[0].scatter(baseline_mef, baseline_dam, color="black", marker="o", s=20, label="Baseline Wholesale")
 
 # tariff plot 
 l1 = sns.lineplot(pareto_tariff_df, y = "electricity_cost", x = "emissions", hue = "system", 
                 palette=color_map, ax=ax[1])
-ax[1].scatter(baseline_aef, baseline_tariff, color="black", marker="o", s=50, label="Baseline Tariff")
+ax[1].scatter(baseline_aef, baseline_tariff, color="black", marker="o", s=20, label="Baseline Tariff")
 
 # xaxis labels / range 
 xlabel = "Emissions (tons CO$_2$)"
 ax[0].set_xlabel(xlabel)
 ax[1].set_xlabel(xlabel)
-ax[0].set_xlim(0.20, 0.30)
-ax[1].set_xlim(0.10, 0.20)
+ax[0].set_xlim(0.21, 0.31)
+ax[1].set_xlim(0.14, 0.22)
 
 # yaxis labels / range 
 ylabel = "Electricity Cost ($)"
-ax[0].set_ylabel(ylabel, labelpad=1) 
+ax[0].set_ylabel(ylabel, labelpad=8) 
 ax[1].set_ylabel(ylabel, labelpad=1)
-ax[0].set_ylim(-20, 50)
-ax[1].set_ylim(0, 600)
+ax[0].set_ylim(25, 50)
+ax[1].set_ylim(400, 1000)
 
 # set xticks
-ax[0].set_xticks(np.arange(0.20, 0.31, 0.02))
-ax[1].set_xticks(np.arange(0.10, 0.21, 0.02))
+ax[0].set_xticks(np.arange(0.21, 0.32, 0.02))
+ax[1].set_xticks(np.arange(0.14, 0.23, 0.02))
 
 # set yticks
-ax[0].set_yticks(np.arange(-20, 51, 10))
-ax[1].set_yticks(np.arange(0, 601, 100))
+ax[0].set_yticks(np.arange(25, 51, 5))
+ax[1].set_yticks(np.arange(400, 1001, 100))
 
 handles, _ = l1.get_legend_handles_labels()
 ax[1].legend().remove()
