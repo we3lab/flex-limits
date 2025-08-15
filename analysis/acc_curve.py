@@ -145,7 +145,8 @@ class acc_curve(flexloadMILP):
                         desired_utility="electric",
                         desired_charge_type=None,
                         model=None,
-                        resolution="1h"
+                        resolution="1h",
+                        keep_fixed_charges=False,
                     )[0]
                 )
             else:

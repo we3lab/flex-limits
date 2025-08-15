@@ -159,7 +159,7 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
     cbar = fig.colorbar(contour, ax=ax[0, 0])
 
     # ax[0, 0].set_title("Marginal Emissions")
-    cbar.set_label("Savings (%)")
+    cbar.set_label("Marginal emissions savings (%)")
 
     # plot max AEF savings
     contour = ax[1,0].contourf(
@@ -173,7 +173,7 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
     )
     cbar = fig.colorbar(contour, ax=ax[1,0])
     # ax[1, 0].set_title("Average Emissions")
-    cbar.set_label("Savings (%)")
+    cbar.set_label("Average emissions savings (%)")
 
     # plot max DAM savings
     contour = ax[0, 1].contourf(
@@ -186,7 +186,7 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
     )
     cbar = fig.colorbar(contour, ax=ax[0, 1])
     # ax[0, 1].set_title("Day-ahead Prices")
-    cbar.set_label("Savings (%)")
+    cbar.set_label("Day-ahead market savings (%)")
 
     # plot max Tariff savings
     contour = ax[1,1].contourf(
@@ -199,7 +199,7 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
     )
     cbar = fig.colorbar(contour, ax=ax[1,1])
     # ax[1, 1].set_title(f"Sample Tariff: {region}")
-    cbar.set_label("Savings (%)")
+    cbar.set_label("Tariff savings (%)")
     
     # Define labels for your subplots
     subplot_labels = ['a.', 'b.', 'c.', 'd.']
