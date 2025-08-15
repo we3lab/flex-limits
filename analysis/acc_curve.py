@@ -90,7 +90,7 @@ class acc_curve(flexloadMILP):
         return self.cost_optimal_cost, self.cost_optimal_emissions
     
     
-    def build_pareto_front(self, stepsize=5, rel_tol = 1e-5, max_steps=100, threads = 10, savepath = None):
+    def build_pareto_front(self, stepsize=5, rel_tol = 1e-5, threads = 10, savepath = None):
         """
         **Description**:
 
@@ -120,7 +120,6 @@ class acc_curve(flexloadMILP):
 
         # loop through the pareto curve until the emissions optimal solution is (nearly) reached
         print(self.cost_optimal_emissions, self.emissions_optimal_emissions)
-        steps = 0
 
         while (sweep_emissions[-1] - self.emissions_optimal_emissions)/self.emissions_optimal_emissions > rel_tol:
             # step up the carbon cost
@@ -143,10 +142,9 @@ class acc_curve(flexloadMILP):
                         self.charge_dict,
                         consumption_data_dict,
                         desired_utility="electric",
-                        desired_charge_type=None,
+                        desired_charge_type=["energy", "demand"],
                         model=None,
                         resolution="1h",
-                        keep_fixed_charges=False,
                     )[0]
                 )
             else:
@@ -158,7 +156,6 @@ class acc_curve(flexloadMILP):
             # log results
             carbon_costs.append(value(self.model.cost_of_carbon)) 
             alignment_fraction.append(alpha)
-            steps += 1
 
         # convert kg to tons (metric )
         sweep_emissions = [x*0.001 for x in sweep_emissions]

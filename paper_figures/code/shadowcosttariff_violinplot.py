@@ -45,7 +45,7 @@ regions = ["SPP", "CAISO", "ERCOT",  "PJM", "MISO", "NYISO", "ISONE"]
 emissions_type = "mef"
 
 # data/figure gen settings 
-generate_data = True
+generate_data = False
 threads = 20 
 
 paperfigs_basepath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
