@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import os
+import os, json
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Patch
 
@@ -65,11 +65,13 @@ systems = {
         "system_uptime": 0.5,  
         "continuous_flexibility": 0.5 
     },
-    "100uptime_75flex" : {
+    "100uptime_25flex" : {
         "system_uptime": 1.0,  
-        "continuous_flexibility": 0.75 
+        "continuous_flexibility": 0.25 
     },
 }
+
+emissions_type="mef"
 
 paperfigs_basepath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -81,7 +83,8 @@ if generate_data == True:
                 tmp = ec.shadowcost_wholesale(region=region,
                                                     month=month,
                                                     system_uptime=params['system_uptime'],
-                                                    continuous_flexibility=params['continuous_flexibility'])
+                                                    continuous_flexibility=params['continuous_flexibility'],
+                                                    emissions_type=emissions_type)
 
                 results_dicts.append(tmp)
             
@@ -97,7 +100,7 @@ if generate_data == True:
             params["results"] = results_df
 
             # save df in results folder as a csv file
-            results_df.to_csv(os.path.join(paperfigs_basepath, "processed_data", "shadowcost_wholesale", f"{region}_{system_name}.csv"), index=False)
+            results_df.to_csv(os.path.join(paperfigs_basepath, "processed_data", f"shadowcost_wholesale_{emissions_type}", f"{region}_{system_name}.csv"), index=False)
 else:
     ##
     pass
@@ -118,7 +121,7 @@ for region_idx, region in enumerate(regions):
     idx = 0 
     for sys in system_names:
         # Load the results for the current region and system 
-        results_df = pd.read_csv(os.path.join(paperfigs_basepath, "processed_data", "shadowcost_wholesale", f"{region}_{sys}.csv"))
+        results_df = pd.read_csv(os.path.join(paperfigs_basepath, "processed_data", f"shadowcost_wholesale_{emissions_type}", f"{region}_{sys}.csv"))
         
         # Plot the shadow price as a bar plot
         bottom = results_df["shadow_price_usd_ton"].min()
@@ -168,14 +171,21 @@ def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean",
                    ha='center', va=va, fontsize=18)
     
     if scc:  # Plot scc
+        discount_rate = 0.02
         if plot_scc_by == "mean":  # Use 50th percentile to create "line"
-            scc = scc_df[scc_df['percentile'] == 50]['value'].item()
+            scc = (scc_df[scc_df['percentile'] == 50]
+                   [scc_df['discount_rate'] == discount_rate]
+                   ['value'].item())
 
             ax.hlines(scc, -1, 10, ls="--", color=other_colors["scc"])
 
         else:  # Use 25th and 75th percentiles
-            scc_bottom = scc_df[scc_df['percentile'] == 25]['value'].item()
-            scc_top = scc_df[scc_df['percentile'] == 75]['value'].item()
+            scc_bottom = (scc_df[scc_df['percentile'] == 25]
+                         [scc_df['discount_rate'] == discount_rate]
+                         ['value'].item())
+            scc_top = (scc_df[scc_df['percentile'] == 75]
+                      [scc_df['discount_rate'] == discount_rate]
+                      ['value'].item())
         
             scc_rect = Rectangle(
                 (0 - width*2.5, scc_bottom),  # x, y (left edge, bottom)
@@ -268,16 +278,16 @@ def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean",
     
 # Comment this line out out to disable SCC and REC overlays
 _add_scc_and_rec(
-    ax, regions=regions, width=width, scc=True, rec=True, plot_scc_by="mean", emission_basis="mef"
+    ax, regions=regions, width=width, scc=True, rec=True, plot_scc_by="mean", emission_basis=emissions_type
 )
 
-fig.savefig(os.path.join(paperfigs_basepath, "figures/png", "shadowcost_wholesale_boxplot.png"),
+fig.savefig(os.path.join(paperfigs_basepath, "figures/png", f"shadowcost_wholesale_boxplot_{emissions_type}.png"),
     dpi=300,
     bbox_inches="tight",
 )
 
 fig.savefig(
-    os.path.join(paperfigs_basepath, "figures/pdf", "shadowcost_wholesale_boxplot.pdf"),
+    os.path.join(paperfigs_basepath, "figures/pdf", f"shadowcost_wholesale_boxplot_{emissions_type}.pdf"),
     dpi=300,
     bbox_inches="tight",
 )
