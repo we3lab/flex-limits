@@ -55,7 +55,7 @@ def generate_data_single(system_name, params, region, month):
     region_tariffs, region_tariff_ids = ps.gettariff(region=region, full_list=True, return_ids=True)
 
     results_dicts = []
-    for n, tariff in enumerate(region_tariffs): 
+    for n, tariff in enumerate(region_tariffs):
         try: 
             # calculate shadow cost for the given case (system, tariff, month)
             tmp = ec.shadowcost_tariff(region=region,
