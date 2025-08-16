@@ -641,14 +641,6 @@ class flexloadMILP:
         lower_bound = (1 - flex_capacity) * cont_load_avg
         upper_bound = (1 + flex_capacity) * cont_load_avg
 
-        # print the continuous load bounds
-        print(
-            f"Continuous load bounds: [{lower_bound:.2f}, {upper_bound:.2f}] "
-            f"with average continuous load: {cont_load_avg:.2f}"
-        )
-        # print the continuous load
-        print(f"Max load: {np.max(cont_load):.2f}, Min load: {np.min(cont_load):.2f}")
-
         resolve = 0
 
         # check min continuous load bound
