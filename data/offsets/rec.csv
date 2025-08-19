@@ -1,7 +1,7 @@
 iso,type,state,price,year,month,source,notes
 national,compliance,,33.94,2021,average,https://www.spglobal.com/market-intelligence/en/news-insights/research/us-renewable-energy-credit-market-size-to-double-to-26-billion-by-2030,
 national,voluntary,,3,2021,average,https://www.spglobal.com/market-intelligence/en/news-insights/research/us-renewable-energy-credit-market-size-to-double-to-26-billion-by-2030,
-caiso,voluntary,,12.63,2022,average,https://www.sce.com/regulatory/regulatory-information/ferc-Standards-conduct/tariff-books/rates-pricing-choices/renewable-energy-credit,
+caiso,voluntary,,126.3,2022,average,https://www.sce.com/regulatory/regulatory-information/ferc-Standards-conduct/tariff-books/rates-pricing-choices/renewable-energy-credit,
 caiso,voluntary,,17,2023,average,"https://www.siliconvalleypower.com/sustainability/large-customer-renewable-energy-lcre-program/large-customer-renewable-energy-faqs#:~:text=Current%20Option%20A%20Participation%20Price,between%20%2417%2D%2420%2FMWh.",
 caiso,voluntary,,20,2023,average,"https://www.siliconvalleypower.com/sustainability/large-customer-renewable-energy-lcre-program/large-customer-renewable-energy-faqs#:~:text=Current%20Option%20A%20Participation%20Price,between%20%2417%2D%2420%2FMWh.",
 pjm,srec,Maryland,59,2022,average,https://www.solar.com/learn/what-are-solar-srecs/,"SREC-II, SRECTRADE"
