@@ -37,11 +37,35 @@ class acc_curve(flexloadMILP):
         self.cost_optimal_cost = 0
         self.emissions_optimal_emissions = 0 
         self.emissions_optimal_cost = 0
+        self.baseline_emissions = 0
+        self.baseline_cost = 0
 
         # define the base model object as an attribute of the acc_curve class
         self.model = self.build()
         return
 
+    def calc_baseline(self, threads=10):
+        self.baseline_emissions = sum(idxparam_value(self.model.emissions_signal))
+        if self.costing_type == "dam":
+            self.baseline_cost = sum(idxparam_value(self.model.cost_signal))
+        
+        elif self.costing_type == "tariff":
+            # (1) get the charge dictionary
+            self.charge_dict = costs.get_charge_dict(
+                self.startdate_dt, self.enddate_dt, self.cost_signal, resolution=resolution
+            )
+            # (2) set up consumption data dictionary
+            consumption_data_dict = {"electric": np.ones_like(idxparam_value(self.model.flexload))}
+
+            # (3) calculate the costs
+            self.baseline_cost, _ = costs.calculate_cost(
+                self.charge_dict,
+                consumption_data_dict,
+                resolution=resolution,
+                desired_utility="electric",
+                desired_charge_type=None,
+                model=None
+            )
 
     def calc_emissions_optimal(self, threads = 10):
         self.model.weight_of_cost = 0 
@@ -106,6 +130,8 @@ class acc_curve(flexloadMILP):
 
             pareto_front (DataFrame): a dataframe containing the carbon cost, total electrical emissions, electricity cost, alignment cost, and alignment fraction
         """
+
+        self.calc_baseline(threads = threads)
 
         # ensure the model objective is cost
         self.model.weight_of_cost = 1 
@@ -202,7 +228,7 @@ if __name__ == "__main__":
     }
 
     region = "CAISO"
-    month = 4
+    month = 7
     year = 2023
     system_name = "maxflex"
     threads = 10 
