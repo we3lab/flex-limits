@@ -1,5 +1,5 @@
 from models.flexload_milp import flexloadMILP
-from pyomo.environ import value
+from pyomo.environ import value, Param, Constraint, Expression
 import numpy as np
 import pandas as pd 
 import os 
@@ -62,11 +62,6 @@ def shadow_cost(system_uptime,
 
     startdate_dt, enddate_dt = ms.get_start_end(month)
     
-    if abatement_frac <= 0 or abatement_frac > 1:
-        raise ValueError("abatement_frac must be between 0 and 1")
-    elif abatement_frac < 1.0:
-        raise NotImplementedError("Partial abatement not implemented yet")
-    
     curve = acc_curve(
         baseload=np.ones_like(emissions_signal) if baseload is None else baseload,
         min_onsteps=max(int(len(emissions_signal) * (system_uptime)), 1),
@@ -79,11 +74,55 @@ def shadow_cost(system_uptime,
         enddate_dt=enddate_dt,
         uptime_equality=uptime_equality,
     )
-
+    
     curve.calc_emissions_optimal()
     curve.calc_cost_optimal()
 
-    shadow_cost = (curve.cost_optimal_cost - curve.emissions_optimal_cost) / (curve.emissions_optimal_emissions / 1000 - curve.cost_optimal_emissions / 1000 + tol)
+    if abatement_frac == 1.0:
+        shadow_cost = (curve.cost_optimal_cost - curve.emissions_optimal_cost) / (curve.emissions_optimal_emissions / 1000 - curve.cost_optimal_emissions / 1000 + tol)
+    elif abatement_frac < 1.0:
+        # add parameters and constraints to model
+        allowable_emissions = (curve.cost_optimal_emissions - curve.emissions_optimal_emissions) * (1 - abatement_frac) + curve.emissions_optimal_emissions
+        curve.model.allowable_emissions = Param(initialize=allowable_emissions, mutable=True)
+        @curve.model.Constraint()
+        def emissions_limit_rule(m):
+            return m.total_flex_emissions_signal <= m.allowable_emissions
+        
+        # re-solve cost optimal
+        model, results = curve.solve(threads = threads, max_iter=100, descent_stepsize=0.1)
+
+                # extract results from cost optimal solution
+        if curve.costing_type == "dam":
+            cost = sum(idxparam_value(curve.model.net_facility_load) * curve.model.cost_signal) 
+
+        elif curve.costing_type == "tariff":
+            # (1) get the charge dictionary
+            curve.charge_dict = costs.get_charge_dict(
+                curve.startdate_dt, curve.enddate_dt, curve.cost_signal, resolution=resolution
+            )
+            # (2) set up consumption data dictionary
+            consumption_data_dict = {"electric": idxparam_value(curve.model.net_facility_load)}
+
+            # (3) calculate the costs
+            cost, _ = costs.calculate_cost(
+                curve.charge_dict,
+                consumption_data_dict,
+                resolution=resolution,
+                desired_utility="electric",
+                desired_charge_type=None,
+                model=None,
+                electric_consumption_units=u.MW
+            )
+        emissions = sum(idxparam_value(curve.model.net_facility_load) * curve.model.emissions_signal)
+
+        # check that we met the emissions constraint
+        assert hasattr(model, 'emissions_limit_rule'), "Emissions limit not added to model."
+        if curve.cost_optimal_emissions - allowable_emissions > tol:
+            raise ValueError("Could not meet emissions constraint. Try increasing system_uptime or power_capacity.")
+        shadow_cost = (curve.cost_optimal_cost - cost) / (emission / 1000 - curve.cost_optimal_emissions / 1000 + tol)
+
+    if abatement_frac <= 0 or abatement_frac > 1:
+        raise ValueError("abatement_frac must be between 0 and 1")
 
     return shadow_cost
     

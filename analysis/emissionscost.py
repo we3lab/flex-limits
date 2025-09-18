@@ -204,7 +204,7 @@ def shadowcost_tariff(
 
     if baseload is None:
         # define a flat 1MW baseload 
-        baseload = np.ones_like(emis)
+        baseload = np.ones_like(emis) 
         
     # Calculate cost optimal while tracking emissions
     flex_cost = flexloadMILP(
@@ -241,6 +241,7 @@ def shadowcost_tariff(
             desired_utility="electric",
             desired_charge_type=None,
             model=None,
+            electric_consumption_units=u.MW
         )
 
         # TODO: replace the unit conversion using pint
@@ -266,7 +267,7 @@ def shadowcost_tariff(
     flex_emissions.solve(threads = threads)
 
     # Calculate the net facility load
-    net_facility_load_emisopt = idxparam_value(flex_emissions.model.net_facility_load)
+    net_facility_load_emisopt = idxparam_value(flex_emissions.model.net_facility_load) / 1000 # convert kW to MW
    
     # (2) set up consumption data dictionary
     consumption_data_dict_emisopt = {"electric": net_facility_load_emisopt}
@@ -278,6 +279,7 @@ def shadowcost_tariff(
             desired_utility="electric",
             desired_charge_type=None,
             model=None,
+            electric_consumption_units=u.MW
         )
 
         # TODO: replace the unit conversion using pint

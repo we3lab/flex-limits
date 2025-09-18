@@ -6,6 +6,7 @@ import seaborn as sns
 import analysis.maxsavings as ms 
 from analysis.pricesignal import getmef, getaef, getdam, gettariff
 from analysis.acc_curve import acc_curve
+from analysis.overlay_costs import _add_scc_and_rec
 from electric_emission_cost import costs
 from electric_emission_cost.units import u
 from electric_emission_cost import utils
@@ -14,6 +15,24 @@ from electric_emission_cost import utils
 with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:
     colors = json.load(f)
 sys_colors=colors["examplesys_colors"]
+
+def get_mac(df):
+    # get cost optimal point
+    cost_optimal = df.loc[df['alignment_fraction'] == 0]
+    df = df[df['alignment_fraction'] >0]
+
+    # for all other points, calc the shadow cost relative to the cost optimal point
+    shadow_cost = []
+    emissions = []
+    for index, row in df.iterrows():
+        delta_cost = row['electricity_cost'] - cost_optimal['electricity_cost'].values[0]
+        delta_emissions = cost_optimal['emissions'].values[0] - row['emissions']
+        sc = max([delta_cost / (delta_emissions + 1e-12), 1e-2])
+        shadow_cost.append(sc)
+        emissions.append(row['emissions'])
+
+    return shadow_cost, emissions
+
 
 # VB parameter settings 
 systems = {
@@ -49,8 +68,8 @@ month = 7
 year = 2023
 
 # data/figure gen settings 
-generate_data = True
-threads = 60 
+generate_data = False
+threads = 20
 
 basepath =  os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -80,7 +99,7 @@ if generate_data == True:
         uptime_equality = systems[system_name]["uptime_equality"]
 
         # dam and mef pareto front 
-        baseload = np.ones_like(mef)
+        baseload = np.ones_like(mef) # 1 MW baseload
 
         acc = acc_curve(
             baseload=baseload, 
@@ -104,7 +123,7 @@ if generate_data == True:
 
 
         # tariff and aef pareto front 
-        baseload = np.ones_like(aef)
+        baseload = np.ones_like(aef) # 1 MW baseload
 
         acc = acc_curve(
             baseload=baseload, 
@@ -126,21 +145,20 @@ if generate_data == True:
         pareto_sys_df["system"] = system_name 
         pareto_tariff_list.append(pareto_sys_df)
 
-else: 
-    # read saved data 
-    pareto_wholesale_list = []
-    for system_name, _ in systems.items(): 
-        savepath = basepath + "/paper_figures/processed_data/pareto_wholesale/pareto_front_wholesale_{}.csv".format(system_name)
-        pareto_sys_df = pd.read_csv(savepath)
-        pareto_sys_df["system"] = system_name 
-        pareto_wholesale_list.append(pareto_sys_df)
+# read saved data 
+pareto_wholesale_list = []
+for system_name, _ in systems.items(): 
+    savepath = basepath + "/paper_figures/processed_data/pareto_wholesale/pareto_front_wholesale_{}.csv".format(system_name)
+    pareto_sys_df = pd.read_csv(savepath)
+    pareto_sys_df["system"] = system_name 
+    pareto_wholesale_list.append(pareto_sys_df)
 
-    pareto_tariff_list = []
-    for system_name, _ in systems.items(): 
-        savepath = basepath + "/paper_figures/processed_data/pareto_tariff/pareto_front_tariff_{}.csv".format(system_name)
-        pareto_sys_df = pd.read_csv(savepath)
-        pareto_sys_df["system"] = system_name 
-        pareto_tariff_list.append(pareto_sys_df)
+pareto_tariff_list = []
+for system_name, _ in systems.items(): 
+    savepath = basepath + "/paper_figures/processed_data/pareto_tariff/pareto_front_tariff_{}.csv".format(system_name)
+    pareto_sys_df = pd.read_csv(savepath)
+    pareto_sys_df["system"] = system_name 
+    pareto_tariff_list.append(pareto_sys_df)
 
 # combine system dfs
 pareto_wholesale_df = pd.concat(pareto_wholesale_list).reset_index(drop = True)
@@ -150,24 +168,30 @@ pareto_tariff_df = pd.concat(pareto_tariff_list).reset_index(drop = True)
 pareto_wholesale_df["emissions"] *= num_days
 pareto_wholesale_df["electricity_cost"] *=num_days
 
-
 # calculate baselines 
-baseline_dam = getdam(region, month, basepath).sum() * num_days / 1000      # convert $/MWh to $/kWh
-baseline_mef = getmef(region, month, basepath).sum() * num_days / 1000**2   # convert kg/MWh to mton/kWh
-baseline_aef = getaef(region, month, basepath).sum() * num_days / 1000**2   # convert kg/MWh to mton/kWh
+baseline_dam = getdam(region, month, basepath).sum() * num_days
+baseline_mef = getmef(region, month, basepath).sum() * num_days / 1000   # convert kg/MWh to mton/MWh
+baseline_aef = getaef(region, month, basepath).sum() * num_days / 1000   # convert kg/MWh to mton/MWh
 
 # calculate tariff baseline
 tariff = gettariff(region, basepath=basepath, full_list=False) 
-baseload = np.ones(num_days*4*24)
-charge_dict = costs.get_charge_dict(startdate_dt, enddate_dt, tariff, resolution="15m")
+baseload = np.ones(num_days*24)
+charge_dict = costs.get_charge_dict(startdate_dt, enddate_dt, tariff, resolution="1h")
 baseline_tariff, _= costs.calculate_cost(
     charge_dict,
     {"electric":baseload,
     "gas": np.zeros_like(baseload)},
-    resolution="15m",
+    resolution="1h",
     consumption_estimate=0,
     model=None,
+    electric_consumption_units=u.MW
 )
+
+# convert dollar savings to pct savings based on the baseline
+pareto_wholesale_df["electricity_cost_pct"] = 100*(baseline_dam - pareto_wholesale_df["electricity_cost"]) / baseline_dam
+pareto_wholesale_df["emissions_pct"] = 100*(baseline_mef - pareto_wholesale_df["emissions"]) / baseline_mef
+pareto_tariff_df["electricity_cost_pct"] = 100*(baseline_tariff - pareto_tariff_df["electricity_cost"]) / baseline_tariff
+pareto_tariff_df["emissions_pct"] = 100*(baseline_aef - pareto_tariff_df["emissions"]) / baseline_aef
 
 # Plot the results  
 # define plotting defaults
@@ -196,46 +220,117 @@ system_names = list(systems.keys())
 color_map = {k: sys_colors[k] for k in system_names if k in sys_colors}
 
 # create figure 
-fig, ax = plt.subplots(1, 2, figsize=(180 / 25.4, 80 / 25.4), layout="tight")
+fig, ax = plt.subplots(2, 2, figsize=(180 / 25.4, 160 / 25.4), layout="tight")
 
 # wholesale plot 
-sns.lineplot(pareto_wholesale_df, y = "electricity_cost", x = "emissions", hue = "system", 
-                palette=color_map, legend=False, ax=ax[0])
-ax[0].scatter(baseline_mef, baseline_dam, color="black", marker="o", s=20, label="Baseline Wholesale")
+sns.lineplot(pareto_wholesale_df, y = "electricity_cost_pct", x = "emissions_pct", hue = "system", 
+                palette=color_map, legend=False, ax=ax[0,0])
+for sys in systems.keys(): 
+    sys_df = pareto_wholesale_df[pareto_wholesale_df["system"] == sys]
+    ax[0,0].scatter(sys_df["emissions_pct"], sys_df["electricity_cost_pct"], 
+                facecolor=color_map[sys],
+                edgecolor='k', 
+                linewidth=0.5,
+                s=20,
+                zorder=3
+                )
+
+ax[0,0].scatter(0, 0, color="black", marker="o", s=40, label="Baseline Wholesale")
 
 # tariff plot 
-l1 = sns.lineplot(pareto_tariff_df, y = "electricity_cost", x = "emissions", hue = "system", 
-                palette=color_map, ax=ax[1])
-ax[1].scatter(baseline_aef, baseline_tariff, color="black", marker="o", s=20, label="Baseline Tariff")
+l1 = sns.lineplot(pareto_tariff_df, y = "electricity_cost_pct", x = "emissions_pct", hue = "system", 
+                palette=color_map, ax=ax[0,1])
+for sys in systems.keys():
+    sys_df = pareto_tariff_df[pareto_tariff_df["system"] == sys]
+    ax[0,1].scatter(sys_df["emissions_pct"], sys_df["electricity_cost_pct"], 
+                facecolor=color_map[sys],
+                edgecolor='k', 
+                linewidth=0.5,
+                s=20,
+                zorder=3
+                )
+ax[0,1].scatter(0, 0, color="black", marker="o", s=40, label="Baseline Tariff")
 
 # xaxis labels / range 
-xlabel = "Emissions (tons CO$_2$)"
-ax[0].set_xlabel(xlabel)
-ax[1].set_xlabel(xlabel)
-ax[0].set_xlim(0.21, 0.31)
-ax[1].set_xlim(0.14, 0.22)
+xlabel = "Scope 2 Emissions Savings (%)"
+ax[0,0].set_xlabel(xlabel)
+ax[0,1].set_xlabel(xlabel)
+ax[0,0].set_xlim(0., 30)
+ax[0,1].set_xlim(-10, 25)
 
 # yaxis labels / range 
-ylabel = "Electricity Cost ($)"
-ax[0].set_ylabel(ylabel, labelpad=8) 
-ax[1].set_ylabel(ylabel, labelpad=1)
-ax[0].set_ylim(25, 50)
-ax[1].set_ylim(400, 1000)
+ylabel = "Electricity Cost Savings (%)"
+ax[0,0].set_ylabel(ylabel, labelpad=8) 
+ax[0,1].set_ylabel(ylabel, labelpad=1)
+ax[0,0].set_ylim(0, 40)
+ax[0,1].set_ylim(-150, 40)
 
 # set xticks
-ax[0].set_xticks(np.arange(0.21, 0.32, 0.02))
-ax[1].set_xticks(np.arange(0.14, 0.23, 0.02))
+ax[0,0].set_xticks(np.arange(0., 31, 5))
+ax[0,1].set_xticks(np.arange(-10, 21, 5))
 
-# set yticks
-ax[0].set_yticks(np.arange(25, 51, 5))
-ax[1].set_yticks(np.arange(400, 1001, 100))
+# # set yticks
+ax[0,0].set_yticks(np.arange(0., 41, 5))
+ax[0,1].set_yticks(np.arange(-150, 41, 20))
 
 handles, _ = l1.get_legend_handles_labels()
-ax[1].legend().remove()
+ax[0,1].legend().remove()
 
-system_titles = ["Maximum Savings", "25% Uptime, 0% Power Capacity", "50% Uptime, 50% Power Capacity", "100% Uptime, 25% Power Capacity"]
+# system_titles = ["Maximum Savings", "25% Uptime, 0% Power Capacity", "50% Uptime, 50% Power Capacity", "100% Uptime, 25% Power Capacity"]
 
-subplot_labels = ['a.', 'b.']
+for sys in systems.keys(): 
+    system_name = sys
+    pareto_wholesale = pd.read_csv(basepath + "/paper_figures/processed_data/pareto_wholesale/pareto_front_wholesale_{}.csv".format(system_name))
+    shadow_cost, emissions = get_mac(pareto_wholesale)
+    emissions_pct = 100*(baseline_mef/num_days - emissions) / (baseline_mef/num_days)
+    ax[1,0].plot(emissions_pct, 
+                shadow_cost, 
+                label=system_name, 
+                color=color_map[system_name]
+                )
+    ax[1,0].scatter(emissions_pct,
+                shadow_cost, 
+                facecolor=color_map[system_name],
+                edgecolor='k', 
+                linewidth=0.5,
+                s=20,
+                zorder=3
+                ) 
+
+    pareto_tariff = pd.read_csv(basepath + "/paper_figures/processed_data/pareto_tariff/pareto_front_tariff_{}.csv".format(system_name))
+    shadow_cost, emissions = get_mac(pareto_tariff)
+    emissions_pct = 100*(baseline_aef - emissions) / baseline_aef
+    ax[1,1].plot(emissions_pct, shadow_cost, label=system_name, color=color_map[system_name])
+    ax[1,1].scatter(emissions_pct,
+                shadow_cost, 
+                facecolor=color_map[system_name],
+                edgecolor='k', 
+                linewidth=0.5,
+                s=20,
+                zorder=3
+                ) 
+
+# overlay scc line
+_add_scc_and_rec(ax[1,0], regions=['CAISO'], width=0.15, scc=True, rec=False, plot_scc_by="mean", emission_basis='mef')
+
+_add_scc_and_rec(ax[1,1], regions=['CAISO'], width=0.15, scc=True, rec=False, plot_scc_by="mean", emission_basis='aef')
+
+ax[1,0].set(
+    xlabel="Scope 2 Emissions Savings (%)",
+    ylabel="Cost of Abatement ($/ton)",
+    yscale="log",
+    ylim=(0.01, 1e5),
+    xlim=(0., 30),
+)
+ax[1,1].set(
+    xlabel="Scope 2 Emissions Savings (%)",
+    ylabel="Cost of Abatement ($/ton)",
+    yscale="log",
+    ylim=(0.01, 1e5),
+    xlim=(-10, 25),
+)
+
+subplot_labels = ['a.', 'b.', 'c.', 'd.']
 # add subplot labels
 for a in ax.flatten():
     a.text(-0.15, 1.03, subplot_labels.pop(0), transform=a.transAxes,

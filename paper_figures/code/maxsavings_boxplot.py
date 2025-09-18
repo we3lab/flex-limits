@@ -55,7 +55,7 @@ if generate_results:
                 data=mef,
                 system_uptime=0.0,
                 continuous_flex=0.0,
-                baseload=np.ones_like(mef),
+                baseload=np.ones_like(mef) * 1000,
             )
 
             # AEF
@@ -64,7 +64,7 @@ if generate_results:
                 data=aef,
                 system_uptime=0.0,
                 continuous_flex=0.0,
-                baseload=np.ones_like(aef),
+                baseload=np.ones_like(aef) * 1000,
             )
 
             # DAM
@@ -73,7 +73,7 @@ if generate_results:
                 data=dam,
                 system_uptime=0.0,
                 continuous_flex=0.0,
-                baseload=np.ones_like(dam),
+                baseload=np.ones_like(dam) * 1000,
             )
 
             # Tariff
@@ -86,7 +86,7 @@ if generate_results:
                         data=tariff,
                         system_uptime=0.0,
                         continuous_flex=1.0,
-                        baseload=np.ones(month_length),
+                        baseload=np.ones(month_length) * 1000,
                         startdate_dt=startdate_dt,
                         enddate_dt=enddate_dt,
                         uptime_equality=False
