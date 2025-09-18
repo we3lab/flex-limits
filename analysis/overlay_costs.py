@@ -6,8 +6,18 @@ from matplotlib.patches import Rectangle
 from analysis import emissionscost as ec
 
 
-def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean", emission_basis="mef"):
+def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean", emission_basis="mef", scc_value={"percentile": 50, "discount": 0.025}):
     """
+    Overlay SCC and REC cost boxes on a given axis.
+    Parameters:
+    - ax: Matplotlib axis to plot on.
+    - regions: List of region names corresponding to the bars on the plot.
+    - width: Width of the bars in the plot.
+    - scc: Boolean to indicate whether to plot SCC box.
+    - rec: Boolean to indicate whether to plot REC boxes.
+    - plot_scc_by: Method to plot SCC, either "mean" for 50th percentile line or "value" to use percentile/discount.
+    - emission_basis: Emission basis for REC calculation, either "mef" or "aef".
+    - scc_value: Dictionary with keys 'percentile' and 'discount' to specify SCC value when plot_scc_by is "value".
     """
     basepath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     scc_df = pd.read_csv(os.path.join(basepath, "data", "offsets", "scc.csv"))
@@ -46,6 +56,14 @@ def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean",
                    ['value'].item())
 
             ax.hlines(scc, -100, 100, ls="--", color=other_colors["scc"])
+        elif plot_scc_by == "value":  # Use min and max to create "box"
+            scc = scc_df.loc[(scc_df['percentile'] == scc_value['percentile']) &
+                                (scc_df['discount_rate'] == scc_value['discount']),
+                                'value'].item()
+            # (scc_df[scc_df['percentile'] == scc_value['percentile']]
+            #        [scc_df['discount_rate'] == scc_value['discount']]
+            #        ['value'].item())
+            
 
         else:  # Use 25th and 75th percentiles
             scc_bottom = (scc_df[scc_df['percentile'] == 25]

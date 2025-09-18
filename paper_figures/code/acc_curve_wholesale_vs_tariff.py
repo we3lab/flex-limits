@@ -33,32 +33,36 @@ def get_mac(df):
 
     return shadow_cost, emissions
 
-
 # VB parameter settings 
 systems = {
     "maxflex" : {
         "system_uptime": 0.0,  # minimum uptime
         "continuous_flexibility": 1.0, # full flexibility
         "uptime_equality": False,
-        "pareto_stepsize": 0.05
+        "pareto_stepsize": 0.05, 
+        "marker_shape": "s"
     }, 
     "25uptime_0flex" : {
         "system_uptime": 0.25,  
         "continuous_flexibility": 0.0, 
         "uptime_equality": True, 
-        "pareto_stepsize": 0.05
+        "pareto_stepsize": 0.05,
+        "marker_shape": "^"
+
     },
     "50uptime_50flex" : {
         "system_uptime": 0.5,  
         "continuous_flexibility": 0.5, 
         "uptime_equality": True, 
-        "pareto_stepsize": 0.1 
+        "pareto_stepsize": 0.1,
+        "marker_shape": "P"
     },
     "100uptime_25flex" : {
         "system_uptime": 1.0,  
         "continuous_flexibility": 0.25, 
         "uptime_equality": True, 
-        "pareto_stepsize": 0.1 
+        "pareto_stepsize": 0.1,
+        "marker_shape": "o"
     },
 }
 
@@ -228,6 +232,7 @@ sns.lineplot(pareto_wholesale_df, y = "electricity_cost_pct", x = "emissions_pct
 for sys in systems.keys(): 
     sys_df = pareto_wholesale_df[pareto_wholesale_df["system"] == sys]
     ax[0,0].scatter(sys_df["emissions_pct"], sys_df["electricity_cost_pct"], 
+                marker=systems[sys]["marker_shape"],
                 facecolor=color_map[sys],
                 edgecolor='k', 
                 linewidth=0.5,
@@ -240,9 +245,11 @@ ax[0,0].scatter(0, 0, color="black", marker="o", s=40, label="Baseline Wholesale
 # tariff plot 
 l1 = sns.lineplot(pareto_tariff_df, y = "electricity_cost_pct", x = "emissions_pct", hue = "system", 
                 palette=color_map, ax=ax[0,1])
+
 for sys in systems.keys():
     sys_df = pareto_tariff_df[pareto_tariff_df["system"] == sys]
     ax[0,1].scatter(sys_df["emissions_pct"], sys_df["electricity_cost_pct"], 
+                marker=systems[sys]["marker_shape"],
                 facecolor=color_map[sys],
                 edgecolor='k', 
                 linewidth=0.5,
@@ -290,6 +297,7 @@ for sys in systems.keys():
                 )
     ax[1,0].scatter(emissions_pct,
                 shadow_cost, 
+                marker=systems[sys]["marker_shape"],
                 facecolor=color_map[system_name],
                 edgecolor='k', 
                 linewidth=0.5,
@@ -303,6 +311,7 @@ for sys in systems.keys():
     ax[1,1].plot(emissions_pct, shadow_cost, label=system_name, color=color_map[system_name])
     ax[1,1].scatter(emissions_pct,
                 shadow_cost, 
+                marker=systems[sys]["marker_shape"],
                 facecolor=color_map[system_name],
                 edgecolor='k', 
                 linewidth=0.5,
@@ -311,22 +320,21 @@ for sys in systems.keys():
                 ) 
 
 # overlay scc line
-_add_scc_and_rec(ax[1,0], regions=['CAISO'], width=0.15, scc=True, rec=False, plot_scc_by="mean", emission_basis='mef')
-
-_add_scc_and_rec(ax[1,1], regions=['CAISO'], width=0.15, scc=True, rec=False, plot_scc_by="mean", emission_basis='aef')
+ax[1,0].hlines(141.6, -100, 100, ls="--", color="black", label="Social Cost of Carbon")
+ax[1,1].hlines(141.6, -100, 100, ls="--", color="black", label="Social Cost of Carbon")
 
 ax[1,0].set(
     xlabel="Scope 2 Emissions Savings (%)",
     ylabel="Cost of Abatement ($/ton)",
     yscale="log",
-    ylim=(0.01, 1e5),
+    ylim=(0.005, 1e5),
     xlim=(0., 30),
 )
 ax[1,1].set(
     xlabel="Scope 2 Emissions Savings (%)",
     ylabel="Cost of Abatement ($/ton)",
     yscale="log",
-    ylim=(0.01, 1e5),
+    ylim=(0.008, 1e5),
     xlim=(-10, 25),
 )
 
