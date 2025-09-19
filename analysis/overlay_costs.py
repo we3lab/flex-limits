@@ -6,7 +6,7 @@ from matplotlib.patches import Rectangle
 from analysis import emissionscost as ec
 
 
-def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean", emission_basis="mef", scc_value={"percentile": 50, "discount": 0.025}):
+def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean", emission_basis="mef", scc_value={"percentile": 50, "discount": 0.025}, zorder=0):
     """
     Overlay SCC and REC cost boxes on a given axis.
     Parameters:
@@ -46,7 +46,8 @@ def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean",
         ax.annotate(text, xy=xy, xytext=xytext,
                    arrowprops=dict(arrowstyle='->', color='black', lw=1.5, 
                                    connectionstyle=f'arc3,rad={rad}'),
-                   ha='center', va=va, fontsize=18)
+                   ha='center', va=va, fontsize=18, 
+                   zorder=0)
     
     if scc:  # Plot scc
         discount_rate = 0.02

@@ -2,8 +2,10 @@ import numpy as np
 import pandas as pd
 import os
 import calendar
+from pyomo.environ import Param, Var, NonNegativeReals, Constraint
 from analysis.pricesignal import getmef, getaef, getdam, gettariff
 from analysis import maxsavings as ms
+from analysis.acc_curve import acc_curve
 from models.flexload_milp import flexloadMILP, idxparam_value
 from electric_emission_cost import costs
 from electric_emission_cost.units import u
@@ -48,6 +50,7 @@ def shadowcost_wholesale(
     month, 
     system_uptime,
     continuous_flexibility,
+    abatement_fraction=1.0,
     baseload=None,
     basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
     emissions_type="mef",
@@ -87,64 +90,62 @@ def shadowcost_wholesale(
     if baseload is None:
         # define a flat 1MW baseload 
         baseload = np.ones_like(emis)  
+
+    startdate_dt, enddate_dt = ms.get_start_end(month)
         
     # Calculate cost optimal while tracking emissions
-    flex_cost = flexloadMILP(
+    acc = acc_curve(
                     baseload=baseload,
                     cost_signal=dam,
                     costing_type="dam",
-                    costing_path=None,
-                    emissions_type=None,
-                    emissions_path=None,
+                    emissions_signal=emis,
+                    emissions_type=emissions_type.lower(),
                     flex_capacity=continuous_flexibility,
-                    rte=1.0,
                     min_onsteps=max(int(len(emis) * (system_uptime)), 1),  # assuming daily cycles
                     uptime_equality=True,
+                    startdate_dt=startdate_dt,
+                    enddate_dt=enddate_dt,
                 )
-    flex_cost.build()
-    flex_cost.solve()
-    # Calculate the net facility load
-    net_facility_load_costopt = idxparam_value(flex_cost.model.net_facility_load)
+    acc.calc_cost_optimal()
+    acc.calc_emissions_optimal()
 
-    # calculate the total cost and total emissions using the output power
-    cost_optimal_cost = dam@net_facility_load_costopt
-        # TODO: replace the unit conversion using pint
-    cost_optimal_emissions = emis@net_facility_load_costopt* 0.001 # convert from $/kg to $/ton (metric)
+    c_star = acc.cost_optimal_cost
+    e_star = acc.cost_optimal_emissions / 1000
 
-    # Calculate emissions optimal while tracking cost
-    flex_emissions = flexloadMILP(
-        baseload=baseload,
-        emissions_signal=emis,
-        costing_type=None,
-        costing_path=None,
-        emissions_type=emissions_type,
-        emissions_path=None,
-        flex_capacity=continuous_flexibility,
-        cost_of_carbon=1.0,
-        rte=1.0,
-        min_onsteps=max(int(len(emis) * (system_uptime)), 1),  # assuming daily cycles
-        uptime_equality=True,
-    )
-    flex_emissions.build()
-    flex_emissions.solve()
 
-    # Calculate the net facility load
-    net_facility_load_emisopt = idxparam_value(flex_emissions.model.net_facility_load)
-   
-    # calculate the total cost and total emissions using the output power
-    emissions_optimal_cost = dam@net_facility_load_emisopt
-        # TODO: replace the unit conversion using pint
-    emissions_optimal_emissions = emis@net_facility_load_emisopt* 0.001 # convert from kg to ton (metric)
+    acc.model.weight_of_cost = 1.0
+    acc.model.cost_of_carbon = 0.0
+    acc.model.abatement_fraction = Param(initialize=abatement_fraction, mutable=True)
+    acc.model.allowable_emissions = Var(within = NonNegativeReals)
+    @acc.model.Constraint()
+    def allowable_emissions_rule(m):
+        return m.allowable_emissions == (acc.cost_optimal_emissions - acc.emissions_optimal_emissions) * (1 - abatement_fraction) + acc.emissions_optimal_emissions
+    
+    @acc.model.Constraint()
+    def emissions_limit_rule(m):
+        return m.total_flex_emissions_signal <= m.allowable_emissions
+
+    # recalculate the cost and emissions at the new point on the curve
+    model, results = acc.solve(acc.model)
+
+    assert results.solver.termination_condition == 'optimal', "Solver did not find an optimal solution."
+    assert model.find_component('allowable_emissions_rule') is not None, "Model does not have 'net_facility_load' component."
+
+    print(f"Abatement fraction: {acc.model.abatement_fraction.value}, New allowable emissions: {acc.model.allowable_emissions.value}")
+
+    c_k = sum(idxparam_value(acc.model.net_facility_load) * dam)
+    e_k = sum(idxparam_value(acc.model.net_facility_load) * emis) / 1000  # convert from kg to ton (metric)
+
 
     # Calculate the shadow price 
-    shadow_price = -(cost_optimal_cost - emissions_optimal_cost) / (cost_optimal_emissions - emissions_optimal_emissions + 1e-8) 
+    shadow_price = -(c_star - c_k) / (e_star - e_k + 1e-8) 
 
     results = {
         "shadow_price_usd_ton": shadow_price,
-        "cost_optimal_cost_usd": cost_optimal_cost,
-        "emissions_optimal_cost_usd": emissions_optimal_cost,
-        "cost_optimal_emissions_ton": cost_optimal_emissions,
-        "emissions_optimal_emissions_ton": emissions_optimal_emissions
+        "cost_optimal_cost_usd": c_star,
+        "emissions_optimal_cost_usd": c_k,
+        "cost_optimal_emissions_ton": e_star,
+        "emissions_optimal_emissions_ton": e_k
     }
 
     return results

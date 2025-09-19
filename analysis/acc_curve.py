@@ -134,8 +134,7 @@ class acc_curve(flexloadMILP):
 
         self.cost_optimal_emissions = sum(idxparam_value(self.model.net_facility_load) * self.model.emissions_signal)
         return self.cost_optimal_cost, self.cost_optimal_emissions
-    
-    
+
     def build_pareto_front(self, stepsize=5, rel_tol = 1e-5, threads = 10, savepath = None):
         """
         **Description**:

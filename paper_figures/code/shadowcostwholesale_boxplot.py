@@ -65,6 +65,7 @@ if generate_data == True:
     for region in regions:
         for system_name, params in systems.items():
             results_dicts = []
+            results_dicts_50 = []
             for month in range(1,13):
                 tmp = ec.shadowcost_wholesale(region=region,
                                                     month=month,
@@ -73,20 +74,34 @@ if generate_data == True:
                                                     emissions_type=emissions_type)
 
                 results_dicts.append(tmp)
+
+                tmp50 = ec.shadowcost_wholesale(region=region,
+                                                    month=month,
+                                                    system_uptime=params['system_uptime'],
+                                                    continuous_flexibility=params['continuous_flexibility'],
+                                                    emissions_type=emissions_type,
+                                                    abatement_fraction=0.50)
+                results_dicts_50.append(tmp50)
+                                                    
             
             # collapse the list of dicts into a dict of lists 
             results_df = pd.DataFrame(results_dicts)
+            results_df_50 = pd.DataFrame(results_dicts_50)
 
             # add a months columns and rearrange the columns to have it first
             results_df["month"] = range(1,13) # add a col for month
             cols = ["month"] + [col for col in results_df.columns if col != "month"]  
             results_df = results_df[cols]  
 
+            results_df_50["month"] = range(1,13) # add a col for month
+            results_df_50 = results_df_50[cols]
+
             # put the df in the params dict
             params["results"] = results_df
 
             # save df in results folder as a csv file
             results_df.to_csv(os.path.join(paperfigs_basepath, "processed_data", f"shadowcost_wholesale_{emissions_type}", f"{region}_{system_name}.csv"), index=False)
+            results_df_50.to_csv(os.path.join(paperfigs_basepath, "processed_data", f"shadowcost_wholesale_{emissions_type}", f"{region}_{system_name}_50pct_abatement.csv"), index=False)
 else:
     ##
     pass
@@ -108,6 +123,7 @@ for region_idx, region in enumerate(regions):
     for sys in system_names:
         # Load the results for the current region and system 
         results_df = pd.read_csv(os.path.join(paperfigs_basepath, "processed_data", f"shadowcost_wholesale_{emissions_type}", f"{region}_{sys}.csv"))
+        results_df_50 = pd.read_csv(os.path.join(paperfigs_basepath, "processed_data", f"shadowcost_wholesale_{emissions_type}", f"{region}_{sys}_50pct_abatement.csv"))
         
         # Plot the shadow price as a bar plot
         bottom = results_df["shadow_price_usd_ton"].min()
@@ -121,10 +137,28 @@ for region_idx, region in enumerate(regions):
                     facecolor=color_map[sys],
                     edgecolor='k',
                     linewidth=1,
-                    alpha=1)
+                    alpha=1, 
+                    zorder=2)
         
         # Scatter plot for the shadow price for each month
-        ax.scatter(np.ones(len(results_df)) * region_idx + offset[idx], results_df["shadow_price_usd_ton"].values, s=0.1, alpha=0.5, color='k')
+        ax.scatter(np.ones(len(results_df)) * region_idx + offset[idx], results_df["shadow_price_usd_ton"].values, s=0.1, alpha=0.5, color='k',zorder=4)
+
+
+        # Add a rectangle for the 50% abatement cost
+        bottom_50 = results_df_50["shadow_price_usd_ton"].min()
+        height_50 = results_df_50["shadow_price_usd_ton"].max() - bottom_50
+
+        ax.bar(region_idx + offset[idx],
+                    height = height_50, 
+                    bottom=bottom_50, 
+                    width=width, 
+                    label=f"{sys} 50% abatement", 
+                    facecolor=color_map[sys],
+                    edgecolor='k',
+                    linewidth=1,
+                    alpha=0.5,
+                    zorder=1)  # Behind the main bars
+        ax.scatter(np.ones(len(results_df_50)) * region_idx + offset[idx], results_df_50["shadow_price_usd_ton"].values, s=0.1, alpha=0.5, color='k',zorder=4)
         idx += 1
 
 ax.set(
