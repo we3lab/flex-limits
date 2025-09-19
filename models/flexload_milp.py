@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 from pyomo.environ import *
 from time import time
 from warnings import warn
-from electric_emission_cost import costs
-from electric_emission_cost.units import u
-from electric_emission_cost import utils
+from eeco import costs
+from eeco.units import u
+from eeco import utils
 
 def idxparam_value(idxparam):
     """

@@ -1,7 +1,7 @@
 # imports
 import os
 import numpy as np
-from electric_emission_cost import costs
+from eeco import costs
 import analysis.pricesignal as ps
 from models.flexload_milp import flexloadMILP
 from models.flexload_milp import idxparam_value

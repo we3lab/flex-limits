@@ -7,8 +7,8 @@ from analysis.pricesignal import getmef, getaef, getdam, gettariff
 from analysis import maxsavings as ms
 from analysis.acc_curve import acc_curve
 from models.flexload_milp import flexloadMILP, idxparam_value
-from electric_emission_cost import costs
-from electric_emission_cost.units import u
+from eeco import costs
+from eeco.units import u
 
 def get_hourly_average_emission_factors(region, emission_type="mef"):
     """

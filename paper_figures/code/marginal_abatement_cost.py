@@ -7,9 +7,9 @@ from analysis.pricesignal import getmef, getaef, getdam, gettariff
 import analysis.maxsavings as ms 
 from analysis.acc_curve import acc_curve
 from analysis.overlay_costs import _add_scc_and_rec
-from electric_emission_cost import costs
-from electric_emission_cost.units import u
-from electric_emission_cost import utils
+from eeco import costs
+from eeco.units import u
+from eeco import utils
 
 
 with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:

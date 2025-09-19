@@ -6,8 +6,8 @@ import os
 import calendar
 from analysis.pricesignal import getmef, getaef, getdam, gettariff
 import analysis.maxsavings as ms
-from electric_emission_cost import costs
-from electric_emission_cost.units import u
+from eeco import costs
+from eeco.units import u
 
 class acc_curve(flexloadMILP):
     def __init__(self, baseload, min_onsteps, flex_capacity, emissions_signal, emissions_type, 
