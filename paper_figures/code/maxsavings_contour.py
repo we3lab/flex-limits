@@ -12,7 +12,7 @@ from analysis.maxsavings import (
     max_tariff_savings, 
     get_start_end
 )
-GENERATE_DATA = True
+GENERATE_DATA = False
 # import color maps as json
 with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:
     colors = json.load(f)
