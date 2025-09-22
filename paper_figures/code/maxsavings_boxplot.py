@@ -34,7 +34,7 @@ incentive_colors = colors["incentive_colors"]
 month_arr = np.arange(1, 13)
 tariff_month_arr = [1,7]
 regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
-generate_results= True
+generate_results= False
 
 if generate_results:
     mef_savings_sweep = np.zeros((len(regions), len(month_arr)))
@@ -55,7 +55,7 @@ if generate_results:
                 data=mef,
                 system_uptime=0.0,
                 continuous_flex=0.0,
-                baseload=np.ones_like(mef),
+                baseload=np.ones_like(mef) * 1000,
             )
 
             # AEF
@@ -64,7 +64,7 @@ if generate_results:
                 data=aef,
                 system_uptime=0.0,
                 continuous_flex=0.0,
-                baseload=np.ones_like(aef),
+                baseload=np.ones_like(aef) * 1000,
             )
 
             # DAM
@@ -73,7 +73,7 @@ if generate_results:
                 data=dam,
                 system_uptime=0.0,
                 continuous_flex=0.0,
-                baseload=np.ones_like(dam),
+                baseload=np.ones_like(dam) * 1000,
             )
 
             # Tariff
@@ -86,7 +86,7 @@ if generate_results:
                         data=tariff,
                         system_uptime=0.0,
                         continuous_flex=1.0,
-                        baseload=np.ones(month_length),
+                        baseload=np.ones(month_length) * 1000,
                         startdate_dt=startdate_dt,
                         enddate_dt=enddate_dt,
                         uptime_equality=False
@@ -166,7 +166,7 @@ else:
 
 # plot box and whisker
 # create a plot of the emissions savings
-fig, ax = plt.subplots(figsize=(90/25.4, 45/25.4))
+fig, ax = plt.subplots(figsize=(90/25.4, 70/25.4))
 aef_plot = ax.boxplot(
     aef_savings_sweep.T,
     positions=np.arange(len(regions)) - 0.3,

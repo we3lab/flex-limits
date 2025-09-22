@@ -1,14 +1,10 @@
 # imports
 import os
 import numpy as np
-from electric_emission_cost import costs
+from eeco import costs
 import analysis.pricesignal as ps
 from models.flexload_milp import flexloadMILP
 from models.flexload_milp import idxparam_value
-
-region = "CAISO"
-month = 1
-
 
 def max_mef_savings(data, system_uptime, continuous_flex, baseload):
     """Calculate the maximum savings for marginal emissions factor (MEF) as a percentage."""
@@ -126,25 +122,26 @@ def max_tariff_savings(
     )
 
     # (2) set up consumption data dictionary
-    consumption_data_dict = {"electric": idxparam_value(flex.model.flexload)}
+    consumption_data_dict = {"electric": idxparam_value(flex.model.net_facility_load) / 1000} # convert kW to MW
 
-    energy_flex_cost, _ = costs.calculate_cost(
+    total_flex_cost, _ = costs.calculate_cost(
             charge_dict,
             consumption_data_dict,
             resolution=resolution,
             desired_utility="electric",
-            desired_charge_type="energy",
+            desired_charge_type=None,
             model=None,
+            electric_consumption_units=u.MW
         )
-    demand_flex_cost, _ = costs.calculate_cost(
-        charge_dict,
-        consumption_data_dict,
-        resolution=resolution,
-        desired_utility="electric",
-        desired_charge_type="demand",
-        model=None,
-    )
 
-    total_base_cost = flex.model.total_base_cost_signal
-    total_flex_cost = demand_flex_cost + energy_flex_cost
+    total_base_cost, _ = costs.calculate_cost(
+            charge_dict,
+            {"electric": flex.baseload}, # convert kW to MW
+            resolution=resolution,
+            desired_utility="electric",
+            desired_charge_type=None,
+            model=None,
+            electric_consumption_units=u.MW
+        )
+
     return (100 * (total_base_cost - total_flex_cost) / total_base_cost)

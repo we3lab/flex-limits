@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 from pyomo.environ import *
 from time import time
 from warnings import warn
-from electric_emission_cost import costs
-from electric_emission_cost.units import u
-from electric_emission_cost import utils
+from eeco import costs
+from eeco.units import u
+from eeco import utils
 
 def idxparam_value(idxparam):
     """
@@ -43,7 +43,7 @@ class flexloadMILP:
         emissions_signal_units=u.kg / u.MWh,
         cost_of_carbon_units=u.USD / u.metric_ton,
         weight_of_cost = 1, 
-        consumption_units=u.kW,
+        consumption_units=u.MW,
         numerical_tolerance=1e-8,
     ):
         """
@@ -175,15 +175,15 @@ class flexloadMILP:
         else:
             self.consumption_units = consumption_units
 
-        self.baseload = (self.baseload * self.consumption_units).to(u.kW).magnitude
+        self.baseload = (self.baseload * self.consumption_units).to(u.MW).magnitude
         if self.costing_type == "dam":
             self.cost_signal = (
-                (self.cost_signal * self.cost_signal_units).to(u.USD / u.kWh).magnitude
+                (self.cost_signal * self.cost_signal_units).to(u.USD / u.MWh).magnitude
             )
         if self.emissions_type == "aef" or self.emissions_type == "mef":
             self.emissions_signal = (
                 (self.emissions_signal * self.emissions_signal_units)
-                .to(u.kg / u.kWh)
+                .to(u.kg / u.MWh)
                 .magnitude
             )
         if self.cost_of_carbon is not None:
@@ -243,6 +243,7 @@ class flexloadMILP:
             desired_utility="electric",
             desired_charge_type="energy",
             model=None,
+            electric_consumption_units=u.MW
         )
         demand_base_cost_signal, _ = costs.calculate_cost(
             charge_dict,
@@ -254,6 +255,7 @@ class flexloadMILP:
             desired_utility="electric",
             desired_charge_type="demand",
             model=None,
+            electric_consumption_units=u.MW
         )
         model.total_base_cost_signal = (
             energy_base_cost_signal + demand_base_cost_signal
@@ -270,7 +272,7 @@ class flexloadMILP:
         )
 
         # (2) set up consumption data dictionary
-        consumption_data_dict = {"electric": model.flexload}
+        consumption_data_dict = {"electric": model.net_facility_load}
 
         # (3) calculate cost for objective function and modify model constraints
         energy_flex_cost_signal, model = costs.calculate_cost(
@@ -283,6 +285,7 @@ class flexloadMILP:
             desired_utility="electric",
             desired_charge_type="energy",
             model=model,
+            electric_consumption_units=u.MW
         )
         demand_flex_cost_signal, model = costs.calculate_cost(
             charge_dict,
@@ -294,6 +297,7 @@ class flexloadMILP:
             desired_utility="electric",
             desired_charge_type="demand",
             model=model,
+            electric_consumption_units=u.MW
         )
         # when there is only one component in the cost function
         # there is a RuntimeError due to identical components in the same block
@@ -564,7 +568,7 @@ class flexloadMILP:
 
         return self.upflex_powercapacity, self.discharge_capacity
 
-    def solve(self, tee=False, print_results=False, max_iter=10, descent_stepsize=1, threads = 10, mipgap = 0.01):
+    def solve(self, tee=False, print_results=False, max_iter=10, descent_stepsize=1, threads = 10, mipgap = 1e-2):
         """
         Solve the model for the flexible load using gurobi
 
@@ -616,6 +620,8 @@ class flexloadMILP:
         solver = SolverFactory("gurobi")
         solver.options["threads"] = threads 
         solver.options["MIPGap"] = mipgap 
+        solver.options["NumericFocus"] = 1
+        solver.options["MIPFocus"] = 1
         results = solver.solve(self.model, tee=tee)
         return self.model, results
 
@@ -626,6 +632,9 @@ class flexloadMILP:
         solver = SolverFactory("gurobi")
         solver.options["threads"] = threads
         solver.options["MIPGap"] = mipgap
+        solver.options["NumericFocus"]=1
+        solver.options["MIPFocus"]=1
+
         results = solver.solve(self.model, tee=tee)
 
         # check the continuous load
@@ -640,14 +649,6 @@ class flexloadMILP:
         cont_load_avg = np.mean(cont_load)
         lower_bound = (1 - flex_capacity) * cont_load_avg
         upper_bound = (1 + flex_capacity) * cont_load_avg
-
-        # print the continuous load bounds
-        print(
-            f"Continuous load bounds: [{lower_bound:.2f}, {upper_bound:.2f}] "
-            f"with average continuous load: {cont_load_avg:.2f}"
-        )
-        # print the continuous load
-        print(f"Max load: {np.max(cont_load):.2f}, Min load: {np.min(cont_load):.2f}")
 
         resolve = 0
 

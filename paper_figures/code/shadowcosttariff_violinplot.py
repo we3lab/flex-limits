@@ -1,11 +1,12 @@
 import numpy as np
 import pandas as pd
-import os
+import os, json
 import matplotlib.pyplot as plt
 import seaborn as sns
 import time
 from analysis import pricesignal as ps
 from analysis import emissionscost as ec
+from joblib import Parallel, delayed
 
 from paper_figures.code.shadowcostwholesale_boxplot import _add_scc_and_rec
 
@@ -27,9 +28,9 @@ systems = {
         "uptime_equality":True 
 
     },
-    "100uptime_75flex" : {
+    "100uptime_25flex" : {
         "system_uptime": 1.0,  
-        "continuous_flexibility": 0.75, 
+        "continuous_flexibility": 0.25, 
         "uptime_equality": True
     },
 }
@@ -41,97 +42,80 @@ sys_colors=colors["examplesys_colors"]
 # grid parameter settings 
 months = [1,7]
 regions = ["SPP", "CAISO", "ERCOT",  "PJM", "MISO", "NYISO", "ISONE"]
+emissions_type = "mef"
 
 # data/figure gen settings 
 generate_data = False
 threads = 20 
-figure_type = "svg"
 
 paperfigs_basepath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+def generate_data_single(system_name, params, region, month):
+    # create a new dataframe for all tariffs in the specified region 
+    region_tariffs, region_tariff_ids = ps.gettariff(region=region, full_list=True, return_ids=True)
+
+    results_dicts = []
+    for n, tariff in enumerate(region_tariffs):
+        try: 
+            # calculate shadow cost for the given case (system, tariff, month)
+            tmp = ec.shadowcost_tariff(region=region,
+                                                tariff_data=tariff, 
+                                                month=month,
+                                                system_uptime=params["system_uptime"],
+                                                continuous_flexibility=params["continuous_flexibility"], 
+                                                uptime_equality=params["uptime_equality"], 
+                                                threads = 4,
+                                                emissions_type=emissions_type,
+                                                )
+
+        except ZeroDivisionError: # skipping over tariffs with zero division error in pct_savings calculation - todo: debug this error 
+
+            tmp = {
+                "shadow_price_usd_ton": np.nan,
+                "cost_optimal_cost_usd": np.nan,
+                "emissions_optimal_cost_usd": np.nan,
+                "cost_optimal_emissions_ton": np.nan,
+                "emissions_optimal_emissions_ton": np.nan
+            }
+
+        tmp["region"] = region
+        tmp["system"] = system_name 
+        tmp["month"] = month 
+        tmp["tariff_id"] = region_tariff_ids[n]
+        results_dicts.append(tmp)              
+    sys_results = pd.DataFrame(results_dicts)
+    # rearrange the columns
+    cols_first = ["region","system","month", "tariff_id"]
+    cols = cols_first + [col for col in sys_results.columns if col not in cols_first]  
+    sys_results = sys_results[cols]  
+    return sys_results
+
 if generate_data == True:
-
-    # import tariff data 
-    tariff_costing_path = os.path.join(os.path.dirname(paperfigs_basepath),"data","tariff_wwtp", "WWTP_Billing.xlsx")
-    tariff_metadata_path = os.path.join(os.path.dirname(paperfigs_basepath),"data","tariff_wwtp", "metadata_iso.csv")
-    tariffs_df = pd.read_csv(tariff_metadata_path)
-
     for region in regions:
-        # create a new dataframe for all tariffs in the specified region 
-        region_tariffs, region_tariff_ids = ps.gettariff(region=region, full_list=True, return_ids=True)
-        print("Region: {}, Number of Tariffs {}:".format(region, len(region_tariffs)))
-       
-        for system_name, params in systems.items():
-            results_dicts = []
-            t0 = time.time()
-            for n, tariff in enumerate(region_tariffs): 
-        
-                for month in months:
-                    try: 
-                        # calculate shadow cost for the given case (system, tariff, month)
-                        tmp = ec.shadowcost_tariff(region=region,
-                                                            tariff_data=tariff, 
-                                                            month=month,
-                                                            system_uptime=params["system_uptime"],
-                                                            continuous_flexibility=params["continuous_flexibility"], 
-                                                            uptime_equality=params["uptime_equality"], 
-                                                            threads = threads
-                                                            )
-                    
-                    except ZeroDivisionError: # skipping over tariffs with zero division error in pct_savings calculation - todo: debug this error 
+        tasks = []                
+        for system_name, params in systems.items():        
+            for month in months:
+                # create a task for each system, region, and month using delayed
+                tasks.append(delayed(generate_data_single)(system_name, params, region, month))
+    
+        sys_results_df = pd.concat(Parallel(n_jobs=threads, backend="loky")(tasks))
+        sys_results_df.to_csv(os.path.join(paperfigs_basepath, "processed_data", f"shadowcost_tariff_{emissions_type}", f"{region}.csv"), index=False)
 
-                        tmp = {
-                            "shadow_price_usd_ton": np.nan,
-                            "cost_optimal_cost_usd": np.nan,
-                            "emissions_optimal_cost_usd": np.nan,
-                            "cost_optimal_emissions_ton": np.nan,
-                            "emissions_optimal_emissions_ton": np.nan
-                        }
-
-                    tmp["region"] = region
-                    tmp["system"] = system_name 
-                    tmp["month"] = month 
-                    tmp["tariff_id"] = region_tariff_ids[n]
-
-                    results_dicts.append(tmp)                
-                    t1 = time.time()
-
-            print("time for {} system {}: {}".format(region, system_name, t1 - t0))
-                
-
-            # collapse the list of dicts into a dict of lists []
-            sys_results_df = pd.DataFrame(results_dicts)
-
-            # rearrange the columns
-            cols_first = ["region","system","month", "tariff_id"]
-            cols = cols_first + [col for col in sys_results_df.columns if col not in cols_first]  
-            sys_results_df = sys_results_df[cols]  
-
-            # save df in results folder as a csv file
-            sys_results_df.to_csv(os.path.join(paperfigs_basepath, "processed_data", "shadowcost_tariff", f"{region}_{system_name}.csv"), index=False)
-
-            del sys_results_df, results_dicts
-        
-        del region_tariffs
-
-else:
-    pass
 
 # read in results
 results_list = []
 sys_list = []
 region_list = []
 for region_idx, region in enumerate(regions):
-    # Iterate over each system and plot the results
-    for sys in systems.keys():
-        # Load the results for the current region and system 
-        sys_results_df = pd.read_csv(os.path.join(paperfigs_basepath, "processed_data", "shadowcost_tariff", f"{region}_{sys}.csv"))
-        results_list.append(sys_results_df)
+    # Load the results for the current region and system 
+    sys_results_df = pd.read_csv(os.path.join(paperfigs_basepath, "processed_data", f"shadowcost_tariff_{emissions_type}", f"{region}.csv"))
+    results_list.append(sys_results_df)
 
 # create combined data frame                             
 results_df = pd.concat(results_list, ignore_index=True)
 results_df.dropna(how = "any", inplace=True)
-results_df.loc[results_df.shadow_price_usd_ton < 1e-3, "shadow_price_usd_ton"] = 1e-3 #clip very small/negative prices (necessary for log scale)
+results_df = results_df[results_df.shadow_price_usd_ton > -1e-8]  # filter out negative shadow prices - error in convex approximation
+results_df.loc[results_df.shadow_price_usd_ton < 1e-2, "shadow_price_usd_ton"] = 1e-2 #clip very small/negative prices (necessary for log scale)
 
 
 # Plot the results  
@@ -163,13 +147,13 @@ color_map = {k: sys_colors[k] for k in system_names if k in sys_colors}
 # create figure 
 fig, ax = plt.subplots(figsize=(180 / 25.4, 45 / 25.4))
 
-_add_scc_and_rec(ax, regions, width=0.15, scc=True, rec=True, plot_scc_by="mean", emission_basis="aef")
+_add_scc_and_rec(ax, regions, width=0.15, scc=True, rec=True, plot_scc_by="mean", emission_basis=emissions_type)
 
 # violin plots 
 p1 = sns.violinplot(data=results_df, x = "region", y ="shadow_price_usd_ton", hue = "system", 
                     gap = 0.4, inner = "point", density_norm="width", 
                     inner_kws= {"s": 0.1, "alpha":0.5,}, alpha = 1.0, 
-                   palette=color_map, log_scale=True, split=True,  ax=ax, cut=0)
+                   palette=color_map, log_scale=True, split=True,  ax=ax, cut=0, common_norm=True)
 
 ax.set(
     xlabel="",
@@ -196,7 +180,7 @@ ax.get_legend().remove()
 
 # save figure 
 for figure_type in ["png","svg", "pdf"]: 
-    fig.savefig(os.path.join(paperfigs_basepath, "figures", figure_type, "shadowcost_tariff_violinplot." + figure_type),
+    fig.savefig(os.path.join(paperfigs_basepath, "figures", figure_type, f"shadowcost_tariff_violinplot_{emissions_type}." + figure_type),
         dpi=300,
         bbox_inches="tight",
     )

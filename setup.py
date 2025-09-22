@@ -37,7 +37,7 @@ requirements = [
     'seaborn', 
     'openpyxl', 
     "ipykernel",
-    "electric-emission-cost>=0.0.1",
+    "eeco>=0.1.0",
 ]
 
 extra_requirements = {

@@ -1,12 +1,13 @@
-from models.flexload_milp import flexloadMILP
-from pyomo.environ import value
+from models.flexload_milp import flexloadMILP, idxparam_value
+from pyomo.environ import value, Param, Constraint, Var, NonNegativeReals
 import numpy as np
 import pandas as pd 
 import os 
 import calendar
 from analysis.pricesignal import getmef, getaef, getdam, gettariff
 import analysis.maxsavings as ms
-
+from eeco import costs
+from eeco.units import u
 
 class acc_curve(flexloadMILP):
     def __init__(self, baseload, min_onsteps, flex_capacity, emissions_signal, emissions_type, 
@@ -30,43 +31,111 @@ class acc_curve(flexloadMILP):
             uptime_equality=uptime_equality,
             )
 
-
-
         # define some attributes to store the results
         self.cost_optimal_emissions = 0
         self.cost_optimal_cost = 0
         self.emissions_optimal_emissions = 0 
         self.emissions_optimal_cost = 0
+        self.baseline_emissions = 0
+        self.baseline_cost = 0
 
         # define the base model object as an attribute of the acc_curve class
         self.model = self.build()
         return
 
+    def calc_baseline(self, threads=10, resolution="1h"):
+        self.baseline_emissions = sum(idxparam_value(self.model.net_facility_load) * self.model.emissions_signal)
+        
+        if self.costing_type == "dam":
+            self.baseline_cost = sum(idxparam_value(self.model.net_facility_load) * self.model.cost_signal)
+        
+        elif self.costing_type == "tariff":
+            # (1) get the charge dictionary
+            charge_dict = costs.get_charge_dict(
+                self.startdate_dt, self.enddate_dt, self.cost_signal, resolution=resolution
+            )
+            # (2) set up consumption data dictionary
+            consumption_data_dict = {"electric": self.baseload}
 
-    def calc_emissions_optimal(self, threads = 10):
+            # (3) calculate the costs
+            self.baseline_cost, _ = costs.calculate_cost(
+                charge_dict,
+                consumption_data_dict,
+                resolution=resolution,
+                desired_utility="electric",
+                desired_charge_type=None,
+                model=None,
+                electric_consumption_units=u.MW
+            )
+
+    def calc_emissions_optimal(self, threads = 10, resolution="1h"):
         self.model.weight_of_cost = 0 
         self.model.cost_of_carbon = 1
-        (self.model, results) = self.solve(threads = threads)
+        (self.model, results) = self.solve(threads = threads, max_iter=100, descent_stepsize=0.1)
         
-        # extract results from emissions optimal solution
-        self.emissions_optimal_cost = self.model.total_flex_cost_signal()
-        self.emissions_optimal_emissions = self.model.total_flex_emissions_signal()
+        # extract results from cost optimal solution
+        if self.costing_type == "dam":
+            self.emissions_optimal_cost = sum(idxparam_value(self.model.net_facility_load) * self.model.cost_signal)
+        
+        elif self.costing_type == "tariff":
+            # (1) get the charge dictionary
+            self.charge_dict = costs.get_charge_dict(
+                self.startdate_dt, self.enddate_dt, self.cost_signal, resolution=resolution
+            )
+            # (2) set up consumption data dictionary
+            consumption_data_dict = {"electric": idxparam_value(self.model.net_facility_load)} 
+
+            # (3) calculate the costs
+            self.emissions_optimal_cost, _ = costs.calculate_cost(
+                self.charge_dict,
+                consumption_data_dict,
+                resolution=resolution,
+                desired_utility="electric",
+                desired_charge_type=None,
+                model=None,
+                electric_consumption_units=u.MW
+            )
+
+        self.emissions_optimal_emissions = sum(idxparam_value(self.model.net_facility_load) * self.model.emissions_signal) 
 
         return self.emissions_optimal_cost, self.emissions_optimal_emissions
     
-    def calc_cost_optimal(self, threads = 10):
+    def calc_cost_optimal(self, threads = 10, resolution="1h"):
         self.model.weight_of_cost = 1 
         self.model.cost_of_carbon = 0
-        (self.model, results) = self.solve(threads = threads)
+        (self.model, results) = self.solve(threads = threads, max_iter=100, descent_stepsize=0.1)
 
         # extract results from cost optimal solution
-        self.cost_optimal_cost = self.model.total_flex_cost_signal()
-        self.cost_optimal_emissions = self.model.total_flex_emissions_signal()
+        if self.costing_type == "dam":
+            self.cost_optimal_cost = sum(idxparam_value(self.model.net_facility_load) * self.model.cost_signal) 
 
+        elif self.costing_type == "tariff":
+            # (1) get the charge dictionary
+            self.charge_dict = costs.get_charge_dict(
+                self.startdate_dt, self.enddate_dt, self.cost_signal, resolution=resolution
+            )
+            # (2) set up consumption data dictionary
+            consumption_data_dict = {"electric": idxparam_value(self.model.net_facility_load)}
+
+            # (3) calculate the costs
+            self.cost_optimal_cost, _ = costs.calculate_cost(
+                self.charge_dict,
+                consumption_data_dict,
+                resolution=resolution,
+                desired_utility="electric",
+                desired_charge_type=None,
+                model=None,
+                electric_consumption_units=u.MW
+            )
+
+        else:
+            raise ValueError(f"Unknown costing type: {self.costing_type}")
+
+
+        self.cost_optimal_emissions = sum(idxparam_value(self.model.net_facility_load) * self.model.emissions_signal)
         return self.cost_optimal_cost, self.cost_optimal_emissions
-    
-    
-    def build_pareto_front(self, stepsize = 5, rel_tol = 1e-5, threads = 10, savepath = None):
+
+    def build_pareto_front(self, stepsize=5, rel_tol = 1e-5, threads = 10, savepath = None):
         """
         **Description**:
 
@@ -83,6 +152,8 @@ class acc_curve(flexloadMILP):
             pareto_front (DataFrame): a dataframe containing the carbon cost, total electrical emissions, electricity cost, alignment cost, and alignment fraction
         """
 
+        # self.calc_baseline(threads = threads)
+
         # ensure the model objective is cost
         self.model.weight_of_cost = 1 
         self.model.cost_of_carbon = 0
@@ -94,26 +165,65 @@ class acc_curve(flexloadMILP):
         emissions_costs = [0]
         alignment_fraction = [0]
 
-        # loop through the pareto curve until the emissions optimal solution is (nearly) reached
-        print(self.cost_optimal_emissions, self.emissions_optimal_emissions)
+        # add allowable emissions parameter
+        self.model.abatement_fraction = Param(initialize=1.0, mutable=True)
+        self.model.allowable_emissions = Var(within = NonNegativeReals)
+        @self.model.Constraint()
+        def allowable_emissions_rule(m):
+            return m.allowable_emissions == (self.cost_optimal_emissions - self.emissions_optimal_emissions) * (1 - m.abatement_fraction) + self.emissions_optimal_emissions
+        
+        @self.model.Constraint()
+        def emissions_limit_rule(m):
+            return m.total_flex_emissions_signal <= m.allowable_emissions
 
-        while (sweep_emissions[-1] - self.emissions_optimal_emissions)/self.emissions_optimal_emissions > rel_tol:
-            # step up the carbon cost
-            self.model.cost_of_carbon = value(self.model.cost_of_carbon) + stepsize
-            
+        # self.model.allowable_emissions = Param(initialize=self.cost_optimal_emissions, mutable=True)
+
+        # while (sweep_emissions[-1] - self.emissions_optimal_emissions)/self.emissions_optimal_emissions > rel_tol:
+        for a_e in np.arange(0, 1.01, 0.1):
+            print(f"Calculating pareto point for abatement fraction: {a_e:.2f}")
+            self.model.abatement_fraction.value = a_e
+
             # re-solve the model
-            (self.model, results) = self.solve(self.model, threads = threads)
-            total_electrical_emissions = np.sum(self.model.total_flex_emissions_signal()) 
+            try:
+                (self.model, results) = self.solve(self.model, threads = threads, max_iter=500)
+                
+                # assert results.solver.termination_condition == "optimal"
+                
+                total_electrical_emissions = np.sum(self.model.total_flex_emissions_signal()) 
+                sweep_emissions.append(total_electrical_emissions)  
 
-            # post-process outputs
-            alpha = 1 - (total_electrical_emissions - self.emissions_optimal_emissions)/(self.cost_optimal_emissions - self.emissions_optimal_emissions)
+                if self.costing_type == "dam":
+                    dam_cost = sum(idxparam_value(self.model.net_facility_load) * self.model.cost_signal)
+                    sweep_costs.append(dam_cost)
+                elif self.costing_type == "tariff":
+                    self.charge_dict = costs.get_charge_dict(
+                        self.startdate_dt, self.enddate_dt, self.cost_signal, resolution="1h"
+                    )
+                    consumption_data_dict = {"electric": idxparam_value(self.model.net_facility_load)}
+                    tariff_cost = costs.calculate_cost(
+                            self.charge_dict,
+                            consumption_data_dict,
+                            desired_utility="electric",
+                            desired_charge_type=None,
+                            model=None,
+                            resolution="1h",
+                            electric_consumption_units=u.MW
+                        )[0]
 
-            # log results
-            sweep_emissions.append(total_electrical_emissions)  
-            sweep_costs.append(self.model.total_flex_cost_signal())
-            carbon_costs.append(value(self.model.cost_of_carbon)) 
-            emissions_costs.append(self.model.total_flex_emissions_signal()*value(self.model.cost_of_carbon))
-            alignment_fraction.append(alpha)
+                    sweep_costs.append(tariff_cost)
+
+                else:
+                    raise ValueError(f"Unknown costing type: {self.costing_type}")
+
+                # post-process outputs
+                alpha = 1 - (total_electrical_emissions - self.emissions_optimal_emissions)/(self.cost_optimal_emissions - self.emissions_optimal_emissions + 1e-8)
+
+                # log results
+                carbon_costs.append(value(self.model.cost_of_carbon)) 
+                alignment_fraction.append(alpha)
+            
+            except:
+                raise RuntimeError("Pareto point calculation failed - consider increasing the stepsize or relative tolerance")
 
         # convert kg to tons (metric )
         sweep_emissions = [x*0.001 for x in sweep_emissions]
@@ -125,19 +235,13 @@ class acc_curve(flexloadMILP):
         # store outputs in a dataframe
         pareto_front = pd.DataFrame({"carbon_cost": carbon_costs, 
                                   "emissions": sweep_emissions, 
-                                  "emissions_cost": emissions_costs, 
                                   "electricity_cost": sweep_costs, 
                                   "alignment_fraction": alignment_fraction})
-
         
         if savepath is not None:
             pareto_front.to_csv(savepath)
         
         return pareto_front
-    
-
-
-
     
 
 if __name__ == "__main__":
@@ -165,9 +269,9 @@ if __name__ == "__main__":
     }
 
     region = "CAISO"
-    month = 4
+    month = 7
     year = 2023
-    system_name = "100uptime_75flex"
+    system_name = "maxflex"
     threads = 10 
 
     generate_data = False  
@@ -202,9 +306,10 @@ if __name__ == "__main__":
         cost_signal = dam, 
         costing_type = "dam", 
         startdate_dt= startdate_dt, 
-        enddate_dt=enddate_dt
+        enddate_dt=enddate_dt,
+        uptime_equality=True
         )
 
     em_opt = acc.calc_emissions_optimal(threads = threads)
     cost_opt = acc.calc_cost_optimal(threads = threads)
-    total_emissions = acc.point_by_alpha(threads = threads)
+    pareto_front = acc.build_pareto_front(threads = threads, stepsize=pareto_stepsize)
