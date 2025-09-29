@@ -44,6 +44,9 @@ def generate_data(region, month):
     """
     Generate the maximum savings contours for a given region and month.
     """
+    # create a dataframe
+    figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
     # get the data
     mef_data = getmef(region, month)
     aef_data = getaef(region, month)
@@ -52,7 +55,7 @@ def generate_data(region, month):
 
     # solve max mef savings in parallel for a range of uptime and continuous flex
     uptimes = np.arange(0, 25, 1) / 24  # 1 to 24 hours to percent in intervals
-    continuous_flex = np.arange(0, 1.01, 0.1)  # 0 to 100%
+    continuous_flex = np.arange(0, 1.01, 0.05)  # 0 to 100%
 
     non_tariff_baseload = np.ones_like(mef_data)  # 1MW flat baseline load
 
@@ -93,11 +96,9 @@ def generate_data(region, month):
     aef = max_aef_savings_results.flatten()
     dam = max_dam_savings_results.flatten()
     tariff = max_tariff_savings_results.flatten()
+
     continuous_flex_flat = np.tile(continuous_flex, len(uptimes))
     uptimes_flat = np.repeat(uptimes, len(continuous_flex))
-
-    # create a dataframe
-    figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     df = pd.DataFrame(
         {
@@ -157,7 +158,7 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         cmap=cmaps["mef"],
     )
     cbar = fig.colorbar(contour, ax=ax[0, 0])
-
+    cbar.ax.invert_yaxis()
     # ax[0, 0].set_title("Marginal Emissions")
     cbar.set_label("Marginal emissions savings (%)")
 
@@ -172,6 +173,7 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         cmap=cmaps["aef"],
     )
     cbar = fig.colorbar(contour, ax=ax[1,0])
+    cbar.ax.invert_yaxis()
     # ax[1, 0].set_title("Average Emissions")
     cbar.set_label("Average emissions savings (%)")
 
@@ -185,6 +187,8 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         cmap=cmaps["dam"],
     )
     cbar = fig.colorbar(contour, ax=ax[0, 1])
+    cbar.ax.invert_yaxis()
+
     # ax[0, 1].set_title("Day-ahead Prices")
     cbar.set_label("Day-ahead market savings (%)")
 
@@ -198,6 +202,7 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
         cmap=cmaps["tariff"],
     )
     cbar = fig.colorbar(contour, ax=ax[1,1])
+    cbar.ax.invert_yaxis()
     # ax[1, 1].set_title(f"Sample Tariff: {region}")
     cbar.set_label("Tariff savings (%)")
     

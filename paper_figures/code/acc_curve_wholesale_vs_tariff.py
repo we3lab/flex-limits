@@ -269,16 +269,16 @@ ax[0,1].set_xlim(-10, 25)
 ylabel = "Electricity Cost Savings (%)"
 ax[0,0].set_ylabel(ylabel, labelpad=8) 
 ax[0,1].set_ylabel(ylabel, labelpad=1)
-ax[0,0].set_ylim(0, 40)
-ax[0,1].set_ylim(-150, 40)
+ax[0,0].set_ylim(-80, 40)
+ax[0,1].set_ylim(-120, 40)
 
 # set xticks
-ax[0,0].set_xticks(np.arange(0., 31, 5))
-ax[0,1].set_xticks(np.arange(-10, 21, 5))
+ax[0,0].set_xticks(np.arange(0., 41, 5))
+ax[0,1].set_xticks(np.arange(-10, 26, 5))
 
 # # set yticks
-ax[0,0].set_yticks(np.arange(0., 41, 5))
-ax[0,1].set_yticks(np.arange(-150, 41, 20))
+ax[0,0].set_yticks(np.arange(-80., 41, 20))
+ax[0,1].set_yticks(np.arange(-120, 41, 20))
 
 handles, _ = l1.get_legend_handles_labels()
 ax[0,1].legend().remove()
@@ -328,13 +328,13 @@ ax[1,0].set(
     ylabel="Cost of Abatement ($/ton)",
     yscale="log",
     ylim=(0.005, 1e5),
-    xlim=(0., 30),
+    xlim=(0., 40),
 )
 ax[1,1].set(
     xlabel="Scope 2 Emissions Savings (%)",
     ylabel="Cost of Abatement ($/ton)",
     yscale="log",
-    ylim=(0.008, 1e5),
+    ylim=(0.005, 1e5),
     xlim=(-10, 25),
 )
 

@@ -36,6 +36,11 @@ tariff_month_arr = [1,7]
 regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
 generate_results= False
 
+overlay_star_region = "CAISO"
+overlay_star_month = 7
+
+figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 if generate_results:
     mef_savings_sweep = np.zeros((len(regions), len(month_arr)))
     aef_savings_sweep = np.zeros((len(regions), len(month_arr)))
@@ -144,7 +149,6 @@ if generate_results:
 
 else:
     # read data from file
-    figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     savings_data = pd.read_csv(
         os.path.join(figpath, "processed_data", "savings_limit_boxplot.csv")
     )
@@ -247,6 +251,19 @@ ax.legend(
     handletextpad=0.4,
 )
 
+# overlay star
+mef_overlay = savings_data["mef_savings"][savings_data["region"] == overlay_star_region][savings_data["month"] == overlay_star_month].values[0]
+aef_overlay = savings_data["aef_savings"][savings_data["region"] == overlay_star_region][savings_data["month"] == overlay_star_month].values[0]
+dam_overlay = savings_data["dam_savings"][savings_data["region"] == overlay_star_region][savings_data["month"] == overlay_star_month].values[0]
+tariff_max_overlay = pd.read_csv(os.path.join(figpath, "processed_data", "max_savings_contours", f"{overlay_star_region}_month{overlay_star_month}.csv"))
+tariff_overlay = max(tariff_max_overlay["max_tariff_savings"].values)
+
+region_index = list(regions).index(overlay_star_region)
+ax.scatter(region_index - 0.3, aef_overlay, marker="D", color="k", s=6, zorder=5)
+ax.scatter(region_index - 0.1, mef_overlay, marker="D", color="k", s=6, zorder=5)
+ax.scatter(region_index + 0.1, dam_overlay, marker="D", color="k", s=6, zorder=5)
+ax.scatter(region_index + 0.3, tariff_overlay, marker="D", color="k",s=6, zorder=5)
+
 # save figure
 figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -256,13 +273,3 @@ for ext in ["png", "pdf", "svg"]:
         dpi=300,
         bbox_inches="tight",
     )
-# fig.savefig(
-#     os.path.join(figpath, "figures/png", f"savings_limit_boxplot.png"),
-#     dpi=300,
-#     bbox_inches="tight",
-# )
-# fig.savefig(
-#     os.path.join(figpath, "figures/pdf", f"savings_limit_boxplot.pdf"),
-#     dpi=300,
-#     bbox_inches="tight",
-# )
