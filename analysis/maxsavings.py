@@ -2,6 +2,8 @@
 import os
 import numpy as np
 from eeco import costs
+from eeco.units import u
+from eeco import utils
 import analysis.pricesignal as ps
 from models.flexload_milp import flexloadMILP
 from models.flexload_milp import idxparam_value
@@ -122,7 +124,7 @@ def max_tariff_savings(
     )
 
     # (2) set up consumption data dictionary
-    consumption_data_dict = {"electric": idxparam_value(flex.model.net_facility_load) / 1000} # convert kW to MW
+    consumption_data_dict = {"electric": idxparam_value(flex.model.net_facility_load)} # convert kW to MW
 
     total_flex_cost, _ = costs.calculate_cost(
             charge_dict,
