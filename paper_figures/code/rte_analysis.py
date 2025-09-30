@@ -28,8 +28,8 @@ plt.rcParams.update(
 )
 
 # %%
-region="SPP"
-month=1
+region="CAISO"
+month=7
 def solve_savings_constant_uptime_dam(power_capacity, rte):
     savings= savings_rte(uptime=0.8,
                        power_capacity=power_capacity,
