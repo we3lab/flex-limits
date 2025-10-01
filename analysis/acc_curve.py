@@ -44,10 +44,10 @@ class acc_curve(flexloadMILP):
         return
 
     def calc_baseline(self, threads=10, resolution="1h"):
-        self.baseline_emissions = sum(idxparam_value(self.model.net_facility_load) * self.model.emissions_signal)
+        self.baseline_emissions = sum(self.model.emissions_signal)
         
         if self.costing_type == "dam":
-            self.baseline_cost = sum(idxparam_value(self.model.net_facility_load) * self.model.cost_signal)
+            self.baseline_cost = sum(self.model.cost_signal)
         
         elif self.costing_type == "tariff":
             # (1) get the charge dictionary
@@ -185,7 +185,7 @@ class acc_curve(flexloadMILP):
 
             # re-solve the model
             try:
-                (self.model, results) = self.solve(self.model, threads = threads, max_iter=500)
+                (self.model, results) = self.solve(self.model, threads = threads, max_iter=20)
                 
                 # assert results.solver.termination_condition == "optimal"
                 

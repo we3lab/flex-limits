@@ -124,8 +124,7 @@ def max_tariff_savings(
     )
 
     # (2) set up consumption data dictionary
-    consumption_data_dict = {"electric": idxparam_value(flex.model.net_facility_load)} # convert kW to MW
-
+    consumption_data_dict = {"electric": idxparam_value(flex.model.net_facility_load)} 
     total_flex_cost, _ = costs.calculate_cost(
             charge_dict,
             consumption_data_dict,
@@ -138,7 +137,7 @@ def max_tariff_savings(
 
     total_base_cost, _ = costs.calculate_cost(
             charge_dict,
-            {"electric": flex.baseload}, # convert kW to MW
+            {"electric": flex.baseload}, 
             resolution=resolution,
             desired_utility="electric",
             desired_charge_type=None,
