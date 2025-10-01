@@ -568,7 +568,7 @@ class flexloadMILP:
 
         return self.upflex_powercapacity, self.discharge_capacity
 
-    def solve(self, tee=False, print_results=False, max_iter=10, descent_stepsize=1, threads = 10, mipgap = 1e-2):
+    def solve(self, tee=False, print_results=False, max_iter=20, descent_stepsize=500, threads = 10, mipgap = 1e-2):
         """
         Solve the model for the flexible load using gurobi
 
@@ -633,7 +633,7 @@ class flexloadMILP:
         solver.options["threads"] = threads
         solver.options["MIPGap"] = mipgap
         solver.options["NumericFocus"]=1
-        solver.options["MIPFocus"]=1
+        solver.options["MIPFocus"]=2
 
         results = solver.solve(self.model, tee=tee)
 
@@ -674,6 +674,7 @@ class flexloadMILP:
             recursion_counter += 1
             print(
                 "The solution violated the bounds of flexible operation.\n"
+                f"Contload avg: {cont_load_avg:.4f}, min_contload: {self.model.min_contload.value:.4f}, max_contload: {self.model.max_contload.value:.4f}\n"
                 "Resolving the problem with increased bound penalties.\n"
                 f"Try: {recursion_counter+1}"
             )

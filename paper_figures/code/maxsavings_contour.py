@@ -12,7 +12,7 @@ from analysis.maxsavings import (
     max_tariff_savings, 
     get_start_end
 )
-GENERATE_DATA = False
+GENERATE_DATA = True
 # import color maps as json
 with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:
     colors = json.load(f)
@@ -54,8 +54,8 @@ def generate_data(region, month):
     tariff_data = gettariff(region, full_list=False)
 
     # solve max mef savings in parallel for a range of uptime and continuous flex
-    uptimes = np.arange(0, 25, 1) / 24  # 1 to 24 hours to percent in intervals
-    continuous_flex = np.arange(0, 1.01, 0.05)  # 0 to 100%
+    uptimes = np.arange(0, 25, 2) / 24  # 1 to 24 hours to percent in intervals
+    continuous_flex = np.arange(0, 1.01, 0.2)  # 0 to 100%
 
     non_tariff_baseload = np.ones_like(mef_data)  # 1MW flat baseline load
 
@@ -282,11 +282,11 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
 
 # define the region and month
 
-# regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
-# months = np.arange(1, 13)
+regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
+months = np.arange(1, 13)
 
-regions = ["CAISO"]
-months = [7]
+# regions = ["CAISO"]
+# months = [7]
 
 # power capacity, uptime
 overlay = True
@@ -303,6 +303,7 @@ figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 for region in regions:
     for month in months:
         if GENERATE_DATA:
+            print(f"Generating data for {region}, month {month}")
             # generate the data
             df = generate_data(region, month)
             datafile = os.path.join( figpath, "processed_data", "max_savings_contours", f"{region}_month{month}.csv")
