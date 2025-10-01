@@ -100,7 +100,7 @@ def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean",
         national_data = rec_df[rec_df['iso'].str.lower() == 'national']
         national_averages = {}
         # For AEF basis, only use voluntary RECs
-        rec_types_to_use = ['voluntary'] if emission_basis.lower() == "aef" else ['compliance', 'voluntary']
+        rec_types_to_use = ["compliance"]#, 'voluntary'] #if emission_basis.lower() == "aef" else ['compliance', 'voluntary']
         for rec_type in rec_types_to_use:
             type_data = national_data[national_data['type'] == rec_type]
             if len(type_data) > 0:
@@ -108,28 +108,28 @@ def _add_scc_and_rec(ax, regions, width, scc=True, rec=True, plot_scc_by="mean",
         
         for region in regions:
             region_lower = region.lower()
-            region_data = rec_df[rec_df['iso'].str.lower() == region_lower]
+        #     region_data = rec_df[rec_df['iso'].str.lower() == region_lower]
             
-            type_averages = {}
+        #     type_averages = {}
 
-            if len(region_data) > 0:
-                # Group by type (voluntary only for AEF) and calculate average REC prices for ISO
-                rec_types_to_check = ['voluntary'] if emission_basis.lower() == "aef" else ['compliance', 'voluntary', 'srec']
-                for rec_type in rec_types_to_check:
-                    type_data = region_data[region_data['type'] == rec_type]
-                    if len(type_data) > 0:
-                        type_averages[rec_type] = type_data['price'].mean()
+            # if len(region_data) > 0:
+            #     # Group by type (voluntary only for AEF) and calculate average REC prices for ISO
+            #     rec_types_to_check = ['voluntary'] if emission_basis.lower() == "aef" else ['compliance', 'voluntary', 'srec']
+            #     for rec_type in rec_types_to_check:
+            #         type_data = region_data[region_data['type'] == rec_type]
+            #         if len(type_data) > 0:
+            #             type_averages[rec_type] = type_data['price'].mean()
             
-            # For regions with specific data, only use national averages for missing types
-            if len(type_averages) > 0:
-                for rec_type in rec_types_to_use:
-                    if rec_type not in type_averages and rec_type in national_averages:
-                        type_averages[rec_type] = national_averages[rec_type]
-                iso_rec_prices_by_type[region] = type_averages
-            else:
-                # Use national average if no specific data for ISO
-                if national_averages:
-                    iso_rec_prices_by_type[region] = national_averages
+            # # For regions with specific data, only use national averages for missing types
+            # if len(type_averages) > 0:
+            #     for rec_type in rec_types_to_use:
+            #         if rec_type not in type_averages and rec_type in national_averages:
+            #             type_averages[rec_type] = national_averages[rec_type]
+            #     iso_rec_prices_by_type[region] = type_averages
+            # else:
+            #     # Use national average if no specific data for ISO
+            #     if national_averages:
+            iso_rec_prices_by_type[region] = national_averages
         
         # Plot REC values for each ISO
         for region_idx, region in enumerate(regions):
