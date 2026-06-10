@@ -19,7 +19,7 @@ python setup.py install
 To cite this work, use the "Cite this repository" feature available on the right side of this repository page. Please reference the appropriate references from the list below:
 
 For work related to calculating the upper bounds of benefits from flexible operation:
-> Rao, A. K., Chapin, F.T., Musabandesu, E., Sakthivelu, A., Tucker, C.I., Wettermark, D., Mauter, M.S. How much can we save? Upper bound cost and emissions benefits from commercial and industrial load flexibility. Manuscript in Progress.
+> Rao, A. K., Chapin, F.T., Musabandesu, E., Sakthivelu, A., Tucker, C.I., Wettermark, D., Mauter, M.S. How much can we save? Upper bound cost and emissions benefits from commercial and industrial load flexibility. _Under Review_. https://arxiv.org/abs/2511.14928
 
 
 For work related to characterizing energy flexibility performance:
