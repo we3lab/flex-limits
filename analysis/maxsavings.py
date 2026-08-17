@@ -48,8 +48,12 @@ def max_aef_savings(data, system_uptime, continuous_flex, baseload):
     return flex.model.pct_emissions_savings()
 
 
-def max_dam_savings(data, system_uptime, continuous_flex, baseload):
-    """Calculate the maximum savings for day-ahead market (DAM) as a percentage."""
+def max_dam_savings(data, system_uptime, continuous_flex, baseload, return_model=False):
+    """Calculate the maximum savings for day-ahead market (DAM) as a percentage.
+
+    If `return_model` is True, the solved `flexloadMILP` is returned alongside the savings
+    so that callers can inspect the optimal trajectory.
+    """
     flex = flexloadMILP(
         baseload=baseload,
         cost_signal=data,
@@ -65,6 +69,9 @@ def max_dam_savings(data, system_uptime, continuous_flex, baseload):
 
     flex.build()
     flex.solve()
+
+    if return_model:
+        return flex.model.pct_cost_savings(), flex
 
     return flex.model.pct_cost_savings()
 

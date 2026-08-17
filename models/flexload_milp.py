@@ -348,28 +348,61 @@ class flexloadMILP:
         model.onsteps = Var(bounds=(1, self.horizonlength))
         model.up = Var(model.t, within=Binary)
         model.down = Var(model.t, within=Binary)
-        contload_lb = (
-            (1 - self.flex_capacity)
-            * sum(self.baseload)
-            / (self.rte * self.horizonlength)
+        # Continuous load level meeting the facility's total demand within `min_onsteps`
+        # on-steps. Tracking the shape of the baseload is what makes the bound generalize to
+        # time-varying baseloads; it reduces to a scalar for a flat one.
+        contload_ref = (
+            np.asarray(self.baseload, dtype=float)
+            * self.horizonlength
+            / (self.rte * self.min_onsteps)
         )
+
         if self.uptime_equality:
-            contload_ub = (
-                (1 + self.flex_capacity)
-                * sum(self.baseload)
-                / (self.rte * self.min_onsteps)
-            )
+            # the load runs for exactly `min_onsteps` steps, so power balance fixes the
+            # average continuous load at the mean of `contload_ref` and the band is known a
+            # priori. The scalar bounds below are only the outer envelope of the per-timestep
+            # band, which is carried by `min_contload[t]` / `max_contload[t]`.
+            contload_lb_t = (1 - self.flex_capacity) * contload_ref
+            contload_ub_t = (1 + self.flex_capacity) * contload_ref
+            contload_lb = float(np.min(contload_lb_t))
+            contload_ub = float(np.max(contload_ub_t))
         else:
-            contload_ub = None
+            # uptime is endogenous, so the band is enforced heuristically in
+            # `solve_relaxedproblem` around the realized average. These bounds are only the
+            # constant outer relaxation of it: uptime >= min_onsteps means the realized
+            # average never exceeds `contload_ref`, so no band-feasible solution is cut off,
+            # while the lower bound must stay loose enough to admit a fully-on schedule.
+            # The upper bound must be finite: once the min penalty outgrows the max penalty,
+            # raising every contload[t] together improves the objective without limit, and
+            # the solver returns infeasible-or-unbounded instead of a solution.
+            contload_lb = (
+                (1 - self.flex_capacity)
+                * sum(self.baseload)
+                / (self.rte * self.horizonlength)
+            )
+            contload_ub = (1 + self.flex_capacity) * float(np.max(contload_ref))
 
         model.contload = Var(model.t, bounds=(contload_lb, contload_ub))
         model.flexload = Var(model.t, initialize=0, bounds=(0, None))
 
-        model.max_contload = Var(bounds=(0, None))
-        model.min_contload = Var(bounds=(0, None))
+        if self.uptime_equality:
+            # the band is known a priori, so fix it rather than penalizing towards it.
+            # Indexed over t so a time-varying baseload can carry a per-timestep band.
+            model.max_contload = Var(model.t, bounds=(0, None))
+            model.min_contload = Var(model.t, bounds=(0, None))
+            for t in model.t:
+                model.min_contload[t].fix(contload_lb_t[t])
+                model.max_contload[t].fix(contload_ub_t[t])
+        else:
+            # scalar on purpose: the heuristic penalizes the spread max_t contload[t] -
+            # min_t contload[t], and that is a coupling across timesteps. Indexed over t,
+            # `max_contload[t] >= contload[t]` collapses onto contload[t] index by index,
+            # the spread term vanishes, and the descent has nothing to squeeze.
+            model.max_contload = Var(bounds=(0, None))
+            model.min_contload = Var(bounds=(0, None))
 
-        model.max_contload_penalty = Param(initialize=self.tol, mutable=True)
-        model.min_contload_penalty = Param(initialize=self.tol, mutable=True)
+            model.max_contload_penalty = Param(initialize=self.tol, mutable=True)
+            model.min_contload_penalty = Param(initialize=self.tol, mutable=True)
 
         model.flex_cost_signal = Var(model.t, within=Reals, initialize=0)
         model.flex_emissions_signal = Var(model.t, within=Reals, initialize=0)
@@ -395,19 +428,26 @@ class flexloadMILP:
 
         @model.Constraint(model.t, doc="Continuous load maximum")
         def contload_max_rule(b, t):
+            # indexed and fixed under uptime equality, scalar epigraph otherwise
+            if self.uptime_equality:
+                return b.contload[t] <= b.max_contload[t]
             return b.contload[t] <= b.max_contload
 
         @model.Constraint(model.t, doc="Continuous load minimum")
         def contload_min_rule(b, t):
+            if self.uptime_equality:
+                return b.contload[t] >= b.min_contload[t]
             return b.contload[t] >= b.min_contload
 
-        @model.Expression(doc="Max continuous load penalty")
-        def max_contload_penalty_rule(b):
-            return b.max_contload * b.max_contload_penalty
+        if not self.uptime_equality:
 
-        @model.Expression(doc="Min continuous load penalty")
-        def min_contload_penalty_rule(b):
-            return - b.min_contload * b.min_contload_penalty
+            @model.Expression(doc="Max continuous load penalty")
+            def max_contload_penalty_rule(b):
+                return b.max_contload * b.max_contload_penalty
+
+            @model.Expression(doc="Min continuous load penalty")
+            def min_contload_penalty_rule(b):
+                return -b.min_contload * b.min_contload_penalty
 
         @model.Constraint(doc="Number of on-steps")
         def onsteps_rule(b):
@@ -639,13 +679,8 @@ class flexloadMILP:
 
         # check the continuous load
         flex_capacity = self.model.flex_capacity()
-        cont_load = np.array(
-            [
-                self.model.contload[i].value
-                for i in self.model.t
-                if self.model.status[i].value == 1
-            ]
-        )
+        on_steps = [i for i in self.model.t if self.model.status[i].value > 0.5]
+        cont_load = np.array([self.model.contload[i].value for i in on_steps])
         cont_load_avg = np.mean(cont_load)
         lower_bound = (1 - flex_capacity) * cont_load_avg
         upper_bound = (1 + flex_capacity) * cont_load_avg
@@ -656,13 +691,15 @@ class flexloadMILP:
         if lower_bound - self.model.min_contload.value > self.tol:
             resolve = 1
             self.model.min_contload_penalty.value = (
-                self.model.min_contload_penalty.value + descent_stepsize * (cont_load_avg - self.model.min_contload.value)
+                self.model.min_contload_penalty.value
+                + descent_stepsize * (cont_load_avg - self.model.min_contload.value)
             )
 
         if self.model.max_contload.value - upper_bound > self.tol:
             resolve = 1
             self.model.max_contload_penalty.value = (
-                self.model.max_contload_penalty.value + descent_stepsize * (self.model.max_contload.value - cont_load_avg)
+                self.model.max_contload_penalty.value
+                + descent_stepsize * (self.model.max_contload.value - cont_load_avg)
             )
 
         if resolve == 0:
@@ -678,17 +715,19 @@ class flexloadMILP:
                 f"Try: {recursion_counter+1}"
             )
             # if the solution is not feasible, increase the penalties and solve again
-            self.solve_relaxedproblem(
-                tee=tee, max_iter=max_iter, descent_stepsize=descent_stepsize, recursion_counter=recursion_counter
+            return self.solve_relaxedproblem(
+                tee=tee,
+                max_iter=max_iter,
+                descent_stepsize=descent_stepsize,
+                recursion_counter=recursion_counter,
+                threads=threads,
+                mipgap=mipgap,
             )
         else:
             # if the recursion limit is reached, raise an error
             raise ValueError(
                 "The solution could not be resolved within the maximum number of iterations."
             )
-            return
-        
-        return self.model, results
 
     def display_results(self):
         """

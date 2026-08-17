@@ -284,7 +284,7 @@ regions = ["CAISO"]
 months = [7]
 
 # power capacity, uptime
-overlay = True
+overlay = False
 overlay_points = np.array([
     [0.99, 0.04],
     [0.01, 0.25],

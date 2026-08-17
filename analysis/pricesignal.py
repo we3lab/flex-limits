@@ -1,5 +1,6 @@
 # imports
 import os
+import numpy as np
 import pandas as pd
 
 def getmef(
@@ -94,6 +95,46 @@ def getdam(
 
     # Return the data for the specified month
     return dam_data[dam_data["month"] == month]["USD_per_MWh"].values
+
+def synthetic_baseload(n=24, mean=1.0, amplitude=0.3, peak_hour=14, noise=0.03, seed=0):
+    """Generate a synthetic time-varying diurnal baseload.
+
+    A sinusoid that is low overnight and in the morning and peaks at `peak_hour`,
+    plus Gaussian noise. Values are clipped to stay strictly positive, as required by
+    the power balance and continuous load bounds of `models.flexload_milp.flexloadMILP`.
+
+    Parameters
+    ----------
+    n : int
+        Number of hourly timesteps to generate. Default is 24 (one day).
+
+    mean : float
+        The mean power consumption of the profile in MW. Default is 1.0.
+
+    amplitude : float
+        The peak-to-mean amplitude of the sinusoid as a fraction of `mean`. Default is 0.3.
+
+    peak_hour : float
+        The hour of the day at which the profile peaks. Default is 14 (2 pm).
+
+    noise : float
+        Standard deviation of the additive Gaussian noise as a fraction of `mean`.
+        Default is 0.03.
+
+    seed : int
+        Seed for the random number generator, so profiles are reproducible. Default is 0.
+
+    Returns
+    -------
+    numpy.array
+        Array of `n` baseload values in MW
+    """
+    rng = np.random.default_rng(seed)
+    hours = np.arange(n)
+    profile = mean * (1 + amplitude * np.cos(2 * np.pi * (hours - peak_hour) / 24))
+
+    return np.clip(profile + rng.normal(0.0, noise * mean, n), 1e-3, None)
+
 
 def gettariff(
     region, full_list=False, return_ids = False, basepath=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
