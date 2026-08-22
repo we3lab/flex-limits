@@ -608,7 +608,7 @@ class flexloadMILP:
 
         return self.upflex_powercapacity, self.discharge_capacity
 
-    def solve(self, tee=False, print_results=False, max_iter=10, descent_stepsize=1, threads = 10, mipgap = 1e-2):
+    def solve(self, tee=False, print_results=False, max_iter=10, descent_stepsize=1, threads = 10, mipgap = 1e-2, timelimit = None):
         """
         Solve the model for the flexible load using gurobi
 
@@ -622,6 +622,10 @@ class flexloadMILP:
             The maximum number of iterations to resolve the problem with heuristic bounds enforcement. Default is 10.
         descent_stepsize : float, optional - only for uptime_equality == False
             The step size for the descent in the heuristic bounds enforcement. Default is 1.
+        timelimit : float, optional
+            Wall-clock limit in seconds for each gurobi solve. A solve that hits the limit
+            raises a ValueError rather than returning the incumbent, so callers can skip the
+            case instead of recording a suboptimal point. Default is None (no limit).
         
         Returns
         -------
@@ -635,10 +639,10 @@ class flexloadMILP:
         self.t2 = time()
 
         if self.uptime_equality:
-            self.model, results = self.solve_baseproblem(tee=tee, threads = threads, mipgap = mipgap)
+            self.model, results = self.solve_baseproblem(tee=tee, threads = threads, mipgap = mipgap, timelimit = timelimit)
         else:
             print("Solving the relaxed problem with heuristic bounds enforcement.")
-            self.model, results = self.solve_relaxedproblem(tee=tee, max_iter=max_iter, descent_stepsize=descent_stepsize, threads = threads, mipgap = mipgap)
+            self.model, results = self.solve_relaxedproblem(tee=tee, max_iter=max_iter, descent_stepsize=descent_stepsize, threads = threads, mipgap = mipgap, timelimit = timelimit)
 
         self.t3 = time()
 
@@ -653,7 +657,7 @@ class flexloadMILP:
 
         return self.model, results
 
-    def solve_baseproblem(self, tee=False, threads = 10, mipgap = 0.01):
+    def solve_baseproblem(self, tee=False, threads = 10, mipgap = 0.01, timelimit = None):
         """
         Solve the model for the flexible load using gurobi
         """
@@ -662,10 +666,26 @@ class flexloadMILP:
         solver.options["MIPGap"] = mipgap 
         solver.options["NumericFocus"] = 1
         solver.options["MIPFocus"] = 1
+        if timelimit is not None:
+            solver.options["TimeLimit"] = timelimit
         results = solver.solve(self.model, tee=tee)
+        self._check_timelimit(results, timelimit)
         return self.model, results
 
-    def solve_relaxedproblem(self, max_iter, descent_stepsize, tee=False, recursion_counter=0, threads = 10, mipgap = 0.01):
+    def _check_timelimit(self, results, timelimit):
+        """
+        Raise if the solve stopped on the time limit. The incumbent at that point is only
+        gap-feasible, so treat the case as unsolved rather than recording it.
+        """
+        if (
+            timelimit is not None
+            and results.solver.termination_condition == TerminationCondition.maxTimeLimit
+        ):
+            raise ValueError(
+                f"The solve exceeded the time limit of {timelimit} s."
+            )
+
+    def solve_relaxedproblem(self, max_iter, descent_stepsize, tee=False, recursion_counter=0, threads = 10, mipgap = 0.01, timelimit = None):
         """
         Solve the model for the flexible load using gurobi with bound constraints on the contload relaxed
         """
@@ -674,8 +694,11 @@ class flexloadMILP:
         solver.options["MIPGap"] = mipgap
         solver.options["NumericFocus"]=1
         solver.options["MIPFocus"]=1
+        if timelimit is not None:
+            solver.options["TimeLimit"] = timelimit
 
         results = solver.solve(self.model, tee=tee)
+        self._check_timelimit(results, timelimit)
 
         # check the continuous load
         flex_capacity = self.model.flex_capacity()
@@ -722,6 +745,7 @@ class flexloadMILP:
                 recursion_counter=recursion_counter,
                 threads=threads,
                 mipgap=mipgap,
+                timelimit=timelimit,
             )
         else:
             # if the recursion limit is reached, raise an error
