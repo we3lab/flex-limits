@@ -3,6 +3,7 @@ import os, json
 import numpy as np
 import matplotlib.pyplot as plt
 from analysis.pricesignal import getmef, getdam
+from figpaths import figure_dir
 
 # load color scheme
 with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:
@@ -63,7 +64,7 @@ ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper left")
 figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 for fig_fmt in ["png", "pdf", "svg"]:
     plt.savefig(
-        os.path.join(figpath, f"figures/{fig_fmt}/hourly_pricesignal_{region}_month{month}.{fig_fmt}"),
+        os.path.join(figure_dir(figpath, fig_fmt, si=True), f"hourly_pricesignal_{region}_month{month}.{fig_fmt}"),
         dpi=400,
         bbox_inches="tight",
     )

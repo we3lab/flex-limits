@@ -8,7 +8,8 @@ from analysis import pricesignal as ps
 from analysis import emissionscost as ec
 from joblib import Parallel, delayed
 
-from paper_figures.code.shadowcostwholesale_boxplot import _add_scc_and_rec
+from analysis.overlay_costs import _add_scc_and_rec
+from figpaths import figure_dir
 
 # VB parameter settings 
 systems = {
@@ -42,20 +43,45 @@ sys_colors=colors["examplesys_colors"]
 # grid parameter settings 
 months = [1,7]
 regions = ["SPP", "CAISO", "ERCOT",  "PJM", "MISO", "NYISO", "ISONE"]
-emissions_type = "mef"
+emissions_type = os.environ.get("EMISSIONS_TYPE", "aef")  # "mef" or "aef"
 
 # data/figure gen settings 
-generate_data = False
-threads = 20 
+generate_data = os.environ.get("GENERATE_DATA", "0") == "1"
+threads = 40
+# Wall-clock cap per gurobi solve. A handful of tariffs otherwise sit in a single MILP for
+# hours; those are skipped instead of holding up the whole sweep.
+timelimit = float(os.environ.get("SOLVE_TIMELIMIT", 60))
 
 paperfigs_basepath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+datadir = os.path.join(paperfigs_basepath, "processed_data", f"shadowcost_tariff_{emissions_type}")
+partsdir = os.path.join(datadir, "parts")
+os.makedirs(partsdir, exist_ok=True)
+
+# columns of the per-tariff records, in the order they are written to disk
+row_cols = [
+    "region", "system", "month", "tariff_id",
+    "shadow_price_usd_ton",
+    "cost_optimal_cost_usd",
+    "emissions_optimal_cost_usd",
+    "cost_optimal_emissions_ton",
+    "emissions_optimal_emissions_ton",
+]
 
 def generate_data_single(system_name, params, region, month):
     # create a new dataframe for all tariffs in the specified region 
     region_tariffs, region_tariff_ids = ps.gettariff(region=region, full_list=True, return_ids=True)
 
-    results_dicts = []
+    # each (region, system, month) task appends to its own part file as it goes, so a run
+    # that is interrupted keeps its results and resumes where it left off
+    partpath = os.path.join(partsdir, f"{region}_{system_name}_month{month}.csv")
+    done_ids = set()
+    if os.path.exists(partpath):
+        done = pd.read_csv(partpath, usecols=["tariff_id"], dtype={"tariff_id": str})
+        done_ids = set(done["tariff_id"])
+
     for n, tariff in enumerate(region_tariffs):
+        if str(region_tariff_ids[n]) in done_ids:
+            continue
         try: 
             # calculate shadow cost for the given case (system, tariff, month)
             tmp = ec.shadowcost_tariff(region=region,
@@ -64,12 +90,21 @@ def generate_data_single(system_name, params, region, month):
                                                 system_uptime=params["system_uptime"],
                                                 continuous_flexibility=params["continuous_flexibility"], 
                                                 uptime_equality=params["uptime_equality"], 
-                                                threads = 4,
+                                                threads = 1,
                                                 emissions_type=emissions_type,
+                                                timelimit=timelimit,
                                                 )
 
-        except ZeroDivisionError: # skipping over tariffs with zero division error in pct_savings calculation - todo: debug this error 
-
+        # skip tariffs that fail: ZeroDivisionError in the pct_savings calculation, a
+        # ValueError when the relaxed-problem bound heuristic (uptime_equality=False) does
+        # not converge or a solve hits the time limit, or any solver-side failure. Recorded
+        # as NaN and dropped before plotting.
+        except Exception as e:
+            print(
+                f"SKIP {region} {system_name} month{month} tariff={region_tariff_ids[n]}: "
+                f"{type(e).__name__}: {e}",
+                flush=True,
+            )
             tmp = {
                 "shadow_price_usd_ton": np.nan,
                 "cost_optimal_cost_usd": np.nan,
@@ -82,24 +117,43 @@ def generate_data_single(system_name, params, region, month):
         tmp["system"] = system_name 
         tmp["month"] = month 
         tmp["tariff_id"] = region_tariff_ids[n]
-        results_dicts.append(tmp)              
-    sys_results = pd.DataFrame(results_dicts)
-    # rearrange the columns
-    cols_first = ["region","system","month", "tariff_id"]
-    cols = cols_first + [col for col in sys_results.columns if col not in cols_first]  
-    sys_results = sys_results[cols]  
-    return sys_results
+
+        # append this tariff to the part file immediately
+        write_header = not os.path.exists(partpath)
+        pd.DataFrame([tmp])[row_cols].to_csv(
+            partpath, mode="a", header=write_header, index=False
+        )
+
+    return partpath
 
 if generate_data == True:
+    # every (region, system, month) is independent, so fan them all out together. Per
+    # region there are only 8 such tasks, which would leave most of the machine idle.
+    keys, tasks = [], []
     for region in regions:
-        tasks = []                
-        for system_name, params in systems.items():        
+        for system_name, params in systems.items():
             for month in months:
                 # create a task for each system, region, and month using delayed
+                keys.append(region)
                 tasks.append(delayed(generate_data_single)(system_name, params, region, month))
-    
-        sys_results_df = pd.concat(Parallel(n_jobs=threads, backend="loky")(tasks))
-        sys_results_df.to_csv(os.path.join(paperfigs_basepath, "processed_data", f"shadowcost_tariff_{emissions_type}", f"{region}.csv"), index=False)
+
+    Parallel(n_jobs=threads, backend="loky")(tasks)
+
+    # assemble the region files from whatever part files exist
+    for region in regions:
+        # assemble in systems-dict order rather than alphabetically, so the row order on
+        # disk matches the order the violins are drawn in
+        parts = [
+            os.path.join(partsdir, f"{region}_{system_name}_month{month}.csv")
+            for system_name in systems
+            for month in months
+        ]
+        parts = [p for p in parts if os.path.exists(p)]
+        sys_results_df = pd.concat(
+            [pd.read_csv(f, dtype={"tariff_id": str}) for f in parts], ignore_index=True
+        )[row_cols]
+        sys_results_df.to_csv(os.path.join(datadir, f"{region}.csv"), index=False)
+        print(f"{region}: {len(sys_results_df)} rows from {len(parts)} parts", flush=True)
 
 
 # read in results
@@ -108,7 +162,7 @@ sys_list = []
 region_list = []
 for region_idx, region in enumerate(regions):
     # Load the results for the current region and system 
-    sys_results_df = pd.read_csv(os.path.join(paperfigs_basepath, "processed_data", f"shadowcost_tariff_{emissions_type}", f"{region}.csv"))
+    sys_results_df = pd.read_csv(os.path.join(datadir, f"{region}.csv"))
     results_list.append(sys_results_df)
 
 # create combined data frame                             
@@ -151,7 +205,8 @@ _add_scc_and_rec(ax, regions, width=0.15, scc=True, rec=True, plot_scc_by="mean"
 
 # violin plots 
 p1 = sns.violinplot(data=results_df, x = "region", y ="shadow_price_usd_ton", hue = "system", 
-                    gap = 0.4, inner = "point", density_norm="width", 
+                    hue_order=list(systems.keys()),
+                    gap = 0.4, inner = "point", density_norm="width",
                     inner_kws= {"s": 0.1, "alpha":0.5,}, alpha = 1.0, 
                    palette=color_map, log_scale=True, split=True,  ax=ax, cut=0, common_norm=True)
 
@@ -160,8 +215,10 @@ ax.set(
     xticks=np.arange(len(regions)),
     xticklabels=regions,
     xlim=(-0.5, len(regions) - 0.5),
-    ylim=(1e-2, 1e5),
-    yticks=np.logspace(-2, 5, num=8),
+    ylim=(1e-2, 1e8),
+    # matched to panel a (shadowcostwholesale_boxplot) so the stacked axes align
+    yticks=np.logspace(-2, 8, num=11),
+    yticklabels=[f"{10.0**i:,.2f}" if i < 0 else f"{int(10**i):,}" for i in range(-2, 9)],
     yscale="log"
 )
 ax.set_ylabel("Cost of Abatement (USD/ton CO$_2$)",labelpad=-1)
@@ -178,9 +235,11 @@ system_titles = ["Maximum Savings", "25% Uptime, 0% Power Capacity", "50% Uptime
 ax.get_legend().remove()
 
 
-# save figure 
-for figure_type in ["png","svg", "pdf"]: 
-    fig.savefig(os.path.join(paperfigs_basepath, "figures", figure_type, f"shadowcost_tariff_violinplot_{emissions_type}." + figure_type),
+# save figure. AEF is the manuscript panel (figure 5b); the MEF version is supporting
+# information, so it is routed to figures/SI/ rather than sitting alongside the paper figures
+si = emissions_type != "aef"
+for figure_type in ["png","svg", "pdf"]:
+    fig.savefig(os.path.join(figure_dir(paperfigs_basepath, figure_type, si=si), f"shadowcost_tariff_violinplot_{emissions_type}." + figure_type),
         dpi=300,
         bbox_inches="tight",
     )

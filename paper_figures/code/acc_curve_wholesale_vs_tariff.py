@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns 
 import analysis.maxsavings as ms 
 from analysis.pricesignal import getmef, getaef, getdam, gettariff
-from analysis.acc_curve import acc_curve
+from analysis.acc_curve import acc_curve, get_mac
 from analysis.overlay_costs import _add_scc_and_rec
 from eeco import costs
 from eeco.units import u
@@ -16,22 +16,32 @@ with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f
     colors = json.load(f)
 sys_colors=colors["examplesys_colors"]
 
-def get_mac(df):
-    # get cost optimal point
-    cost_optimal = df.loc[df['alignment_fraction'] == 0]
-    df = df[df['alignment_fraction'] >0]
+def prepare_mac_curve(emissions_pct, shadow_cost, label):
+    """
+    Order a MAC curve by emissions savings so the connecting line does not back-track, and
+    blank out any point a log axis cannot represent.
 
-    # for all other points, calc the shadow cost relative to the cost optimal point
-    shadow_cost = []
-    emissions = []
-    for index, row in df.iterrows():
-        delta_cost = row['electricity_cost'] - cost_optimal['electricity_cost'].values[0]
-        delta_emissions = cost_optimal['emissions'].values[0] - row['emissions']
-        sc = max([delta_cost / (delta_emissions + 1e-12), 1e-2])
-        shadow_cost.append(sc)
-        emissions.append(row['emissions'])
+    A zero or negative abatement cost is a real result - under a tariff a wide band of
+    schedules costs exactly the same, so emissions can be abated for nothing until the
+    schedule leaves that band - but it has no position on a log axis. Blanking it to NaN
+    breaks the line there instead of drawing a plunge towards an off-axis value.
+    """
+    emissions_pct = np.asarray(emissions_pct, dtype=float)
+    shadow_cost = np.asarray(shadow_cost, dtype=float)
 
-    return shadow_cost, emissions
+    order = np.argsort(emissions_pct)
+    emissions_pct, shadow_cost = emissions_pct[order], shadow_cost[order]
+
+    unplottable = shadow_cost <= 0
+    if unplottable.any():
+        print(
+            f"{label}: {unplottable.sum()} of {len(shadow_cost)} points have an abatement "
+            f"cost <= 0 and cannot be shown on a log axis "
+            f"(at {np.round(emissions_pct[unplottable], 2)} % emissions savings)"
+        )
+        shadow_cost = np.where(unplottable, np.nan, shadow_cost)
+
+    return emissions_pct, shadow_cost
 
 # VB parameter settings 
 systems = {
@@ -72,8 +82,8 @@ month = 7
 year = 2023
 
 # data/figure gen settings 
-generate_data = False
-threads = 20
+generate_data = True
+threads = 40
 
 basepath =  os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -228,7 +238,7 @@ fig, ax = plt.subplots(2, 2, figsize=(180 / 25.4, 160 / 25.4), layout="tight")
 
 # wholesale plot 
 sns.lineplot(pareto_wholesale_df, y = "electricity_cost_pct", x = "emissions_pct", hue = "system", 
-                palette=color_map, legend=False, ax=ax[0,0])
+                palette=color_map, legend=False, ax=ax[0,0], estimator=None, errorbar=None)
 for sys in systems.keys(): 
     sys_df = pareto_wholesale_df[pareto_wholesale_df["system"] == sys]
     ax[0,0].scatter(sys_df["emissions_pct"], sys_df["electricity_cost_pct"], 
@@ -244,7 +254,7 @@ ax[0,0].scatter(0, 0, color="black", marker="o", s=40, label="Baseline Wholesale
 
 # tariff plot 
 l1 = sns.lineplot(pareto_tariff_df, y = "electricity_cost_pct", x = "emissions_pct", hue = "system", 
-                palette=color_map, ax=ax[0,1])
+                palette=color_map, ax=ax[0,1], estimator=None, errorbar=None)
 
 for sys in systems.keys():
     sys_df = pareto_tariff_df[pareto_tariff_df["system"] == sys]
@@ -270,15 +280,15 @@ ylabel = "Electricity Cost Savings (%)"
 ax[0,0].set_ylabel(ylabel, labelpad=8) 
 ax[0,1].set_ylabel(ylabel, labelpad=1)
 ax[0,0].set_ylim(0, 40)
-ax[0,1].set_ylim(-150, 40)
+ax[0,1].set_ylim(-120, 40)
 
 # set xticks
 ax[0,0].set_xticks(np.arange(0., 31, 5))
-ax[0,1].set_xticks(np.arange(-10, 21, 5))
+ax[0,1].set_xticks(np.arange(-10, 26, 5))
 
 # # set yticks
 ax[0,0].set_yticks(np.arange(0., 41, 5))
-ax[0,1].set_yticks(np.arange(-150, 41, 20))
+ax[0,1].set_yticks(np.arange(-120, 41, 20))
 
 handles, _ = l1.get_legend_handles_labels()
 ax[0,1].legend().remove()
@@ -289,7 +299,8 @@ for sys in systems.keys():
     system_name = sys
     pareto_wholesale = pd.read_csv(basepath + "/paper_figures/processed_data/pareto_wholesale/pareto_front_wholesale_{}.csv".format(system_name))
     shadow_cost, emissions = get_mac(pareto_wholesale)
-    emissions_pct = 100*(baseline_mef/num_days - emissions) / (baseline_mef/num_days)
+    emissions_pct = 100*(baseline_mef/num_days - np.array(emissions)) / (baseline_mef/num_days)
+    emissions_pct, shadow_cost = prepare_mac_curve(emissions_pct, shadow_cost, f"wholesale {system_name}")
     ax[1,0].plot(emissions_pct, 
                 shadow_cost, 
                 label=system_name, 
@@ -307,7 +318,8 @@ for sys in systems.keys():
 
     pareto_tariff = pd.read_csv(basepath + "/paper_figures/processed_data/pareto_tariff/pareto_front_tariff_{}.csv".format(system_name))
     shadow_cost, emissions = get_mac(pareto_tariff)
-    emissions_pct = 100*(baseline_aef - emissions) / baseline_aef
+    emissions_pct = 100*(baseline_aef - np.array(emissions)) / baseline_aef
+    emissions_pct, shadow_cost = prepare_mac_curve(emissions_pct, shadow_cost, f"tariff {system_name}")
     ax[1,1].plot(emissions_pct, shadow_cost, label=system_name, color=color_map[system_name])
     ax[1,1].scatter(emissions_pct,
                 shadow_cost, 

@@ -4,15 +4,18 @@ import datetime
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from joblib import Parallel, delayed
 from analysis.pricesignal import getmef, getdam, getaef, gettariff
 from analysis.maxsavings import (
-    max_mef_savings, 
-    max_aef_savings, 
-    max_dam_savings, 
-    max_tariff_savings, 
+    max_mef_savings,
+    max_aef_savings,
+    max_dam_savings,
+    max_tariff_savings,
+    max_savings_point,
     get_start_end
 )
-GENERATE_DATA = False
+GENERATE_DATA = True
+N_JOBS = 40
 # import color maps as json
 with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:
     colors = json.load(f)
@@ -40,81 +43,56 @@ plt.rcParams.update(
     }
 )
 
-def generate_data(region, month):
+UPTIMES = np.arange(0, 25, 1) / 24  # 1 to 24 hours to percent in intervals
+CONTINUOUS_FLEX = np.arange(0, 1.01, 0.1)  # 0 to 100%
+
+
+def generate_data(region, months):
     """
-    Generate the maximum savings contours for a given region and month.
+    Generate the maximum savings contours for a region across `months`.
+
+    Every (month, uptime, power capacity) point goes into a single fan-out. Solving one
+    month at a time instead leaves most workers idle through the tail of each month,
+    where a handful of hard month-long tariff MILPs are still running.
     """
-    # get the data
-    mef_data = getmef(region, month)
-    aef_data = getaef(region, month)
-    dam_data = getdam(region, month)
-    tariff_data = gettariff(region, full_list=False)
+    # workers import `max_savings_point` and load their own signals, so each task carries
+    # only four scalars. Gurobi is held to one thread per worker: the parallelism is
+    # across grid points, and letting each worker grab the machine oversubscribes it.
+    # batch_size=1 because runtimes are wildly uneven: a handful of month-long tariff
+    # MILPs take minutes while most points take seconds, and the default batching would
+    # park a slow point at the back of a worker's queue behind other work.
+    grid = [(m, u, f) for m in months for u in UPTIMES for f in CONTINUOUS_FLEX]
+    results = Parallel(n_jobs=N_JOBS, backend="loky", batch_size=1)(
+        delayed(max_savings_point)(region, m, u, f, 1) for m, u, f in grid
+    )
 
-    # solve max mef savings in parallel for a range of uptime and continuous flex
-    uptimes = np.arange(0, 25, 1) / 24  # 1 to 24 hours to percent in intervals
-    continuous_flex = np.arange(0, 1.01, 0.1)  # 0 to 100%
-
-    non_tariff_baseload = np.ones_like(mef_data)  # 1MW flat baseline load
-
-    # tariffs require a full month of data to properly incorporate monthly demand charges
-    startdate_dt, enddate_dt = get_start_end(month)
-    month_length = int((enddate_dt - startdate_dt) / np.timedelta64(1, "h"))
-    tariff_baseload = np.ones(month_length)
-
-    # create a container for results
-    max_mef_savings_results = np.zeros((len(uptimes), len(continuous_flex)))
-    max_aef_savings_results = np.zeros((len(uptimes), len(continuous_flex)))
-    max_dam_savings_results = np.zeros((len(uptimes), len(continuous_flex)))
-    max_tariff_savings_results = np.zeros((len(uptimes), len(continuous_flex)))
-
-    # calculate max mef savings
-    for i, uptime in enumerate(uptimes):
-        for j, flex in enumerate(continuous_flex):
-            max_mef_savings_results[i, j] = max_mef_savings(
-                mef_data, uptime, flex, non_tariff_baseload
-            )
-            max_aef_savings_results[i, j] = max_aef_savings(
-                aef_data, uptime, flex, non_tariff_baseload
-            )
-            max_dam_savings_results[i, j] = max_dam_savings(
-                dam_data, uptime, flex, non_tariff_baseload
-            )
-            max_tariff_savings_results[i, j] = max_tariff_savings(
-                tariff_data, 
-                uptime, 
-                flex, 
-                tariff_baseload, 
-                uptime_equality=True, 
-                startdate_dt=startdate_dt, 
-                enddate_dt=enddate_dt
-            )
-    # flatten into a dataframe
-    mef = max_mef_savings_results.flatten()
-    aef = max_aef_savings_results.flatten()
-    dam = max_dam_savings_results.flatten()
-    tariff = max_tariff_savings_results.flatten()
-    continuous_flex_flat = np.tile(continuous_flex, len(uptimes))
-    uptimes_flat = np.repeat(uptimes, len(continuous_flex))
-
-    # create a dataframe
     figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    per_month = {}
+    stride = len(UPTIMES) * len(CONTINUOUS_FLEX)
 
-    df = pd.DataFrame(
-        {
-            "continuous_flex_pct": continuous_flex_flat * 100,
-            "system_uptime_pct": uptimes_flat * 100,
-            "max_mef_savings": mef,
-            "max_aef_savings": aef,
-            "max_dam_savings": dam,
-            "max_tariff_savings": tariff,
-        }
-    )
-    # save the dataframe to a csv file
-    df.to_csv(
-        os.path.join(figpath, "processed_data", "max_savings_contours", f"{region}_month{month}.csv"),
-        index=False,
-    )
-    return df
+    for i, month in enumerate(months):
+        # row-major over uptimes, matching the grid order above
+        mef, aef, dam, tariff = (
+            np.array(x) for x in zip(*results[i * stride:(i + 1) * stride])
+        )
+        df = pd.DataFrame(
+            {
+                "continuous_flex_pct": np.tile(CONTINUOUS_FLEX, len(UPTIMES)) * 100,
+                "system_uptime_pct": np.repeat(UPTIMES, len(CONTINUOUS_FLEX)) * 100,
+                "max_mef_savings": mef,
+                "max_aef_savings": aef,
+                "max_dam_savings": dam,
+                "max_tariff_savings": tariff,
+            }
+        )
+        # save the dataframe to a csv file
+        df.to_csv(
+            os.path.join(figpath, "processed_data", "max_savings_contours", f"{region}_month{month}.csv"),
+            index=False,
+        )
+        per_month[month] = df
+
+    return per_month
 
 def generate_figure(df, region, month, overlay_points=[], overlay=True, save=False):
     """
@@ -277,14 +255,15 @@ def generate_figure(df, region, month, overlay_points=[], overlay=True, save=Fal
 
 # define the region and month
 
-# regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
-# months = np.arange(1, 13)
-
-regions = ["CAISO"]
-months = [7]
+ALL_REGIONS = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
+# REGIONS/MONTHS let a long sweep be resumed a region or month at a time without editing
+# this file. Both default to the full grid; the manuscript figure is CAISO month 7, so
+# regenerating just that panel is REGIONS=CAISO MONTHS=7
+regions = os.environ.get("REGIONS", ",".join(ALL_REGIONS)).split(",")
+months = [int(m) for m in os.environ.get("MONTHS", ",".join(str(m) for m in range(1, 13))).split(",")]
 
 # power capacity, uptime
-overlay = False
+overlay = True
 overlay_points = np.array([
     [0.99, 0.04],
     [0.01, 0.25],
@@ -294,19 +273,17 @@ overlay_points = np.array([
 
 figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# to run the analysis 
+# to run the analysis
 for region in regions:
-    for month in months:
-        if GENERATE_DATA:
-            # generate the data
-            df = generate_data(region, month)
-            datafile = os.path.join( figpath, "processed_data", "max_savings_contours", f"{region}_month{month}.csv")
-            df.to_csv(datafile)
+    if GENERATE_DATA:
+        # solve every month of this region in one fan-out
+        generate_data(region, list(months))
+        print(f"{region}: data written for months {list(months)}", flush=True)
 
-        else:
-            # read the data from the csv file
-            datafile = os.path.join( figpath, "processed_data", "max_savings_contours", f"{region}_month{month}.csv")
-            df = pd.read_csv(datafile)
+    for month in months:
+        # read the data from the csv file
+        datafile = os.path.join( figpath, "processed_data", "max_savings_contours", f"{region}_month{month}.csv")
+        df = pd.read_csv(datafile)
 
         # generate the figure
         generate_figure(

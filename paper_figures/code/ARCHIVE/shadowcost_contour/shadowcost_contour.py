@@ -8,6 +8,7 @@ from matplotlib.colors import LogNorm
 import os, json
 
 GENERATE_DATA = False
+N_JOBS = 40
 
 # import color maps as json
 with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:
@@ -46,9 +47,14 @@ def run_case(uptime, flex, region="CAISO", month=7, abatement_frac=1.0, emission
                             abatement_frac=abatement_frac,
                             baseload=None,
                             emissions_type=emissions_type,
-                            costing_type=costing_type
+                            costing_type=costing_type,
+                            threads=1,
                 )
-        except:
+        except Exception as err:
+            # points that cannot reach the abatement target are genuinely undefined, but
+            # report them rather than silently filling the whole grid with NaN
+            print(f"  {region} month{month} uptime={uptime:.3f} flex={flex:.1f}: "
+                  f"{type(err).__name__}: {err}")
             cost = np.nan
         df = pd.DataFrame({
             "system_uptime": [uptime],
@@ -58,14 +64,24 @@ def run_case(uptime, flex, region="CAISO", month=7, abatement_frac=1.0, emission
         return df
 
 
-regions = ["CAISO"]
-months = [7]  # representative months
-# regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
-# months = np.arange(1, 13)
+regions = ["CAISO", "ERCOT", "ISONE", "MISO", "NYISO", "PJM", "SPP"]
+months = np.arange(1, 13)
 
 emissions_type = "mef"  # "mef" or "aef"
 costing_type = "dam"    # "dam" or "tariff"
-abatement_frac = 0.5  # fraction of max abatement to achieve
+abatement_frac = float(os.environ.get("ABATEMENT_FRAC", 0.5))  # fraction of max abatement
+
+# full abatement predates the `abatement_frac` sweep, so it is stored loose in
+# processed_data/ under the original name rather than in an `_abatement<frac>` subfolder
+suffix = "" if abatement_frac == 1.0 else f"_abatement{abatement_frac}"
+basepath = os.path.dirname(os.path.dirname(__file__))
+
+
+def data_path(region, month):
+    stem = f"shadowcost_{costing_type}_{emissions_type}"
+    if abatement_frac == 1.0:
+        return os.path.join(basepath, "processed_data", f"{stem}_{region}_month{month}.csv")
+    return os.path.join(basepath, "processed_data", f"{stem}{suffix}", f"shadow_cost_{region}_month{month}.csv")
 
 for region in regions:
     for month in months:
@@ -77,14 +93,14 @@ for region in regions:
                 for j, flex in enumerate(continuous_flex):
                     tasks.append(delayed(run_case)(uptime, flex, region=region, month=month, abatement_frac=abatement_frac, emissions_type=emissions_type, costing_type=costing_type))
             
-            df = pd.concat(Parallel(n_jobs=20, backend="loky")(tasks)).reset_index(drop=True)
-            savepath = os.path.join(os.path.dirname(os.path.dirname(__file__)), f"processed_data/shadowcost_{costing_type}_{emissions_type}_abatement{abatement_frac}/shadow_cost_{region}_month{month}.csv")
+            df = pd.concat(Parallel(n_jobs=N_JOBS, backend="loky")(tasks)).reset_index(drop=True)
+            savepath = data_path(region, month)
             os.makedirs(os.path.dirname(savepath), exist_ok=True)
             df.to_csv(savepath, index=False)
+            print(f"{region} month{month}: wrote {savepath}", flush=True)
 
-        # read data 
-        read_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), f"processed_data/shadowcost_{costing_type}_{emissions_type}_abatement{abatement_frac}/shadow_cost_{region}_month{month}.csv")
-        df = pd.read_csv(read_path)
+        # read data
+        df = pd.read_csv(data_path(region, month))
         df = df.replace([np.inf, -np.inf], np.nan).dropna()
         # df = df[df["shadow_price_usd_ton"] > -1e-2]  # remove negatives
         df.loc[df["shadow_price_usd_ton"] < -1e-2, "shadow_price_usd_ton"] = np.nan 
@@ -115,7 +131,7 @@ for region in regions:
 
         # save figure to folder
         for fmt in ['png', 'svg', 'pdf']:
-            savepath = os.path.join(os.path.dirname(os.path.dirname(__file__)), f"figures/{fmt}/shadowcost_contour_{emissions_type}_{costing_type}_abatement{abatement_frac}/shadowcost_contour_{region}_month{month}.{fmt}")
+            savepath = os.path.join(basepath, f"figures/{fmt}/shadowcost_contour_{emissions_type}_{costing_type}{suffix}/shadowcost_contour_{region}_month{month}.{fmt}")
             os.makedirs(os.path.dirname(savepath), exist_ok=True)
             plt.savefig(savepath, dpi=300, bbox_inches='tight')
 

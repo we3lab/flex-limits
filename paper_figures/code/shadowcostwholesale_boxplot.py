@@ -7,6 +7,7 @@ from analysis.overlay_costs import _add_scc_and_rec
 from analysis import pricesignal as ps
 from analysis import emissionscost as ec
 from analysis import maxsavings as ms
+from figpaths import figure_dir
 
 # define plotting defaults
 plt.rcParams.update(
@@ -57,7 +58,7 @@ systems = {
     },
 }
 
-emissions_type="mef"
+emissions_type = os.environ.get("EMISSIONS_TYPE", "mef")  # "mef" or "aef"
 
 paperfigs_basepath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -166,9 +167,10 @@ ax.set(
     xticklabels=regions,
     xlim=(-0.5, len(regions) - 0.5),
     ylabel="Cost of Abatement (USD/ton CO$_2$)",
-    ylim=(1e-2, 1e5),
-    yticks=np.logspace(-2, 5, num=8),  # Logarithmic scale for y-axis
-    yticklabels=[f"{int(10**i):,}" for i in range(-2, 6)],
+    ylim=(1e-2, 1e8),
+    yticks=np.logspace(-2, 8, num=11),  # Logarithmic scale for y-axis
+    # int(10**i) collapses both 1e-2 and 1e-1 to "0", so label the sub-unit decades as decimals
+    yticklabels=[f"{10.0**i:,.2f}" if i < 0 else f"{int(10**i):,}" for i in range(-2, 9)],
     yscale="log"
 )
 ax.set_ylabel("Cost of Abatement (USD/ton CO$_2$)",labelpad=-1)
@@ -293,13 +295,13 @@ _add_scc_and_rec(
     ax, regions=regions, width=width, scc=True, rec=True, plot_scc_by="mean", emission_basis=emissions_type
 )
 
-fig.savefig(os.path.join(paperfigs_basepath, "figures/png", f"shadowcost_wholesale_boxplot_{emissions_type}.png"),
-    dpi=300,
-    bbox_inches="tight",
-)
-
-fig.savefig(
-    os.path.join(paperfigs_basepath, "figures/pdf", f"shadowcost_wholesale_boxplot_{emissions_type}.pdf"),
-    dpi=300,
-    bbox_inches="tight",
-)
+# svg included so this panel matches shadowcosttariff_violinplot, the other half of the figure.
+# MEF is the manuscript panel (figure 5a); the AEF version is supporting information
+si = emissions_type != "mef"
+for figure_type in ["png", "svg", "pdf"]:
+    fig.savefig(
+        os.path.join(figure_dir(paperfigs_basepath, figure_type, si=si),
+                     f"shadowcost_wholesale_boxplot_{emissions_type}.{figure_type}"),
+        dpi=300,
+        bbox_inches="tight",
+    )

@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from analysis.pricesignal import getdam, synthetic_baseload
 from analysis.maxsavings import max_dam_savings
 from models.flexload_milp import idxparam_value
+from figpaths import figure_dir
 
 # load color scheme
 with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f:
@@ -35,7 +36,7 @@ plt.rcParams.update(
 
 region = "CAISO"
 month = 7
-uptime = 0.75
+uptime = 1.0
 power_capacity = 0.25
 
 # time-varying baseload: low overnight, peaking at 2 pm
@@ -124,8 +125,8 @@ figpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 for fig_fmt in ["png", "pdf", "svg"]:
     plt.savefig(
         os.path.join(
-            figpath,
-            f"figures/{fig_fmt}/timevarying_baseload_example_{region}_month{month}.{fig_fmt}",
+            figure_dir(figpath, fig_fmt, si=True),
+            f"timevarying_baseload_example_{region}_month{month}.{fig_fmt}",
         ),
         dpi=400,
         bbox_inches="tight",

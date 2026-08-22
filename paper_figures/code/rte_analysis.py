@@ -5,6 +5,7 @@ import os
 import matplotlib.pyplot as plt
 from joblib import Parallel, delayed
 from analysis.rte_analysis import savings_rte
+from figpaths import figure_dir
 
 # %%
 # define plotting defaults
@@ -28,8 +29,9 @@ plt.rcParams.update(
 )
 
 # %%
-region="SPP"
-month=1
+# REGION/MONTH let both published panels be produced without editing this file
+region = os.environ.get("REGION", "SPP")
+month = int(os.environ.get("MONTH", 1))
 def solve_savings_constant_uptime_dam(power_capacity, rte):
     savings= savings_rte(uptime=0.8,
                        power_capacity=power_capacity,
@@ -79,25 +81,25 @@ tasks = []
 for rte in np.linspace(0.6, 1.0, 20):
     for power_capacity in np.linspace(0.1, 1.0, 20):
         tasks.append((power_capacity, rte))
-results_constant_uptime_dam = pd.concat(Parallel(n_jobs=20)(delayed(solve_savings_constant_uptime_dam)(power_capacity, rte) for power_capacity, rte in tasks), ignore_index=True)
+results_constant_uptime_dam = pd.concat(Parallel(n_jobs=4)(delayed(solve_savings_constant_uptime_dam)(power_capacity, rte) for power_capacity, rte in tasks), ignore_index=True)
 
 tasks = []
 for rte in np.linspace(0.6, 1.0, 20):
     for uptime in np.linspace(0.1, 1.0, 20):
         tasks.append((uptime, rte))
-results_constant_power_dam = pd.concat(Parallel(n_jobs=20)(delayed(solve_savings_constant_power_dam)(uptime, rte) for uptime, rte in tasks), ignore_index=True)
+results_constant_power_dam = pd.concat(Parallel(n_jobs=4)(delayed(solve_savings_constant_power_dam)(uptime, rte) for uptime, rte in tasks), ignore_index=True)
 
 tasks = []
 for rte in np.linspace(0.6, 1.0, 20):
     for uptime in np.linspace(0.1, 1.0, 20):
         tasks.append((uptime, rte))
-results_constant_power_mef = pd.concat(Parallel(n_jobs=20)(delayed(solve_savings_constant_power_mef)(uptime, rte) for uptime, rte in tasks), ignore_index=True)
+results_constant_power_mef = pd.concat(Parallel(n_jobs=4)(delayed(solve_savings_constant_power_mef)(uptime, rte) for uptime, rte in tasks), ignore_index=True)
 
 tasks = []
 for rte in np.linspace(0.6, 1.0, 20):
     for power_capacity in np.linspace(0.1, 1.0, 20):
         tasks.append((power_capacity, rte))
-results_constant_uptime_mef = pd.concat(Parallel(n_jobs=20)(delayed(solve_savings_constant_uptime_mef)(power_capacity, rte) for power_capacity, rte in tasks), ignore_index=True)
+results_constant_uptime_mef = pd.concat(Parallel(n_jobs=4)(delayed(solve_savings_constant_uptime_mef)(power_capacity, rte) for power_capacity, rte in tasks), ignore_index=True)
 
 
 # %%
@@ -147,4 +149,4 @@ plt.tight_layout()
 
 basepath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 for ext in ["png", "pdf", "svg"]:
-    plt.savefig(os.path.join(basepath, "figures", ext, f"rte_analysis_{region}_month{month}.{ext}"), dpi=300)
+    plt.savefig(os.path.join(figure_dir(basepath, ext, si=True), f"rte_analysis_{region}_month{month}.{ext}"), dpi=300)

@@ -223,6 +223,26 @@ tariff_plot = ax.boxplot(
     capprops={"linewidth": 0.5},
 )
 
+# overlay the CAISO July case study used elsewhere in the paper
+# (e.g. marginal_abatement_cost.py, acc_curve_wholesale_vs_tariff.py)
+# NOTE: the tariff point is the single representative CAISO tariff for July from
+# savings_limit_boxplot.csv, not a member of the all-tariff distribution in the tariff box
+caiso_july = savings_data[
+    (savings_data["region"] == "CAISO") & (savings_data["month"] == 7)
+]
+caiso_idx = list(regions).index("CAISO")
+july_offsets = {"aef": -0.3, "mef": -0.1, "dam": 0.1, "tariff": 0.3}
+
+for key, offset in july_offsets.items():
+    july_plot = ax.scatter(
+        caiso_idx + offset,
+        caiso_july[f"{key}_savings"].values,
+        s=15,
+        marker="o",
+        color="black",
+        zorder=5,
+    )
+
 ax.set(
     ylabel="Savings [%]",
     xticks=np.arange(len(regions)),
@@ -238,7 +258,7 @@ ax.legend(
         dam_plot["boxes"][0],
         tariff_plot["boxes"][0],
     ],
-    ['AEF', 'MEF', 'DAM', 'Tariff'], 
+    ['AEF', 'MEF', 'DAM', 'Tariff'],
     loc='best',
     frameon=False, 
     fontsize=7, 

@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import calendar
 from analysis.pricesignal import getmef, getaef, getdam, gettariff
 import analysis.maxsavings as ms 
-from analysis.acc_curve import acc_curve
+from analysis.acc_curve import acc_curve, get_mac
 from analysis.overlay_costs import _add_scc_and_rec
 from eeco import costs
 from eeco.units import u
@@ -16,24 +16,6 @@ with open(os.path.join(os.path.dirname(__file__), "colorscheme.json"), "r") as f
     colors = json.load(f)
 sys_colors=colors["examplesys_colors"]
 
-def get_mac(df):
-    # get cost optimal point
-    cost_optimal = df.loc[df['alignment_fraction'] == 0]
-    df = df[df['alignment_fraction'] >=0]
-
-    # for all other points, calc the shadow cost relative to the cost optimal point
-    shadow_cost = []
-    emissions = []
-    for index, row in df.iterrows():
-        delta_cost = row['electricity_cost'] - cost_optimal['electricity_cost'].values[0]
-        delta_emissions = cost_optimal['emissions'].values[0] - row['emissions']
-        sc = max([delta_cost / (delta_emissions + 1e-12), 1e-2])
-        shadow_cost.append(sc)
-        emissions.append(row['emissions'])
-
-    return shadow_cost, emissions
-
-    
 systems = {
     "maxflex" : {
         "system_uptime": 0.0,  # minimum uptime

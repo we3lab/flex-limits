@@ -5,6 +5,7 @@ import os
 import matplotlib.pyplot as plt
 from joblib import Parallel, delayed
 from analysis.energy_capacity import calc_energy_capacity
+from figpaths import figure_dir
 
 # %%
 # define plotting defaults
@@ -56,10 +57,10 @@ tasks = []
 for power_capacity in np.arange(0.1, 1.1, 0.1):
     for uptime in np.arange(0.5, 1.05, 0.05):
         tasks.append((uptime, power_capacity))
-results_rte1 = Parallel(n_jobs=20)(delayed(solve_energy_capacity_dam)(uptime, power_capacity, 1.0) for uptime, power_capacity in tasks)
+results_rte1 = Parallel(n_jobs=4)(delayed(solve_energy_capacity_dam)(uptime, power_capacity, 1.0) for uptime, power_capacity in tasks)
 results_rte1 = pd.concat(results_rte1, ignore_index=True)
 
-results_rte07 = Parallel(n_jobs=20)(delayed(solve_energy_capacity_mef)(uptime, power_capacity, 0.5) for uptime, power_capacity in tasks)
+results_rte07 = Parallel(n_jobs=4)(delayed(solve_energy_capacity_mef)(uptime, power_capacity, 0.5) for uptime, power_capacity in tasks)
 results_rte07 = pd.concat(results_rte07, ignore_index=True)
 
 # %%
@@ -81,4 +82,4 @@ plt.tight_layout()
 
 basepath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 for ext in ["png", "pdf", "svg"]:
-    plt.savefig(os.path.join(basepath, "figures", ext, f"energy_capacity.{ext}"), dpi=300)
+    plt.savefig(os.path.join(figure_dir(basepath, ext, si=True), f"energy_capacity.{ext}"), dpi=300)
