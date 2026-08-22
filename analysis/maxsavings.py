@@ -1,12 +1,14 @@
 # imports
 import os
+from functools import lru_cache
 import numpy as np
 from eeco import costs
+from eeco.units import u
 import analysis.pricesignal as ps
 from models.flexload_milp import flexloadMILP
 from models.flexload_milp import idxparam_value
 
-def max_mef_savings(data, system_uptime, continuous_flex, baseload):
+def max_mef_savings(data, system_uptime, continuous_flex, baseload, threads=10):
     """Calculate the maximum savings for marginal emissions factor (MEF) as a percentage."""
     flex = flexloadMILP(
         baseload=baseload,
@@ -22,12 +24,12 @@ def max_mef_savings(data, system_uptime, continuous_flex, baseload):
     )
 
     flex.build()
-    flex.solve()
+    flex.solve(threads=threads)
 
     return flex.model.pct_emissions_savings()
 
 
-def max_aef_savings(data, system_uptime, continuous_flex, baseload):
+def max_aef_savings(data, system_uptime, continuous_flex, baseload, threads=10):
     """Calculate the maximum savings for average emissions factor (AEF) as a percentage."""
     flex = flexloadMILP(
         baseload=baseload,
@@ -43,12 +45,12 @@ def max_aef_savings(data, system_uptime, continuous_flex, baseload):
     )
 
     flex.build()
-    flex.solve()
+    flex.solve(threads=threads)
 
     return flex.model.pct_emissions_savings()
 
 
-def max_dam_savings(data, system_uptime, continuous_flex, baseload, return_model=False):
+def max_dam_savings(data, system_uptime, continuous_flex, baseload, return_model=False, threads=10):
     """Calculate the maximum savings for day-ahead market (DAM) as a percentage.
 
     If `return_model` is True, the solved `flexloadMILP` is returned alongside the savings
@@ -68,7 +70,7 @@ def max_dam_savings(data, system_uptime, continuous_flex, baseload, return_model
     )
 
     flex.build()
-    flex.solve()
+    flex.solve(threads=threads)
 
     if return_model:
         return flex.model.pct_cost_savings(), flex
@@ -102,7 +104,8 @@ def max_tariff_savings(
     startdate_dt, 
     enddate_dt,
     uptime_equality=True,
-    resolution="1h"
+    resolution="1h",
+    threads=10
 ):
     """Calculate the maximum savings for a tariff as a percentage."""
     flex = flexloadMILP(
@@ -121,7 +124,7 @@ def max_tariff_savings(
     )
 
     flex.build()
-    flex.solve()
+    flex.solve(threads=threads)
 
     # (1) get the charge dictionary
     charge_dict = costs.get_charge_dict(
@@ -129,7 +132,9 @@ def max_tariff_savings(
     )
 
     # (2) set up consumption data dictionary
-    consumption_data_dict = {"electric": idxparam_value(flex.model.net_facility_load) / 1000} # convert kW to MW
+    # both trajectories are in MW, which is declared to eeco below; scaling only one of
+    # them here would make the flexible and baseline costs incomparable
+    consumption_data_dict = {"electric": idxparam_value(flex.model.net_facility_load)}
 
     total_flex_cost, _ = costs.calculate_cost(
             charge_dict,
@@ -143,7 +148,7 @@ def max_tariff_savings(
 
     total_base_cost, _ = costs.calculate_cost(
             charge_dict,
-            {"electric": flex.baseload}, # convert kW to MW
+            {"electric": flex.baseload},
             resolution=resolution,
             desired_utility="electric",
             desired_charge_type=None,
@@ -152,3 +157,50 @@ def max_tariff_savings(
         )
 
     return (100 * (total_base_cost - total_flex_cost) / total_base_cost)
+
+
+@lru_cache(maxsize=None)
+def get_signals(region, month):
+    """Load the MEF, AEF, DAM and tariff signals for a region-month.
+
+    Cached because `max_savings_point` is the unit of work fanned out across a
+    uptime/power-capacity grid, and every point in a region-month needs the same inputs.
+    """
+    startdate_dt, enddate_dt = get_start_end(month)
+    return (
+        ps.getmef(region, month),
+        ps.getaef(region, month),
+        ps.getdam(region, month),
+        ps.gettariff(region, full_list=False),
+        startdate_dt,
+        enddate_dt,
+    )
+
+
+def max_savings_point(region, month, system_uptime, continuous_flex, threads=1):
+    """Maximum MEF, AEF, DAM and tariff savings at one (uptime, power capacity) point.
+
+    Lives here rather than in the plotting script so that parallel workers can import it
+    and load their own inputs, instead of having the signals shipped with every task.
+    """
+    mef, aef, dam, tariff, startdate_dt, enddate_dt = get_signals(region, month)
+    baseload = np.ones_like(mef)  # 1MW flat baseline load
+
+    # tariffs require a full month of data to properly incorporate monthly demand charges
+    month_length = int((enddate_dt - startdate_dt) / np.timedelta64(1, "h"))
+
+    return (
+        max_mef_savings(mef, system_uptime, continuous_flex, baseload, threads=threads),
+        max_aef_savings(aef, system_uptime, continuous_flex, baseload, threads=threads),
+        max_dam_savings(dam, system_uptime, continuous_flex, baseload, threads=threads),
+        max_tariff_savings(
+            tariff,
+            system_uptime,
+            continuous_flex,
+            np.ones(month_length),
+            uptime_equality=True,
+            startdate_dt=startdate_dt,
+            enddate_dt=enddate_dt,
+            threads=threads,
+        ),
+    )

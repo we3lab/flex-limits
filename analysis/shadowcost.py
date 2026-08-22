@@ -1,9 +1,11 @@
-from models.flexload_milp import flexloadMILP
+from models.flexload_milp import flexloadMILP, idxparam_value
 from pyomo.environ import value, Param, Constraint, Expression
 import numpy as np
-import pandas as pd 
-import os 
+import pandas as pd
+import os
 import calendar
+from eeco import costs
+from eeco.units import u
 from analysis.pricesignal import getmef, getaef, getdam, gettariff
 from analysis.acc_curve import acc_curve
 from analysis import maxsavings as ms
@@ -18,8 +20,10 @@ def shadow_cost(system_uptime,
                 baseload = None,
                 emissions_type="mef",
                 costing_type="dam",
-                year=2025, 
-                tol=1e-8):
+                year=2025,
+                tol=1e-8,
+                threads=10,
+                resolution="1h"):
     """
     Calculate the cost of carbon abatement for a flexible load system.
     Parameters:
@@ -43,6 +47,10 @@ def shadow_cost(system_uptime,
         Type of emission factor: "mef" or "aef".
     costing_type : str
         Type of cost signal: "dam" or "tariff".
+    threads : int
+        Gurobi thread count for the `abatement_frac < 1` re-solve.
+    resolution : str
+        Timeseries resolution passed to the tariff costing.
     """
 
     # get data info
@@ -115,11 +123,13 @@ def shadow_cost(system_uptime,
             )
         emissions = sum(idxparam_value(curve.model.net_facility_load) * curve.model.emissions_signal)
 
-        # check that we met the emissions constraint
+        # check that we met the emissions constraint. The re-solved emissions are the ones
+        # under test: `cost_optimal_emissions` is the unconstrained optimum and sits above
+        # `allowable_emissions` by construction, so checking it always trips.
         assert hasattr(model, 'emissions_limit_rule'), "Emissions limit not added to model."
-        if curve.cost_optimal_emissions - allowable_emissions > tol:
+        if emissions - allowable_emissions > tol:
             raise ValueError("Could not meet emissions constraint. Try increasing system_uptime or power_capacity.")
-        shadow_cost = (curve.cost_optimal_cost - cost) / (emission / 1000 - curve.cost_optimal_emissions / 1000 + tol)
+        shadow_cost = (curve.cost_optimal_cost - cost) / (emissions / 1000 - curve.cost_optimal_emissions / 1000 + tol)
 
     if abatement_frac <= 0 or abatement_frac > 1:
         raise ValueError("abatement_frac must be between 0 and 1")

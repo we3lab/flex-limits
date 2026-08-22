@@ -1,13 +1,66 @@
 from models.flexload_milp import flexloadMILP, idxparam_value
-from pyomo.environ import value, Param, Constraint, Var, NonNegativeReals
+from pyomo.environ import Param, Constraint, Var, NonNegativeReals
+from pyomo.opt import TerminationCondition
 import numpy as np
-import pandas as pd 
-import os 
+import pandas as pd
+import os
 import calendar
 from analysis.pricesignal import getmef, getaef, getdam, gettariff
 import analysis.maxsavings as ms
 from eeco import costs
 from eeco.units import u
+
+
+def get_mac(df, tol=1e-9, cost_tol=1e-7):
+    """
+    **Description**:
+
+    Calculate the marginal abatement cost of each pareto point relative to the cost optimal
+    point of the same sweep.
+
+    The cost optimal point is the reference, so it has no abatement cost of its own and is
+    excluded. Points that abate no emissions relative to the reference are also excluded -
+    the abatement cost is undefined there, not zero.
+
+    **Parameters**:
+
+        df (DataFrame): a pareto front as written by acc_curve.build_pareto_front
+        tol (float - optional): the emissions abatement below which a point is treated as
+            abating nothing relative to the cost optimal point
+        cost_tol (float - optional): cost differences smaller than this fraction of the
+            reference cost are treated as exactly zero. Tariff costs are piecewise flat in
+            the load schedule, so a whole band of schedules costs the same to the cent and
+            the differences that survive are float noise, not cheap abatement.
+
+    **Returns**:
+
+        shadow_cost (list): the abatement cost of each retained point in $/ton
+        emissions (list): the total emissions of each retained point, in the same units as
+            the input dataframe
+    """
+    # the cost optimal point is the one that abates the least, i.e. emits the most
+    cost_optimal = df.loc[df["emissions"].idxmax()]
+
+    shadow_cost = []
+    emissions = []
+    cost_scale = abs(cost_optimal["electricity_cost"])
+    for index, row in df.drop(index=cost_optimal.name).iterrows():
+        delta_cost = row["electricity_cost"] - cost_optimal["electricity_cost"]
+        delta_emissions = cost_optimal["emissions"] - row["emissions"]
+
+        # this schedule sits in the same flat cost band as the reference: abatement is free
+        if abs(delta_cost) <= cost_tol * cost_scale:
+            delta_cost = 0.0
+
+        # no abatement relative to the reference means there is no abatement cost to report
+        if delta_emissions <= tol:
+            continue
+
+        shadow_cost.append(delta_cost / delta_emissions)
+        emissions.append(row["emissions"])
+
+    return shadow_cost, emissions
+
 
 class acc_curve(flexloadMILP):
     def __init__(self, baseload, min_onsteps, flex_capacity, emissions_signal, emissions_type, 
@@ -68,10 +121,10 @@ class acc_curve(flexloadMILP):
                 electric_consumption_units=u.MW
             )
 
-    def calc_emissions_optimal(self, threads = 10, resolution="1h"):
+    def calc_emissions_optimal(self, threads = 10, resolution="1h", mipgap = 1e-6):
         self.model.weight_of_cost = 0 
         self.model.cost_of_carbon = 1
-        (self.model, results) = self.solve(threads = threads, max_iter=100, descent_stepsize=0.1)
+        (self.model, results) = self.solve(threads = threads, max_iter=100, descent_stepsize=0.1, mipgap = mipgap)
         
         # extract results from cost optimal solution
         if self.costing_type == "dam":
@@ -100,10 +153,10 @@ class acc_curve(flexloadMILP):
 
         return self.emissions_optimal_cost, self.emissions_optimal_emissions
     
-    def calc_cost_optimal(self, threads = 10, resolution="1h"):
+    def calc_cost_optimal(self, threads = 10, resolution="1h", mipgap = 1e-6):
         self.model.weight_of_cost = 1 
         self.model.cost_of_carbon = 0
-        (self.model, results) = self.solve(threads = threads, max_iter=100, descent_stepsize=0.1)
+        (self.model, results) = self.solve(threads = threads, max_iter=100, descent_stepsize=0.1, mipgap = mipgap)
 
         # extract results from cost optimal solution
         if self.costing_type == "dam":
@@ -135,7 +188,7 @@ class acc_curve(flexloadMILP):
         self.cost_optimal_emissions = sum(idxparam_value(self.model.net_facility_load) * self.model.emissions_signal)
         return self.cost_optimal_cost, self.cost_optimal_emissions
 
-    def build_pareto_front(self, stepsize=5, rel_tol = 1e-5, threads = 10, savepath = None):
+    def build_pareto_front(self, stepsize=5, rel_tol = 1e-5, threads = 10, savepath = None, mipgap = None, gap_fraction = 1e-3):
         """
         **Description**:
 
@@ -144,12 +197,25 @@ class acc_curve(flexloadMILP):
         **Parameters**:
 
             stepsize (float - optional): the resolution of the pareto curve sweep in units of carbon cost
-            rel_tol (float - optional): the relative tolerance to which the emissions optimal solution is considered reached       
+            rel_tol (float - optional): the relative slack added to the emissions cap. At
+                abatement_fraction = 1 the cap is the emissions optimal value itself, which
+                is infeasible by a floating point hair because that value was recomputed in
+                python from the solution rather than read back from the solver.
             savepath (str - optional): the path to save the results to a csv file
+            mipgap (float - optional): the relative MIP gap for each sweep solve. Defaults to
+                None, which derives one from the cost span of the front - see gap_fraction.
+                Pass a value to override.
+            gap_fraction (float - optional): the fraction of the front's own cost span that
+                the solver is allowed as absolute optimality gap. A *relative* gap is the
+                wrong tolerance here: the front spans only the cost difference between the
+                cost optimal and emissions optimal solutions, which can be a tiny fraction
+                of the objective. On CAISO July wholesale the whole front spans $2.30 of a
+                ~$934 objective, so the solver default of 1e-2 (+/- $9.3) swallows it whole
+                and the sweep collapses onto the emissions optimal point.
 
         **Returns**:
 
-            pareto_front (DataFrame): a dataframe containing the carbon cost, total electrical emissions, electricity cost, alignment cost, and alignment fraction
+            pareto_front (DataFrame): a dataframe containing the abatement fraction requested of each sweep point, the total electrical emissions, the electricity cost, and the realised alignment fraction
         """
 
         # self.calc_baseline(threads = threads)
@@ -158,19 +224,36 @@ class acc_curve(flexloadMILP):
         self.model.weight_of_cost = 1 
         self.model.cost_of_carbon = 0
 
-        # define some lists to store results and populate with the cost optimal case / baseline
-        carbon_costs = [0]
+        if mipgap is None:
+            # size the gap against the cost span of the front rather than the objective
+            cost_span = abs(self.cost_optimal_cost - self.emissions_optimal_cost)
+            objective_scale = max(abs(self.cost_optimal_cost), abs(self.emissions_optimal_cost))
+            mipgap = float(np.clip(gap_fraction * cost_span / objective_scale, 1e-9, 1e-2))
+            print(
+                f"Front spans {cost_span:.4g} of a {objective_scale:.4g} objective "
+                f"-> using mipgap {mipgap:.3g}"
+            )
+
+        # seed the results with the cost optimal case. this is the reference every abatement
+        # cost is measured against, so it is taken from calc_cost_optimal rather than from a
+        # sweep solve - under a tariff many schedules tie on cost exactly, and an
+        # abatement_fraction = 0 solve is free to return any one of them. the sweep then runs
+        # abatement_fraction = 0 as well, so the first two rows are the reference and the
+        # sweep's own read on it: identical where the problem is well determined, and a
+        # visible warning of cost degeneracy where they differ.
         sweep_emissions = [self.cost_optimal_emissions]
         sweep_costs = [self.cost_optimal_cost]
-        emissions_costs = [0]
         alignment_fraction = [0]
+        abatement_fractions = [0]
 
         # add allowable emissions parameter
         self.model.abatement_fraction = Param(initialize=1.0, mutable=True)
         self.model.allowable_emissions = Var(within = NonNegativeReals)
+        emissions_cap_slack = rel_tol * abs(self.emissions_optimal_emissions)
+
         @self.model.Constraint()
         def allowable_emissions_rule(m):
-            return m.allowable_emissions == (self.cost_optimal_emissions - self.emissions_optimal_emissions) * (1 - m.abatement_fraction) + self.emissions_optimal_emissions
+            return m.allowable_emissions == (self.cost_optimal_emissions - self.emissions_optimal_emissions) * (1 - m.abatement_fraction) + self.emissions_optimal_emissions + emissions_cap_slack
         
         @self.model.Constraint()
         def emissions_limit_rule(m):
@@ -185,10 +268,12 @@ class acc_curve(flexloadMILP):
 
             # re-solve the model
             try:
-                (self.model, results) = self.solve(self.model, threads = threads, max_iter=500)
-                
-                # assert results.solver.termination_condition == "optimal"
-                
+                (self.model, results) = self.solve(threads = threads, max_iter=500, mipgap = mipgap)
+
+                assert results.solver.termination_condition == TerminationCondition.optimal, (
+                    f"Solver terminated with {results.solver.termination_condition}, not optimal"
+                )
+
                 total_electrical_emissions = np.sum(self.model.total_flex_emissions_signal()) 
                 sweep_emissions.append(total_electrical_emissions)  
 
@@ -219,21 +304,19 @@ class acc_curve(flexloadMILP):
                 alpha = 1 - (total_electrical_emissions - self.emissions_optimal_emissions)/(self.cost_optimal_emissions - self.emissions_optimal_emissions + 1e-8)
 
                 # log results
-                carbon_costs.append(value(self.model.cost_of_carbon)) 
                 alignment_fraction.append(alpha)
-            
-            except:
-                raise RuntimeError("Pareto point calculation failed - consider increasing the stepsize or relative tolerance")
+                abatement_fractions.append(a_e)
+
+            except Exception as e:
+                raise RuntimeError(
+                    f"Pareto point calculation failed at abatement fraction {a_e:.2f}"
+                ) from e
 
         # convert kg to tons (metric )
         sweep_emissions = [x*0.001 for x in sweep_emissions]
 
-        # convert $/kg to $/ton (metric)
-        emissions_costs = [x*1000 for x in emissions_costs]
-
-
         # store outputs in a dataframe
-        pareto_front = pd.DataFrame({"carbon_cost": carbon_costs, 
+        pareto_front = pd.DataFrame({"abatement_fraction": abatement_fractions,
                                   "emissions": sweep_emissions, 
                                   "electricity_cost": sweep_costs, 
                                   "alignment_fraction": alignment_fraction})

@@ -19,6 +19,9 @@ eggs/
 lib/
 lib64/
 parts/
+# ...but the resumable per-tariff part files are the provenance for figure 5b, not build
+# output. The bare `parts/` above comes from the Python packaging template.
+!paper_figures/processed_data/shadowcost_tariff_*/parts/
 sdist/
 var/
 wheels/

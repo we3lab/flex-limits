@@ -3,6 +3,7 @@ import pandas as pd
 import os
 import calendar
 from pyomo.environ import Param, Var, NonNegativeReals, Constraint
+from pyomo.opt import TerminationCondition
 from analysis.pricesignal import getmef, getaef, getdam, gettariff
 from analysis import maxsavings as ms
 from analysis.acc_curve import acc_curve
@@ -126,9 +127,9 @@ def shadowcost_wholesale(
         return m.total_flex_emissions_signal <= m.allowable_emissions
 
     # recalculate the cost and emissions at the new point on the curve
-    model, results = acc.solve(acc.model)
+    model, results = acc.solve(mipgap = 1e-6)
 
-    assert results.solver.termination_condition == 'optimal', "Solver did not find an optimal solution."
+    assert results.solver.termination_condition == TerminationCondition.optimal, "Solver did not find an optimal solution."
     assert model.find_component('allowable_emissions_rule') is not None, "Model does not have 'net_facility_load' component."
 
     print(f"Abatement fraction: {acc.model.abatement_fraction.value}, New allowable emissions: {acc.model.allowable_emissions.value}")
@@ -166,6 +167,7 @@ def shadowcost_tariff(
     threads = 10, 
     year = 2023,
     emissions_type="aef",
+    timelimit = None,
 ):
     """
     Calculate the cost of savings from wholesale energy prices.
@@ -223,7 +225,7 @@ def shadowcost_tariff(
                     uptime_equality=uptime_equality,
 )
     flex_cost.build()
-    flex_cost.solve(threads = threads)
+    flex_cost.solve(threads = threads, timelimit = timelimit)
     # Calculate the net facility load
     net_facility_load_costopt = idxparam_value(flex_cost.model.net_facility_load)
 
@@ -265,10 +267,10 @@ def shadowcost_tariff(
     )
 
     flex_emissions.build()
-    flex_emissions.solve(threads = threads)
+    flex_emissions.solve(threads = threads, timelimit = timelimit)
 
     # Calculate the net facility load
-    net_facility_load_emisopt = idxparam_value(flex_emissions.model.net_facility_load) / 1000 # convert kW to MW
+    net_facility_load_emisopt = idxparam_value(flex_emissions.model.net_facility_load)
    
     # (2) set up consumption data dictionary
     consumption_data_dict_emisopt = {"electric": net_facility_load_emisopt}
