@@ -29,6 +29,10 @@ dev_requirements = [
 requirements = [
     "pandas>=2.2.1",
     "numpy>=1.26.4",
+    # scipy has always been pulled in transitively by cvxpy/pyomo; it is declared here
+    # because the tariff clustering analysis imports it directly
+    "scipy>=1.11",
+    "scikit-learn>=1.3",
     "cvxpy>=1.3.0",
     "pyomo>=6.7",
     "gurobipy>=11.0",

@@ -46,6 +46,7 @@ flex_limits
 - `pricesignal.py`: Loads and reformats timeseries data from the **data** folder. Also generates synthetic time-varying baseload profiles via `synthetic_baseload`.
 - `rte_analysis.py`: Calculates the effect of RTE<1 on the savings.
 - `shadowcost.py`: Similar to emissionscost, an alternative method of calculating the shadow cost of emissions abatement.
+- `tariff_features.py`: Extracts the rate structure of a tariff — how many demand and energy charges it has, whether its demand charges are coincident, how much price variation it offers — and itemizes the bill an inflexible load would pay under it. Pure cost evaluation via `eeco`, no optimization.
 
 **data**: Contains cleaned data on electricity prices and emissions. 
 - `aef/`: contains data on average emissions factors, sorted by region in month-hour-average format.
@@ -71,9 +72,10 @@ flex_limits
     - `maxsavings_contour.py`: plots the maximum savings as a function of uptime and power capacity. Manuscript figure 2. 
     - `rte_analysis.py`: plots the effects of RTE<1 on the maximum savings.
     - `shadowcosttariff_violinplot.py`: plots the cost of abatement associated with flexibility when considering tariff electricity pricing. Manuscript figure 5b. 
+    - `tariff_cluster_analysis.py`: clusters the bundled tariffs by rate structure and compares how much value a flexible load extracts from each archetype. Supporting information. Runs no optimization — it reuses the `cost_optimal_cost_usd` already solved in `processed_data/shadowcost_tariff_mef/` and pairs it with an inflexible reference bill obtained by evaluating each tariff against a flat 1 MW load.
     - `timevarying_baseload_example.py`: plots an example of optimally flexible operation of a time-varying baseload against the day-ahead market price signal, alongside the power capacity band.
     - `shadowcostwholesale_boxplot.py`: plots the cost of abatement associated with flexibility when considering day-ahead market electricity pricing. Manuscript figure 5a. 
-- `figures/`: contains subfolders for 3 supported image file types: `pdf`, `svg`, and `png`. The top level of each holds **only the manuscript figures**; supporting-information figures go to `figures/SI/{pdf,svg,png}/`, and retired or superseded renders go to `figures/ARCHIVE/`. Scripts pick their destination through `code/figpaths.py::figure_dir`, so a figure moves between the two by flipping one `si=` argument rather than by being copied around.
+- `figures/`: contains subfolders for 3 supported image file types: `pdf`, `svg`, and `png`. The top level of each holds **only the manuscript figures**; supporting-information figures go to `figures/SI/{pdf,svg,png}/`, and retired or superseded renders go to `figures/ARCHIVE/`. Scripts pick their destination through `code/figpaths.py::figure_dir`, so a figure moves between the two by flipping one `si=` argument rather than by being copied around. Where a supporting figure needs more explanation than its axes can carry, the caption text sits beside the renders as `figures/SI/<figure_name>_caption.md` — see `figures/SI/tariff_cluster_analysis_caption.md`.
 -  `processed_data/`: Contains data associated with each of the `figures/`. `processed_data/ARCHIVE/README.md` records which generated datasets are current, which are retired and why, and the cheap regression tests used to tell them apart — read it before rebuilding a figure from anything in here.
 
 
